@@ -1,0 +1,44 @@
+{
+  "comandos": [
+    {
+      "id": 1,
+      "value": "MoveRight",
+      "parameters": 1
+    },
+    {
+      "id": 2,
+      "value": "MoveLeft",
+      "parameters": 1
+    },
+    {
+      "id": 3,
+      "value": "MoveUp",
+      "parameters": 1
+    },
+    {
+      "id": 4,
+      "value": "MoveDown",
+      "parameters": 1
+    },
+    {
+      "id": 5,
+      "value": "ClickIzq",
+      "parameters": 2
+    },
+    {
+      "id": 6,
+      "value": "ClickDer",
+      "parameters": 2
+    },
+    {
+      "id": 7,
+      "value": "PinTool",
+      "parameters": 2
+    },
+    {
+      "id": 8,
+      "value": "Reset",
+      "parameters": 1
+    }
+  ]
+}
