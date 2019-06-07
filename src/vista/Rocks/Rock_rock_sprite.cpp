@@ -10,7 +10,6 @@ RockSprite::RockSprite(const Window &window) : Sprite(ROCK_FILENAME, window),
 {  
   float num_rock = std::rand() % (7) ;
   float new_x = X_START_POSITION + num_rock * WIDTH_ROCK + num_rock;
-  std::cout << new_x << std::endl;
   this->src.set(new_x, Y_POSITION_ROCK , WIDTH_ROCK, HEIGHT_ROCK);
 }
 

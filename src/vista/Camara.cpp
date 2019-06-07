@@ -17,7 +17,7 @@ void Camara::setWindow(float x, float y, float width, float height)
 int Camara::render(Sprite &sprite, Rect destWorld)
 {
   Rect dest_virtual(0, 0, 0, 0);
-  destWorld.prfloat();
+  // destWorld.prfloat();
   convertToVirtual(destWorld, dest_virtual);
   if ((dest_virtual.getX() < vision.getX() + vision.getWidth() || dest_virtual.getX() > vision.getX() - vision.getWidth()) && (dest_virtual.getY() <= vision.getY() + vision.getHeight() || dest_virtual.getY() >= vision.getY() - vision.getHeight()))
   {
@@ -29,10 +29,9 @@ void Camara::convertToVirtual(const Rect &worldPostion, Rect &virtualPostion)
 {
   float widthVirtual = worldPostion.getWidth() * FACTORX * this->window_width;
   float heightVirtual = worldPostion.getHeight() * FACTORX * this->window_height;
-  float xVirtual = worldPostion.getX() * FACTORX * this->window_width + this->window_width / 2 - widthVirtual / 2 - vision.getX();
+  float xVirtual = worldPostion.getX() * FACTORX * this->window_width + this->window_width / 2 + widthVirtual / 2 - vision.getX();
   float yVirtual = worldPostion.getY() * FACTORX * this->window_height + this->window_height / 2 + heightVirtual / 2 - vision.getY();
   virtualPostion.set(xVirtual, yVirtual, widthVirtual, heightVirtual);
-  virtualPostion.prfloat();
 }
 
 Camara::~Camara()

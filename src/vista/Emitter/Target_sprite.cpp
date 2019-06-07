@@ -13,7 +13,6 @@ int TargetSprite::render(const Rect &dest)
 {
   if (state == 1)
   {
-    dest.prfloat();
     Rect dest_inactive(dest.getX() + 0.27 * dest.getWidth(), dest.getY() + 0.28 * dest.getHeight(), 0.47 * dest.getWidth(), 0.47 * dest.getHeight());
     int response = Sprite::render(src, dest_inactive);
     return response;

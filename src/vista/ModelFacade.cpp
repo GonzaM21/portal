@@ -23,15 +23,12 @@ void ModelFacade::decodeMessages(std::vector<std::string> arguments)
 
 void ModelFacade::setPlayer(std::vector<std::string> arguments)
 {
-  std::cout << "entra a setear player\n";  
   Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
   model.setPlayer(dest, atof(arguments[1].c_str()), 0, 0);
-  std::cout << "setea player\n";
 }
 
 void ModelFacade::setPlayerId(std::vector<std::string> arguments)
 {
-  std::cout << "setea player id\n";
   model.setPlayerId(atoi(arguments[1].c_str()));
 }
 
@@ -75,7 +72,7 @@ void ModelFacade::setPortal(std::vector<std::string> arguments)
 void ModelFacade::setEnergyEmitter(std::vector<std::string> arguments)
 {
   Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
-  // model.setEnergyEmitter(dest, atoi(arguments[1].c_str()), atoi(arguments[6].c_str()), atoi(arguments[7].c_str()));
+  model.setEnergyEmitter(dest, atoi(arguments[1].c_str()), atoi(arguments[6].c_str()), atoi(arguments[7].c_str()));
 }
 
 void ModelFacade::setPowerball(std::vector<std::string> arguments)

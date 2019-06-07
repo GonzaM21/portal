@@ -8,11 +8,11 @@ Emitter::Emitter(const Window &window, const int &code, const int &state) : dest
 {
 	if (state == 0)
 	{
-		//inactive = new TargetSprite(window, 1);
+		inactive = new TargetSprite(window, 1);
 	}
 	else
 	{
-		//inactive = new TargetSprite(window, 0);
+		inactive = new TargetSprite(window, 0);
 	}
 }
 
@@ -28,7 +28,7 @@ void Emitter::setDestWorld(float x, float y, float width, float height)
 }
 
 void Emitter::setState(const int& state) {
-	//inactive->setState(state);
+	inactive->setState(state);
 }
 
 Emitter::~Emitter()

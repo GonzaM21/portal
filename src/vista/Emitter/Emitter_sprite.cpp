@@ -43,10 +43,8 @@ void EmitterSprite::setSrc(Rect &src)
 
 void EmitterSprite::setState(const int &state){
   this->state = state;
-  //inactive->setState(state);
 }
 
 EmitterSprite::~EmitterSprite()
 {
-  //delete inactive;
 }

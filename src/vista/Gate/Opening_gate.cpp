@@ -53,7 +53,6 @@ int OpeningGate::render(const Rect &dest)
     done = true;
     x_src = 8 * WIDTH_GATE + 9;
   }
-  src.prfloat();
   src.set(x_src, y_src, WIDTH, HEIGHT);
   return Sprite::render(src, dest);
 }

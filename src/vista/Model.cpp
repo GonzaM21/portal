@@ -19,6 +19,17 @@ void Model::setPortal(Rect &dest, const int &id, const int &code, const int &dir
     this->portals[id]->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
   }
 }
+
+void Model::setEnergyEmitter(Rect &dest, const int &id, const int &direction, const int &state)
+{
+  if (id > emitters.size())
+  {
+    this->emitters[id] = new Emitter(window, direction, state);
+  }
+  this->emitters[id]->setState(state);
+  this->emitters[id]->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
+}
+
 void Model::setGate(Rect &dest, const int &id, const int &state)
 {
   if (id > gates.size())
