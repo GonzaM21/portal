@@ -3,12 +3,12 @@
 
 void ProtectedDataBase :: makePlayerJump(std::string &player) {
     std::unique_lock<std::mutex> lck(m);
-    this->players[player]->Chell_Jump();
+    this->players[player]->Jump();
 }
 
 void ProtectedDataBase :: makePlayerMove(std::string player,char &direction) {
     std::unique_lock<std::mutex> lck(m);
-    this->players[player]->Chell_Move(direction);
+    this->players[player]->Move(direction);
 }
 
 void ProtectedDataBase :: addRock(World &world,float x_pos, float y_pos, float radius) {
@@ -38,7 +38,7 @@ void ProtectedDataBase :: addMetalBlock(World &world,float x_pos, float y_pos,fl
 void ProtectedDataBase :: addPlayer(World &world,std::string &player) {
     std::unique_lock<std::mutex> lck(m);
     float pos = this->players.size();
-    this->players.insert({player,new Chell_Player(world,pos,-2.8f)});
+    this->players.insert({player,new Chell_Player(world,0.f,0.8f)});
 }
 
 std::vector<std::string> ProtectedDataBase :: getIds() {
@@ -76,3 +76,19 @@ std::vector<Metal_Block*> ProtectedDataBase :: getMetalBlocks() {
   }
   return metal_blocks;
 }
+
+void ProtectedDataBase :: setWidth(int width) {
+  this->width = width;
+}
+
+void ProtectedDataBase :: setHeight(int height) {
+  this->width = height;
+}
+
+int ProtectedDataBase :: getWidth() {
+  return this->width;
+}
+
+int ProtectedDataBase :: getHeight() {
+  return this->height;
+}  

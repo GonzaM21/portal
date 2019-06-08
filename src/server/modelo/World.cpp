@@ -5,42 +5,26 @@
 #include "MyContactListener.h"
 #include "Macros.h"
 
-/*World::World(){
-    world = new b2World(b2Vec2(ZERO,GRAVITY));
-    ContactListener = new MyContactListener;
-    world->SetContactListener(ContactListener);
-    this->x_lim = b2Vec2(MAX_LIM + 1,-MAX_LIM - 1);
-    this->y_lim = b2Vec2(MAX_LIM + 1,-MAX_LIM - 1);
-    World_Add_Ground_Walls_Roof();
-}*/
-
 World::World(b2Vec2 gravity,b2Vec2 x_lim, b2Vec2 y_lim){
     world = new b2World(gravity);
     ContactListener = new MyContactListener;
     world->SetContactListener(ContactListener);
     this->x_lim = x_lim + b2Vec2(1,-1);
     this->y_lim = y_lim + b2Vec2(1,-1);
-    World_Add_Ground_Walls_Roof();
+    addGroundWallsRoof();
 }
 
-void World::World_Add_Ground_Walls_Roof() {
-    //std::cout<<"wALL 1\n";
-    Bodies.push_back(World_Add_Polygon(ZERO,y_lim.x - DELTA_WALLS ,x_lim.x, DELTA_WALLS ,true));
-    //std::cout<<"wALL 2\n";
-    Bodies.push_back(World_Add_Polygon(ZERO,y_lim.y + DELTA_WALLS,x_lim.x,DELTA_WALLS,true));
-    //std::cout<<"wALL 3\n";
-    Bodies.push_back(World_Add_Polygon(x_lim.x - DELTA_WALLS,ZERO,DELTA_WALLS,x_lim.x,true));
-    //std::cout<<"wALL 4\n";
-    Bodies.push_back(World_Add_Polygon(x_lim.y + DELTA_WALLS,ZERO,DELTA_WALLS,x_lim.x,true));
-    //std::cout<<"fin\n";
+void World::addGroundWallsRoof() {
+    Filter_Data data(1);
+    data.addMaskBits(1);
+    addPolygon(ZERO,y_lim.x - DELTA_WALLS ,x_lim.x, DELTA_WALLS ,true,data);
+    addPolygon(ZERO,y_lim.y + DELTA_WALLS,x_lim.x,DELTA_WALLS,true,data);
+    addPolygon(x_lim.x - DELTA_WALLS,ZERO,DELTA_WALLS,x_lim.x,true,data);
+    addPolygon(x_lim.y + DELTA_WALLS,ZERO,DELTA_WALLS,x_lim.x,true,data);
 
 }
 
-bool World::Valid_Position(float x_pos, float y_pos) {
-
-    std::cout<<"x pos: "<<x_pos<<" x_lim_x: "<<x_lim.x<<" x_lim_y: "<<x_lim.y<<std::endl;
-    std::cout<<"y pos: "<<y_pos<<" y_lim_x: "<<y_lim.x<<" y_lim_y: "<<y_lim.y<<std::endl;
-
+bool World::validPosition(float x_pos, float y_pos) {
     if (x_pos > x_lim.x || x_pos < x_lim.y){
         return false;
     }
@@ -56,14 +40,14 @@ bool World::Valid_Position(float x_pos, float y_pos) {
     return true;
 }
 
-b2Body* World::World_Add_Polygon(float x_pos, float y_pos,float x_size, float y_size,bool static_obj) {
+b2Body* World::addPolygon(float x_pos, float y_pos,float x_size, float y_size,bool static_obj,Filter_Data & data) {
     b2Body* polygonBody;
     b2BodyDef polygonBodyDef;
     b2FixtureDef polygonFixtureDef;
 
     polygonBodyDef.type = static_obj ? b2BodyType::b2_staticBody : b2BodyType::b2_dynamicBody;
 
-    if (!Valid_Position(x_pos,y_pos)){
+    if (!validPosition(x_pos,y_pos)){
         throw InvalidPosition();
     }
     polygonBodyDef.position = b2Vec2(x_pos + DELTA_POSITION, y_pos + DELTA_POSITION);
@@ -73,20 +57,22 @@ b2Body* World::World_Add_Polygon(float x_pos, float y_pos,float x_size, float y_
     polygonFixtureDef.shape = &shape_ground;
     polygonFixtureDef.density = DENSITY;
     polygonFixtureDef.friction = FRICTION;
+    polygonFixtureDef.filter.categoryBits = data.getCategoryBits();
+    polygonFixtureDef.filter.maskBits = data.getMaskBits();
     polygonBody->SetFixedRotation(true);
     polygonBody->CreateFixture(&polygonFixtureDef);
     Bodies.push_back(polygonBody);
     return polygonBody;
 }
 
-b2Body* World::World_Add_Box(float x_pos, float y_pos,float size,bool static_obj,bool metal){
+b2Body* World::addBox(float x_pos, float y_pos,float size,bool static_obj,bool metal,Filter_Data & data){
     b2Body* boxBody;
     b2BodyDef boxBodyDef;
     b2FixtureDef boxFixtureDef;
 
     boxBodyDef.type = static_obj ? b2BodyType::b2_staticBody : b2BodyType::b2_dynamicBody;
 
-    if (!Valid_Position(x_pos,y_pos)){
+    if (!validPosition(x_pos,y_pos)){
         throw InvalidPosition();
     }
     boxBodyDef.position = b2Vec2(x_pos + DELTA_POSITION,y_pos + DELTA_POSITION);
@@ -103,14 +89,14 @@ b2Body* World::World_Add_Box(float x_pos, float y_pos,float size,bool static_obj
     return boxBody;
 }
 
-b2Body* World::World_Add_Circle(float x_pos, float y_pos,float radius, bool static_obj) {
+b2Body* World::addCircle(float x_pos, float y_pos,float radius, bool static_obj,Filter_Data & data) {
     b2Body * circleBody;
     b2BodyDef circleBodyDef;
     b2FixtureDef circleFixtureDef;
 
     circleBodyDef.type = static_obj ? b2BodyType::b2_staticBody : b2BodyType::b2_dynamicBody;
 
-    if (!Valid_Position(x_pos,y_pos)){
+    if (!validPosition(x_pos,y_pos)){
         throw InvalidPosition();
     }
     circleBodyDef.position = b2Vec2(x_pos + DELTA_POSITION,y_pos + DELTA_POSITION);
@@ -124,17 +110,18 @@ b2Body* World::World_Add_Circle(float x_pos, float y_pos,float radius, bool stat
     circleFixtureDef.friction = FRICTION;
     circleFixtureDef.restitution = ZERO;
     circleBody->CreateFixture(&circleFixtureDef);
+    Bodies.push_back(circleBody);
     return circleBody;
 }
 
-b2Body* World::World_Add_Triangle(float x_pos, float y_pos, float x_size, float y_size, bool static_obj,bool metal){
+b2Body* World::addTriangle(float x_pos, float y_pos, float x_size, float y_size, bool static_obj,bool metal,Filter_Data & data){
     b2Body* triangleBody;
     b2BodyDef triangleBodyDef;
     b2FixtureDef triangleFixtureDef;
 
     triangleBodyDef.type = static_obj ? b2BodyType::b2_staticBody : b2BodyType::b2_dynamicBody;
 
-    if (!Valid_Position(x_pos,y_pos)){
+    if (!validPosition(x_pos,y_pos)){
         throw InvalidPosition();
     }
     triangleBodyDef.position = b2Vec2(x_pos + DELTA_POSITION,y_pos + DELTA_POSITION);
@@ -154,17 +141,35 @@ b2Body* World::World_Add_Triangle(float x_pos, float y_pos, float x_size, float 
     return triangleBody;
 }
 
-void World::WorldStep(float time, int velocity, int position){
-    Delete_Bodies();
+void World::Step(float time, int velocity, int position){
+    b2Vec2 pos = this->Bodies[4]->GetPosition();
+    std::cout << "Pos x: " << pos.x << " Pos y: " << pos.y << std::endl;
+    deleteBodies();
+    moveBodies();
     world->Step(time, velocity, position);
 }
 
-
-bool World::Delete_Bodies(){
+void World::moveBodies(){
     for(int i = 0; i < Bodies.size(); ++i) {
         if (Bodies[i]->GetUserData()) {
-            //std::cout<<"Con data "<<static_cast<Entity *>(Bodies[i]->GetUserData())->Get_Entity_Name()<<std::endl;
-            if (!static_cast<Entity *>(Bodies[i]->GetUserData())->Lives()) {
+            static_cast<Entity *>(Bodies[i]->GetUserData())->changePosition();
+        }
+    }
+}
+
+void World::eraseBody(b2Body *body) {
+    for(int i = 0; i < Bodies.size(); ++i) {
+        if (Bodies[i] == body) {
+            world->DestroyBody(Bodies[i]);
+            Bodies.erase(Bodies.begin() + i);
+        }
+    }
+}
+
+bool World::deleteBodies(){
+    for(int i = 0; i < Bodies.size(); ++i) {
+        if (Bodies[i]->GetUserData()) {
+            if (!static_cast<Entity *>(Bodies[i]->GetUserData())->lives()) {
                 std::cout<<"Matar\n";
                 world->DestroyBody(Bodies[i]);
                 Bodies.erase(Bodies.begin() + i);
@@ -175,15 +180,15 @@ bool World::Delete_Bodies(){
     return false;
 }
 
-b2Vec2 World :: getWidth() {
-    return x_lim;
-}
-
-b2Vec2 World :: getHigh() {
-    return y_lim;
-}
-
 World::~World() {
     delete ContactListener;
     delete world;
+}
+
+b2Vec2 World::getWidth() {
+    return x_lim;
+}
+
+b2Vec2 World::getHigh() {
+    return y_lim;
 }

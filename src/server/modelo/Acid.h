@@ -10,16 +10,19 @@ class Acid : public Entity {
     std::string name;
     bool contact;
     bool live;
-    float large;
+    b2Vec2 sizes;
 public:
     Acid(World & world,float x_pos, float y_pos,float large);
-    virtual std::string Get_Entity_Name();
-    virtual void Start_Contact();
-    virtual void End_Contact();
-    virtual void Die();
-    virtual bool Lives();
-    b2Vec2 Get_Position();
-    float Get_Angle();
-    float Get_Large();
+    std::string getEntityName() override;
+    void startContact(b2Vec2 pos) override;
+    void endContact()override;
+    void die() override;
+    bool lives() override;
+    bool setTransform(Entity * body) override;
+    void changePosition() override;
+    b2Vec2 getPosition();
+    b2Vec2 getSizes();
+    float getAngle();
+
 };
 #endif

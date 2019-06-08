@@ -17,8 +17,8 @@ public:
     std::string getEntityName() override;
     void startContact(b2Vec2 pos) override;
     void endContact() override;
-    void Die() override;
-    bool Lives() override;
+    void die() override;
+    bool lives() override;
     bool setTransform(Entity * body) override;
     void changePosition() override;
     b2Vec2 getPosition();

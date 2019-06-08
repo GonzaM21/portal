@@ -37,8 +37,8 @@ public:
     std::string getEntityName() override;
     void startContact(b2Vec2 pos = b2Vec2(0,0)) override;
     void endContact() override;
-    void Die() override;
-    bool Lives() override;
+    void die() override;
+    bool lives() override;
     bool setTransform(Entity * body) override{return true;}
     void changePosition() override;
     bool havePartner();

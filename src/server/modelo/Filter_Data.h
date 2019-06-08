@@ -1,14 +1,16 @@
 #ifndef TP4_FILTER_DATA_H
 #define TP4_FILTER_DATA_H
 
-#include <vector>
-
+#include <iostream>
 
 class Filter_Data {
-    std::vector<float> mask_bits;
-    float category_bits;
+    uint16_t mask_bits;
+    uint16_t category_bits;
 public:
-    Filter_Data(float cbits);
-    void Add_Mask_bits(float mb);
+    Filter_Data(uint16_t cbits);
+    void addMaskBits(uint16_t mb);
+    uint16_t getCategoryBits();
+    uint16_t getMaskBits();
+
 };
 #endif

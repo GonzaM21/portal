@@ -6,6 +6,7 @@
 class Energy_Ball : public Entity{
     b2Body * energy_ball;
     std::string name;
+    float radius;
     bool live;
     bool contact;
     World& world;
@@ -14,18 +15,21 @@ public:
     Energy_Ball(World& world, float x_pos, float y_pos);
 
     //Se aplica una fuerza para que la bola de energia se mueva segun la posicion indicada.
-    bool move(char direction);
+    bool Move(char direction);
 
     //Devuelve la posicion de la bola de energia
-    b2Vec2 Get_Position();
+    b2Vec2 getPosition();
 
     //devuelve el valor del angulo de la bola de energia
-    float Get_Angle();
+    float getAngle();
 
-    std::string Get_Entity_Name() override;
-    void Start_Contact() override;
-    void End_Contact() override;
-    void Die() override;
-    bool Lives() override;
+    std::string getEntityName() override;
+    void startContact(b2Vec2 pos) override;
+    void endContact() override;
+    void die() override;
+    bool lives() override;
+    bool setTransform(Entity * body) override;
+    void changePosition() override;
+    float getRadius();
 };
 #endif

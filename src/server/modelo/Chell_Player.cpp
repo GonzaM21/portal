@@ -1,15 +1,24 @@
 #include "Chell_Player.h"
 #include "Macros.h"
 
+//patron build
+//ver lo de las colcsiones
+
 Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world) {
     name = "Chell_Player";
     contact = false;
+    teleport = false;
     live = true;
-    chell = world.World_Add_Polygon(x_pos, y_pos, CHELL_WIDTH/2, CHELL_HIGH/2,false);
+    Filter_Data data(2);
+    data.addMaskBits(1);
+    data.addMaskBits(8);
+    data.addMaskBits(16);
+    sizes = b2Vec2(CHELL_HIGH,CHELL_WIDTH);
+    chell = world.addPolygon(x_pos, y_pos, CHELL_WIDTH/2, CHELL_HIGH/2.f,false,data);
     chell->SetUserData(this);
 }
 
-bool Chell_Player::Chell_Jump(){
+bool Chell_Player::Jump(){
     if(!live) return false;
    if (contact){
        chell->ApplyForceToCenter(b2Vec2(ZERO,CHELL_JUMP_FORCE),true);
@@ -18,7 +27,7 @@ bool Chell_Player::Chell_Jump(){
     return false;
 }
 
-bool Chell_Player::Chell_Move(char &direction) {
+bool Chell_Player::Move(char &direction) {
     if(!live) return false;
     if(direction == 'd'){
         chell->ApplyLinearImpulseToCenter(b2Vec2(CHELL_MOVE_FORCE,ZERO),true);
@@ -30,75 +39,94 @@ bool Chell_Player::Chell_Move(char &direction) {
     return false;
 }
 
-b2Vec2 Chell_Player::Get_Position() {
+void Chell_Player::Brake(){
+    chell->SetLinearVelocity(b2Vec2(0,0));
+}
+
+b2Vec2 Chell_Player::getPosition() {
     if(!live) return b2Vec2(0,0);
-    //std::cout<<"Velocity: "<<chell->GetLinearVelocity().x<<" "<<chell->GetLinearVelocity().y<<std::endl;
     return chell->GetPosition();
 }
 
-float Chell_Player::Get_Angle() {
+float Chell_Player::getAngle() {
     if(!live) return 0;
     return chell->GetAngle();
 }
 
-bool Chell_Player::Chell_Teletransport(float x_pos, float y_pos){
+bool Chell_Player::setTransform(Entity * body) {
     if(!live) return false;
-    if (!world.Valid_Position(x_pos,y_pos)) return false;
-    chell->SetTransform(b2Vec2(x_pos,y_pos),ZERO);
+
+    if(!dynamic_cast<Portal *>(body)->havePartner()) return false;
+    b2Vec2 position = dynamic_cast<Portal *>(body)->getPartnerPortal()->getPosition();
+    teleport = true;
+
+    if(position.x < 0) teleport_pos = position + b2Vec2(0.5,0.0);
+    else teleport_pos = position - b2Vec2(0.5,0.0);
     return true;
 }
 
-void Chell_Player::Start_Contact() {
+void Chell_Player::changePosition() {
+    if(!teleport){
+        //chell->SetLinearVelocity(b2Vec2(0,0));
+        return;
+    }
+    chell->SetTransform(teleport_pos,chell->GetAngle());
+    chell->SetLinearVelocity(b2Vec2(0,0));
+    teleport = false;
+}
+
+void Chell_Player::startContact(b2Vec2 pos) {
     contact = true;
 }
 
-void Chell_Player::End_Contact() {
+void Chell_Player::endContact() {
     contact = false;
 }
 
-std::string Chell_Player::Get_Entity_Name() {
+std::string Chell_Player::getEntityName() {
     return name;
 }
 
-/*Portal Chell_Player::Chell_Shot_Portal_in(char direction) {
+b2Vec2 calculatePortalPosition(b2Vec2 position,float x_pos, float y_pos){
+
+    float x = 0;
+    float y = position.y;
+
+    if(position.x < x_pos){
+        x = position.x + DELTA_ENERGY_BALL_X - 0.02;
+    }
+    if(position.x > x_pos){
+        x = position.x - DELTA_ENERGY_BALL_X - 0.02;
+    }
+
+    return b2Vec2(x,y-0.02);
+}
+
+Portal Chell_Player::shotPortalIn(float x_pos, float y_pos) {
     //if(!live) return;
     b2Vec2 position = chell->GetPosition();
-    float x = 0;
-    float y = 0;
-    if(direction == 'L'){
-        x = position.x - DELTA_ENERGY_BALL_X;
-        y = position.y - DELTA_ENERGY_BALL_Y;
-    } else{
-        x = position.x + DELTA_ENERGY_BALL_X;
-        y = position.y + DELTA_ENERGY_BALL_Y;
-    }
-    Portal ball = portals.Shot_Portal_in(x,y);
-    std::cout<<ball.Move(direction)<<std::endl;
+    b2Vec2 positionportal = calculatePortalPosition(position,x_pos,y_pos);
+    Portal ball = portals.shotPortalIn(world,positionportal.x,positionportal.y,x_pos,y_pos);
     return ball;
 }
 
-Portal Chell_Player::Chell_Shot_Portal_out(char direction) {
+Portal Chell_Player::shotPortalOut(float x_pos, float y_pos) {
     //if(!live) return;
     b2Vec2 position = chell->GetPosition();
-    float x = 0;
-    float y = 0;
-    if(direction == 'L'){
-        x = position.x - DELTA_ENERGY_BALL_X;
-        y = position.y - DELTA_ENERGY_BALL_Y;
-    } else{
-        x = position.x + DELTA_ENERGY_BALL_X;
-        y = position.y + DELTA_ENERGY_BALL_Y;
-    }
-    Portal ball = portals.Shot_Portal_out(x,y);
-    std::cout<<ball.Move(direction)<<std::endl;
+    b2Vec2 positionportal = calculatePortalPosition(position,x_pos,y_pos);
+    Portal ball = portals.shotPortalOut(world,positionportal.x,positionportal.y,x_pos,y_pos);
     return ball;
-}*/
+}
 
-void Chell_Player::Die() {
+void Chell_Player::die() {
     std::cout<<"Murio\n";
     live = false;
 }
 
-bool Chell_Player::Lives() {
+bool Chell_Player::lives() {
     return live;
+}
+
+b2Vec2 Chell_Player::getSizes() {
+    return sizes;
 }

@@ -29,7 +29,8 @@ private:
     std::map<size_t, Acid*> acids;
     std::map<size_t, Energy_Ball*> energy_balls;
     std::map<size_t, Metal_Block*> metal_blocks;
-
+    int width;
+    int height;
 
 public:
     ProtectedDataBase() = default;
@@ -44,7 +45,11 @@ public:
     std::vector<std::string> getIds();
     std::vector<Chell_Player*> getPlayers();
     std::vector<Acid*> getAcids();
-    std::vector<Metal_Block*> getMetalBlocks(); 
+    std::vector<Metal_Block*> getMetalBlocks();
+    void setWidth(int width);
+    void setHeight(int height);
+    int getWidth();
+    int getHeight();  
 };
 
 #endif

@@ -5,11 +5,12 @@
 
 class Entity{
 public:
-    //virtual Entity* getEntityType() = 0;
-    virtual std::string Get_Entity_Name() = 0;
-    virtual void Start_Contact() = 0;
-    virtual void End_Contact() = 0;
-    virtual void Die() = 0;
-    virtual bool Lives() = 0;
+    virtual std::string getEntityName() = 0;
+    virtual void startContact(b2Vec2 pos) = 0;
+    virtual void endContact() = 0;
+    virtual void die() = 0;
+    virtual bool lives() = 0;
+    virtual bool setTransform(Entity * body) = 0;
+    virtual void changePosition() = 0;
 };
 #endif

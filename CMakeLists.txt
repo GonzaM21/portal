@@ -145,6 +145,12 @@ add_executable(Server
 	src/server/modelo/Stone_Block.h
 	src/server/modelo/Energy_Ball.cpp
 	src/server/modelo/Energy_Ball.h
+	src/server/modelo/Player_Portals.cpp
+	src/server/modelo/Player_Portals.h
+	src/server/modelo/Portal.cpp
+	src/server/modelo/Portal.h
+	src/server/modelo/InvalidTeletraportation.cpp
+	src/server/modelo/InvalidTeletraportation.h
 	src/server/server_game_loop.cpp
 	src/server/server_game_loop.h
 	src/server/server_sender.cpp

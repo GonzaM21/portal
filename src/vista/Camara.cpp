@@ -30,9 +30,9 @@ void Camara::convertToVirtual(const Rect &worldPostion, Rect &virtualPostion)
   float widthVirtual = worldPostion.getWidth() * FACTORX * this->window_width;
   float heightVirtual = worldPostion.getHeight() * FACTORX * this->window_height;
   float xVirtual = worldPostion.getX() * FACTORX * this->window_width + this->window_width 
-  / 2 + widthVirtual / 2 - vision.getX();
+  / 2 - widthVirtual / 2 - vision.getX();
   float yVirtual = worldPostion.getY() * FACTORX * this->window_height + this->window_height 
-  / 2 + heightVirtual / 2 - vision.getY();
+  / 2 - heightVirtual / 2 - vision.getY();
   virtualPostion.set(xVirtual, yVirtual, widthVirtual, heightVirtual);
 }
 

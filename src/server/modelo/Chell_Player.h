@@ -3,7 +3,8 @@
 
 #include "World.h"
 #include "Entity.h"
-//#include "Portals.h"
+#include "Portal.h"
+#include "Player_Portals.h"
 
 class Chell_Player : public Entity{
     b2Body* chell;
@@ -11,7 +12,10 @@ class Chell_Player : public Entity{
     World& world;
     bool live;
     bool contact;
-    //Portals portals;
+    Player_Portals portals;
+    b2Vec2 sizes;
+    bool teleport;
+    b2Vec2 teleport_pos;
 public:
     //Contructor del personaje
     Chell_Player(World &world,float x_pos, float y_pos);
@@ -20,37 +24,42 @@ public:
     //Chell_Player* getEntityType() override;
 
     //El personaje salta
-    bool Chell_Jump();
+    bool Jump();
 
     //El personaje se mueve segun la direccion que se le da
-    bool Chell_Move(char& direction);
+    bool Move(char& direction);
+
+    void Brake();
 
     //El personaje se teletransporta a la posición indicada, si esta no esta ocupada.
-    bool Chell_Teletransport(float x_pos, float y_pos);
+    bool setTransform(Entity * body) override;
 
     //Pone al atributo contact en true
-    void Start_Contact() override;
+    void startContact(b2Vec2 pos) override;
 
     //Pone al atributo contact en flase
-    void End_Contact() override ;
+    void endContact() override;
 
-    std::string Get_Entity_Name() override;
+    void changePosition() override;
+
+    std::string getEntityName() override;
 
     //Retorna en un vector su posicion en x e y
-    b2Vec2 Get_Position();
+    b2Vec2 getPosition();
 
     //retorna el valor de su angulo
-    float Get_Angle();
+    float getAngle();
+
+    b2Vec2 getSizes();
 
     //El personaje dispara un portal segun la direccion indicada
-    //Portal Chell_Shot_Portal_in(char direction);
+    Portal shotPortalIn(float x_pos, float y_pos);
 
-    //El personaje dispara un portal segun la direccion indicada
-    //Portal Chell_Shot_Portal_out(char direction);
+    Portal shotPortalOut(float x_pos, float y_pos);
 
-    void Die() override;
+    void die() override;
 
-    bool Lives() override;
+    bool lives() override;
 
 };
 #endif //TP4_CHELL_PLAYER_H

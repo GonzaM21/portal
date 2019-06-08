@@ -1,7 +1,8 @@
 #include "Gate.h"
 
 Gate::Gate(World &world, float x_pos, float y_pos) : world(world){
-    gate = world.addPolygon(x_pos,y_pos,GATE_WIDTH/2,GATE_LARGE/2,true);
+    Filter_Data data(0);
+    gate = world.addPolygon(x_pos,y_pos,GATE_WIDTH/2,GATE_LARGE/2,true,data);
     gate->SetUserData(this);
     name = "Gate";
     sizes = b2Vec2(GATE_WIDTH,GATE_LARGE);
@@ -16,19 +17,20 @@ std::string Gate::getEntityName() {
     return name;
 }
 
-bool Gate::Lives() {
+bool Gate::lives() {
     for(int i = 0; i < bottoms.size(); ++ i){
         if(!bottoms[i]->getStatus()) return true;
     }
     world.eraseBody(gate);
-    gate = world.addCircle(position.x,position.y + 1,0.0001f,true);
+    Filter_Data data(0);
+    gate = world.addCircle(position.x,position.y + 1,0.0001f,true,data);
     gate->SetUserData(this);
     status = true;
     ball = true;
     return true;
 }
 
-void Gate::Die() {
+void Gate::die() {
     live = false;
 }
 
@@ -49,7 +51,8 @@ void Gate::changePosition() {
         if(bottoms[i]->getStatus()) return;
     }
     if(!ball) return;
-    gate = world.addPolygon(position.x,position.y,GATE_WIDTH/2,GATE_LARGE/2,true);
+    Filter_Data data(0);
+    gate = world.addPolygon(position.x,position.y,GATE_WIDTH/2,GATE_LARGE/2,true,data);
     gate->SetUserData(this);
     status = false;
     ball = false;

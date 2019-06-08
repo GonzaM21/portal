@@ -1,14 +1,19 @@
 #include <algorithm>
 #include "Filter_Data.h"
 
-Filter_Data::Filter_Data(float cbits) {
+Filter_Data::Filter_Data(uint16_t cbits) {
     category_bits = cbits;
+    mask_bits = 0;
 }
 
-void Filter_Data::Add_Mask_bits(float mb) {
-    if (std::find(mask_bits.begin(), mask_bits.end(), mb) != mask_bits.end()){
-        return;
-    } else {
-       mask_bits.push_back(mb);
-    }
+void Filter_Data::addMaskBits(uint16_t mb) {
+    mask_bits |= mb;
+}
+
+uint16_t Filter_Data::getCategoryBits() {
+    return category_bits;
+}
+
+uint16_t Filter_Data::getMaskBits() {
+    return mask_bits;
 }

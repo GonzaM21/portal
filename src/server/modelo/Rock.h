@@ -10,21 +10,19 @@ class Rock : public Entity {
     std::string name;
     bool contact;
     bool live;
+    float radius;
 public:
     Rock(World & world,float x_pos, float y_pos,float radius);
-    virtual std::string Get_Entity_Name();
-    virtual void Start_Contact();
-    virtual void End_Contact();
-    virtual void Die();
-    virtual bool Lives();
-    b2Vec2 Get_Position();
-    float Get_Angle();
-
-    //Elimino copias y creo constructor por movimiento
-    //Rock(const Rock&) = delete;
-    //Rock& operator=(const Rock&) = delete;
-    //Rock(Rock&& other);
-    //Rock& operator=(Rock&& other);
+    std::string getEntityName() override;
+    void startContact(b2Vec2 pos) override;
+    void endContact() override;
+    void die() override;
+    bool lives() override;
+    bool setTransform(Entity * body) override;
+    void changePosition() override;
+    b2Vec2 getPosition();
+    float getAngle();
+    float getRadius();
 };
 
 

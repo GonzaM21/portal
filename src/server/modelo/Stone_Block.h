@@ -5,12 +5,18 @@
 
 class Stone_Block {
     b2Body * block;
+    b2Vec2 sizes;
+    float angle;
 public:
-    //Contructor de un bloque de piedra cuadrado. hay que pasarle la mital de lado
-    Stone_Block(World &world,float x_pos, float y_pos, float size);
+    //Contructor de un bloque de piedra cuadrado.
+    Stone_Block(World &world,float x_pos, float y_pos,float size);
 
-    //Contructor de un bloque de piedra triangular. Hay que pasarle la itad de los largos
-    Stone_Block(World &world,float x_pos, float y_pos, float x_size, float y_size);
+    //Contructor de un bloque de piedra triangular.
+    Stone_Block(World &world,float x_pos, float y_pos,float size ,float angle);
+
+    b2Vec2 getPosition();
+    float getAngle();
+    b2Vec2 getSizes();
 };
 
 

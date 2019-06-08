@@ -16,11 +16,12 @@ GameLoop ::GameLoop(World *world, Sender *sender,
 void GameLoop :: run() {
     this->encoder.sendPlayersPositions();
     this->encoder.sendPlayerIds();
+    //this->encoder.sendWorldSizes();
     this->encoder.sendMetalBlocks();
     this->encoder.sendAcids();
     while (this->continue_running) {
         auto t_start = std::chrono::high_resolution_clock::now();
-        world->WorldStep();
+        world->Step();
         this->encoder.sendPlayersPositions(); //aca va todo lo que se puede ir actualizando
         auto t_end = std::chrono::high_resolution_clock::now();
         int delta_time = std::chrono::duration<double, std::milli>(t_end-t_start).count();

@@ -1,7 +1,9 @@
 #include "Bottom.h"
+#include "Filter_Data.h"
 
 Bottom::Bottom(World &world, float x_pos, float y_pos) : world(world) {
-    bottom = world.addPolygon(x_pos,y_pos,BOTTOM_LARGE/2,BOTTOM_HIGH/2,true);
+    Filter_Data data(0);
+    bottom = world.addPolygon(x_pos,y_pos,BOTTOM_LARGE/2,BOTTOM_HIGH/2,true,data);
     bottom->SetUserData(this);
     sizes = b2Vec2(BOTTOM_LARGE,BOTTOM_HIGH);
     contact = false;
@@ -14,11 +16,11 @@ std::string Bottom::getEntityName() {
     return name;
 }
 
-bool Bottom::Lives() {
+bool Bottom::lives() {
     return live;
 }
 
-void Bottom::Die() {
+void Bottom::die() {
     live = false;
 }
 

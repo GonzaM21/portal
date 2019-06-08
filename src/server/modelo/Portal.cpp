@@ -2,7 +2,10 @@
 #include "Macros.h"
 
 Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
-    portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false);
+    Filter_Data data(8);
+    data.addMaskBits(1);
+    data.addMaskBits(16);
+    portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data);
     portal->SetGravityScale(0);
     portal->SetUserData(this);
     contact = false;
@@ -35,22 +38,31 @@ bool Portal::Move(float x_pos, float y_pos){
     float angle = acos(result);
 
     std::cout<<"angulo: "<<angle<<std::endl;
-    float x_force = 1.f;
-    float y_force = 1.f;
-    if (x_pos < position.x) x_force = -1.f;
-    if (y_pos < position.y) y_force = -1.f;
+    float x_force = 5.f;
+    float y_force = 5.f;
+    if (x_pos < position.x) x_force = -5.f;
+    if (y_pos < position.y) y_force = -5.f;
 
     std::cout<<"Portal force: "<<x_force * sin(angle)<<"  "<<y_force * cos(angle)<<std::endl;
-    portal->SetLinearVelocity(b2Vec2(x_force * sin(angle),y_force * cos(angle)));
+    //portal->SetLinearVelocity(b2Vec2(x_force * sin(angle),y_force * cos(angle)));
+    portal->SetLinearVelocity(b2Vec2(x_force,0));
     std::cout<<std::endl;
     return false;
 }
 
 void Portal::changePosition() {
+    std::cout<<"change position\n";
     if(!contact) return;
+    std::cout<<"change position2\n";
     if(contact){
+        std::cout<<"change position3\n";
+        portal->SetLinearVelocity(b2Vec2(0,0));
         world.eraseBody(portal);
-        portal = world.addPolygon(position.x,position.y,0.01,0.5f,true);
+        Filter_Data data(8);
+        data.addMaskBits(1);
+        data.addMaskBits(2);
+        data.addMaskBits(8);
+        portal = world.addPolygon(position.x,position.y,0.01,0.5f,true,data);
         portal->SetUserData(this);
         contact = false;
         live = true;
@@ -60,6 +72,7 @@ void Portal::changePosition() {
 
 b2Vec2 Portal::getPosition(){
     if(!live) return b2Vec2(0,0);
+    std::cout<<"Portal vel: "<<portal->GetLinearVelocity().x<<" "<<portal->GetLinearVelocity().y<<std::endl;
     return portal->GetPosition();
 }
 
@@ -76,7 +89,7 @@ void Portal::startContact(b2Vec2 pos) {
 
     std::cout<<"Otro cuerpo"<<pos.x<<" "<<pos.y<<std::endl;
     std::cout<<"Nueva pos"<<position.x<<" "<<position.y<<std::endl;
-    portal->SetLinearVelocity(b2Vec2(0,0));
+    //portal->SetLinearVelocity(b2Vec2(0,0));
 }
 
 void Portal::endContact() {
@@ -87,11 +100,11 @@ std::string Portal::getEntityName() {
     return name;
 }
 
-void Portal::Die() {
+void Portal::die() {
     live = false;
 }
 
-bool Portal::Lives(){
+bool Portal::lives(){
     return true;
 }
 
@@ -109,7 +122,10 @@ Portal * Portal::getPartnerPortal() {
 bool Portal::changePortalPosition(float x_pos, float y_pos) {
     if(!world.validPosition(x_pos,y_pos)) return false;
     world.eraseBody(portal);
-    portal = portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false);
+    Filter_Data data(8);
+    data.addMaskBits(1);
+    data.addMaskBits(16);
+    portal = portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data);
     portal->SetGravityScale(0);
     portal->SetUserData(this);
     contact = false;
