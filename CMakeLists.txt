@@ -175,6 +175,10 @@ add_executable(Server
 	src/server/server_command_jump.h
 	src/server/server_command_move.cpp
 	src/server/server_command_move.h
+	src/server/Encoder.h
+	src/server/Encoder.cpp
+	src/server/Protected_Data_Base.h
+	src/server/Protected_Data_Base.cpp
 	src/common/common_error.cpp
 	src/common/common_error.h
 	src/common/common_protocol.cpp

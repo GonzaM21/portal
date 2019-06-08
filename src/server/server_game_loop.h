@@ -17,10 +17,8 @@
 #include <map>
 #include "../server/server_sender.h"
 #include "../common/Thread.h"
-#include "../server/modelo/World.h"
-#include "../server/modelo/Chell_Player.h"
-#include "../server/modelo/Metal_Block.h"
-#include "../server/modelo/Acid.h"
+#include "Protected_Data_Base.h"
+#include "Encoder.h"
 //#include "../server/modelo/doors"
 
 
@@ -30,19 +28,10 @@ class GameLoop : public Thread {
         bool continue_running;
         std::string getFormat(int time);
         World* world;
-        Sender *sender;
-        std::map<std::string,Chell_Player*>* players;
-        std::map<std::string,Metal_Block*>* metal_blocks;
-        std::map<std::string,Acid*>* acids;
-        void addPlayersToSender();
-        void sendMessages();
-        void sendIds();
-        void sendMetalBlocks();
-        void sendAcids();
-        void sendPlayersPositions(); 
+        Encoder encoder;
 
     public:
-        GameLoop(World* world,Sender *sender,std::map<std::string,Chell_Player*>* players);
+        GameLoop(World* world,Sender *sender,ProtectedDataBase *data_base);
         ~GameLoop() = default;
         std::string getTime();
         void endGameLoop();
@@ -50,10 +39,6 @@ class GameLoop : public Thread {
         void run() override;
         void step();
         void sendWorldSizes();
-
-        //Setters
-        void setMetalBlocks(std::map<std::string,Metal_Block*>* metal_blocks);
-        void setAcids(std::map<std::string,Acid*>* acids);
 };
 
 #endif

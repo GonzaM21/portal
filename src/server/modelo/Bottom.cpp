@@ -1,0 +1,57 @@
+#include "Bottom.h"
+
+Bottom::Bottom(World &world, float x_pos, float y_pos) : world(world) {
+    bottom = world.addPolygon(x_pos,y_pos,BOTTOM_LARGE/2,BOTTOM_HIGH/2,true);
+    bottom->SetUserData(this);
+    sizes = b2Vec2(BOTTOM_LARGE,BOTTOM_HIGH);
+    contact = false;
+    live = true;
+    status = false;
+    name = "Bottom";
+}
+
+std::string Bottom::getEntityName() {
+    return name;
+}
+
+bool Bottom::Lives() {
+    return live;
+}
+
+void Bottom::Die() {
+    live = false;
+}
+
+void Bottom::startContact(b2Vec2 pos) {
+    contact = true;
+    status = true;
+}
+
+void Bottom::endContact() {
+    contact = false;
+    status = false;
+}
+
+bool Bottom::setTransform(Entity *body) {
+    return true;
+}
+
+void Bottom::changePosition() {}
+
+b2Vec2 Bottom::getPosition() {
+    if (!live) return b2Vec2(0,0);
+    return bottom->GetPosition();
+}
+
+float Bottom::getAngle() {
+    if(!live) return 0;
+    return bottom->GetAngle();
+}
+
+b2Vec2 Bottom::getSizes() {
+    return sizes;
+}
+
+bool Bottom::getStatus(){
+    return status;
+}
