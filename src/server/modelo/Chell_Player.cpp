@@ -28,11 +28,12 @@ bool Chell_Player::Jump(){
 }
 
 bool Chell_Player::Move(char &direction) {
+    b2Vec2 actual_speed = this->chell->GetLinearVelocity();
     if(!live) return false;
-    if(direction == 'd'){
+    if(direction == 'd' && !(actual_speed.x>0)){
         chell->ApplyLinearImpulseToCenter(b2Vec2(CHELL_MOVE_FORCE,ZERO),true);
         return true;
-    } else if(direction == 'a'){
+    } else if(direction == 'a' && !(actual_speed.x<0)){
         chell->ApplyLinearImpulseToCenter(b2Vec2(-CHELL_MOVE_FORCE,ZERO),true);
         return true;
     }

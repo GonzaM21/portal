@@ -56,7 +56,7 @@ void Encoder :: sendAcids() {
 
 void Encoder ::sendWorldSizes() {  //Se necesita?¡?¡?¡?¡?¡?¡?¡¡?
     int width = (int)this->data_base->getWidth();
-    for (int i = 0; i<30; i++ ) {
+    for (int i = -10; i<20; i++ ) {
         std::string msg;
         msg = "2,1," + std::to_string(i) + ",1,1,1";
         this->sender->addMessageToSend(msg);

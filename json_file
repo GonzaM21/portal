@@ -58,17 +58,13 @@
     "ID_OBJETO9" : {
         "TYPE": 5,
         "POS_X": 9.0,
-        "POS_Y": 0,
+        "POS_Y": -0.5,
         "WIDTH": 1
     },
     "ID_OBJETO7" : {
         "TYPE": 5,
         "POS_X": 5.0,
         "POS_Y": 0.5,
-        "WIDTH": 1
-    }
-}
-        "POS_Y": 1,
         "WIDTH": 1
     }
 }
