@@ -1,6 +1,7 @@
 #define X_START_POSITION 1
 
 /* PLAYER */
+#define ICON_FILENAME "icon.png"
 #define PLAYER_FILENAME "Patricia_Wagon_Zero_Suit.png"
 
 /* Idle */
@@ -102,6 +103,7 @@
 
 /* ACID */
 /* IDLE */
+#define ACID_FILENAME "acidos.png"
 #define Y_POSITION_ACID_IDLE 1545
 #define WIDTH_ACID_IDLE 300
 #define HEIGHT_ACID_IDLE 61

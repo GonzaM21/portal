@@ -3,49 +3,68 @@
         "TYPE": 2,
         "TYPE_OPTIONAL": 1,
         "POS_X": 1.0,
-        "POS_Y": -1.0,
+        "POS_Y": 0.0,
         "WIDTH": 1
     },
     "ID_OBJETO2" : {
         "TYPE": 2,
         "TYPE_OPTIONAL": 1,
         "POS_X": 2.0,
-        "POS_Y": -1.0,
+        "POS_Y": 0.0,
         "WIDTH": 1
     },
     "ID_OBJETO3" : {
         "TYPE": 2,
         "TYPE_OPTIONAL": 1,
         "POS_X": 3.0,
-        "POS_Y": -1.0,
+        "POS_Y": 0.0,
         "WIDTH": 1
     },
     "ID_OBJETO4" : {
         "TYPE": 2,
         "TYPE_OPTIONAL": 1,
         "POS_X": 4.0,
-        "POS_Y": -1.0,
+        "POS_Y": 0.0,
         "WIDTH": 1
     },
     "ID_OBJETO5" : {
         "TYPE": 2,
         "TYPE_OPTIONAL": 1,
         "POS_X": 5.0,
-        "POS_Y": -1.0,
+        "POS_Y": 0.0,
         "WIDTH": 1
     },
     "ID_OBJETO6" : {
         "TYPE": 2,
         "TYPE_OPTIONAL": 1,
         "POS_X": 6.0,
-        "POS_Y": -1.0,
+        "POS_Y": 0.0,
+        "WIDTH": 1
+    },
+    "ID_OBJETO8" : {
+        "TYPE": 2,
+        "TYPE_OPTIONAL": 1,
+        "POS_X": 6.0,
+        "POS_Y": 0.0,
+        "WIDTH": 1
+    },
+    "ID_OBJETO10" : {
+        "TYPE": 2,
+        "TYPE_OPTIONAL": 1,
+        "POS_X": 6.0,
+        "POS_Y": -2.0,
+        "WIDTH": 1
+    },
+    "ID_OBJETO9" : {
+        "TYPE": 5,
+        "POS_X": 9.0,
+        "POS_Y": 0.1,
         "WIDTH": 1
     },
     "ID_OBJETO7" : {
-        "TYPE": 2,
-        "TYPE_OPTIONAL": 1,
-        "POS_X": 7.0,
-        "POS_Y": -1.0,
+        "TYPE": 5,
+        "POS_X": 5.0,
+        "POS_Y": 0.1,
         "WIDTH": 1
     }
 }

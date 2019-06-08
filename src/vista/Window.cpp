@@ -1,8 +1,10 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL_render.h>
+#include <SDL2/SDL_image.h>
 #include "SdlException.h"
 #include "Window.h"
+#include "Constants.h"
 #include <iostream>
 
 Window::Window(int width, int height) : width(width), height(height), fullscreened(false)
@@ -20,6 +22,8 @@ Window::Window(int width, int height) : width(width), height(height), fullscreen
     {
         throw SdlException("Error al crear ventana", SDL_GetError());
     }
+    SDL_Surface *image = IMG_Load(ICON_FILENAME);
+    SDL_SetWindowIcon(window, image); // The icon is attached to the window pointer  
 }
 
 Window::~Window()

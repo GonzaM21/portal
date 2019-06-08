@@ -19,6 +19,7 @@ public:
     void sendPlayersPositions();
     void sendMetalBlocks();
     void sendAcids();
+    //void sendWorldSizes();
 };
 
 #endif

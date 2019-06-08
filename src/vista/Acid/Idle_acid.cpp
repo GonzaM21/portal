@@ -5,7 +5,6 @@
 #include "../Rect.h"
 #include <string>
 #include <iostream>
-#define ACID_FILENAME "img/acidos.png"
 
 IdleAcid::IdleAcid(const Window &window) : Sprite(ACID_FILENAME, window),
 																					 src(X_START_POSITION, Y_POSITION_ACID_IDLE, WIDTH_ACID_IDLE, HEIGHT_ACID_IDLE)

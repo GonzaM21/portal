@@ -42,6 +42,7 @@ void ProtectedDataBase :: addPlayer(World &world,std::string &player) {
 }
 
 std::vector<std::string> ProtectedDataBase :: getIds() {
+  std::unique_lock<std::mutex> lck(m);
   std::vector<std::string> vect;
   for (auto const& element : this->players) {
     vect.push_back(element.first);
@@ -50,6 +51,7 @@ std::vector<std::string> ProtectedDataBase :: getIds() {
 }
 
 std::vector<Chell_Player*> ProtectedDataBase :: getPlayers() {
+  std::unique_lock<std::mutex> lck(m);
   std::vector<Chell_Player*> players;
   for (auto const& element : this->players) {
     players.push_back(element.second);
@@ -58,6 +60,7 @@ std::vector<Chell_Player*> ProtectedDataBase :: getPlayers() {
 }
 
 std::vector<Acid*> ProtectedDataBase :: getAcids() {
+  std::unique_lock<std::mutex> lck(m);
   std::vector<Acid*> acids;
   for (auto const& element : this->acids) {
     acids.push_back(element.second);
@@ -66,6 +69,7 @@ std::vector<Acid*> ProtectedDataBase :: getAcids() {
 }
 
 std::vector<Metal_Block*> ProtectedDataBase :: getMetalBlocks() {
+  std::unique_lock<std::mutex> lck(m);
   std::vector<Metal_Block*> metal_blocks;
   for (auto const& element : this->metal_blocks) {
     metal_blocks.push_back(element.second);

@@ -46,13 +46,13 @@ void Encoder :: sendAcids() {
         std::string msg;
         b2Vec2 pos = acids[i]->Get_Position();
         msg = "5,"+ std::to_string(pos.x) + "," + std::to_string(pos.y) +
-        "," + std::to_string(acids[i]->Get_Large()) + ",0.2";
+        "," + std::to_string(acids[i]->Get_Large()) + ",0.30";
         this->sender->addMessageToSend(msg);
     }
 }
 
 
-//void GameLoop ::sendWorldSizes() {  //Se necesita?¡?¡?¡?¡?¡?¡?¡¡?
+//void Encoder ::sendWorldSizes() {  //Se necesita?¡?¡?¡?¡?¡?¡?¡¡?
 //    b2Vec2 high_b = this->world->getHigh();
 //    b2Vec2 width_b = this->world->getWidth();
 //    std::string msg("0," + std::to_string(width_b.x * 2) + "," + std::to_string(high_b.x * 2) + "\n");

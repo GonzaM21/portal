@@ -20,7 +20,7 @@ void MapParser :: createButton(nlohmann::json &object){
 
 void MapParser :: createAcid(nlohmann::json &object){
     Object* new_object = this->object_factory.createObjectAcid((float)object.at("POS_X"),
-    (float)object.at("POS_Y"),(float)object.at("WIDTH"));
+    (float)object.at("POS_Y"),(float)object.at("WIDTH")); //Le tengo que agregar el alto
     new_object->aggregate();
     delete new_object;
 }
