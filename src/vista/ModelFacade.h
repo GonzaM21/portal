@@ -39,6 +39,7 @@ public:
   void setPlayerId(std::vector<std::string> arguments);
   void setEnergyEmitter(std::vector<std::string> arguments);
   void setEnergyBarrier(std::vector<std::string> arguments);
+  void setFullscreen() {model.fullscreen();}
 
 private:
   Model model;

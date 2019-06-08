@@ -65,7 +65,8 @@ void Window::getSize(int &width, int &height) const
 }
 
 void Window::fullscreen()
-{
+{   
+    std::cout << fullscreened << std::endl;
     if (fullscreened == true)
     {
         SDL_SetWindowFullscreen(this->window, 0);

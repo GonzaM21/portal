@@ -14,6 +14,8 @@ add_executable(Client
 	src/client/renderable.h
 	src/client/Joiner.h
 	src/client/Joiner.cpp
+	src/client/event_handler_manager.h
+	src/client/event_handler_manager.cpp
 	src/common/common_error.cpp
 	src/common/common_error.h
 	src/common/common_protocol.cpp

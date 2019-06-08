@@ -6,8 +6,8 @@
 #include "Joiner.h"
 #include "../common/common_socket_connect.h"
 #include "../common/common_protocol.h"
-#include "../vista/EventsHandler.h"
-
+//#include "../vista/EventsHandler.h"
+#include "event_handler_manager.h"
 
 int main(int argc, char *argv[]) {
     if (argc != 6) {
@@ -27,12 +27,17 @@ int main(int argc, char *argv[]) {
         if (!joiner.isValid()) return 0;
 
         Renderable *renderer_thread = new Renderable(&model_facade);
+        EventHandlerManager* handler = new EventHandlerManager(&communicator);
         renderer_thread->start();
+        handler->start();
         communicator.startExecution();
-        
+
+        handler->endExecution();
+        handler->join();
         renderer_thread->endExecution();
         renderer_thread->join();
         delete renderer_thread;
+        delete handler;
     } catch (const std::runtime_error &e) {
         std::cout << e.what() << std::endl;
     } catch (...) {

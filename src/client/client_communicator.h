@@ -4,6 +4,7 @@
 #include "../common/common_protocol.h"
 #include "../common/common_socket_connect.h"
 #include "../vista/ModelFacade.h"
+#include "../common/common_cola_protegida.h"
 
 class ClientCommunicator {
 private:
@@ -11,6 +12,7 @@ private:
     bool continue_running;
     std::thread sender;
     ModelFacade *model_facade;
+    ColaProtegida message_queue;
 
 public:
     ClientCommunicator(SocketConnect socket,
@@ -22,6 +24,7 @@ public:
     void endExecution();
     void startExecution();
     void splitMessage(std::string &message, std::vector<std::string> &arguments);
+    void addMessageToSend(std::string message);
 };
 
 #endif

@@ -16,11 +16,15 @@ ClientCommunicator::~ClientCommunicator() {
     sender.join();
 }
 
+void ClientCommunicator::addMessageToSend(std::string message) {
+    this->message_queue.push(message);
+}
+
 void ClientCommunicator::receiveMessage() {
     while (this->continue_running) {
         std::string message;
         this->protocol >> message;
-        std::cout << message << std::endl;
+        // std::cout << message << std::endl;
         std::vector<std::string> arguments;
         splitMessage(message, arguments);
         this->model_facade->decodeMessages(arguments);
@@ -38,16 +42,25 @@ void ClientCommunicator::splitMessage(std::string &message, std::vector<std::str
 
 void ClientCommunicator ::sendMessage() {
     try {
-        while (this->continue_running) {
+        std::string message1("start");
+        this->protocol << message1;
+        while (this->continue_running)
+        {
             std::string message;
-            std::cin >> message;
+            message = this->message_queue.pop();
+            std::cout << message << std::endl;
             if (!this->continue_running)
-                break;
+              break;
             if (message == "q")
                 break;
+            if (message == "fullscreen") {
+                model_facade->setFullscreen();
+                continue;
+            }
             this->protocol << message;
         }
         this->endExecution();
+        message_queue.set_terminar_ejecucion();
     } catch (const std::runtime_error &e) {
         std::cout << e.what() << std::endl;
     } catch (...) {
