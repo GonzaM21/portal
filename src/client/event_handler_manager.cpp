@@ -19,18 +19,18 @@ void EventHandlerManager :: run() {
                 SDL_KeyboardEvent &keyEvent = (SDL_KeyboardEvent &)event;
                 switch (keyEvent.keysym.sym)
                 {
-                case SDLK_RIGHT:
+                case SDLK_d:
                 {
                     communicator->addMessageToSend("d");
                     break;
                 }
-                case SDLK_LEFT:
+                case SDLK_a:
                 {
                     std::cout << "Izquierda" << std::endl;
                     communicator->addMessageToSend("a");
                     break;
                 }
-                case SDLK_UP:
+                case SDLK_w:
                 {
                     std::cout << "Arriba" << std::endl;
                     communicator->addMessageToSend("w");
@@ -39,10 +39,9 @@ void EventHandlerManager :: run() {
                 case SDLK_DOWN:
                 {
                     std::cout << "ABAJO" << std::endl;
-                    communicator->addMessageToSend("starts");
+                    communicator->addMessageToSend("start");
                     break;
                 }
-                
                 }
             }
             break;
@@ -53,6 +52,23 @@ void EventHandlerManager :: run() {
                 case SDLK_F11:
                     communicator->addMessageToSend("fullscreen");
                     break;
+                case SDLK_d:
+                {
+                    communicator->addMessageToSend("a");
+                    break;
+                }
+                case SDLK_a:
+                {
+                    std::cout << "Izquierda" << std::endl;
+                    communicator->addMessageToSend("d");
+                    break;
+                }
+                case SDLK_r:
+                {
+                    std::cout << "Reset" << std::endl;
+                    communicator->addMessageToSend("r");
+                    break;
+                }
                 }
             }
             break;

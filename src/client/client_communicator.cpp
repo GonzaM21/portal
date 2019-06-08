@@ -42,8 +42,6 @@ void ClientCommunicator::splitMessage(std::string &message, std::vector<std::str
 
 void ClientCommunicator ::sendMessage() {
     try {
-        std::string message1("start");
-        this->protocol << message1;
         while (this->continue_running)
         {
             std::string message;
