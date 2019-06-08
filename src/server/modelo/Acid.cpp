@@ -8,7 +8,7 @@ Acid::Acid(World &world, float x_pos, float y_pos, float large) : world(world) {
     data.addMaskBits(2);
     acid = world.addPolygon(x_pos, y_pos, large/2, 0.3f,true,data);
     acid->SetUserData(this);
-    sizes = b2Vec2(large,0.01);
+    sizes = b2Vec2(large,0.3);
 }
 
 std::string Acid::getEntityName() {

@@ -16,7 +16,7 @@ GameLoop ::GameLoop(World *world, Sender *sender,
 void GameLoop :: run() {
     this->encoder.sendPlayersPositions();
     this->encoder.sendPlayerIds();
-    //this->encoder.sendWorldSizes();
+    this->encoder.sendWorldSizes();
     this->encoder.sendMetalBlocks();
     this->encoder.sendAcids();
     while (this->continue_running) {

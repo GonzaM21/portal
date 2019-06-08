@@ -1,16 +1,14 @@
 #include "../server/server_model.h"
 #include "../server/server_sender.h"
+#include "../common/Constants.h"
 #include "level_creator/map_parser.h"
-#define GROUND_WIDTH 200.f
-#define GROUND_HEIGHT 1.f
+
 
 
 Model :: Model(Sender *sender) { 
     GameLoop *game_loop = new GameLoop(&this->world,sender,&this->data_base);
     this->game_loop = game_loop;
     Ground ground(world, 0.f, -1.f, GROUND_WIDTH,GROUND_HEIGHT);
-    this->data_base.setWidth((int)GROUND_WIDTH);
-    this->data_base.setHeight((int)GROUND_HEIGHT);
 }
 
 void Model :: startGame() {

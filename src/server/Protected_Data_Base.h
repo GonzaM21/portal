@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <mutex>
+#include "../common/Constants.h"
 #include "../server/modelo/World.h"
 #include "../server/modelo/Block.h"
 #include "../server/modelo/Ground.h"
@@ -46,10 +47,10 @@ public:
     std::vector<Chell_Player*> getPlayers();
     std::vector<Acid*> getAcids();
     std::vector<Metal_Block*> getMetalBlocks();
-    void setWidth(int width);
-    void setHeight(int height);
-    int getWidth();
-    int getHeight();  
+    //void setWidth(int width);
+    //void setHeight(int height);
+    float getWidth();
+    float getHeight();  
 };
 
 #endif
