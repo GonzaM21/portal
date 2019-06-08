@@ -52,6 +52,8 @@ add_executable(Client
 	src/vista/Emitter/Emitter.h
 	src/vista/Emitter/Emitter_sprite.cpp
 	src/vista/Emitter/Emitter_sprite.h
+	src/vista/Emitter/Target_sprite.h
+	src/vista/Emitter/Target_sprite.cpp
 	src/vista/Blocks/Stone_block_sprite.cpp
 	src/vista/Blocks/Stone_block_sprite.h
 	src/vista/Blocks/Metal_block_sprite.cpp
