@@ -11,7 +11,7 @@ public:
 
     //Contructor de la clase Ground. Hay que pasarle la mitad de largo y la mitad de la altura
     Ground(World &world,float x_pos, float y_pos,  float width, float high);
-    /*std::string getEntityName() override;
+    /*std::string getEntityName(); override;
     void startContact(b2Vec2 pos) override;
     void endContact() override;
     void die() override;

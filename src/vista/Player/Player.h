@@ -23,6 +23,8 @@ public:
   void setDancing();
   void setRunningShooting();
   void setStop();
+  void setRising();
+  void setFalling();
   void open();
   void close();
   bool isOpen();

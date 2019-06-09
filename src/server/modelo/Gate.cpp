@@ -22,7 +22,7 @@ std::string Gate::getEntityName() {
 }
 
 bool Gate::lives() {
-    if (this->bottoms.size() == 0) return true;
+    if(bottoms.size() == 0) return true;
     for(int i = 0; i < bottoms.size(); ++ i){
         if(!bottoms[i]->getStatus()) return true;
     }
@@ -52,7 +52,7 @@ bool Gate::setTransform(Entity *body) {
 }
 
 void Gate::changePosition() {
-    if (this->bottoms.size() == 0) return;
+    if(bottoms.size() == 0) return;
     for(int i = 0; i < bottoms.size(); ++ i){
         if(bottoms[i]->getStatus()) return;
     }

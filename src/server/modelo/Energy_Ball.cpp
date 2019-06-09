@@ -13,7 +13,6 @@ Energy_Ball::Energy_Ball(World& world, float x_pos, float y_pos): world(world) {
     contact = false;
     name = "Energy_Ball";
     live = true;
-
     radius = ENERGY_BALL;
 }
 
@@ -26,11 +25,20 @@ bool Energy_Ball::Move(char direction){
         energy_ball->ApplyForceToCenter(b2Vec2(-ENERGY_BALL_FORCE,ZERO),true);
         return true;
     }
+    if(direction == 'U'){
+        energy_ball->ApplyForceToCenter(b2Vec2(ZERO,ENERGY_BALL_FORCE),true);
+        return true;
+    }
+    if(direction == 'D'){
+        energy_ball->ApplyForceToCenter(b2Vec2(ZERO,-ENERGY_BALL_FORCE),true);
+        return true;
+    }
     return false;
 }
 
 b2Vec2 Energy_Ball::getPosition(){
     if(!live) return b2Vec2(0,0);
+    std::cout<<"veloc: "<<energy_ball->GetLinearVelocity().x<<" "<<energy_ball->GetLinearVelocity().y<<std::endl;
     return energy_ball->GetPosition();
 }
 
@@ -67,4 +75,7 @@ bool Energy_Ball::setTransform(Entity *body) {
     return true;
 }
 
-void Energy_Ball::changePosition() {}
+void Energy_Ball::changePosition() {
+    if(!contact) return;
+    energy_ball->SetLinearVelocity(b2Vec2(0,0));
+}

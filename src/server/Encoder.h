@@ -25,6 +25,7 @@ public:
     void sendEnergyBalls();
     void sendStoneBlocks();
     void sendGates();
+    void sendEndMap();
     //void sendPlayerPortals();
 };
 

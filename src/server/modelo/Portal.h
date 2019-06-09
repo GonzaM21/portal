@@ -16,8 +16,6 @@ class Portal : public Entity {
     bool live;
     bool contact;
     World& world;
-    float x_destiny;
-    float y_destiny;
     b2Vec2 position;
     b2Vec2 sizes;
     float radius;
@@ -35,11 +33,11 @@ public:
     float getAngle();
 
     std::string getEntityName() override;
-    void startContact(b2Vec2 pos = b2Vec2(0,0)) override;
+    void startContact(b2Vec2 pos) override;
     void endContact() override;
     void die() override;
     bool lives() override;
-    bool setTransform(Entity * body) override{return true;}
+    bool setTransform(Entity * body) override;
     void changePosition() override;
     bool havePartner();
 

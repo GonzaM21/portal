@@ -7,6 +7,8 @@
 #include "Running_player.h"
 #include "Dancing_player.h"
 #include "RunningShoot_player.h"
+#include "JumpFall_player.h"
+#include "JumpRise_player.h"
 #include "../Constants.h"
 #include "../Camara.h"
 #include <string>
@@ -23,6 +25,8 @@ Player::Player(const Window &window, const int &direction) : direction(direction
 	this->changeState[4] = &Player::setDying;
 	this->changeState[5] = &Player::setRunningShooting;
 	this->changeState[6] = &Player::setStop;
+	this->changeState[7] = &Player::setRising;
+	this->changeState[8] = &Player::setFalling;
 	this->states[0] = new IdlePlayer(window, direction);
 	this->states[1] = new RestingIdlePlayer(window, direction);
 	this->states[2] = new RunningPlayer(window, direction);
@@ -30,6 +34,8 @@ Player::Player(const Window &window, const int &direction) : direction(direction
 	this->states[4] = new DyingPlayer(window, direction);
 	this->states[5] = new RunningShootPlayer(window, direction);
 	this->states[6] = new StopPlayer(window, direction);
+	this->states[7] = new RisingPlayer(window, direction);
+	this->states[8] = new FallingPlayer(window, direction);
 	this->sprite = this->states[0];
 }
 
@@ -63,6 +69,7 @@ void Player::setDying()
 	this->sprite = this->states[4];
 }
 
+
 void Player::setRunningShooting()
 {
 	this->sprite = this->states[5];
@@ -71,6 +78,16 @@ void Player::setRunningShooting()
 void Player::setStop()
 {
 	this->sprite = this->states[6];
+}
+
+void Player::setRising()
+{
+	this->sprite = this->states[7];
+}
+
+void Player::setFalling()
+{
+	this->sprite = this->states[8];
 }
 void Player::setState(const int &state, const int &direction)
 {

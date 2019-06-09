@@ -2,12 +2,12 @@
 #include <string>
 #include <thread>
 #include "renderable.h"
-#include "client_communicator.h"
+#include "client/client_communicator.h"
 #include "Joiner.h"
 #include "common/common_socket_connect.h"
 #include "common/common_protocol.h"
-#include "event_handler_manager.h"
-#include "inicio/include/Inicio.h"
+#include "client/event_handler_manager.h"
+#include "../inicio/include/Inicio.h"
 #include <QApplication>
 
 void ejecutarVentana(int argc, char *argv[] ,std::string &host, std::string &port, std::string &player_name)
@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 
         if (!joiner.isValid()) return 0;
 
-        Renderable *renderer_thread = new Renderable(&model_facade);
+        Renderable *renderer_thread = new Renderable(&model_facade,&communicator);
         EventHandlerManager* handler = new EventHandlerManager(&communicator);
         renderer_thread->start();
         handler->start();

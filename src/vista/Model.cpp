@@ -1,4 +1,4 @@
-#include "Model.h"
+#include "vista/Model.h"
 
 Model::Model() : window(800, 800), camara(window), ownPlayerId(-1)
 {

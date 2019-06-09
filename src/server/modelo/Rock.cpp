@@ -4,11 +4,12 @@ Rock::Rock(World &world, float x_pos, float y_pos,float radius) : world(world){
     Filter_Data data(8);
     data.addMaskBits(1);
     data.addMaskBits(2);
+    data.addMaskBits(4);
     data.addMaskBits(8);
     data.addMaskBits(16);
     rock = world.addCircle(x_pos,y_pos,radius,false,data);
     rock->SetUserData(this);
-    this->radius = radius;
+    radius = radius;
     name = "Rock";
     contact = false;
     live = true;
@@ -19,6 +20,7 @@ std::string Rock::getEntityName() {
 }
 
 b2Vec2 Rock::getPosition() {
+    std::cout<<"Velocity: "<<rock->GetLinearVelocity().x<<" "<<rock->GetLinearVelocity().y<<std::endl;
     return rock->GetPosition();
 }
 

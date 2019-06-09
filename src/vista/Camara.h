@@ -3,9 +3,9 @@
 #include <string>
 #include <iostream>
 #include <SDL2/SDL_image.h>
-#include "Window.h"
-#include "Rect.h"
-#include "Sprite.h"
+#include "vista/Window.h"
+#include "vista/Rect.h"
+#include "vista/Sprite.h"
 
 class Camara
 {

@@ -1,4 +1,5 @@
 #include "Encoder.h"
+#define END_MAP "F"
 
 Encoder :: Encoder(ProtectedDataBase *data_base,Sender *sender) {
     this->data_base = data_base;
@@ -124,4 +125,9 @@ void Encoder ::sendWorldSizes() {  //Se necesita?¡?¡?¡?¡?¡?¡?¡¡?
         msg = "2,1," + std::to_string(i) + ",1,1,1";
         this->sender->addMessageToSend(msg);
     }
+}
+
+void Encoder :: sendEndMap() {
+    std::string msg = "F";
+    this->sender->addMessageToSend(msg);
 }

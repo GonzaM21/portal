@@ -4,6 +4,7 @@
 Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
     Filter_Data data(8);
     data.addMaskBits(1);
+    data.addMaskBits(4);
     data.addMaskBits(16);
     portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data);
     portal->SetGravityScale(0);
@@ -15,8 +16,6 @@ Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
     position = portal->GetPosition();
     radius = ENERGY_BALL;
     sizes = b2Vec2(0.02,1);
-    x_destiny = 0;
-    y_destiny = 0;
 }
 
 bool Portal::Move(float x_pos, float y_pos){
@@ -43,7 +42,7 @@ bool Portal::Move(float x_pos, float y_pos){
     if (x_pos < position.x) x_force = -5.f;
     if (y_pos < position.y) y_force = -5.f;
 
-    std::cout<<"Portal force: "<<x_force * sin(angle)<<"  "<<y_force * cos(angle)<<std::endl;
+    //std::cout<<"Portal force: "<<x_force * sin(angle)<<"  "<<y_force * cos(angle)<<std::endl;
     //portal->SetLinearVelocity(b2Vec2(x_force * sin(angle),y_force * cos(angle)));
     portal->SetLinearVelocity(b2Vec2(x_force,0));
     std::cout<<std::endl;
@@ -71,6 +70,7 @@ void Portal::changePosition() {
 }
 
 b2Vec2 Portal::getPosition(){
+    std::cout<<"portal vido: "<<live<<std::endl;
     if(!live) return b2Vec2(0,0);
     std::cout<<"Portal vel: "<<portal->GetLinearVelocity().x<<" "<<portal->GetLinearVelocity().y<<std::endl;
     return portal->GetPosition();
@@ -83,13 +83,13 @@ float Portal::getAngle() {
 
 void Portal::startContact(b2Vec2 pos) {
     contact = true;
-    live = false;
+    //live = false;
     if(portal->GetLinearVelocity().x < 0) position = pos + b2Vec2(0.5,0);
     if(portal->GetLinearVelocity().x > 0) position = pos - b2Vec2(0.5,0);
 
     std::cout<<"Otro cuerpo"<<pos.x<<" "<<pos.y<<std::endl;
     std::cout<<"Nueva pos"<<position.x<<" "<<position.y<<std::endl;
-    //portal->SetLinearVelocity(b2Vec2(0,0));
+    portal->SetLinearVelocity(b2Vec2(0,0));
 }
 
 void Portal::endContact() {
@@ -105,7 +105,7 @@ void Portal::die() {
 }
 
 bool Portal::lives(){
-    return true;
+    return live;
 }
 
 bool Portal::setPartner(Portal *portal) {
@@ -121,9 +121,11 @@ Portal * Portal::getPartnerPortal() {
 
 bool Portal::changePortalPosition(float x_pos, float y_pos) {
     if(!world.validPosition(x_pos,y_pos)) return false;
+    std::cout<<"Change portal position\n";
     world.eraseBody(portal);
     Filter_Data data(8);
     data.addMaskBits(1);
+    data.addMaskBits(4);
     data.addMaskBits(16);
     portal = portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data);
     portal->SetGravityScale(0);
@@ -142,4 +144,8 @@ float Portal::getradius() {
 
 b2Vec2 Portal::getSizes() {
     return sizes;
+}
+
+bool Portal::setTransform(Entity * body){
+    return true;
 }

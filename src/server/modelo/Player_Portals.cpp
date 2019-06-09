@@ -2,7 +2,7 @@
 
 Player_Portals::Player_Portals() : portal1_shot(false), portal2_shot(false){}
 
-Portal Player_Portals::shotPortalIn(World &world, float x_pos, float y_pos,float x_destiny, float y_destiny) {
+Portal * Player_Portals::shotPortalIn(World &world, float x_pos, float y_pos,float x_destiny, float y_destiny) {
     if(portal1_shot){
         portal1->changePortalPosition(x_pos,y_pos);
     } else{
@@ -14,10 +14,10 @@ Portal Player_Portals::shotPortalIn(World &world, float x_pos, float y_pos,float
         portal1->setPartner(portal2);
         portal2->setPartner(portal1);
     }
-    return *portal1;
+    return portal1;
 }
 
-Portal Player_Portals::shotPortalOut(World &world, float x_pos, float y_pos, float x_destiny, float y_destiny) {
+Portal * Player_Portals::shotPortalOut(World &world, float x_pos, float y_pos, float x_destiny, float y_destiny) {
     if(portal2_shot){
         portal2->changePortalPosition(x_pos,y_pos);
     } else{
@@ -29,7 +29,7 @@ Portal Player_Portals::shotPortalOut(World &world, float x_pos, float y_pos, flo
         portal2->setPartner(portal1);
         portal1->setPartner(portal2);
     }
-    return *portal2;
+    return portal2;
 }
 
 Player_Portals::~Player_Portals() {

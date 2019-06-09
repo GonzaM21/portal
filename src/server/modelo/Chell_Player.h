@@ -8,20 +8,21 @@
 
 class Chell_Player : public Entity{
     b2Body* chell;
+    Player_Portals portals;
     std::string name;
     World& world;
     bool live;
     bool contact;
-    Player_Portals portals;
-    b2Vec2 sizes;
     bool teleport;
+    bool bouncing;
+    bool win;
+    b2Vec2 sizes;
     b2Vec2 teleport_pos;
+    int contact_counter;
+    int jumper_counter;
 public:
     //Contructor del personaje
     Chell_Player(World &world,float x_pos, float y_pos);
-
-    //ignorar este metodo, retornna el tipo de clase
-    //Chell_Player* getEntityType() override;
 
     //El personaje salta
     bool Jump();
@@ -52,10 +53,12 @@ public:
 
     b2Vec2 getSizes();
 
-    //El personaje dispara un portal segun la direccion indicada
-    Portal shotPortalIn(float x_pos, float y_pos);
+    int getStatus();
 
-    Portal shotPortalOut(float x_pos, float y_pos);
+    //El personaje dispara un portal segun la direccion indicada
+    Portal * shotPortalIn(float x_pos, float y_pos);
+
+    Portal * shotPortalOut(float x_pos, float y_pos);
 
     void die() override;
 

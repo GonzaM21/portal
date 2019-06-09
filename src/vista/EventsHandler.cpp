@@ -1,10 +1,10 @@
-#include "EventsHandler.h"
-#include "Player/Player.h"
-#include "Blocks/Metal_block.h"
-#include "Blocks/Stone_block.h"
-#include "Blocks/Shoot_block.h"
-#include "Blocks/BlockFactory.h"
-#include "Gate/Gate.h"
+#include "vista/EventsHandler.h"
+#include "vista/Player/Player.h"
+#include "vista/Blocks/Metal_block.h"
+#include "vista/Blocks/Stone_block.h"
+#include "vista/Blocks/Shoot_block.h"
+#include "vista/Blocks/BlockFactory.h"
+#include "vista/Gate/Gate.h"
 
 EventsHandler::EventsHandler(Model &model) : model(model)
 {

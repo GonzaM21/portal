@@ -1,4 +1,4 @@
-#include "Camara.h"
+#include "vista/Camara.h"
 #include <iostream>
 #define FACTORX 0.12
 #define FACTORY 0.25

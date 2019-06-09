@@ -5,9 +5,13 @@ project(qt5-demo)
 # Find the QtWidgets library
 find_package(Qt5Widgets)
 
+get_target_property(QtCore_location Qt5::Core LOCATION)
+
+
 message("[INFO] La raiz del proyecto es ${PROJECT_SOURCE_DIR}")
 
 # Agrego ej3/include a la lista de directorios de includes
+include_directories(${Qt5Widgets_INCLUDE_DIRS})
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # Esta macro toma cada uno los parámetros y ejecuta *uic* sobre ellos

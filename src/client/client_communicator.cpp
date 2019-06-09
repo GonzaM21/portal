@@ -1,7 +1,7 @@
 #include <thread>
 #include <vector>
 #include <sstream>
-#include "../client/client_communicator.h"
+#include "client/client_communicator.h"
 
 ClientCommunicator ::ClientCommunicator(SocketConnect socket, std::string &mode,
     std::string &room_name, std::string &player_name, ModelFacade *model_facade) 
@@ -21,6 +21,7 @@ void ClientCommunicator::addMessageToSend(std::string message) {
 }
 
 void ClientCommunicator::receiveMessage() {
+    this->receiveMap();
     while (this->continue_running) {
         std::string message;
         this->protocol >> message;
@@ -38,6 +39,29 @@ void ClientCommunicator::splitMessage(std::string &message, std::vector<std::str
     while (getline(ss, token, ',')) {
         arguments.push_back(token);
     }
+}
+
+void ClientCommunicator ::receiveMap()
+{
+    while (!this->received_map)
+    {
+        std::string msg;
+        this->protocol >> msg;
+        std::cout << msg << std::endl;
+        if (msg == "F")
+        {
+            this->received_map = true;
+            return;
+        }
+        std::vector<std::string> arguments;
+        splitMessage(msg, arguments);
+        this->model_facade->decodeMessages(arguments);
+    }
+}
+
+bool ClientCommunicator::getReceivedMap()
+{
+    return this->received_map;
 }
 
 void ClientCommunicator ::sendMessage() {

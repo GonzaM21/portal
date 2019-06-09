@@ -15,8 +15,8 @@ class Player_Portals {
     bool portal2_shot;
 public:
     Player_Portals();
-    Portal shotPortalIn(World & world,float x_pos, float y_pos, float x_destiny, float y_destiny);
-    Portal shotPortalOut(World & world,float x_pos, float y_pos, float x_destiny, float y_destiny);
+    Portal * shotPortalIn(World & world,float x_pos, float y_pos, float x_destiny, float y_destiny);
+    Portal * shotPortalOut(World & world,float x_pos, float y_pos, float x_destiny, float y_destiny);
     ~Player_Portals();
 
 };

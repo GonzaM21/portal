@@ -138,14 +138,14 @@ b2Body* World::addTriangle(float x_pos, float y_pos, float x_size, float y_size,
     triangleFixtureDef.density = DENSITY;
     triangleFixtureDef.friction = FRICTION;
     triangleFixtureDef.restitution = metal ? METAL_RESITUTION : ZERO;
+    triangleFixtureDef.filter.categoryBits = data.getCategoryBits();
+    triangleFixtureDef.filter.maskBits = data.getMaskBits();
     triangleBody->CreateFixture(&triangleFixtureDef);
     Bodies.push_back(triangleBody);
     return triangleBody;
 }
 
 void World::Step(float time, int velocity, int position){
-    b2Vec2 pos = this->Bodies[4]->GetPosition();
-    std::cout << "Pos x: " << pos.x << " Pos y: " << pos.y << std::endl;
     deleteBodies();
     moveBodies();
     world->Step(time, velocity, position);
@@ -169,10 +169,13 @@ void World::eraseBody(b2Body *body) {
 }
 
 bool World::deleteBodies(){
+
+    std::cout<<"bodies sizes: "<<Bodies.size()<<std::endl;
     for(int i = 0; i < Bodies.size(); ++i) {
         if (Bodies[i]->GetUserData()) {
+            std::cout<<"Nombre: "<<static_cast<Entity *>(Bodies[i]->GetUserData())->getEntityName()<<std::endl;
             if (!static_cast<Entity *>(Bodies[i]->GetUserData())->lives()) {
-                std::cout<<"Matar\n";
+                std::cout<<"Mato a "<<static_cast<Entity *>(Bodies[i]->GetUserData())->getEntityName()<<std::endl;
                 world->DestroyBody(Bodies[i]);
                 Bodies.erase(Bodies.begin() + i);
                 return true;
