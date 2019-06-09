@@ -1,9 +1,9 @@
 #define X_START_POSITION 1
-#define BACKGROUND_FILENAME "Fondo.png"
+#define BACKGROUND_FILENAME "resources/img/Fondo.png"
 
 /* PLAYER */
-#define ICON_FILENAME "icon.png"
-#define PLAYER_FILENAME "Patricia_Wagon_Zero_Suit.png"
+#define ICON_FILENAME "resources/img/icon.png"
+#define PLAYER_FILENAME "resources/img/Patricia_Wagon_Zero_Suit.png"
 
 /* Idle */
 #define Y_POSITION_PLAYER_IDLE 2755
@@ -65,7 +65,7 @@
 #define MAX_WIDTH_PLAYER_FIRE (9 * WIDTH_PLAYER_FIRE + 9)
 
 /* GATE */
-#define GATE_FILENAME "gates.png"
+#define GATE_FILENAME "resources/img/gates.png"
 
 /* Common */
 #define WIDTH_GATE 193
@@ -104,7 +104,7 @@
 
 /* ACID */
 /* IDLE */
-#define ACID_FILENAME "acidos.png"
+#define ACID_FILENAME "resources/img/acidos.png"
 #define Y_POSITION_ACID_IDLE 1545
 #define WIDTH_ACID_IDLE 300
 #define HEIGHT_ACID_IDLE 61
@@ -116,7 +116,7 @@
 #define MAX_WIDTH_ACID_TOUCHED (5 * WIDTH_ACID_TOUCHED + 5)
 
 /* POWERBALL */
-#define POWERBALL_FILENAME "liquids_powers_energy.png"
+#define POWERBALL_FILENAME "resources/img/liquids_powers_energy.png"
 
 /* Flying */
 #define Y_POSITION_POWERBALL_FLYING 1920
@@ -134,7 +134,7 @@
 #define HEIGHT_POWERBALL_PAW 180
 
 /* BUTTON */
-#define BUTTON_FILENAME "acidos.png"
+#define BUTTON_FILENAME "resources/img/acidos.png"
 
 /* ON */
 #define Y_POSITION_BUTTON_ON 202
@@ -147,10 +147,10 @@
 #define HEIGHT_BUTTON_OFF 45
 
 /* TARGET */
-#define TARGET_FILENAME "target.png"
+#define TARGET_FILENAME "resources/img/target.png"
 
 /* BLOCKS */
-#define BLOCK_FILENAME "blocks.png"
+#define BLOCK_FILENAME "resources/img/blocks.png"
 
 /* Metal */
 #define Y_POSITION_BLOCK_METAL 600
@@ -184,14 +184,14 @@
 #define Y_POSITION_BLOCK_LAUNCH_UP 1242
 
 /*Portal azul*/
-#define PORTAL_BLUE_FILENAME "portalAzul.png"
-#define PORTAL_ORANGE_FILENAME "portalNaranja.png"
+#define PORTAL_BLUE_FILENAME "resources/img/portalAzul.png"
+#define PORTAL_ORANGE_FILENAME "resources/img/portalNaranja.png"
 #define Y_POSITION_PORTAL 1542
 #define WIDTH_PORTAL 300
 #define HEIGHT_PORTAL 300
 
 /*Rock*/
-#define ROCK_FILENAME "liquids_powers_energy.png"
+#define ROCK_FILENAME "resources/img/liquids_powers_energy.png"
 #define Y_POSITION_ROCK 4513
 #define WIDTH_ROCK 85
 #define HEIGHT_ROCK 83
