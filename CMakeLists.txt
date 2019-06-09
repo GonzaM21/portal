@@ -17,6 +17,7 @@ add_subdirectory(src/vista)
 add_subdirectory(src/server)
 add_subdirectory(src/common)
 add_subdirectory(src/client)
+add_subdirectory(src/inicio)
 
 
 add_executable (Client
@@ -27,6 +28,6 @@ add_executable (Server
   src/server/server.cpp
 )
 
-target_link_libraries(Client clientemodelo clientevista common)
+target_link_libraries(Client inicio clientemodelo clientevista common)
 #target_compile_features(Server PUBLIC cxx_std_17)
 target_link_libraries(Server server common)

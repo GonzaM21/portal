@@ -4,21 +4,38 @@
 #include "renderable.h"
 #include "client_communicator.h"
 #include "Joiner.h"
-#include "../common/common_socket_connect.h"
-#include "../common/common_protocol.h"
-//#include "../vista/EventsHandler.h"
+#include "common/common_socket_connect.h"
+#include "common/common_protocol.h"
 #include "event_handler_manager.h"
+#include "inicio/include/Inicio.h"
+#include <QApplication>
 
-int main(int argc, char *argv[]) {
-    if (argc != 6) {
-        std::cout << "Error: invalid arguments." << std::endl;
-        return 0;
-    }
+void ejecutarVentana(int argc, char *argv[] ,std::string &host, std::string &port, std::string &player_name)
+{
+    QApplication app(argc, argv);
+    // Instancio el greeter
+    Inicio inicio(host,port,player_name);
+    inicio.show();
+    // Arranca el loop de la UI
+    app.exec();
+    return;
+} 
+
+int main(int argc, char *argv[])
+{
+    // if (argc != 5) {
+    //     std::cout << "Error: invalid arguments." << std::endl;
+    //     return 0;
+    // }
     try {
-        Joiner joiner(argv[1],argv[2]);
-        std::string mode = argv[3];
-        std::string room_name = argv[4];
-        std::string player_name = argv[5];
+        std::string host, port, player_name;
+        ejecutarVentana(argc,argv,host,port,player_name);
+        const char *hostC = host.c_str();
+        const char *portC = port.c_str();
+        Joiner joiner(hostC,portC);
+        std::string mode = "new";
+        std::string room_name = "Sala";
+        // std::string player_name = argv[5];
 
         ModelFacade model_facade;
         ClientCommunicator communicator(std::move(joiner.setSocket()), 
