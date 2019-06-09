@@ -1,4 +1,5 @@
 #define X_START_POSITION 1
+#define BACKGROUND_FILENAME "Fondo.png"
 
 /* PLAYER */
 #define ICON_FILENAME "icon.png"

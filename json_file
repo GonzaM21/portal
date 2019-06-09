@@ -41,11 +41,23 @@
         "POS_Y": 0,
         "WIDTH": 1
     },
+    "ID_OBJETO7" : {
+        "TYPE": 5,
+        "POS_X": 6.0,
+        "POS_Y": 0.5,
+        "WIDTH": 1
+    },
     "ID_OBJETO8" : {
         "TYPE": 2,
         "TYPE_OPTIONAL": 1,
         "POS_X": 6.0,
         "POS_Y": 0,
+        "WIDTH": 1
+    },
+    "ID_OBJETO9" : {
+        "TYPE": 5,
+        "POS_X": 11,
+        "POS_Y": 1.5,
         "WIDTH": 1
     },
     "ID_OBJETO10" : {
@@ -86,6 +98,20 @@
     "ID_OBJETO16" : {
         "TYPE": 7,
         "POS_X": -3,
-        "POS_Y": 3
+        "POS_Y": 5
+    },
+    "ID_OBJETO17" : {
+        "TYPE": 2,
+        "TYPE_OPTIONAL": 2,
+        "POS_X": -8,
+        "POS_Y": 0,
+        "WIDTH": 1
+    },
+    "ID_OBJETO18" : {
+        "TYPE": 2,
+        "TYPE_OPTIONAL": 2,
+        "POS_X": -9,
+        "POS_Y": 0,
+        "WIDTH": 1
     }
 }

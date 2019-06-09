@@ -50,7 +50,13 @@ void Window::fill(int r, int g, int b, int alpha)
 
 void Window::fill()
 {
-    this->fill(0x33, 0x33, 0x33, 0xFF);
+    int width,height;
+    this->getSize(width,height);
+    SDL_Surface *image = IMG_Load(BACKGROUND_FILENAME);
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(this->renderer, image);
+    SDL_Rect sdlSrc = {0, 0,1920,1080};
+    SDL_Rect sdlDest = {0, 0,width,height};
+    SDL_RenderCopyEx(this->renderer, texture, &sdlSrc, &sdlDest, 0, nullptr, SDL_FLIP_NONE);
 }
 
 void Window::render()

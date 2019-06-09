@@ -210,6 +210,8 @@ add_executable(Server
 	src/server/level_creator/object.cpp
 	src/server/level_creator/object_gate.cpp
 	src/server/level_creator/object_gate.h
+	src/server/level_creator/object_stone_block.cpp
+	src/server/level_creator/object_stone_block.h
 	src/server/level_creator/object_energy_ball.cpp
 	src/server/level_creator/object_energy_ball.h
 	src/server/level_creator/object_energy_barrel.cpp

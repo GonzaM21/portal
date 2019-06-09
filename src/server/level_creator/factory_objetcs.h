@@ -6,6 +6,7 @@
 #include "object_acid.h"
 #include "object_energy_ball.h"
 #include "object_metal_block.h"
+#include "object_stone_block.h"
 #include "object_gate.h"
 
 class ObjectFactory {
@@ -20,6 +21,7 @@ public:
     ObjectAcid* createObjectAcid(float x_pos, float y_pos, float large);
     ObjectEnergyBall* createObjectEnergyBall(float x_pos, float y_pos);
     ObjectMetalBlock* createObjectMetalBlock(float x_pos, float y_pos,float size);
+    ObjectStoneBlock* createObjectStoneBlock(float x_pos, float y_pos,float size);
 };
 
 

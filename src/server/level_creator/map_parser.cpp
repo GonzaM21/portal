@@ -58,7 +58,10 @@ void MapParser :: createMetalBlock(nlohmann::json &object) {
 }
 
 void MapParser :: createStoneBlock(nlohmann::json &object) {
-    //creo objeto
+    Object* new_object = this->object_factory.createObjectStoneBlock((float)object.at("POS_X"),
+    (float)object.at("POS_Y"),(float)object.at("WIDTH"));
+    new_object->aggregate();
+    delete new_object;
 }
 
 void MapParser :: createShootBlock(nlohmann::json &object) {
