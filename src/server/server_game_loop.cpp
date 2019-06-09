@@ -13,16 +13,31 @@ GameLoop ::GameLoop(World *world, Sender *sender,
     this->world = world;
 }
 
-void GameLoop :: run() {
+void GameLoop :: sendInitialData() {
     this->encoder.sendPlayersPositions();
     this->encoder.sendPlayerIds();
     this->encoder.sendWorldSizes();
     this->encoder.sendMetalBlocks();
+    this->encoder.sendBottoms();    
+    this->encoder.sendEnergyBalls();
+    this->encoder.sendRocks();
+    this->encoder.sendStoneBlocks();
     this->encoder.sendAcids();
+    this->encoder.sendGates();
+}
+
+void GameLoop :: sendDynamicData() { //aca va todo lo que se mueve
+    this->encoder.sendPlayersPositions();
+    this->encoder.sendRocks();
+    this->encoder.sendEnergyBalls(); 
+}
+
+void GameLoop :: run() {
+    this->sendInitialData();
     while (this->continue_running) {
         auto t_start = std::chrono::high_resolution_clock::now();
         world->Step();
-        this->encoder.sendPlayersPositions(); //aca va todo lo que se puede ir actualizando
+        this->sendDynamicData();
         auto t_end = std::chrono::high_resolution_clock::now();
         int delta_time = std::chrono::duration<double, std::milli>(t_end-t_start).count();
         int wait_time = STEP_DURATION-delta_time; //deberia chequear que es mayor a 0

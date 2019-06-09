@@ -30,12 +30,6 @@ void EventHandlerManager :: run() {
                     communicator->addMessageToSend("a");
                     break;
                 }
-                case SDLK_w:
-                {
-                    std::cout << "Arriba" << std::endl;
-                    communicator->addMessageToSend("w");
-                    break;
-                }
                 case SDLK_DOWN:
                 {
                     std::cout << "ABAJO" << std::endl;
@@ -67,6 +61,12 @@ void EventHandlerManager :: run() {
                 {
                     std::cout << "Reset" << std::endl;
                     communicator->addMessageToSend("r");
+                    break;
+                }
+                case SDLK_w:
+                {
+                    std::cout << "Arriba" << std::endl;
+                    communicator->addMessageToSend("w");
                     break;
                 }
                 }

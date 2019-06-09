@@ -38,7 +38,8 @@ class GameLoop : public Thread {
         bool gameLoopStarted();
         void run() override;
         void step();
-        void sendWorldSizes();
+        void sendInitialData();
+        void sendDynamicData();
 };
 
 #endif

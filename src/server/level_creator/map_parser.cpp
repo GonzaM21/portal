@@ -11,7 +11,10 @@ MapParser :: MapParser(Model *model,std::string json_file) : object_factory(mode
 }
 
 void MapParser :: createGate(nlohmann::json &object){
-    //creo objeto
+    Object* new_object = this->object_factory.createObjectGate((float)object.at("POS_X"),
+    (float)object.at("POS_Y")); //Le tengo que agregar el alto
+    new_object->aggregate();
+    delete new_object;
 }
 
 void MapParser :: createButton(nlohmann::json &object){
@@ -20,17 +23,23 @@ void MapParser :: createButton(nlohmann::json &object){
 
 void MapParser :: createAcid(nlohmann::json &object){
     Object* new_object = this->object_factory.createObjectAcid((float)object.at("POS_X"),
-    (float)object.at("POS_Y"),(float)object.at("WIDTH")); //Le tengo que agregar el alto
+    (float)object.at("POS_Y"),(float)object.at("WIDTH")); 
     new_object->aggregate();
     delete new_object;
 }
 
 void MapParser :: createPowerball(nlohmann::json &object){
-    //creo objeto
+    Object* new_object = this->object_factory.createObjectEnergyBall((float)object.at("POS_X"),
+    (float)object.at("POS_Y")); 
+    new_object->aggregate();
+    delete new_object;
 }
 
 void MapParser :: createRock(nlohmann::json &object){
-    //creo objeto
+    Object* new_object = this->object_factory.createObjectRock((float)object.at("POS_X"),
+    (float)object.at("POS_Y"),(float)object.at("WIDTH")); 
+    new_object->aggregate();
+    delete new_object;
 }
 
 void MapParser :: createEnergyBarrier(nlohmann::json &object){

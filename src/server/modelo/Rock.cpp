@@ -8,7 +8,7 @@ Rock::Rock(World &world, float x_pos, float y_pos,float radius) : world(world){
     data.addMaskBits(16);
     rock = world.addCircle(x_pos,y_pos,radius,false,data);
     rock->SetUserData(this);
-    radius = radius;
+    this->radius = radius;
     name = "Rock";
     contact = false;
     live = true;

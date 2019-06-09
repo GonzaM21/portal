@@ -20,6 +20,12 @@ public:
     void sendMetalBlocks();
     void sendAcids();
     void sendWorldSizes();
+    void sendRocks();
+    void sendBottoms();
+    void sendEnergyBalls();
+    void sendStoneBlocks();
+    void sendGates();
+    //void sendPlayerPortals();
 };
 
 #endif

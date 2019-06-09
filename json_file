@@ -55,16 +55,37 @@
         "POS_Y": 2.0,
         "WIDTH": 1
     },
-    "ID_OBJETO9" : {
-        "TYPE": 5,
-        "POS_X": 9.0,
-        "POS_Y": -0.5,
-        "WIDTH": 1
+    "ID_OBJETO11" : {
+        "TYPE": 3,
+        "POS_X": 11,
+        "POS_Y": 0.5
     },
-    "ID_OBJETO7" : {
-        "TYPE": 5,
-        "POS_X": 5.0,
+    "ID_OBJETO12" : {
+        "TYPE": 3,
+        "POS_X": 4,
+        "POS_Y": 1.5
+    },
+    "ID_OBJETO13" : {
+        "TYPE": 8,
+        "POS_X": -3,
         "POS_Y": 0.5,
-        "WIDTH": 1
+        "WIDTH": 0.3
+    },
+    "ID_OBJETO14" : {
+        "TYPE": 8,
+        "POS_X": -5,
+        "POS_Y": 0,
+        "WIDTH": 0.3
+    },
+    "ID_OBJETO15" : {
+        "TYPE": 8,
+        "POS_X": 6,
+        "POS_Y": 3,
+        "WIDTH": 0.3
+    },
+    "ID_OBJETO16" : {
+        "TYPE": 7,
+        "POS_X": -3,
+        "POS_Y": 3
     }
 }

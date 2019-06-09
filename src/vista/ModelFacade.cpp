@@ -11,7 +11,7 @@ ModelFacade::ModelFacade()
   methods[5] = &ModelFacade::setAcid;
   methods[6] = &ModelFacade::setPortal;
   methods[7] = &ModelFacade::setPowerball;
-  // methods[8] = &ModelFacade::setRock;
+  methods[8] = &ModelFacade::setRock;
   // methods[9] = &ModelFacade::setEnergyBarrier;
   methods[10] = &ModelFacade::setEnergyEmitter;
 }
@@ -46,7 +46,7 @@ void ModelFacade::setBlock(std::vector<std::string> arguments)
 void ModelFacade::setGate(std::vector<std::string> arguments)
 {
   Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
-  model.setGate(dest, atoi(arguments[1].c_str()), atoi(arguments[6].c_str()));
+  model.setGate(dest, atoi(arguments[1].c_str()), 3);
 }
 
 void ModelFacade::setButton(std::vector<std::string> arguments)
@@ -57,10 +57,8 @@ void ModelFacade::setButton(std::vector<std::string> arguments)
 
 void ModelFacade::setAcid(std::vector<std::string> arguments)
 {
-  std::cout << "entra a set acid\n";
   Rect dest(atof(arguments[1].c_str()), atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()));
   model.setAcid(dest);
-  std::cout << "sale de set acid\n";
 }
 
 void ModelFacade::setPortal(std::vector<std::string> arguments)
@@ -79,4 +77,10 @@ void ModelFacade::setPowerball(std::vector<std::string> arguments)
 {
   Rect dest(atof(arguments[1].c_str()), atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()));
   model.setPowerball(dest, atoi(arguments[5].c_str()));
+}
+
+void ModelFacade::setRock(std::vector<std::string> arguments)
+{
+  Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
+  model.setRock(dest, atoi(arguments[1].c_str()));
 }

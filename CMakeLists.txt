@@ -122,6 +122,10 @@ add_executable(Server
     src/server/server.cpp
 	src/server/modelo/World.cpp
 	src/server/modelo/World.h
+	src/server/modelo/Gate.cpp
+	src/server/modelo/Gate.h
+	src/server/modelo/Bottom.cpp
+	src/server/modelo/Bottom.h	
 	src/server/modelo/InvalidPosition.cpp
 	src/server/modelo/InvalidPosition.h
 	src/server/modelo/Chell_Player.cpp
@@ -204,8 +208,8 @@ add_executable(Server
 	src/server/level_creator/object_acid.cpp
 	src/server/level_creator/object_acid.h
 	src/server/level_creator/object.cpp
-	src/server/level_creator/object_door.cpp
-	src/server/level_creator/object_door.h
+	src/server/level_creator/object_gate.cpp
+	src/server/level_creator/object_gate.h
 	src/server/level_creator/object_energy_ball.cpp
 	src/server/level_creator/object_energy_ball.h
 	src/server/level_creator/object_energy_barrel.cpp

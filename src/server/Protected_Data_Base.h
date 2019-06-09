@@ -16,6 +16,9 @@
 #include "../server/modelo/Metal_Block.h"
 #include "../server/modelo/Rock.h"
 #include "../server/modelo/Stone_Block.h"
+#include "../server/modelo/Player_Portals.h"
+#include "../server/modelo/Gate.h"
+#include "../server/modelo/Bottom.h"
 
 //puedo tener un mapa acutal y un mapa nuevo, sobre mapa nuevo hago los cambios(actualizo) mientras en mapa
 //actual el encoder me va piendo informacion. Cuando el encoder termina de recorrer llamo a un metodo
@@ -30,6 +33,10 @@ private:
     std::map<size_t, Acid*> acids;
     std::map<size_t, Energy_Ball*> energy_balls;
     std::map<size_t, Metal_Block*> metal_blocks;
+    std::map<size_t, Stone_Block*> stone_blocks;
+    std::map<size_t, Gate*> gates;
+    std::map<size_t, Bottom*> bottoms;
+    //std::map<size_t, Player_Portals*> player_portals;
     int width;
     int height;
 
@@ -43,12 +50,20 @@ public:
     void addAcid(World &world,float x_pos, float y_pos, float large);
     void addEnergyBall(World &world,float x_pos, float y_pos);
     void addMetalBlock(World &world,float x_pos, float y_pos,float size);
+    void addStoneBlock(World &world,float x_pos, float y_pos,float size);
+    void addBottom(World &world, float x_pos, float y_pos);
+    void addGate(World &world, float x_pos, float y_pos);
+    //void addPlayerPortals();
     std::vector<std::string> getIds();
     std::vector<Chell_Player*> getPlayers();
     std::vector<Acid*> getAcids();
     std::vector<Metal_Block*> getMetalBlocks();
-    //void setWidth(int width);
-    //void setHeight(int height);
+    std::vector<Rock*> getRocks();
+    std::vector<Energy_Ball*> getEnergyBalls();
+    std::vector<Stone_Block*> getStoneBlocks();
+    std::vector<Gate*> getGates();
+    std::vector<Bottom*> getBottoms();
+    //std::vector<Player_Portals*> getPlayerPortals();  
     float getWidth();
     float getHeight();  
 };

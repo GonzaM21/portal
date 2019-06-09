@@ -1,7 +1,11 @@
 #include "Gate.h"
 
 Gate::Gate(World &world, float x_pos, float y_pos) : world(world){
-    Filter_Data data(0);
+    Filter_Data data(1);
+    data.addMaskBits(2);
+    data.addMaskBits(4);
+    data.addMaskBits(8);
+    data.addMaskBits(16);
     gate = world.addPolygon(x_pos,y_pos,GATE_WIDTH/2,GATE_LARGE/2,true,data);
     gate->SetUserData(this);
     name = "Gate";
@@ -18,6 +22,7 @@ std::string Gate::getEntityName() {
 }
 
 bool Gate::lives() {
+    if (this->bottoms.size() == 0) return true;
     for(int i = 0; i < bottoms.size(); ++ i){
         if(!bottoms[i]->getStatus()) return true;
     }
@@ -47,6 +52,7 @@ bool Gate::setTransform(Entity *body) {
 }
 
 void Gate::changePosition() {
+    if (this->bottoms.size() == 0) return;
     for(int i = 0; i < bottoms.size(); ++ i){
         if(bottoms[i]->getStatus()) return;
     }

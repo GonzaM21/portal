@@ -53,6 +53,69 @@ void Encoder :: sendAcids() {
     }
 }
 
+void Encoder :: sendRocks() {
+    std::vector<Rock*> rocks = this->data_base->getRocks();
+    for ( size_t i = 0; i<rocks.size(); i++ ) {
+        std::string msg;
+        b2Vec2 pos = rocks[i]->getPosition();
+        float size = rocks[i]->getRadius();
+        msg = "8," + std::to_string(i+1)+ "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+        "," + std::to_string(size) + "," + std::to_string(size);
+        this->sender->addMessageToSend(msg);
+    }
+}
+
+void Encoder :: sendBottoms() {
+    std::vector<Bottom*> bottoms = this->data_base->getBottoms();
+    for ( size_t i = 0; i<bottoms.size(); i++ ) {
+        std::string msg;
+        b2Vec2 pos = bottoms[i]->getPosition();
+        b2Vec2 size = bottoms[i]->getSizes();
+        msg = "4," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+        "," + std::to_string(size.x) + "," + std::to_string(size.y);
+        this->sender->addMessageToSend(msg);
+    }
+}
+
+void Encoder :: sendEnergyBalls() {
+    std::vector<Energy_Ball*> energy_balls = this->data_base->getEnergyBalls();
+    for ( size_t i = 0; i<energy_balls.size(); i++ ) {
+        std::string msg;
+        b2Vec2 pos = energy_balls[i]->getPosition();
+        float size = energy_balls[i]->getRadius();
+        msg = "7," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+        "," + std::to_string(2*size) + "," + std::to_string(size) +",0";
+        this->sender->addMessageToSend(msg);
+    }
+}
+
+void Encoder :: sendStoneBlocks() {
+    std::vector<Stone_Block*> stone_blocks = this->data_base->getStoneBlocks();
+    for ( size_t i = 0; i<stone_blocks.size(); i++ ) {
+        std::string msg;
+        b2Vec2 pos = stone_blocks[i]->getPosition();
+        b2Vec2 size = stone_blocks[i]->getSizes();
+        msg = "2,2," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+        "," + std::to_string(size.x) + "," + std::to_string(size.y);
+        this->sender->addMessageToSend(msg);
+    }
+}
+
+void Encoder :: sendGates() {
+    std::vector<Gate*> gates = this->data_base->getGates();
+    for ( size_t i = 0; i<gates.size(); i++ ) {
+        std::string msg;
+        b2Vec2 pos = gates[i]->getPosition();
+        b2Vec2 size = gates[i]->getSizes();
+        msg = "3,"+ std::to_string(i+1)+ "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+        "," + std::to_string(size.x) + "," + std::to_string(size.y);
+        this->sender->addMessageToSend(msg);
+    }
+}
+
+//void Encoder :: sendPlayerPortals() {
+//
+//}
 
 void Encoder ::sendWorldSizes() {  //Se necesita?¡?¡?¡?¡?¡?¡?¡¡?
     int width = (int)this->data_base->getWidth();

@@ -69,6 +69,22 @@ void Model :: addMetalBlock(float x_pos, float y_pos,float size) {
     this->data_base.addMetalBlock(this->world,x_pos,y_pos,size);      
 }
 
+void Model :: addStoneBlock(float x_pos, float y_pos,float size) {
+    this->data_base.addStoneBlock(this->world,x_pos,y_pos,size);
+}
+
+void Model :: addBottom(float x_pos, float y_pos) {
+    this->data_base.addBottom(this->world,x_pos,y_pos);
+}
+
+void Model :: addGate(float x_pos, float y_pos) {
+    this->data_base.addGate(this->world,x_pos,y_pos);
+}
+
+//void Model :: addPlayerPortals() {
+//  this->data_base.addPlayerPortals();
+//}
+
 
 std::string Model :: getJugadores() { //Puede llegar a servir mas adelante el comando creado por eso no borro
     std::cout << "allalalalalalalalalal\n";

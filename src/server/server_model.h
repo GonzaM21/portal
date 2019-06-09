@@ -37,6 +37,10 @@ class Model {
         void addAcid(float x_pos, float y_pos, float large);
         void addEnergyBall(float x_pos, float y_pos);
         void addMetalBlock(float x_pos, float y_pos,float size);
+        void addStoneBlock(float x_pos, float y_pos,float size);
+        void addBottom( float x_pos, float y_pos);
+        void addGate( float x_pos, float y_pos);
+        //void addPlayerPortals();
 };
 
 #endif

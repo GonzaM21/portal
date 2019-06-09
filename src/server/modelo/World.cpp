@@ -109,6 +109,8 @@ b2Body* World::addCircle(float x_pos, float y_pos,float radius, bool static_obj,
     circleFixtureDef.density = DENSITY;
     circleFixtureDef.friction = FRICTION;
     circleFixtureDef.restitution = ZERO;
+    circleFixtureDef.filter.categoryBits = data.getCategoryBits();
+    circleFixtureDef.filter.maskBits = data.getMaskBits();
     circleBody->CreateFixture(&circleFixtureDef);
     Bodies.push_back(circleBody);
     return circleBody;
