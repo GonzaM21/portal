@@ -14,9 +14,9 @@ void ProtectedDataBase :: makePlayerMove(std::string &player,char &direction) {
 void ProtectedDataBase :: shootPortal(World &world,std::string &player,float x_destiny,
   float y_destiny,int portal_num) {
     Chell_Player *chell_player = this->players[player];
-    if (portal_num == 0) {
+    if (portal_num == 1) {
       chell_player->shotPortalIn(x_destiny,y_destiny);
-    } else if (portal_num == 1) {
+    } else if (portal_num == 2) {
       chell_player->shotPortalOut(x_destiny,y_destiny);
     }
 }
