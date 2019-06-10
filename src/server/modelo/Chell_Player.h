@@ -20,6 +20,7 @@ class Chell_Player : public Entity{
     b2Vec2 teleport_pos;
     int contact_counter;
     int jumper_counter;
+    bool direction_right;
 public:
     //Contructor del personaje
     Chell_Player(World &world,float x_pos, float y_pos);
@@ -64,5 +65,6 @@ public:
 
     bool lives() override;
 
+    int getDirection();
 };
 #endif //TP4_CHELL_PLAYER_H

@@ -28,13 +28,14 @@ int main(int argc, char *argv[])
     //     return 0;
     // }
     try {
-        std::string host, port, player_name;
-        ejecutarVentana(argc,argv,host,port,player_name);
-        const char *hostC = host.c_str();
-        const char *portC = port.c_str();
-        Joiner joiner(hostC,portC);
+        //std::string host, port, player_name;
+        //ejecutarVentana(argc,argv,host,port,player_name);
+        //const char *hostC = host.c_str();
+        //const char *portC = port.c_str();
+        Joiner joiner(argv[1],argv[2]);
         std::string mode = "new";
         std::string room_name = "Sala";
+        std::string player_name = "joel";
         // std::string player_name = argv[5];
 
         ModelFacade model_facade;
@@ -48,7 +49,6 @@ int main(int argc, char *argv[])
         renderer_thread->start();
         handler->start();
         communicator.startExecution();
-
         handler->endExecution();
         handler->join();
         renderer_thread->endExecution();
@@ -62,3 +62,17 @@ int main(int argc, char *argv[])
     }
     return 0;
 }
+
+
+        /*std::vector<Thread*> threads;
+        threads.push_back(new Renderable(&model_facade,&communicator));
+        threads.push_back(new EventHandlerManager(&communicator));
+
+        //for (int i = 0; i< threads.size(); i++) {
+        //    threads[i]->start();
+        //}
+        //for (int i= 0;i< threads.size(); i++) {
+        //    threads[i]->endExecution();
+        //    threads[i]->join();
+        //    delete threads[i];
+        //}*/

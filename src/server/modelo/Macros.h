@@ -1,7 +1,7 @@
 #ifndef TP4_MACROS_H
 #define TP4_MACROS_H
 
-#define GRAVITY 9.81
+#define GRAVITY 15.81
 #define ZERO 0.0
 #define MAX_LIM 1000.0
 #define DELTA_WALLS 1.0

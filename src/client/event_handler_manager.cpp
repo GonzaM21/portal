@@ -48,13 +48,13 @@ void EventHandlerManager :: run() {
                     break;
                 case SDLK_d:
                 {
-                    communicator->addMessageToSend("a");
+                    communicator->addMessageToSend("s");
                     break;
                 }
                 case SDLK_a:
                 {
                     std::cout << "Izquierda" << std::endl;
-                    communicator->addMessageToSend("d");
+                    communicator->addMessageToSend("s");
                     break;
                 }
                 case SDLK_r:
@@ -69,6 +69,12 @@ void EventHandlerManager :: run() {
                     communicator->addMessageToSend("w");
                     break;
                 }
+                case SDLK_q:
+                {
+                    std::cout << "exit" << std::endl;
+                    communicator->endExecution();
+                    break;
+                }
                 }
             }
             break;
@@ -76,6 +82,7 @@ void EventHandlerManager :: run() {
             {
                 std::cout << "cerrando" << std::endl;
                 this->continue_running = false;
+                communicator->endExecution();
                 communicator->addMessageToSend("q");
                 break;
             }

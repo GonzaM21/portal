@@ -54,6 +54,8 @@ public:
     void addBottom(World &world, float x_pos, float y_pos);
     void addGate(World &world, float x_pos, float y_pos);
     //void addPlayerPortals();
+    //void addEmitter(float x_pos, float y_pos, float size,std::string& direction, bool charged);
+    //void addEnergyBarrier(float x_pos, float y_pos, float large);
     std::vector<std::string> getIds();
     std::vector<Chell_Player*> getPlayers();
     std::vector<Acid*> getAcids();

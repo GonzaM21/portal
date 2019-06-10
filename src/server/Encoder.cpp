@@ -24,10 +24,11 @@ void Encoder :: sendPlayersPositions() {
         b2Vec2 position = chells[i]->getPosition();
         std::string msg = "1,"+std::to_string(id)+ "," + std::to_string(position.x) + "," + 
         std::to_string(-position.y) + "," + std::to_string(CHELL_WIDTH)+ "," + 
-        std::to_string(CHELL_HIGH);
+        std::to_string(CHELL_HIGH) + "," + std::to_string(chells[i]->getStatus()) +
+        "," + std::to_string(chells[i]->getDirection());
         this->sender->addMessageToSend(msg);
         id++;        
-    }  
+    }
 }
 
 void Encoder :: sendMetalBlocks() {

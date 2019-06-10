@@ -1,4 +1,4 @@
-#include <math.h>
+#include <cmath>
 #include "Energy_Ball.h"
 #include "Macros.h"
 

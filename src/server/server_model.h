@@ -40,6 +40,8 @@ class Model {
         void addStoneBlock(float x_pos, float y_pos,float size);
         void addBottom( float x_pos, float y_pos);
         void addGate( float x_pos, float y_pos);
+        //void addEmitter(float x_pos, float y_pos, float size,std::string& direction, bool charged);
+        //void addEnergyBarrier(float x_pos, float y_pos, float large);
         //void addPlayerPortals();
 };
 

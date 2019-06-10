@@ -170,12 +170,12 @@ void World::eraseBody(b2Body *body) {
 
 bool World::deleteBodies(){
 
-    std::cout<<"bodies sizes: "<<Bodies.size()<<std::endl;
+    //std::cout<<"bodies sizes: "<<Bodies.size()<<std::endl;
     for(int i = 0; i < Bodies.size(); ++i) {
         if (Bodies[i]->GetUserData()) {
-            std::cout<<"Nombre: "<<static_cast<Entity *>(Bodies[i]->GetUserData())->getEntityName()<<std::endl;
+            //std::cout<<"Nombre: "<<static_cast<Entity *>(Bodies[i]->GetUserData())->getEntityName()<<std::endl;
             if (!static_cast<Entity *>(Bodies[i]->GetUserData())->lives()) {
-                std::cout<<"Mato a "<<static_cast<Entity *>(Bodies[i]->GetUserData())->getEntityName()<<std::endl;
+                //std::cout<<"Mato a "<<static_cast<Entity *>(Bodies[i]->GetUserData())->getEntityName()<<std::endl;
                 world->DestroyBody(Bodies[i]);
                 Bodies.erase(Bodies.begin() + i);
                 return true;

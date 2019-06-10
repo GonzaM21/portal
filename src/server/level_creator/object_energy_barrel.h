@@ -6,9 +6,10 @@
 class ObjectEnergyBarrel : public Object {
 private:
     Model *model;
+    float large;
 
 public:
-    ObjectEnergyBarrel(Model *model);
+    ObjectEnergyBarrel(Model *model,float large);
     ~ObjectEnergyBarrel() = default;
     void aggregate() override;
 };

@@ -20,7 +20,7 @@ std::string Rock::getEntityName() {
 }
 
 b2Vec2 Rock::getPosition() {
-    std::cout<<"Velocity: "<<rock->GetLinearVelocity().x<<" "<<rock->GetLinearVelocity().y<<std::endl;
+    //std::cout<<"Velocity: "<<rock->GetLinearVelocity().x<<" "<<rock->GetLinearVelocity().y<<std::endl;
     return rock->GetPosition();
 }
 

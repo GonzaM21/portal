@@ -18,16 +18,17 @@ Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world)
     sizes = b2Vec2(CHELL_HIGH,CHELL_WIDTH);
     chell = world.addPolygon(x_pos, y_pos, CHELL_WIDTH/2, CHELL_HIGH/2.f,false,data);
     chell->SetUserData(this);
+    this->direction_right = true;
 }
 
 bool Chell_Player::Jump(){
     if(!live) return false;
     std::cout<<"Jump\n";
     std::cout<<contact_counter<<"       "<<jumper_counter<<std::endl;
-   if (contact_counter >= 1 && jumper_counter == 0){
+   if (contact_counter >= 0 && jumper_counter == 0){
        std::cout<<"Jump 2\n";
        chell->ApplyForceToCenter(b2Vec2(ZERO,CHELL_JUMP_FORCE),true);
-       ++jumper_counter;
+       jumper_counter=1;
        return true;
    }
     return false;
@@ -37,10 +38,23 @@ bool Chell_Player::Move(char &direction) {
     b2Vec2 actual_speed = this->chell->GetLinearVelocity();
     if(!live) return false;
     if(direction == 'd' && (actual_speed.x <= 0)){
+        this->direction_right = true;
+        if (actual_speed.y != 0) {
+            chell->ApplyLinearImpulseToCenter(b2Vec2(CHELL_MOVE_FORCE/2,ZERO),true);
+        } else {
         chell->ApplyLinearImpulseToCenter(b2Vec2(CHELL_MOVE_FORCE,ZERO),true);
+        }
         return true;
     } else if(direction == 'a' && (actual_speed.x >= 0)){
-        chell->ApplyLinearImpulseToCenter(b2Vec2(-CHELL_MOVE_FORCE,ZERO),true);
+        this->direction_right = false;
+        if (actual_speed.y != 0) {
+            chell->ApplyLinearImpulseToCenter(b2Vec2(-CHELL_MOVE_FORCE/2,ZERO),true);
+        } else {
+            chell->ApplyLinearImpulseToCenter(b2Vec2(-CHELL_MOVE_FORCE,ZERO),true);
+        }
+        return true;
+    } else if(direction == 's') {
+        this->Brake();
         return true;
     }
     return false;
@@ -55,15 +69,18 @@ int Chell_Player::getStatus(){
     if(win) return CHELL_DANCING;
     b2Vec2 velocity = chell->GetLinearVelocity();
     if(velocity.x == 0 && velocity.y == 0) return CHELL_QUIET;
+    if(velocity.y < 0) return CHELL_FALLING;
+    if(velocity.y > 0) return CHELL_JUMPING;
     if(velocity.x != 0) return CHELL_RUNNING;
-    if(velocity.x < 0) return CHELL_FALLING;
-    if(velocity.x > 0) return CHELL_JUMPING;
 }
 
+int Chell_Player::getDirection() {
+    return this->direction_right;
+} 
 
 b2Vec2 Chell_Player::getPosition() {
     if(!live) return teleport_pos;
-    std::cout<<"Velocity: "<<chell->GetLinearVelocity().x<<" "<<chell->GetLinearVelocity().y<<std::endl;
+    //std::cout<<"Velocity: "<<chell->GetLinearVelocity().x<<" "<<chell->GetLinearVelocity().y<<std::endl;
     return chell->GetPosition();
 }
 
@@ -103,13 +120,13 @@ void Chell_Player::startContact(b2Vec2 pos) {
     contact = true;
     bouncing = true;
     ++contact_counter;
+    jumper_counter = 0;
 }
 
 void Chell_Player::endContact() {
     if(chell->GetLinearVelocity().y < 0){
         contact = false;
         bouncing = true;
-        jumper_counter = 0;
     }
     --contact_counter;
 }

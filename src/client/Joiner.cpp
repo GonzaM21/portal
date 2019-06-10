@@ -1,6 +1,6 @@
 #include "Joiner.h"
 
-Joiner::Joiner(const char* &hostn,const char* &srvn) {
+Joiner::Joiner(char* &hostn,char* &srvn) {
     this->hostn = hostn;
     this->srvn =srvn;
     this->is_valid = true;

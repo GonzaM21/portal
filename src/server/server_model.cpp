@@ -85,6 +85,8 @@ void Model :: addGate(float x_pos, float y_pos) {
 //  this->data_base.addPlayerPortals();
 //}
 
+//void Model::addEmitter(float x_pos, float y_pos, float size,std::string& direction, bool charged) {}
+//void Model::addEnergyBarrier(float x_pos, float y_pos, float large) {this->data_base.addEnergyBarrier(this->world,x_pos,y_pos,large)}
 
 std::string Model :: getJugadores() { //Puede llegar a servir mas adelante el comando creado por eso no borro
     std::cout << "allalalalalalalalalal\n";
