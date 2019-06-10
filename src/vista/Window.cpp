@@ -24,7 +24,8 @@ Window::Window(int width, int height) : width(width), height(height), fullscreen
     }
     SDL_Surface *image = IMG_Load(ICON_FILENAME);
     SDL_SetWindowIcon(window, image); // The icon is attached to the window pointer  
-     
+    image = IMG_Load(BACKGROUND_FILENAME);
+    this->background = SDL_CreateTextureFromSurface(this->renderer, image);
 }
 
 Window::~Window()
@@ -53,11 +54,9 @@ void Window::fill()
 {
     int width,height;
     this->getSize(width,height);
-    SDL_Surface *image = IMG_Load(BACKGROUND_FILENAME);
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(this->renderer, image);
     SDL_Rect sdlSrc = {0, 0,1920,1080};
     SDL_Rect sdlDest = {0, 0,width,height};
-    SDL_RenderCopyEx(this->renderer, texture, &sdlSrc, &sdlDest, 0, nullptr, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(this->renderer, this->background, &sdlSrc, &sdlDest, 0, nullptr, SDL_FLIP_NONE);
 }
 
 void Window::render()

@@ -19,6 +19,7 @@ public:
     SDL_Renderer *getRenderer() const;
     void fullscreen();
     void getSize(int &width, int &height) const;
+    SDL_Texture *background; 
 
 private:
     int width;
