@@ -78,7 +78,7 @@ void EventHandlerManager :: run() {
                 case SDLK_p:
                 {
                     std::cout << "portal_0" << std::endl;
-                    communicator->addMessageToSend("p,2,0.5,1");
+                    communicator->addMessageToSend("p,2,0.5,0");
                     break;
                 }
                 case SDLK_o:
