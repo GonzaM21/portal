@@ -128,8 +128,8 @@ void Encoder :: sendPortals() {
             if (portal == nullptr || !portal->isValid()) continue;
             b2Vec2 pos = portal->getPosition();
             b2Vec2 size = portal->getSizes();
-            std::string msg("6,"+std::to_string(i+1)+","+ std::to_string(pos.x) + "," 
-            + std::to_string(-pos.y) + "," + std::to_string(size.x) + "," + 
+            std::string msg("6,"+std::to_string(i + portal_num + 1)+","+ std::to_string(pos.x) + ","
+            + std::to_string(-pos.y) + "," + std::to_string(size.x * 2) + "," +
             std::to_string(0.25)+","+std::to_string(portal_num)+",0,1");
             this->sender->addMessageToSend(msg);  
         }

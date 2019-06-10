@@ -13,6 +13,8 @@ Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
     have_partner = false;
     name = "Portal";
     live = true;
+    ball = true;
+    send_it = false;
     position = portal->GetPosition();
     radius = ENERGY_BALL;
     sizes = b2Vec2(0.3,1);
@@ -50,11 +52,8 @@ bool Portal::Move(float x_pos, float y_pos){
 }
 
 void Portal::changePosition() {
-    //std::cout<<"change position\n";
     if(!contact) return;
-    //std::cout<<"change position2\n";
     if(contact){
-        std::cout<<"change position3\n";
         portal->SetLinearVelocity(b2Vec2(0,0));
         world.eraseBody(portal);
         Filter_Data data(8);
@@ -64,20 +63,22 @@ void Portal::changePosition() {
         portal = world.addPolygon(position.x,position.y,0.01,0.5f,true,data);
         portal->SetUserData(this);
         contact = false;
+        ball = false;
+        send_it = false;
         live = true;
     }
     portal->SetLinearVelocity(b2Vec2(0,0));
 }
 
 b2Vec2 Portal::getPosition(){
-    //std::cout<<"portal vido: "<<live<<std::endl;
     if(!live) return b2Vec2(0,0);
-    //std::cout<<"Portal vel: "<<portal->GetLinearVelocity().x<<" "<<portal->GetLinearVelocity().y<<std::endl;
     return portal->GetPosition();
 }
 
 bool Portal::isValid() {
-    return contact;
+    bool result = !ball && !send_it;
+    send_it = true;
+    return result;
 }
 
 
@@ -88,7 +89,6 @@ float Portal::getAngle() {
 
 void Portal::startContact(b2Vec2 pos) {
     contact = true;
-    //live = false;
     if(portal->GetLinearVelocity().x < 0) position = pos + b2Vec2(0.5,0);
     if(portal->GetLinearVelocity().x > 0) position = pos - b2Vec2(0.5,0);
 
@@ -126,7 +126,6 @@ Portal * Portal::getPartnerPortal() {
 
 bool Portal::changePortalPosition(float x_pos, float y_pos) {
     if(!world.validPosition(x_pos,y_pos)) return false;
-    std::cout<<"Change portal position\n";
     world.eraseBody(portal);
     Filter_Data data(8);
     data.addMaskBits(1);
@@ -136,6 +135,8 @@ bool Portal::changePortalPosition(float x_pos, float y_pos) {
     portal->SetGravityScale(0);
     portal->SetUserData(this);
     contact = false;
+    ball = true;
+    send_it = true;
     return true;
 }
 
