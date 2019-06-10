@@ -115,9 +115,53 @@ void Encoder :: sendGates() {
     }
 }
 
-//void Encoder :: sendPlayerPortals() {
-//
-//}
+void Encoder :: sendPlayerPortals() {
+    std::vector<Player_Portals*> portals = this->data_base->getPlayerPortals();
+    for (size_t id = 0; id<portals.size(); id++) {
+        for (int portal_num = 0; portal_num<2; portal_num++) {
+            if (portal_num == 0) {
+                this->sendPortal(portals[id]->getPortalIn(),portal_num,id);
+            } else {
+                this->sendPortal(portals[id]->getPortalOut(),portal_num,id);
+            }
+        }
+    }
+}
+
+void Encoder :: sendPortal(Portal *portal,int portal_num,int id) {
+    if (portal == nullptr) return;
+    b2Vec2 pos = portal->getPosition();
+    b2Vec2 size = portal->getSizes(); 
+    std::string msg("6,"+std::to_string(id+1)+","+ std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+    "," + std::to_string(size.x) + "," + std::to_string(size.y)+","+std::to_string(portal_num)+",0,0"); 
+    //Harcodeado la direccion y state, que serian?
+    //Hay dos portales con el mismo id, uno de entrada y otro de salida
+}
+
+void Encoder :: sendBarriers() {
+    std::vector<Energy_Barrier*> barriers = this->data_base->getBarriers();
+    for ( size_t i = 0; i<barriers.size(); i++ ) {
+        std::string msg;
+        b2Vec2 pos = barriers[i]->getPosition();
+        b2Vec2 size = barriers[i]->getSizes();
+        msg = "9,"+ std::to_string(i+1)+ "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+        "," + std::to_string(size.x) + "," + std::to_string(size.y);
+        this->sender->addMessageToSend(msg);
+    }
+}
+
+void Encoder :: sendEmitters() {
+    std::vector<Energy_Emitters*> emitters = this->data_base->getEmitters();
+    for ( size_t i = 0; i<emitters.size(); i++ ) {
+        std::string msg;
+        b2Vec2 pos = emitters[i]->getPosition();
+        b2Vec2 size = emitters[i]->getSizes();
+        msg = "10,"+ std::to_string(i+1)+ "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+        "," + std::to_string(size.x) + "," + std::to_string(size.y)+ ",0,0";
+        //Direccion y state harcodeados, que hacemos? necesito getters
+        this->sender->addMessageToSend(msg);
+    }
+}
 
 void Encoder ::sendWorldSizes() {  //Se necesita?¡?¡?¡?¡?¡?¡?¡¡?
     int width = (int)this->data_base->getWidth();

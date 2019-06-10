@@ -34,7 +34,7 @@ private:
     void createLauchLeftBlock(nlohmann::json &object);
 
 public:
-    MapParser(Model *model,std::string json_file);
+    MapParser(Model *model,std::string &json_file);
     ~MapParser() = default;
     void addObjectsToModel();
 };

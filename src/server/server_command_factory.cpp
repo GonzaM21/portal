@@ -24,3 +24,8 @@ CommandJump* CommandFactory :: createCommandJump(std::string &player) {
 CommandMove* CommandFactory :: createCommandMove(std::string &player,char &direction) {
     return new CommandMove(this->model,player,direction);
 }
+
+CommandShoot* CommandFactory :: createCommandShoot(std::string &player,
+  std::string &x_destiny,std::string &y_destiny,std::string &portal_num) {
+    return new CommandShoot(this->model,player,x_destiny,y_destiny,portal_num);
+}

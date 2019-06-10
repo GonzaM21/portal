@@ -11,6 +11,7 @@ private:
     ProtectedDataBase *data_base;
     Sender *sender;
     std::mutex m;
+    void sendPortal(Portal *portal,int portal_num,int id);
 
 public:
     Encoder(ProtectedDataBase *data_base,Sender *sender);
@@ -26,7 +27,9 @@ public:
     void sendStoneBlocks();
     void sendGates();
     void sendEndMap();
-    //void sendPlayerPortals();
+    void sendPlayerPortals();
+    void sendBarriers();
+    void sendEmitters();
 };
 
 #endif

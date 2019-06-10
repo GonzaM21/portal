@@ -85,7 +85,7 @@ int Chell_Player::getDirection() {
 
 b2Vec2 Chell_Player::getPosition() {
     if(!live) return teleport_pos;
-    std::cout<<"Velocity: "<<chell->GetLinearVelocity().x<<" "<<chell->GetLinearVelocity().y<<std::endl;
+    //std::cout<<"Velocity: "<<chell->GetLinearVelocity().x<<" "<<chell->GetLinearVelocity().y<<std::endl;
     return chell->GetPosition();
 }
 

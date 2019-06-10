@@ -6,9 +6,21 @@ void ProtectedDataBase :: makePlayerJump(std::string &player) {
     this->players[player]->Jump();
 }
 
-void ProtectedDataBase :: makePlayerMove(std::string player,char &direction) {
+void ProtectedDataBase :: makePlayerMove(std::string &player,char &direction) {
     std::unique_lock<std::mutex> lck(m);
     this->players[player]->Move(direction);
+}
+
+void ProtectedDataBase :: shootPortal(World &world,std::string &player,float x_destiny,
+  float y_destiny,int portal_num) {
+    Chell_Player *chell_player = this->players[player];
+    b2Vec2 pos = chell_player->getPosition();
+    Player_Portals *portals = this->player_portals[this->player_ids[player]-1];
+    if (portal_num == 0) {
+      portals->shotPortalIn(world,pos.x,pos.y,x_destiny,y_destiny);
+    } else if (portal_num == 1) {
+      portals->shotPortalOut(world,pos.x,pos.y,x_destiny,y_destiny);
+    }
 }
 
 void ProtectedDataBase :: addRock(World &world,float x_pos, float y_pos, float radius) {
@@ -53,16 +65,29 @@ void ProtectedDataBase :: addBottom(World &world, float x_pos, float y_pos) {
     this->bottoms.insert({bottom_id,new Bottom(world,x_pos,y_pos)});      
 }
 
-//void ProtectedDataBase :: addPlayerPortals() {
-//    std::unique_lock<std::mutex> lck(m);
-//    size_t player_portals_id = this->player_portals.size();
-//    this->player_portals.insert({player_portals_id,new Player_Portal()});      
-//}
+void ProtectedDataBase :: addPlayerPortals() {
+    std::unique_lock<std::mutex> lck(m);
+    size_t player_portals_id = this->player_portals.size();
+    this->player_portals.insert({player_portals_id,new Player_Portals()});      
+}
 
 void ProtectedDataBase :: addPlayer(World &world,std::string &player) {
     std::unique_lock<std::mutex> lck(m);
     float pos = this->players.size();
     this->players.insert({player,new Chell_Player(world,0.f,0.2f)});
+    this->player_ids.insert({player,this->players.size()});
+}
+
+void ProtectedDataBase :: addEmitter(World &world,float x_pos, float y_pos, float size,std::string& direction, bool charged) {
+    std::unique_lock<std::mutex> lck(m);
+    size_t emitter_id = this->emitters.size();
+    this->emitters.insert({emitter_id,new Energy_Emitters(world,x_pos,y_pos,size,direction,charged)});
+}
+
+void ProtectedDataBase :: addEnergyBarrier(World &world,float x_pos, float y_pos, float large) {
+    std::unique_lock<std::mutex> lck(m);
+    size_t emitter_id = this->barriers.size();
+    this->barriers.insert({emitter_id,new Energy_Barrier(world,x_pos,y_pos,large)});
 }
 
 std::vector<std::string> ProtectedDataBase :: getIds() {
@@ -71,7 +96,7 @@ std::vector<std::string> ProtectedDataBase :: getIds() {
   for (auto const& element : this->players) {
     vect.push_back(element.first);
   }
-  return vect;
+  return std::move(vect);
 }
 
 std::vector<Chell_Player*> ProtectedDataBase :: getPlayers() {
@@ -80,7 +105,7 @@ std::vector<Chell_Player*> ProtectedDataBase :: getPlayers() {
   for (auto const& element : this->players) {
     players.push_back(element.second);
   }
-  return players;
+  return std::move(players);
 }
 
 std::vector<Acid*> ProtectedDataBase :: getAcids() {
@@ -89,7 +114,7 @@ std::vector<Acid*> ProtectedDataBase :: getAcids() {
   for (auto const& element : this->acids) {
     acids.push_back(element.second);
   }
-  return acids;
+  return std::move(acids);
 }
 
 std::vector<Metal_Block*> ProtectedDataBase :: getMetalBlocks() {
@@ -98,7 +123,7 @@ std::vector<Metal_Block*> ProtectedDataBase :: getMetalBlocks() {
   for (auto const& element : this->metal_blocks) {
     metal_blocks.push_back(element.second);
   }
-  return metal_blocks;
+  return std::move(metal_blocks);
 }
 
 std::vector<Rock*> ProtectedDataBase :: getRocks() {
@@ -107,7 +132,7 @@ std::vector<Rock*> ProtectedDataBase :: getRocks() {
   for (auto const& element : this->rocks) {
     rocks.push_back(element.second);
   }
-  return rocks;
+  return std::move(rocks);
 }
 
 std::vector<Energy_Ball*> ProtectedDataBase :: getEnergyBalls() {
@@ -116,7 +141,7 @@ std::vector<Energy_Ball*> ProtectedDataBase :: getEnergyBalls() {
   for (auto const& element : this->energy_balls) {
     energy_balls.push_back(element.second);
   }
-  return energy_balls;
+  return std::move(energy_balls);
 }
 
 std::vector<Stone_Block*> ProtectedDataBase :: getStoneBlocks() {
@@ -125,7 +150,7 @@ std::vector<Stone_Block*> ProtectedDataBase :: getStoneBlocks() {
   for (auto const& element : this->stone_blocks) {
     stone_blocks.push_back(element.second);
   }
-  return stone_blocks;
+  return std::move(stone_blocks);
 }
 
 std::vector<Gate*> ProtectedDataBase :: getGates() {
@@ -134,7 +159,7 @@ std::vector<Gate*> ProtectedDataBase :: getGates() {
   for (auto const& element : this->gates) {
     gates.push_back(element.second);
   }
-  return gates;
+  return std::move(gates);
 }
 
 std::vector<Bottom*> ProtectedDataBase :: getBottoms() {
@@ -143,19 +168,35 @@ std::vector<Bottom*> ProtectedDataBase :: getBottoms() {
   for (auto const& element : this->bottoms) {
     bottoms.push_back(element.second);
   }
-  return bottoms;
+  return std::move(bottoms);
 }
 
-//std::vector<Player_Portals*> ProtectedDataBase :: getPlayerPortals() {
-//  std::unique_lock<std::mutex> lck(m);
-//  std::vector<Player_Portals*> player_portals;
-//  for (auto const& element : this->player_portals) {
-//    player_portals.push_back(element.second);
-//  }
-//  return player_portals;
-//}
+std::vector<Player_Portals*> ProtectedDataBase :: getPlayerPortals() {
+  std::unique_lock<std::mutex> lck(m);
+  std::vector<Player_Portals*> player_portals;
+  for (auto const& element : this->player_portals) {
+    player_portals.push_back(element.second);
+  }
+  return std::move(player_portals);
+}
 
+std::vector<Energy_Barrier*> ProtectedDataBase :: getBarriers() {
+  std::unique_lock<std::mutex> lck(m);
+  std::vector<Energy_Barrier*> barriers;
+  for (auto const& element : this->barriers) {
+    barriers.push_back(element.second);
+  }
+  return std::move(barriers);
+}
 
+std::vector<Energy_Emitters*> ProtectedDataBase :: getEmitters() {
+  std::unique_lock<std::mutex> lck(m);
+  std::vector<Energy_Emitters*> emitters;
+  for (auto const& element : this->emitters) {
+    emitters.push_back(element.second);
+  }
+  return std::move(emitters);
+}
 
 float ProtectedDataBase :: getWidth() {
   return GROUND_WIDTH;

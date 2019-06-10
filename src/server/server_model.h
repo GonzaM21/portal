@@ -31,6 +31,7 @@ class Model {
         World* getWorld();
         void makePlayerJump(std::string &player);
         void makePlayerMove(std::string &player,char &direction);
+        void shootPortal(std::string player,float x_destiny, float y_destiny,int portal_num);//portal num es 0 o 1, 0 in 1 out
 
         //Funciones para agregar elementos al mapa
         void addRock(float x_pos, float y_pos, float radius);
@@ -40,9 +41,9 @@ class Model {
         void addStoneBlock(float x_pos, float y_pos,float size);
         void addBottom( float x_pos, float y_pos);
         void addGate( float x_pos, float y_pos);
-        //void addEmitter(float x_pos, float y_pos, float size,std::string& direction, bool charged);
-        //void addEnergyBarrier(float x_pos, float y_pos, float large);
-        //void addPlayerPortals();
+        void addEmitter(float x_pos, float y_pos, float size,std::string& direction, bool charged);
+        void addEnergyBarrier(float x_pos, float y_pos, float large);
+        void addPlayerPortals();
 };
 
 #endif

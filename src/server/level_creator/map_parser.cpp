@@ -3,7 +3,7 @@
 #include "factory_objetcs.h"
 #include <fstream>
 
-MapParser :: MapParser(Model *model,std::string json_file) : object_factory(model) {
+MapParser :: MapParser(Model *model,std::string &json_file) : object_factory(model) {
     this->model = model;
     this->json_file = json_file;
     this->setMethods();

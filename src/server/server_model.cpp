@@ -49,8 +49,13 @@ void Model :: makePlayerMove(std::string &player,char &direction) {
     this->data_base.makePlayerMove(player,direction);
 }
 
+void Model :: shootPortal(std::string player,float x_destiny, float y_destiny,int portal_num) {
+    this->data_base.shootPortal(this->world,player,x_destiny,y_destiny,portal_num);
+}
+
 void Model :: addPlayer(std::string &player) {
     this->data_base.addPlayer(this->world,player);
+    this->addPlayerPortals();
 }
 
 void Model :: addRock(float x_pos, float y_pos, float radius) {
@@ -81,12 +86,17 @@ void Model :: addGate(float x_pos, float y_pos) {
     this->data_base.addGate(this->world,x_pos,y_pos);
 }
 
-//void Model :: addPlayerPortals() {
-//  this->data_base.addPlayerPortals();
-//}
+void Model :: addPlayerPortals() {
+  this->data_base.addPlayerPortals();
+}
 
-//void Model::addEmitter(float x_pos, float y_pos, float size,std::string& direction, bool charged) {}
-//void Model::addEnergyBarrier(float x_pos, float y_pos, float large) {this->data_base.addEnergyBarrier(this->world,x_pos,y_pos,large)}
+void Model::addEmitter(float x_pos, float y_pos, float size,std::string& direction, bool charged) {
+    this->data_base.addEmitter(this->world,x_pos,y_pos,size,direction,charged);
+}
+
+void Model::addEnergyBarrier(float x_pos, float y_pos, float large) {
+    this->data_base.addEnergyBarrier(this->world,x_pos,y_pos,large);
+}
 
 std::string Model :: getJugadores() { //Puede llegar a servir mas adelante el comando creado por eso no borro
     std::cout << "allalalalalalalalalal\n";

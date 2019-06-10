@@ -32,6 +32,20 @@ Portal * Player_Portals::shotPortalOut(World &world, float x_pos, float y_pos, f
     return portal2;
 }
 
+Portal* Player_Portals::getPortalIn() {
+    if (this->portal1_shot) {
+        return this->portal1;
+    }
+    return nullptr;
+}
+
+Portal* Player_Portals::getPortalOut() {
+    if (this->portal2_shot) {
+        return this->portal2;
+    }
+    return nullptr;
+}
+
 Player_Portals::~Player_Portals() {
     if(portal1_shot) delete portal1;
     if(portal2_shot) delete portal2;
