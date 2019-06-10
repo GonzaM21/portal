@@ -61,7 +61,12 @@ bool Chell_Player::Move(char &direction) {
 }
 
 void Chell_Player::Brake(){
-    chell->SetLinearVelocity(b2Vec2(0,0));
+    if(chell->GetLinearVelocity().y == 0){
+        chell->SetLinearVelocity(b2Vec2(0,0));
+    } else{
+        if(chell->GetLinearVelocity().x < 0) chell->ApplyForceToCenter(b2Vec2(100.f,0),true);
+        if(chell->GetLinearVelocity().x > 0) chell->ApplyForceToCenter(b2Vec2(-100.f,0),true);
+    }
 }
 
 int Chell_Player::getStatus(){
@@ -80,7 +85,7 @@ int Chell_Player::getDirection() {
 
 b2Vec2 Chell_Player::getPosition() {
     if(!live) return teleport_pos;
-    //std::cout<<"Velocity: "<<chell->GetLinearVelocity().x<<" "<<chell->GetLinearVelocity().y<<std::endl;
+    std::cout<<"Velocity: "<<chell->GetLinearVelocity().x<<" "<<chell->GetLinearVelocity().y<<std::endl;
     return chell->GetPosition();
 }
 
