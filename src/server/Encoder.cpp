@@ -115,25 +115,25 @@ void Encoder :: sendGates() {
     }
 }
 
-void Encoder :: sendPlayerPortals() {
-    std::vector<Player_Portals*> portals = this->data_base->getPlayerPortals();
-    for (size_t id = 0; id<portals.size(); id++) {
-        for (int portal_num = 0; portal_num<2; portal_num++) {
-            if (portal_num == 0) {
-                this->sendPortal(portals[id]->getPortalIn(),portal_num,id);
+void Encoder :: sendPortals() {
+    std::vector<Chell_Player*> chells = this->data_base->getPlayers();
+    for ( size_t i = 0; i<chells.size(); i++ ) {
+        for (int portal_num=0; portal_num<2; portal_num++) {
+            Portal *portal;
+            if (portal_num==0) {
+                portal = chells[i]->getPortalIn();
             } else {
-                this->sendPortal(portals[id]->getPortalOut(),portal_num,id);
+                portal = chells[i]->getPortalOut();
             }
+            if (portal == nullptr) continue;
+            b2Vec2 pos = portal->getPosition();
+            b2Vec2 size = portal->getSizes();
+            std::string msg("6,"+std::to_string(i+1)+","+ std::to_string(pos.x) + "," 
+            + std::to_string(-pos.y) + "," + std::to_string(1) + "," + 
+            std::to_string(0.25)+","+std::to_string(portal_num)+",1,1");
+            int asd = i;  
         }
     }
-}
-
-void Encoder :: sendPortal(Portal *portal,int portal_num,int id) {
-    if (portal == nullptr) return;
-    b2Vec2 pos = portal->getPosition();
-    b2Vec2 size = portal->getSizes(); 
-    std::string msg("6,"+std::to_string(id+1)+","+ std::to_string(pos.x) + "," + std::to_string(-pos.y) +
-    "," + std::to_string(size.x) + "," + std::to_string(size.y)+","+std::to_string(portal_num)+",0,0"); 
     //Harcodeado la direccion y state, que serian?
     //Hay dos portales con el mismo id, uno de entrada y otro de salida
 }

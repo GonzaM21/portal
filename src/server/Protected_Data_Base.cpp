@@ -14,12 +14,10 @@ void ProtectedDataBase :: makePlayerMove(std::string &player,char &direction) {
 void ProtectedDataBase :: shootPortal(World &world,std::string &player,float x_destiny,
   float y_destiny,int portal_num) {
     Chell_Player *chell_player = this->players[player];
-    b2Vec2 pos = chell_player->getPosition();
-    Player_Portals *portals = this->player_portals[this->player_ids[player]-1];
     if (portal_num == 0) {
-      portals->shotPortalIn(world,pos.x,pos.y,x_destiny,y_destiny);
+      chell_player->shotPortalIn(x_destiny,y_destiny);
     } else if (portal_num == 1) {
-      portals->shotPortalOut(world,pos.x,pos.y,x_destiny,y_destiny);
+      chell_player->shotPortalOut(x_destiny,y_destiny);
     }
 }
 
@@ -65,11 +63,11 @@ void ProtectedDataBase :: addBottom(World &world, float x_pos, float y_pos) {
     this->bottoms.insert({bottom_id,new Bottom(world,x_pos,y_pos)});      
 }
 
-void ProtectedDataBase :: addPlayerPortals() {
-    std::unique_lock<std::mutex> lck(m);
-    size_t player_portals_id = this->player_portals.size();
-    this->player_portals.insert({player_portals_id,new Player_Portals()});      
-}
+//void ProtectedDataBase :: addPlayerPortals() {
+//    std::unique_lock<std::mutex> lck(m);
+//    size_t player_portals_id = this->player_portals.size();
+//    this->player_portals.insert({player_portals_id,new Player_Portals()});      
+//}
 
 void ProtectedDataBase :: addPlayer(World &world,std::string &player) {
     std::unique_lock<std::mutex> lck(m);
@@ -171,14 +169,14 @@ std::vector<Bottom*> ProtectedDataBase :: getBottoms() {
   return std::move(bottoms);
 }
 
-std::vector<Player_Portals*> ProtectedDataBase :: getPlayerPortals() {
-  std::unique_lock<std::mutex> lck(m);
-  std::vector<Player_Portals*> player_portals;
-  for (auto const& element : this->player_portals) {
-    player_portals.push_back(element.second);
-  }
-  return std::move(player_portals);
-}
+//std::vector<Player_Portals*> ProtectedDataBase :: getPlayerPortals() {
+//  std::unique_lock<std::mutex> lck(m);
+//  std::vector<Player_Portals*> player_portals;
+//  for (auto const& element : this->player_portals) {
+//    player_portals.push_back(element.second);
+//  }
+//  return std::move(player_portals);
+//}
 
 std::vector<Energy_Barrier*> ProtectedDataBase :: getBarriers() {
   std::unique_lock<std::mutex> lck(m);

@@ -15,7 +15,7 @@ Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
     live = true;
     position = portal->GetPosition();
     radius = ENERGY_BALL;
-    sizes = b2Vec2(0.02,1);
+    sizes = b2Vec2(0.3,1);
 }
 
 bool Portal::Move(float x_pos, float y_pos){
@@ -50,9 +50,9 @@ bool Portal::Move(float x_pos, float y_pos){
 }
 
 void Portal::changePosition() {
-    std::cout<<"change position\n";
+    //std::cout<<"change position\n";
     if(!contact) return;
-    std::cout<<"change position2\n";
+    //std::cout<<"change position2\n";
     if(contact){
         std::cout<<"change position3\n";
         portal->SetLinearVelocity(b2Vec2(0,0));
@@ -70,9 +70,9 @@ void Portal::changePosition() {
 }
 
 b2Vec2 Portal::getPosition(){
-    std::cout<<"portal vido: "<<live<<std::endl;
+    //std::cout<<"portal vido: "<<live<<std::endl;
     if(!live) return b2Vec2(0,0);
-    std::cout<<"Portal vel: "<<portal->GetLinearVelocity().x<<" "<<portal->GetLinearVelocity().y<<std::endl;
+    //std::cout<<"Portal vel: "<<portal->GetLinearVelocity().x<<" "<<portal->GetLinearVelocity().y<<std::endl;
     return portal->GetPosition();
 }
 

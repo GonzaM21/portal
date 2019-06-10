@@ -39,7 +39,7 @@ private:
     std::map<size_t, Stone_Block*> stone_blocks;
     std::map<size_t, Gate*> gates;
     std::map<size_t, Bottom*> bottoms;
-    std::map<size_t, Player_Portals*> player_portals;
+    //std::map<size_t, Player_Portals*> player_portals;
     std::map<size_t, Energy_Barrier*> barriers;
     std::map<size_t, Energy_Emitters*> emitters;
     int width;
@@ -61,7 +61,7 @@ public:
     void addStoneBlock(World &world,float x_pos, float y_pos,float size);
     void addBottom(World &world, float x_pos, float y_pos);
     void addGate(World &world, float x_pos, float y_pos);
-    void addPlayerPortals();
+    //void addPlayerPortals();
     void addEmitter(World &world,float x_pos, float y_pos, float size,
       std::string& direction, bool charged);
     void addEnergyBarrier(World &world,float x_pos, float y_pos, float large);
@@ -76,7 +76,7 @@ public:
     std::vector<Stone_Block*> getStoneBlocks();
     std::vector<Gate*> getGates();
     std::vector<Bottom*> getBottoms();
-    std::vector<Player_Portals*> getPlayerPortals();
+    //std::vector<Player_Portals*> getPlayerPortals();
     std::vector<Energy_Barrier*> getBarriers();
     std::vector<Energy_Emitters*> getEmitters();      
     float getWidth();

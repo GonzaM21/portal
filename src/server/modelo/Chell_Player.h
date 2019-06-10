@@ -66,5 +66,8 @@ public:
     bool lives() override;
 
     int getDirection();
+
+    Portal *getPortalIn();
+    Portal *getPortalOut();
 };
 #endif //TP4_CHELL_PLAYER_H

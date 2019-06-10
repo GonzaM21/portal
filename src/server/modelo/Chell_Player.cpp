@@ -187,3 +187,11 @@ bool Chell_Player::lives() {
 b2Vec2 Chell_Player::getSizes() {
     return sizes;
 }
+
+Portal* Chell_Player::getPortalIn() {
+    return this->portals.getPortalIn();
+}
+
+Portal* Chell_Player::getPortalOut() {
+    return this->portals.getPortalOut();
+}

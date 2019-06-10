@@ -55,7 +55,6 @@ void Model :: shootPortal(std::string player,float x_destiny, float y_destiny,in
 
 void Model :: addPlayer(std::string &player) {
     this->data_base.addPlayer(this->world,player);
-    this->addPlayerPortals();
 }
 
 void Model :: addRock(float x_pos, float y_pos, float radius) {
@@ -84,10 +83,6 @@ void Model :: addBottom(float x_pos, float y_pos) {
 
 void Model :: addGate(float x_pos, float y_pos) {
     this->data_base.addGate(this->world,x_pos,y_pos);
-}
-
-void Model :: addPlayerPortals() {
-  this->data_base.addPlayerPortals();
 }
 
 void Model::addEmitter(float x_pos, float y_pos, float size,std::string& direction, bool charged) {

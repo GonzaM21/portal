@@ -29,7 +29,7 @@ void GameLoop :: sendInitialData() {
 
 void GameLoop :: sendDynamicData() { //aca va todo lo que se mueve
     this->encoder.sendPlayersPositions();
-    this->encoder.sendPlayerPortals();
+    this->encoder.sendPortals();
     //this->encoder.sendRocks();
     //this->encoder.sendEnergyBalls(); 
 }
