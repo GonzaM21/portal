@@ -24,6 +24,6 @@ void IdleAcid::setSrc(Rect &src)
 	this->src.set(src.getX(), src.getY(), src.getWidth(), src.getHeight());
 }
 
-IdleAcid::~IdleAcid()
-{
-}
+// IdleAcid::~IdleAcid()
+// {
+// }

@@ -5,8 +5,9 @@
 #include <string>
 #include <iostream>
 
-RisingPlayer::RisingPlayer(const Window &window, const int &direction) : direction(direction), Sprite(PLAYER_FILENAME, window),
-                                                                                   src(X_START_POSITION, Y_POSITION_PLAYER_RISING, WIDTH_PLAYER_RISING, HEIGHT_PLAYER_RISING)
+RisingPlayer::RisingPlayer(const Window &window, const int &direction) : Sprite(PLAYER_FILENAME, window),
+                                                                         src(X_START_POSITION, Y_POSITION_PLAYER_RISING, WIDTH_PLAYER_RISING, HEIGHT_PLAYER_RISING),
+                                                                         direction(direction)
 {
 }
 

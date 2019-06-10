@@ -24,9 +24,9 @@ public:
   void setState(const int &state);
 
 private:
+  Window window;
   Rect dest_world;
   Sprite *sprite;
-  Window window;
   bool is_open = false;
   bool is_closed = true;
   int code;

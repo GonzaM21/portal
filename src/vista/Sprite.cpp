@@ -7,7 +7,7 @@
 #include "Rect.h"
 
 Sprite::Sprite(const std::string &filename, const Window &window)
-    : renderer(window.getRenderer())
+    : renderer(window.getRenderer()), src(-1,-1,-1,-1)
 {
     this->texture = loadTexture(filename);
 }
@@ -31,10 +31,10 @@ SDL_Texture *Sprite::loadTexture(const std::string &filename)
 int Sprite::render(const Rect &src, const Rect &dest, SDL_RendererFlip flip, float angle) const
 {
     SDL_Rect sdlSrc = {
-        src.getX(), src.getY(),
-        src.getWidth(), src.getHeight()};
+        (int)src.getX(), (int)src.getY(),
+        (int)src.getWidth(), (int)src.getHeight()};
     SDL_Rect sdlDest = {
-        dest.getX(), dest.getY(),
-        dest.getWidth(), dest.getHeight()};
+        (int)dest.getX(), (int)dest.getY(),
+        (int)dest.getWidth(), (int)dest.getHeight()};
     return SDL_RenderCopyEx(this->renderer, this->texture, &sdlSrc, &sdlDest, angle, nullptr, flip);
 }

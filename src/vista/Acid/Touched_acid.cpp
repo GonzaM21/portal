@@ -5,7 +5,6 @@
 #include "../Rect.h"
 #include <string>
 #include <iostream>
-#define ACID_FILENAME "img/acidos.png"
 
 TouchedAcid::TouchedAcid(const Window &window) : Sprite(ACID_FILENAME, window),
                                                  src(X_START_POSITION, Y_POSITION_ACID_TOUCHED, WIDTH_ACID_TOUCHED, HEIGHT_ACID_TOUCHED)

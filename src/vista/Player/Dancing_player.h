@@ -15,6 +15,7 @@ public:
     ~DancingPlayer();
     virtual int render(const Rect &dest);
     virtual void setSrc(Rect &src) override;
+    virtual void setDirection(const int &direction){this->direction = direction;};
 
 private:
     Rect src;

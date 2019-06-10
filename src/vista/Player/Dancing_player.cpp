@@ -6,8 +6,9 @@
 #include <iostream>
 #define MAX_WIDTH (9 * WIDTH_PLAYER_DANCING + 9)
 
-DancingPlayer::DancingPlayer(const Window &window, const int &direction) : direction(direction), Sprite(PLAYER_FILENAME, window),
-                                                                           src(X_START_POSITION, Y_POSITION_PLAYER_DANCING, WIDTH_PLAYER_DANCING, HEIGHT_PLAYER_DANCING)
+DancingPlayer::DancingPlayer(const Window &window, const int &direction) : Sprite(PLAYER_FILENAME, window),
+                                                                           src(X_START_POSITION, Y_POSITION_PLAYER_DANCING, WIDTH_PLAYER_DANCING, HEIGHT_PLAYER_DANCING),
+                                                                           direction(direction)
 {
 }
 

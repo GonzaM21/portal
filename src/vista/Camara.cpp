@@ -21,8 +21,9 @@ int Camara::render(Sprite &sprite, Rect destWorld)
   convertToVirtual(destWorld, dest_virtual);
   if ((dest_virtual.getX() < vision.getX() + vision.getWidth() || dest_virtual.getX() > vision.getX() - vision.getWidth()) && (dest_virtual.getY() <= vision.getY() + vision.getHeight() || dest_virtual.getY() >= vision.getY() - vision.getHeight()))
   {
-    sprite.render(dest_virtual);
+    return sprite.render(dest_virtual);
   }
+  return -1;
 }
 
 void Camara::convertToVirtual(const Rect &worldPostion, Rect &virtualPostion)

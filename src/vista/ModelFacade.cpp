@@ -32,7 +32,7 @@ void ModelFacade::setPlayerId(std::vector<std::string> arguments)
   model.setPlayerId(atoi(arguments[1].c_str()));
 }
 
-void ModelFacade::renderAll(std::vector<std::string> arguments)
+void ModelFacade::renderAll()
 {
   model.renderAll();
 }

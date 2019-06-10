@@ -32,7 +32,7 @@ void Inicio::updateGreetings()
   QLineEdit *inputPort = findChild<QLineEdit *>("port");
   this->port = inputPort->text().toStdString();
   std::cout << this->port.c_str() << std::endl;
-  QApplication::quit();
+  QCoreApplication::quit();
 }
 
 void Inicio::connectEvents()

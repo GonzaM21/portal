@@ -9,7 +9,7 @@
 
 Window::Window(int width, int height) : width(width), height(height), fullscreened(false)
 {
-    int errCode = SDL_Init(SDL_INIT_VIDEO);
+    int errCode = SDL_Init(SDL_INIT_EVERYTHING);
     if (errCode)
     {
         throw SdlException("Error en la inicialización", SDL_GetError());
@@ -24,6 +24,7 @@ Window::Window(int width, int height) : width(width), height(height), fullscreen
     }
     SDL_Surface *image = IMG_Load(ICON_FILENAME);
     SDL_SetWindowIcon(window, image); // The icon is attached to the window pointer  
+     
 }
 
 Window::~Window()

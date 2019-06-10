@@ -19,7 +19,7 @@ public:
 
 private:
     Rect src;
-    bool done;
+    bool done = false;
 };
 
 #endif

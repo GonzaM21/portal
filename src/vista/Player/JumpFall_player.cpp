@@ -5,8 +5,9 @@
 #include <string>
 #include <iostream>
 
-FallingPlayer::FallingPlayer(const Window &window, const int &direction) : direction(direction), Sprite(PLAYER_FILENAME, window),
-                                                                         src(X_START_POSITION, Y_POSITION_PLAYER_FALLING, WIDTH_PLAYER_FALLING, HEIGHT_PLAYER_FALLING)
+FallingPlayer::FallingPlayer(const Window &window, const int &direction) : Sprite(PLAYER_FILENAME, window),
+                                                                           src(X_START_POSITION, Y_POSITION_PLAYER_FALLING, WIDTH_PLAYER_FALLING, HEIGHT_PLAYER_FALLING),
+                                                                           direction(direction)
 {
 }
 

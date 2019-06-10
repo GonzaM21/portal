@@ -12,10 +12,9 @@ Renderable :: Renderable(ModelFacade *model_facade,
 }
 
 void Renderable :: run() {
-    std::vector<std::string> dummyVector;
     while (this->continue_running) {
         if (!this->communicator->getReceivedMap()) continue;
-        this->model_facade->renderAll(dummyVector);
+        this->model_facade->renderAll();
         std::this_thread::sleep_for(std::chrono::milliseconds(FPS));
     }
 }

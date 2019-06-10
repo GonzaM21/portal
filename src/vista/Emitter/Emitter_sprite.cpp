@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-EmitterSprite::EmitterSprite(const Window &window, const int &code, const int &state) : Sprite(BLOCK_FILENAME, window),
+EmitterSprite::EmitterSprite(const Window &window, const int &code) : Sprite(BLOCK_FILENAME, window),
                                                                                         src(0, 0, 0, 0)
 {
   switch (code)

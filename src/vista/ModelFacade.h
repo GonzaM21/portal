@@ -35,11 +35,11 @@ public:
   void setPowerball(std::vector<std::string> arguments);
   void setRock(std::vector<std::string> arguments);
   void setPlayer(std::vector<std::string> arguments);
-  void renderAll(std::vector<std::string> arguments);
   void setPlayerId(std::vector<std::string> arguments);
   void setEnergyEmitter(std::vector<std::string> arguments);
   void setEnergyBarrier(std::vector<std::string> arguments);
   void setFullscreen() {model.fullscreen();}
+  void renderAll();
 
 private:
   Model model;

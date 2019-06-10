@@ -8,7 +8,7 @@
 class EmitterSprite : public Sprite
 {
 public:
-  EmitterSprite(const Window &window, const int &code, const int &state);
+  EmitterSprite(const Window &window, const int &code);
   ~EmitterSprite();
   virtual int render(const Rect &dest);
   virtual void setSrc(Rect &src) override;
@@ -17,7 +17,6 @@ public:
 private:
   Rect src;
   int state;
-  TargetSprite *inactive;
 };
 
 #endif

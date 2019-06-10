@@ -7,10 +7,10 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -g")
 set(CMAKE_CXX_STANDARD 11)
 
 # Todos los #include son relativos a src
-include_directories(src)
+#include_directories(src)
 # Archivos generados por CMake
-include_directories(${MAKE_BINARY_DIR}/src)
-include_directories(${MAKE_BINARY_DIR}/src/server/modelo)
+include_directories(${PROJECT_BINARY_DIR}/src)
+include_directories(${PROJECT_BINARY_DIR}/src/server/modelo)
 
 # Agrego la carpeta con los headers autogenerados a los includes
 add_subdirectory(src/vista)

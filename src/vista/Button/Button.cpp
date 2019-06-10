@@ -7,14 +7,14 @@
 #include <iostream>
 #include <typeinfo>
 
-Button::Button(const Window &window, const int &state) : window(window),
-																												 dest_world(0, 0, WIDTH_POWERBALL_FLYING, HEIGHT_POWERBALL_FLYING)
+Button::Button(const Window &window, const int &state) :	dest_world(0, 0, 0, 0),
+																													window(window)
 {
 	this->states[0] = new ButtonOff(window);
 	this->states[1] = new ButtonOn(window);
-	this->sprite = this->states[0];
 	this->changeState[0] = &Button::setUnpressed;
 	this->changeState[1] = &Button::setPressed;
+	this->sprite = this->states[state];
 }
 
 int Button::render(Camara &camara)

@@ -20,7 +20,7 @@ public:
 
 private:
     Rect src;
-    bool done;
+    bool done = false;
     // PawPowerBall paw;
 };
 

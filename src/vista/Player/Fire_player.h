@@ -1,4 +1,5 @@
-#ifndef __FIREPLAYER_H__ #define __FIREPLAY
+#ifndef __FIREPLAYER_H__ 
+#define __FIREPLAYER_H__
 #include <string>
 #include <SDL2/SDL_image.h>
 #include "../Sprite.h"
@@ -14,6 +15,7 @@ public:
     virtual int render(const Rect &dest);
     virtual void setSrc(Rect &src) override;
     virtual bool isDone() override;
+    virtual void setDirection(const int &direction) { this->direction = direction; };
 
 private:
     Rect src;

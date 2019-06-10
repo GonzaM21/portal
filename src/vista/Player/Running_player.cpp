@@ -6,8 +6,9 @@
 #include <string>
 #include <iostream>
 
-RunningPlayer::RunningPlayer(const Window &window, const int &direction) : direction(direction), Sprite(PLAYER_FILENAME, window),
-                                                                           src(X_START_POSITION, Y_POSITION_PLAYER_RUNNING, WIDTH_PLAYER_RUNNING, HEIGHT_PLAYER_RUNNING)
+RunningPlayer::RunningPlayer(const Window &window, const int &direction) : Sprite(PLAYER_FILENAME, window),
+                                                                           src(X_START_POSITION, Y_POSITION_PLAYER_RUNNING, WIDTH_PLAYER_RUNNING, HEIGHT_PLAYER_RUNNING),
+                                                                           direction(direction)
 {
 }
 

@@ -5,8 +5,10 @@
 #include <string>
 #include <iostream>
 
-StopPlayer::StopPlayer(const Window &window, const int &direction) : direction(direction), Sprite(PLAYER_FILENAME, window),
-                                                                     src(X_START_POSITION, Y_POSITION_PLAYER_STOP, WIDTH_PLAYER_STOP, HEIGHT_PLAYER_STOP)
+StopPlayer::StopPlayer(const Window &window, const int &direction) : Sprite(PLAYER_FILENAME, window),
+                                                                     src(X_START_POSITION, Y_POSITION_PLAYER_STOP, WIDTH_PLAYER_STOP, HEIGHT_PLAYER_STOP),
+                                                                     done(false),
+                                                                     direction(direction)
 {
 }
 
@@ -50,5 +52,5 @@ void StopPlayer::setSrc(Rect &src)
 }
 
 StopPlayer::~StopPlayer()
-{
+{ 
 }

@@ -7,7 +7,7 @@
 #include "common/common_socket_connect.h"
 #include "common/common_protocol.h"
 #include "client/event_handler_manager.h"
-#include "../inicio/include/Inicio.h"
+#include "inicio/include/Inicio.h"
 #include <QApplication>
 
 void ejecutarVentana(int argc, char *argv[] ,std::string &host, std::string &port, std::string &player_name)

@@ -19,7 +19,6 @@ public:
 private:
   Rect src;
   bool done = false;
-  int direction;
 };
 
 #endif

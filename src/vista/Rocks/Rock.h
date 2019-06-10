@@ -16,9 +16,9 @@ public:
   Rect getDestWorld() { return dest_world; };
 
 private:
+  Window window;
   Rect dest_world;
   Sprite *sprite;
-  Window window;
 };
 
 #endif

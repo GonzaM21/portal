@@ -10,9 +10,9 @@
 #define WIDTH 150
 #define HEIGHT 200
 
-IdlePlayer::IdlePlayer(const Window &window, const int &direction) : direction(direction),
+IdlePlayer::IdlePlayer(const Window &window, const int &direction) : 
 	Sprite(PLAYER_FILENAME, window),src(X_START_POSITION, Y_POSITION_PLAYER_IDLE, 
-	WIDTH_PLAYER_IDLE, HEIGHT_PLAYER_IDLE) 
+	WIDTH_PLAYER_IDLE, HEIGHT_PLAYER_IDLE) ,direction(direction)
 {
 }
 

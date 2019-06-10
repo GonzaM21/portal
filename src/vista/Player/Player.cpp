@@ -15,8 +15,7 @@
 #include <iostream>
 #include <functional>
 
-Player::Player(const Window &window, const int &direction) : direction(direction),
-																														 window(window), dest_world(0, 0, 0.5, 1.6)
+Player::Player(const Window &window, const int &direction) : dest_world(0, 0, 0, 0), window(window), direction(direction)
 {
 	this->changeState[0] = &Player::setIdle;
 	this->changeState[1] = &Player::setRestIdle;
@@ -92,6 +91,7 @@ void Player::setFalling()
 void Player::setState(const int &state, const int &direction)
 {
 	(this->*(changeState[state]))();
+	this->sprite->setDirection(direction);
 	this->direction = direction;
 }
 

@@ -9,8 +9,10 @@
 #define WIDTH 150
 #define HEIGHT 200
 
-FirePlayer::FirePlayer(const Window &window, const int &direction) : direction(direction), Sprite(PLAYER_FILENAME, window),
-																																		 src(X_START_POSITION, Y_POSITION_PLAYER_FIRE, WIDTH_PLAYER_FIRE, HEIGHT_PLAYER_FIRE)
+FirePlayer::FirePlayer(const Window &window, const int &direction) : Sprite(PLAYER_FILENAME, window),
+																																		 src(X_START_POSITION, Y_POSITION_PLAYER_FIRE, WIDTH_PLAYER_FIRE, HEIGHT_PLAYER_FIRE),
+																																		 done(false),
+																																		 direction(direction)
 {
 }
 

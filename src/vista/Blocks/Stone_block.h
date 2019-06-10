@@ -17,8 +17,8 @@ public:
 	virtual Rect getDestWorld() override { return dest_world; };
 
 private:
-	Rect dest_world;
 	StoneBlockSprite sprite;
+	Rect dest_world;
 };
 
 #endif

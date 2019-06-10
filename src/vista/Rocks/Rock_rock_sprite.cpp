@@ -15,7 +15,7 @@ RockSprite::RockSprite(const Window &window) : Sprite(ROCK_FILENAME, window),
 
 int RockSprite::render(const Rect &dest)
 {
-  int response = response = Sprite::render(src, dest);
+  int response = Sprite::render(src, dest);
   return response;
 }
 
