@@ -13,8 +13,8 @@ void Model::setPortal(Rect &dest, const int &id, const int &code, const int &dir
 {
   if (state == 1)
   {
-    if (id <= portals.size())
-      delete this->portals[id];
+    //if (id <= portals.size())
+    //  delete this->portals[id];
     this->portals[id] = new Portal(window, code, direction);
     this->portals[id]->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
   }

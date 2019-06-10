@@ -76,6 +76,11 @@ b2Vec2 Portal::getPosition(){
     return portal->GetPosition();
 }
 
+bool Portal::isValid() {
+    return contact;
+}
+
+
 float Portal::getAngle() {
     if(!live) return 0;
     return portal->GetAngle();

@@ -78,13 +78,13 @@ void EventHandlerManager :: run() {
                 case SDLK_p:
                 {
                     std::cout << "portal_0" << std::endl;
-                    communicator->addMessageToSend("p,0.5,0.5,0");
+                    communicator->addMessageToSend("p,1.5,0.5,1");
                     break;
                 }
                 case SDLK_o:
                 {
                     std::cout << "portal_1" << std::endl;
-                    communicator->addMessageToSend("p,-0.5,0.5,1");
+                    communicator->addMessageToSend("p,-0.5,0.5,2");
                     break;
                 }
                 }

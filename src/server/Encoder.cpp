@@ -50,7 +50,7 @@ void Encoder :: sendAcids() {
         b2Vec2 pos = acids[i]->getPosition();
         b2Vec2 size = acids[i]->getSizes();
         msg = "5,"+ std::to_string(pos.x) + "," + std::to_string(-pos.y) +
-        "," + std::to_string(size.x) + ","+ std::to_string(size.y);
+        "," + std::to_string(size.x) + ","+ std::to_string(0.25);
         this->sender->addMessageToSend(msg);
     }
 }
@@ -125,13 +125,13 @@ void Encoder :: sendPortals() {
             } else {
                 portal = chells[i]->getPortalOut();
             }
-            if (portal == nullptr) continue;
+            if (portal == nullptr || !portal->isValid()) continue;
             b2Vec2 pos = portal->getPosition();
             b2Vec2 size = portal->getSizes();
             std::string msg("6,"+std::to_string(i+1)+","+ std::to_string(pos.x) + "," 
-            + std::to_string(-pos.y) + "," + std::to_string(1) + "," + 
-            std::to_string(0.25)+","+std::to_string(portal_num)+",1,1");
-            int asd = i;  
+            + std::to_string(-pos.y) + "," + std::to_string(size.x) + "," + 
+            std::to_string(0.25)+","+std::to_string(portal_num)+",0,1");
+            this->sender->addMessageToSend(msg);  
         }
     }
     //Harcodeado la direccion y state, que serian?

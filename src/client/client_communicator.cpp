@@ -25,9 +25,9 @@ void ClientCommunicator::receiveMessage() {
     while (this->continue_running) {
         std::string message;
         this->protocol >> message;
-        if (message[0] == '6')std::cout << message << std::endl;
         std::vector<std::string> arguments;
         splitMessage(message, arguments);
+        if (arguments.at(0) != "1") std::cout << message << std::endl;
         this->model_facade->decodeMessages(arguments);
     }
 }
