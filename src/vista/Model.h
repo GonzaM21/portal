@@ -45,6 +45,7 @@ public:
   {
     window.fullscreen();
   }
+  Window *getWindow();
 
 private:
   Window window;

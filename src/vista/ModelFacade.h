@@ -40,6 +40,7 @@ public:
   void setEnergyBarrier(std::vector<std::string> arguments);
   void setFullscreen() {model.fullscreen();}
   void renderAll();
+  Window *getWindow();
 
 private:
   Model model;

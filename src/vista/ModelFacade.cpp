@@ -84,3 +84,7 @@ void ModelFacade::setRock(std::vector<std::string> arguments)
   Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
   model.setRock(dest, atoi(arguments[1].c_str()));
 }
+
+Window* ModelFacade::getWindow() {
+  return this->model.getWindow();
+}

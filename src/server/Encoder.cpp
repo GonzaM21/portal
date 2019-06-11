@@ -118,9 +118,9 @@ void Encoder :: sendGates() {
 void Encoder :: sendPortals() {
     std::vector<Chell_Player*> chells = this->data_base->getPlayers();
     for ( size_t i = 0; i<chells.size(); i++ ) {
-        for (int portal_num=0; portal_num<2; portal_num++) {
+        for (int portal_num=1; portal_num<3; portal_num++) {
             Portal *portal;
-            if (portal_num==0) {
+            if (portal_num==1) {
                 portal = chells[i]->getPortalIn();
             } else {
                 portal = chells[i]->getPortalOut();
@@ -128,9 +128,9 @@ void Encoder :: sendPortals() {
             if (portal == nullptr || !portal->isValid()) continue;
             b2Vec2 pos = portal->getPosition();
             b2Vec2 size = portal->getSizes();
-            std::string msg("6,"+std::to_string(i+1+portal_num)+","+ std::to_string(pos.x) + ","
+            std::string msg("6,"+std::to_string((i+1+portal_num)*4)+","+ std::to_string(pos.x) + ","
             + std::to_string(-pos.y) + "," + std::to_string(size.x * 2) + "," +
-            std::to_string(0.25)+","+std::to_string(portal_num+1)+",0,1");
+            std::to_string(0.5)+","+std::to_string(portal_num)+",0,1");
             this->sender->addMessageToSend(msg);  
         }
     }

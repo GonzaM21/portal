@@ -200,3 +200,7 @@ Model::~Model()
     delete player.second;
   }
 }
+
+Window* Model::getWindow() {
+  return &this->window;
+}

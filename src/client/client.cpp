@@ -33,9 +33,9 @@ int main(int argc, char *argv[])
         //const char *hostC = host.c_str();
         //const char *portC = port.c_str();
         Joiner joiner(argv[1],argv[2]);
-        std::string mode = "new";
-        std::string room_name = "Sala";
-        std::string player_name = "joel";
+        std::string mode = argv[3];
+        std::string room_name = argv[4];
+        std::string player_name = argv[5];
         // std::string player_name = argv[5];
 
         ModelFacade model_facade;
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
         if (!joiner.isValid()) return 0;
 
         Renderable *renderer_thread = new Renderable(&model_facade,&communicator);
-        EventHandlerManager* handler = new EventHandlerManager(&communicator);
+        EventHandlerManager* handler = new EventHandlerManager(&communicator,&model_facade);
         renderer_thread->start();
         handler->start();
         communicator.startExecution();

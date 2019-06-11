@@ -12,6 +12,7 @@ Model :: Model(Sender *sender) {
 }
 
 void Model :: startGame() {
+    if (this->gameStarted()) return;
     try {
         game_loop->start();
     } catch (const std::exception &e) {

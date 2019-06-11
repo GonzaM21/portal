@@ -2,9 +2,11 @@
 #include "event_handler_manager.h"
 #include "../common/Thread.h"
 
-EventHandlerManager :: EventHandlerManager(ClientCommunicator *communicator) {
+EventHandlerManager :: EventHandlerManager(ClientCommunicator *communicator,
+    ModelFacade *model_facade) {
     this->continue_running = true;
     this->communicator = communicator;
+    this->model_facade = model_facade;
 }
 
 void EventHandlerManager :: run() {
@@ -123,7 +125,26 @@ void EventHandlerManager :: run() {
                                   &y);
                 std::cout << "clicked"
                           << "x " << x << "y " << y << std::endl;
-
+                Window *window = this->model_facade->getWindow();
+                int width,height;
+                window->getSize(width,height);
+                std::string x_world = std::to_string((x-(width/2))/(width*0.12));
+                std::string y_world = std::to_string((y-(height/2))/(height*0.12));
+                std::cout << "x: " << x_world << "y: " << y_world << std::endl;
+                std::string msg = "p,"+x_world+","+y_world; 
+                switch (mouseEvent.button)
+                {
+                case SDL_BUTTON_RIGHT : {
+                    msg += ",1";
+                    communicator->addMessageToSend(msg);
+                    break;
+                }
+                case SDL_BUTTON_LEFT: {
+                    msg += ",2";
+                    communicator->addMessageToSend(msg);
+                    break;
+                }
+                }
                 break;
             }
             }
