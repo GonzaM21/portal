@@ -68,7 +68,7 @@ void ClientCommunicator ::sendMessage() {
     try {
         while (this->continue_running)
         {
-            std::string message;
+            std::string message("NULL");
             message = this->message_queue.pop();
             std::cout << message << std::endl;
             if (!this->continue_running)

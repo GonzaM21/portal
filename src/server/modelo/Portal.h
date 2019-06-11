@@ -15,6 +15,8 @@ class Portal : public Entity {
     std::string name;
     bool live;
     bool contact;
+    bool ball;
+    bool send_it;
     World& world;
     b2Vec2 position;
     b2Vec2 sizes;
