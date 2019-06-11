@@ -20,6 +20,7 @@ class Portal : public Entity {
     World& world;
     b2Vec2 position;
     b2Vec2 sizes;
+    b2Vec2 normal;
     float radius;
 public:
     //Contructor de una bola de energia
@@ -42,7 +43,7 @@ public:
     bool setTransform(Entity * body) override;
     void changePosition() override;
     bool havePartner();
-
+    b2Vec2 getNormal();
     bool changePortalPosition(float x_pos, float y_pos);
     bool setPartner(Portal * portal);
     Portal* getPartnerPortal();

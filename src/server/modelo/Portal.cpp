@@ -21,34 +21,30 @@ Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
 }
 
 bool Portal::Move(float x_pos, float y_pos){
-    std::cout<<"pos: "<<x_pos<<" "<<y_pos<<std::endl;
+
     b2Vec2 position = portal->GetPosition();
-    std::cout<<"pos: "<<position.x<<" "<<position.y<<std::endl;
-    float x = (x_pos * position.x);
-    std::cout<<"X: "<<x<<std::endl;
-    float y = (y_pos * position.y);
-    std::cout<<"Y: "<<y<<std::endl;
-    float u1 = sqrt(x_pos*x_pos + y_pos*y_pos);
-    std::cout<<"u1: "<<u1<<std::endl;
-    float u2 = sqrt(position.x*position.x + position.y*position.y);
-    std::cout<<"u2: "<<u2<<std::endl;
-    float result = (x + y) /(u1 * u2);
 
-    std::cout<<"resultado: "<<result<<std::endl;
+    b2Vec2 velocity(0,0);
 
-    float angle = acos(result);
+    std::cout<<"Posicion del portal: "<<position.x<<"   "<< - position.y<<std::endl;
+    std::cout<<"Posicion mapa: "<<x_pos<<"   "<<-y_pos<<std::endl;
 
-    std::cout<<"angulo: "<<angle<<std::endl;
-    float x_force = 5.f;
+    float number = ((-y_pos) - position.y)/x_pos - position.x;
+
+    float angle = atan(number);
+
+    std::cout<<"angle: "<<angle<<std::endl;
+
+    float x_force =  5.f;
     float y_force = 5.f;
-    if (x_pos < position.x) x_force = -5.f;
-    if (y_pos < position.y) y_force = -5.f;
+    if ( x_pos < position.x) x_force = - 5.f;
+    if ( y_pos > position.y) y_force = - 5.f;
 
-    //std::cout<<"Portal force: "<<x_force * sin(angle)<<"  "<<y_force * cos(angle)<<std::endl;
-    //portal->SetLinearVelocity(b2Vec2(x_force * sin(angle),y_force * cos(angle)));
-    portal->SetLinearVelocity(b2Vec2(x_force,0));
-    std::cout<<std::endl;
-    return false;
+    velocity = b2Vec2(x_force * sin(angle), y_force * cos(angle));
+
+    portal->SetLinearVelocity(velocity);
+    std::cout<<"Velocity final "<<velocity.x<<" "<<velocity.y<<std::endl;
+    return true;
 }
 
 void Portal::changePosition() {
@@ -81,6 +77,9 @@ bool Portal::isValid() {
     return result;
 }
 
+b2Vec2 Portal::getNormal() {
+    return normal;
+}
 
 float Portal::getAngle() {
     if(!live) return 0;
@@ -89,11 +88,14 @@ float Portal::getAngle() {
 
 void Portal::startContact(b2Vec2 pos) {
     contact = true;
-    if(portal->GetLinearVelocity().x < 0) position = pos + b2Vec2(0.5,0);
-    if(portal->GetLinearVelocity().x > 0) position = pos - b2Vec2(0.5,0);
-
-    std::cout<<"Otro cuerpo"<<pos.x<<" "<<pos.y<<std::endl;
-    std::cout<<"Nueva pos"<<position.x<<" "<<position.y<<std::endl;
+    if(portal->GetLinearVelocity().x < 0){
+        position = pos + b2Vec2(0.5,0);
+        normal = b2Vec2(2.f,1.f);
+    }
+    if(portal->GetLinearVelocity().x > 0){
+        position = pos - b2Vec2(0.5,0);
+        normal = b2Vec2(-2.f,1.f);
+    }
     portal->SetLinearVelocity(b2Vec2(0,0));
 }
 

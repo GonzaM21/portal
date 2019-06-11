@@ -18,15 +18,12 @@ Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world)
     sizes = b2Vec2(CHELL_HIGH,CHELL_WIDTH);
     chell = world.addPolygon(x_pos, y_pos, CHELL_WIDTH/2, CHELL_HIGH/2.f,false,data);
     chell->SetUserData(this);
-    this->direction_right = true;
+    direction_right = true;
 }
 
 bool Chell_Player::Jump(){
     if(!live) return false;
-    std::cout<<"Jump\n";
-    std::cout<<contact_counter<<"       "<<jumper_counter<<std::endl;
    if (contact_counter >= 0 && jumper_counter == 0){
-       std::cout<<"Jump 2\n";
        chell->ApplyForceToCenter(b2Vec2(ZERO,CHELL_JUMP_FORCE),true);
        jumper_counter=1;
        return true;
@@ -38,7 +35,7 @@ bool Chell_Player::Move(char &direction) {
     b2Vec2 actual_speed = this->chell->GetLinearVelocity();
     if(!live) return false;
     if(direction == 'd' && (actual_speed.x <= 0)){
-        this->direction_right = true;
+        direction_right = true;
         if (actual_speed.y != 0) {
             chell->ApplyLinearImpulseToCenter(b2Vec2(CHELL_MOVE_FORCE/2,ZERO),true);
         } else {
@@ -46,7 +43,7 @@ bool Chell_Player::Move(char &direction) {
         }
         return true;
     } else if(direction == 'a' && (actual_speed.x >= 0)){
-        this->direction_right = false;
+        direction_right = false;
         if (actual_speed.y != 0) {
             chell->ApplyLinearImpulseToCenter(b2Vec2(-CHELL_MOVE_FORCE/2,ZERO),true);
         } else {
@@ -85,7 +82,6 @@ int Chell_Player::getDirection() {
 
 b2Vec2 Chell_Player::getPosition() {
     if(!live) return teleport_pos;
-    //std::cout<<"Velocity: "<<chell->GetLinearVelocity().x<<" "<<chell->GetLinearVelocity().y<<std::endl;
     return chell->GetPosition();
 }
 
@@ -101,12 +97,18 @@ bool Chell_Player::setTransform(Entity * body) {
     if(!dynamic_cast<Portal *>(body)->getPartnerPortal()->lives()) return false;
 
     b2Vec2 position = dynamic_cast<Portal *>(body)->getPartnerPortal()->getPosition();
+    b2Vec2 normal = dynamic_cast<Portal *>(body)->getPartnerPortal()->getNormal();
+
     teleport = true;
 
-    printf("Se teletrasportal\n");
-
-    if(position.x < 0) teleport_pos = position + b2Vec2(0.5,0.0);
-    else teleport_pos = position - b2Vec2(0.5,0.0);
+    b2Vec2 velocity_actual = chell->GetLinearVelocity();
+    if(normal.x > 0){
+        teleport_pos = position + b2Vec2(0.5,0.0);
+    }
+    else{
+        teleport_pos = position - b2Vec2(0.5,0.0);
+    }
+    //velocity = b2Vec2(abs(velocity_actual.x/2) * normal.x/2,velocity_actual.y * normal.y);
     return true;
 }
 
@@ -158,7 +160,7 @@ b2Vec2 calculatePortalPosition(b2Vec2 position,float x_pos, float y_pos){
 }
 
 Portal * Chell_Player::shotPortalIn(float x_pos, float y_pos) {
-    //if(!live) return;
+    if(!live) return nullptr;
     b2Vec2 position = chell->GetPosition();
     b2Vec2 positionportal = calculatePortalPosition(position,x_pos,y_pos);
     std::cout<<"Hi"<<positionportal.x<<" "<<positionportal.y<<std::endl;
@@ -167,7 +169,7 @@ Portal * Chell_Player::shotPortalIn(float x_pos, float y_pos) {
 }
 
 Portal * Chell_Player::shotPortalOut(float x_pos, float y_pos) {
-    //if(!live) return;
+    if(!live) return nullptr;
     b2Vec2 position = chell->GetPosition();
     b2Vec2 positionportal = calculatePortalPosition(position,x_pos,y_pos);
     std::cout<<"Hi 2 "<<positionportal.x<<" "<<positionportal.y<<std::endl;

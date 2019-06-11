@@ -135,12 +135,12 @@ void EventHandlerManager :: run() {
                 switch (mouseEvent.button)
                 {
                 case SDL_BUTTON_RIGHT : {
-                    msg += ",1";
+                    msg += ",2";
                     communicator->addMessageToSend(msg);
                     break;
                 }
                 case SDL_BUTTON_LEFT: {
-                    msg += ",2";
+                    msg += ",1";
                     communicator->addMessageToSend(msg);
                     break;
                 }

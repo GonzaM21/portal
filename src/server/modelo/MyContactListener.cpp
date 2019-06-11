@@ -55,14 +55,21 @@ void portal_colitions(b2Body * bodyA,b2Body * bodyB){
 
     if(nameBodyA != "Portal" && nameBodyB != "Portal") return;
 
-    if(nameBodyA == "Portal" && (nameBodyB == "Metal_Block" || nameBodyB == "Ground")){
+    if(nameBodyA == "Portal" && nameBodyB == "Metal_Block"){
         static_cast<Entity *>(userDataA)->startContact(bodyB->GetPosition());
     }
 
-    if(nameBodyB == "Portal" && (nameBodyA == "Metal_Block" || nameBodyA == "Ground")){
+    if(nameBodyA == "Portal" && nameBodyB == "Ground"){
+        static_cast<Entity *>(userDataA)->startContact(bodyA->GetPosition());
+    }
+
+    if(nameBodyB == "Portal" && nameBodyA == "Metal_Block"){
         static_cast<Entity *>(userDataB)->startContact(bodyA->GetPosition());
     }
 
+    if(nameBodyB == "Portal" && nameBodyA == "Ground"){
+        static_cast<Entity *>(userDataA)->startContact(bodyB->GetPosition());
+    }
 
 }
 
