@@ -14,6 +14,10 @@ DyingPlayer::DyingPlayer(const Window &window, const int &direction) : Sprite(PL
 int DyingPlayer::render(const Rect &dest)
 {
   int response;
+  if (done)
+  {
+    return -1;
+  }
   if (direction == 1)
   {
     response = Sprite::render(src, dest);
