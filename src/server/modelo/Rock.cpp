@@ -1,12 +1,12 @@
 #include "Rock.h"
 
 Rock::Rock(World &world, float x_pos, float y_pos,float radius) : world(world){
-    Filter_Data data(8);
-    data.addMaskBits(1);
-    data.addMaskBits(2);
-    data.addMaskBits(4);
-    data.addMaskBits(8);
-    data.addMaskBits(16);
+    Filter_Data data(ROCK_PORTAL_BITS);
+    data.addMaskBits(OTHER_BITS);
+    data.addMaskBits(CHELL_BITS);
+    data.addMaskBits(BARRIER_BITS);
+    data.addMaskBits(ROCK_PORTAL_BITS);
+    data.addMaskBits(BALL_BITS);
     rock = world.addCircle(x_pos,y_pos,radius,false,data);
     rock->SetUserData(this);
     radius = radius;

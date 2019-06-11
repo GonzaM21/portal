@@ -11,10 +11,10 @@ Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world)
     live = true;
     bouncing = true;
     win = false;
-    Filter_Data data(2);
-    data.addMaskBits(1);
-    data.addMaskBits(8);
-    data.addMaskBits(16);
+    Filter_Data data(CHELL_BITS);
+    data.addMaskBits(OTHER_BITS);
+    data.addMaskBits(ROCK_PORTAL_BITS);
+    data.addMaskBits(BALL_BITS);
     sizes = b2Vec2(CHELL_HIGH,CHELL_WIDTH);
     chell = world.addPolygon(x_pos, y_pos, CHELL_WIDTH/2, CHELL_HIGH/2.f,false,data);
     chell->SetUserData(this);

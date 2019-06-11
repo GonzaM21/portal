@@ -3,10 +3,10 @@
 #include "Macros.h"
 
 Energy_Ball::Energy_Ball(World& world, float x_pos, float y_pos): world(world) {
-    Filter_Data data(16);
-    data.addMaskBits(2);
-    data.addMaskBits(8);
-    data.addMaskBits(1);
+    Filter_Data data(BALL_BITS);
+    data.addMaskBits(CHELL_BITS);
+    data.addMaskBits(ROCK_PORTAL_BITS);
+    data.addMaskBits(OTHER_BITS);
     energy_ball = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data);
     energy_ball->SetUserData(this);
     energy_ball->SetGravityScale(0);

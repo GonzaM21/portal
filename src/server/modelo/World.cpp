@@ -15,8 +15,11 @@ World::World(b2Vec2 gravity,b2Vec2 x_lim, b2Vec2 y_lim){
 }
 
 void World::addGroundWallsRoof() {
-    Filter_Data data(1);
-    data.addMaskBits(1);
+    Filter_Data data(OTHER_BITS);
+    data.addMaskBits(CHELL_BITS);
+    data.addMaskBits(BARRIER_BITS);
+    data.addMaskBits(ROCK_PORTAL_BITS);
+    data.addMaskBits(BALL_BITS);
     addPolygon(ZERO,y_lim.x - DELTA_WALLS ,x_lim.x, DELTA_WALLS ,true,data);
     addPolygon(ZERO,y_lim.y + DELTA_WALLS,x_lim.x,DELTA_WALLS,true,data);
     addPolygon(x_lim.x - DELTA_WALLS,ZERO,DELTA_WALLS,x_lim.x,true,data);

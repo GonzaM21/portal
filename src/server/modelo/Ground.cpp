@@ -2,11 +2,11 @@
 #include "Macros.h"
 
 Ground::Ground(World &world,float x_pos, float y_pos,  float width, float high){
-    Filter_Data data(1);
-    data.addMaskBits(2);
-    data.addMaskBits(4);
-    data.addMaskBits(8);
-    data.addMaskBits(16);
+    Filter_Data data(OTHER_BITS);
+    data.addMaskBits(CHELL_BITS);
+    data.addMaskBits(BARRIER_BITS);
+    data.addMaskBits(ROCK_PORTAL_BITS);
+    data.addMaskBits(BALL_BITS);
     ground = world.addPolygon(x_pos - DELTA_POSITION,y_pos - DELTA_POSITION,width/2.f,high/2.f,true,data);
     //ground->SetUserData(this);
     sizes = b2Vec2(width,high);

@@ -31,5 +31,12 @@
 #define GATE_LARGE 2.0
 #define GATE_WIDTH 1.0
 #define ENERGY_BARRIER_WIDTH 0.03
+#define PORTAL_HIGH 1.0
+#define PORTAL_WIDTH 0.3
+#define OTHER_BITS 1
+#define CHELL_BITS 2
+#define BARRIER_BITS 4
+#define ROCK_PORTAL_BITS 8
+#define BALL_BITS 16
 
 #endif

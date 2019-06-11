@@ -2,12 +2,12 @@
 #include "Macros.h"
 
 Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
-    Filter_Data data(8);
-    data.addMaskBits(1);
-    data.addMaskBits(4);
-    data.addMaskBits(16);
+    Filter_Data data(ROCK_PORTAL_BITS);
+    data.addMaskBits(OTHER_BITS);
+    data.addMaskBits(BARRIER_BITS);
+    data.addMaskBits(BALL_BITS);
     portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data);
-    portal->SetGravityScale(0);
+    portal->SetGravityScale(ZERO);
     portal->SetUserData(this);
     contact = false;
     have_partner = false;
@@ -17,7 +17,7 @@ Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
     send_it = false;
     position = portal->GetPosition();
     radius = ENERGY_BALL;
-    sizes = b2Vec2(0.3,1);
+    sizes = b2Vec2(PORTAL_WIDTH,PORTAL_HIGH);
 }
 
 bool Portal::Move(float x_pos, float y_pos){
@@ -52,11 +52,11 @@ void Portal::changePosition() {
     if(contact){
         portal->SetLinearVelocity(b2Vec2(0,0));
         world.eraseBody(portal);
-        Filter_Data data(8);
-        data.addMaskBits(1);
-        data.addMaskBits(2);
-        data.addMaskBits(8);
-        portal = world.addPolygon(position.x,position.y,0.01,0.5f,true,data);
+        Filter_Data data(ROCK_PORTAL_BITS);
+        data.addMaskBits(OTHER_BITS);
+        data.addMaskBits(CHELL_BITS);
+        data.addMaskBits(ROCK_PORTAL_BITS);
+        portal = world.addPolygon(position.x,position.y,PORTAL_WIDTH/2.F,PORTAL_HIGH/2.F,true,data);
         portal->SetUserData(this);
         contact = false;
         ball = false;
@@ -129,12 +129,12 @@ Portal * Portal::getPartnerPortal() {
 bool Portal::changePortalPosition(float x_pos, float y_pos) {
     if(!world.validPosition(x_pos,y_pos)) return false;
     world.eraseBody(portal);
-    Filter_Data data(8);
-    data.addMaskBits(1);
-    data.addMaskBits(4);
-    data.addMaskBits(16);
+    Filter_Data data(ROCK_PORTAL_BITS);
+    data.addMaskBits(OTHER_BITS);
+    data.addMaskBits(BARRIER_BITS);
+    data.addMaskBits(BALL_BITS);
     portal = portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data);
-    portal->SetGravityScale(0);
+    portal->SetGravityScale(ZERO);
     portal->SetUserData(this);
     contact = false;
     ball = true;

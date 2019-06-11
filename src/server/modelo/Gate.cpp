@@ -1,11 +1,11 @@
 #include "Gate.h"
 
 Gate::Gate(World &world, float x_pos, float y_pos) : world(world){
-    Filter_Data data(1);
-    data.addMaskBits(2);
-    data.addMaskBits(4);
-    data.addMaskBits(8);
-    data.addMaskBits(16);
+    Filter_Data data(OTHER_BITS);
+    data.addMaskBits(CHELL_BITS);
+    data.addMaskBits(BARRIER_BITS);
+    data.addMaskBits(ROCK_PORTAL_BITS);
+    data.addMaskBits(BARRIER_BITS);
     gate = world.addPolygon(x_pos,y_pos,GATE_WIDTH/2,GATE_LARGE/2,true,data);
     gate->SetUserData(this);
     name = "Gate";

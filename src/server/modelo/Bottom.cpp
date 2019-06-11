@@ -2,7 +2,10 @@
 #include "Filter_Data.h"
 
 Bottom::Bottom(World &world, float x_pos, float y_pos) : world(world) {
-    Filter_Data data(0);
+    Filter_Data data(OTHER_BITS);
+    data.addMaskBits(OTHER_BITS);
+    data.addMaskBits(CHELL_BITS);
+    data.addMaskBits(ROCK_PORTAL_BITS);
     bottom = world.addPolygon(x_pos,y_pos,BOTTOM_LARGE/2,BOTTOM_HIGH/2,true,data);
     bottom->SetUserData(this);
     sizes = b2Vec2(BOTTOM_LARGE,BOTTOM_HIGH);
