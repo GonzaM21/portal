@@ -29,7 +29,7 @@ bool Portal::Move(float x_pos, float y_pos){
     std::cout<<"Posicion del portal: "<<position.x<<"   "<< - position.y<<std::endl;
     std::cout<<"Posicion mapa: "<<x_pos<<"   "<<-y_pos<<std::endl;
 
-    float number = ((-y_pos) - position.y)/x_pos - position.x;
+    float number = abs((-y_pos) - position.y)/abs(x_pos - position.x);
 
     float angle = atan(number);
 
