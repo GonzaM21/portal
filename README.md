@@ -4,21 +4,19 @@
 ## Manual provisorio
 
 ### ¿Como correr el juego?
-Una vez descargado el repositorio, se debe instalar sdl, para la instalación del mismo se debe escribir en una terminal los siguientes comandos:
+Una vez descargado el repositorio, se debe instalar sdl y qt, para la instalación de los mismos se debe escribir en una terminal los siguientes comandos:
 
 		sudo apt-get install libsdl2-dev
-
 
 		sudo apt-get install libsdl2-image-dev
 		
 		sudo apt-get install qt5-default
 
-Una vez instalado sdl, se debe descomprimir el archivo Box2d.zip, y copiar su contenido en la siguiente ruta ../src/server/modelo/3rdparty/Box2D-cmake
+Una vez instalado sdl y qt, se debe descomprimir el archivo Box2d.zip, y copiar su contenido en la siguiente ruta ../src/server/modelo/3rdparty/Box2D-cmake
 
 Ya realizados estos pasos se debe abrir una terminal en la ruta ./portal los siguiente comandos:
 
 		cmake 	CMakeLists.txt
-
 
 		make -j4
 
@@ -26,7 +24,7 @@ Si no ocurrio ningun error, ya se puede correr el juego, para esto primero se de
 
 		./Server <puerto>
 
-Seguido de este, en otra ventana de una terminal, se debe ingresar el siguiente comnado:
+Seguido de este, en otra ventana de una terminal, se debe ingresar el siguiente comanado:
 
 		./Client <host> <puerto> new/join nombre_sala nombre_usuario
 
@@ -45,24 +43,24 @@ El objetivo del juego es poder llegar al pastel que se encuentra en algún lugar
 
 La lista siguiente son los features/tareas que aun no fueron implementadas o faltan algunos cambios para que funcionen correctamente:
 
-1- Editor de mapas
-2- Pantalla de inicio
-3- Mover piedras
-4- Bolas de energía en movimiento
-5- Lanzadores
-6- Barreras de energía
-7- Puertas con botones
-8- Bloques triangulares
-9- Corregir bug de portales 
-10- Final del nivel (que el jugador pueda ganar)
-11- Ffmpeg
-12- Sonidos
-13- Leaks de memoria
-14- Cubrir race conditions al crear/unirse a salas
-15- Eliminar a un jugador cuando esta afk
-16- Refactor en el main del server
-17- Refactor al enviar mensajes desde el cliente al servidor
-18- Informe (con manual de instrucciones)
-19- Instalador
+1- Editor de mapas.
+2- Pantalla de inicio.
+3- Mover piedras.
+4- Bolas de energía en movimiento.
+5- Lanzadores.
+6- Barreras de energía.
+7- Puertas con botones.
+8- Bloques triangulares.
+9- Corregir bug de portales.
+10- Final del nivel (que el jugador pueda ganar).
+11- Ffmpeg.
+12- Sonidos.
+13- Resolver leaks de memoria.
+14- Cubrir race conditions al crear/unirse a salas.
+15- Eliminar a un jugador cuando esta afk.
+16- Refactor en el main del server.
+17- Refactor al enviar mensajes desde el cliente al servidor.
+18- Informe (con manual de instrucciones).
+19- Instalador.
 
 
