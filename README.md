@@ -10,6 +10,8 @@ Una vez descargado el repositorio, se debe instalar sdl, para la instalación de
 
 
 		sudo apt-get install libsdl2-image-dev
+		
+		sudo apt-get install qt5-default
 
 Una vez instalado sdl, se debe descomprimir el archivo Box2d.zip, y copiar su contenido en la siguiente ruta ../src/server/modelo/3rdparty/Box2D-cmake
 
