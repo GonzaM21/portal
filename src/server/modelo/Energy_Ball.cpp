@@ -47,7 +47,7 @@ float Energy_Ball::getAngle() {
     return energy_ball->GetAngle();
 }
 
-void Energy_Ball::startContact(b2Vec2 pos) {
+void Energy_Ball::startContact(b2Vec2) {
     contact = true;
 }
 
@@ -71,7 +71,7 @@ float Energy_Ball::getRadius() {
     return radius;
 }
 
-bool Energy_Ball::setTransform(Entity *body) {
+bool Energy_Ball::setTransform(Entity *) {
     return true;
 }
 

@@ -24,11 +24,11 @@ public:
     float getAngle();
 
     std::string getEntityName() override;
-    void startContact(b2Vec2 pos) override;
+    void startContact(b2Vec2) override;
     void endContact() override;
     void die() override;
     bool lives() override;
-    bool setTransform(Entity * body) override;
+    bool setTransform(Entity *) override;
     void changePosition() override;
     float getRadius();
 };

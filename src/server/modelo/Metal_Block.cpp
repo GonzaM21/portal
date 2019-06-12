@@ -54,7 +54,7 @@ void Metal_Block::die() {
     live = false;
 }
 
-void Metal_Block::startContact(b2Vec2 pos) {
+void Metal_Block::startContact(b2Vec2) {
     contact = true;
 }
 
@@ -62,7 +62,7 @@ void Metal_Block::endContact() {
     contact = false;
 }
 
-bool Metal_Block::setTransform(Entity *body) {
+bool Metal_Block::setTransform(Entity *) {
     return true;
 }
 

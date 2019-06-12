@@ -19,11 +19,11 @@ class Gate : public Entity{
 public:
     Gate(World & world, float x_pos, float y_pos);
     std::string getEntityName() override;
-    void startContact(b2Vec2 pos) override;
+    void startContact(b2Vec2) override;
     void endContact() override;
     void die() override;
     bool lives() override;
-    bool setTransform(Entity * body) override;
+    bool setTransform(Entity *) override;
     void changePosition() override;
     b2Vec2 getPosition();
     float getAngle();

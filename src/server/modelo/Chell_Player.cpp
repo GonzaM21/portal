@@ -1,9 +1,6 @@
 #include "Chell_Player.h"
 #include "Macros.h"
 
-//patron build
-//ver lo de las colcsiones
-
 Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world), contact_counter(0),jumper_counter(0) {
     name = "Chell_Player";
     contact = false;

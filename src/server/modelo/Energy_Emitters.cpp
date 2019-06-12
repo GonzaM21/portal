@@ -31,9 +31,8 @@ std::string Energy_Emitters::getEntityName() {
     return name;
 }
 
-void Energy_Emitters::startContact(b2Vec2 pos) {
+void Energy_Emitters::startContact(b2Vec2) {
     charged = true;
-    printf("Energy emitter cargadooooooo\n");
 }
 
 void Energy_Emitters::endContact() {
@@ -73,7 +72,7 @@ void Energy_Emitters::changePosition() {
     charged = false;
 }
 
-bool Energy_Emitters::setTransform(Entity *body) {
+bool Energy_Emitters::setTransform(Entity *) {
     return true;
 }
 

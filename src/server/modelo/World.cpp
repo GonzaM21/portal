@@ -34,7 +34,7 @@ bool World::validPosition(float x_pos, float y_pos) {
     if (y_pos > y_lim.x || y_pos < y_lim.y) {
         return false;
     }
-    for(int i = 0; i < Bodies.size(); ++i){
+    for(size_t i = 0; i < Bodies.size(); ++i){
         b2Vec2 pos_item = Bodies[i]->GetPosition();
         if(pos_item.x == x_pos && pos_item.y == y_pos){
             return false;
@@ -87,6 +87,8 @@ b2Body* World::addBox(float x_pos, float y_pos,float size,bool static_obj,bool m
     boxFixtureDef.friction = FRICTION;
     boxFixtureDef.restitution = metal ? METAL_RESITUTION : ZERO;
     boxBody->SetFixedRotation(true);
+    boxFixtureDef.filter.categoryBits = data.getCategoryBits();
+    boxFixtureDef.filter.maskBits = data.getMaskBits();
     boxBody->CreateFixture(&boxFixtureDef);
     Bodies.push_back(boxBody);
     return boxBody;
@@ -155,7 +157,7 @@ void World::Step(float time, int velocity, int position){
 }
 
 void World::moveBodies(){
-    for(int i = 0; i < Bodies.size(); ++i) {
+    for(size_t i = 0; i < Bodies.size(); ++i) {
         if (Bodies[i]->GetUserData()) {
             static_cast<Entity *>(Bodies[i]->GetUserData())->changePosition();
         }
@@ -163,7 +165,7 @@ void World::moveBodies(){
 }
 
 void World::eraseBody(b2Body *body) {
-    for(int i = 0; i < Bodies.size(); ++i) {
+    for(size_t i = 0; i < Bodies.size(); ++i) {
         if (Bodies[i] == body) {
             world->DestroyBody(Bodies[i]);
             Bodies.erase(Bodies.begin() + i);
@@ -174,7 +176,7 @@ void World::eraseBody(b2Body *body) {
 bool World::deleteBodies(){
 
     //std::cout<<"bodies sizes: "<<Bodies.size()<<std::endl;
-    for(int i = 0; i < Bodies.size(); ++i) {
+    for(size_t i = 0; i < Bodies.size(); ++i) {
         if (Bodies[i]->GetUserData()) {
             //std::cout<<"Nombre: "<<static_cast<Entity *>(Bodies[i]->GetUserData())->getEntityName()<<std::endl;
             if (!static_cast<Entity *>(Bodies[i]->GetUserData())->lives()) {

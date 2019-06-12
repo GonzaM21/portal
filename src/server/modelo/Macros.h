@@ -39,4 +39,7 @@
 #define ROCK_PORTAL_BITS 8
 #define BALL_BITS 16
 
+#define UNUSEDBODY(x) (void*)(x)
+#define UNUSEDB2VEC2(x) (void)(x)
+
 #endif

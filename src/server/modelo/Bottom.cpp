@@ -27,7 +27,7 @@ void Bottom::die() {
     live = false;
 }
 
-void Bottom::startContact(b2Vec2 pos) {
+void Bottom::startContact(b2Vec2) {
     contact = true;
     status = true;
 }
@@ -37,7 +37,7 @@ void Bottom::endContact() {
     status = false;
 }
 
-bool Bottom::setTransform(Entity *body) {
+bool Bottom::setTransform(Entity *) {
     return true;
 }
 

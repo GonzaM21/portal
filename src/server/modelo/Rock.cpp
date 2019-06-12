@@ -28,7 +28,7 @@ float Rock::getAngle(){
     return rock->GetAngle();
 }
 
-void Rock::startContact(b2Vec2 pos) {
+void Rock::startContact(b2Vec2) {
     contact = true;
 }
 
@@ -48,7 +48,7 @@ float Rock::getRadius(){
     return radius;
 }
 
-bool Rock::setTransform(Entity *body) {
+bool Rock::setTransform(Entity *) {
     return true;
 }
 

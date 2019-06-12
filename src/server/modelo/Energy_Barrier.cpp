@@ -14,7 +14,7 @@ std::string Energy_Barrier::getEntityName(){
     return name;
 }
 
-void Energy_Barrier::startContact(b2Vec2 pos){}
+void Energy_Barrier::startContact(b2Vec2){}
 
 void Energy_Barrier::endContact(){}
 
@@ -24,7 +24,7 @@ bool Energy_Barrier::lives(){
     return true;
 }
 
-bool Energy_Barrier::setTransform(Entity * body){
+bool Energy_Barrier::setTransform(Entity *){
     return true;
 }
 

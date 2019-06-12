@@ -1,5 +1,7 @@
 #include "Portal.h"
 #include "Macros.h"
+#include "Metal_Block.h"
+#include "Ground.h"
 
 Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
     Filter_Data data(ROCK_PORTAL_BITS);
@@ -18,15 +20,15 @@ Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
     position = portal->GetPosition();
     radius = ENERGY_BALL;
     sizes = b2Vec2(PORTAL_WIDTH,PORTAL_HIGH);
+    ground = false;
 }
 
 bool Portal::Move(float x_pos, float y_pos){
-
     b2Vec2 position = portal->GetPosition();
 
     b2Vec2 velocity(0,0);
 
-    std::cout<<"Posicion del portal: "<<position.x<<"   "<< - position.y<<std::endl;
+    std::cout<<"Posicion del portal: "<<position.x<<"   "<< position.y<<std::endl;
     std::cout<<"Posicion mapa: "<<x_pos<<"   "<<-y_pos<<std::endl;
 
     float angle = atan2((-y_pos) - position.y, x_pos - position.x);
@@ -45,13 +47,33 @@ bool Portal::Move(float x_pos, float y_pos){
 void Portal::changePosition() {
     if(!contact) return;
     if(contact){
-        portal->SetLinearVelocity(b2Vec2(0,0));
-        world.eraseBody(portal);
+        if(body_pos.x - position.x == 0){
+            orientation = 1;
+            if(body_pos.y < position.y) normal = b2Vec2(1.f,2.f);
+            if(body_pos.y > position.y) normal = b2Vec2(1.f,-2.f);
+
+        }
+        if(body_pos.y - position.y == 0){
+                orientation = 0;
+                if(body_pos.x < position.x) normal = b2Vec2(2.f,1.f);
+
+                if(body_pos.x > position.x) normal = b2Vec2(-2.f,1.f);
+        }
+        if(ground) normal = b2Vec2(normal.x, normal.y * -1);
         Filter_Data data(ROCK_PORTAL_BITS);
         data.addMaskBits(OTHER_BITS);
         data.addMaskBits(CHELL_BITS);
         data.addMaskBits(ROCK_PORTAL_BITS);
-        portal = world.addPolygon(position.x,position.y,PORTAL_WIDTH/2.F,PORTAL_HIGH/2.F,true,data);
+        if(orientation == 0){
+            portal = world.addPolygon(position.x - DELTA_POSITION
+                    ,position.y - DELTA_POSITION,PORTAL_WIDTH/2.F,PORTAL_HIGH/2.F,true,data);
+            sizes = b2Vec2(PORTAL_WIDTH,PORTAL_HIGH);
+        }
+        if (orientation == 1) {
+            portal = world.addPolygon(position.x - DELTA_POSITION,position.y - DELTA_POSITION,PORTAL_HIGH/2.F,
+                    PORTAL_WIDTH/2.F,true,data);
+            sizes = b2Vec2(PORTAL_HIGH,PORTAL_WIDTH);
+        }
         portal->SetUserData(this);
         contact = false;
         ball = false;
@@ -63,6 +85,7 @@ void Portal::changePosition() {
 
 b2Vec2 Portal::getPosition(){
     if(!live) return b2Vec2(0,0);
+    b2Vec2 vec = portal->GetLinearVelocity();
     return portal->GetPosition();
 }
 
@@ -83,14 +106,7 @@ float Portal::getAngle() {
 
 void Portal::startContact(b2Vec2 pos) {
     contact = true;
-    if(portal->GetLinearVelocity().x < 0){
-        position = pos + b2Vec2(0.5,0);
-        normal = b2Vec2(2.f,1.f);
-    }
-    if(portal->GetLinearVelocity().x > 0){
-        position = pos - b2Vec2(0.5,0);
-        normal = b2Vec2(-2.f,1.f);
-    }
+    position = pos;
     portal->SetLinearVelocity(b2Vec2(0,0));
 }
 
@@ -150,5 +166,20 @@ b2Vec2 Portal::getSizes() {
 }
 
 bool Portal::setTransform(Entity * body){
+    if(body == nullptr){
+        body_pos = portal->GetPosition();
+        ground = true;
+        return true;
+    }
+
+    if(body->getEntityName() == "Metal_Block"){
+        ground = false;
+        body_pos = dynamic_cast<Metal_Block *>(body)->getPosition();
+    }
+
+    if(body->getEntityName() == "Ground"){
+        ground = false;
+        body_pos = dynamic_cast<Ground *>(body)->getPosition();
+    }
     return true;
 }

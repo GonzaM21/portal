@@ -46,29 +46,37 @@ void chell_colitions(b2Body * bodyA,b2Body * bodyB){
 
 }
 
-void portal_colitions(b2Body * bodyA,b2Body * bodyB){
+void portal_colitions(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
     void * userDataA = static_cast<Entity *>(bodyA->GetUserData());
     void * userDataB = static_cast<Entity *>(bodyB->GetUserData());
 
     std::string nameBodyA = static_cast<Entity *>(userDataA)->getEntityName();
     std::string nameBodyB = static_cast<Entity *>(userDataB)->getEntityName();
 
+    std::cout<<"position colision: "<<colition_point.x<<"  "<<colition_point.y<<std::endl;
+
     if(nameBodyA != "Portal" && nameBodyB != "Portal") return;
 
     if(nameBodyA == "Portal" && nameBodyB == "Metal_Block"){
-        static_cast<Entity *>(userDataA)->startContact(bodyB->GetPosition());
+        static_cast<Entity *>(userDataA)->startContact(bodyB->GetPosition() + colition_point);
+        static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
     }
 
     if(nameBodyA == "Portal" && nameBodyB == "Ground"){
-        static_cast<Entity *>(userDataA)->startContact(bodyA->GetPosition());
+        b2Vec2 pos = b2Vec2(bodyA->GetPosition().x,bodyB->GetPosition().y);
+        static_cast<Entity *>(userDataA)->startContact(pos + colition_point);
+        static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
     }
 
     if(nameBodyB == "Portal" && nameBodyA == "Metal_Block"){
-        static_cast<Entity *>(userDataB)->startContact(bodyA->GetPosition());
+        static_cast<Entity *>(userDataB)->startContact(bodyA->GetPosition() + colition_point);
+        static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
     }
 
     if(nameBodyB == "Portal" && nameBodyA == "Ground"){
-        static_cast<Entity *>(userDataA)->startContact(bodyB->GetPosition());
+        b2Vec2 pos = b2Vec2(bodyB->GetPosition().x,bodyA->GetPosition().y);
+        static_cast<Entity *>(userDataB)->startContact(pos + colition_point);
+        static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
     }
 
 }
@@ -133,11 +141,24 @@ void MyContactListener::BeginContact(b2Contact * contact){
     void* bodyUserDataA = contact->GetFixtureA()->GetBody()->GetUserData();
     void* bodyUserDataB = contact->GetFixtureB()->GetBody()->GetUserData();
 
+    b2Vec2 colition_point = contact->GetManifold()->localPoint;
+
+    std::cout<<"position colision: "<<colition_point.x<<"  "<<colition_point.y<<std::endl;
 
     if(bodyUserDataA){
         if(static_cast<Entity *>(bodyUserDataA)->getEntityName() == "Chell_Player"){
             printf("Chell choco con el piso\n");
-            if(!bodyUserDataB) static_cast<Entity *>(bodyUserDataA)->startContact(b2Vec2(0,0));
+            if(!bodyUserDataB){} static_cast<Entity *>(bodyUserDataA)->startContact(b2Vec2(0,0));
+        }
+        if(static_cast<Entity *>(bodyUserDataA)->getEntityName() == "Portal"){
+            if(!bodyUserDataB){
+                b2Body* bodyA = contact->GetFixtureA()->GetBody();
+                b2Body* bodyB = contact->GetFixtureB()->GetBody();
+                printf("Portal choco con el piso\n");
+                b2Vec2 pos = b2Vec2(bodyA->GetPosition().x,bodyB->GetPosition().y);
+                static_cast<Entity *>(bodyUserDataA)->startContact(pos + colition_point);
+                static_cast<Entity *>(bodyUserDataA)->setTransform(nullptr);
+            }
         }
     }
 
@@ -146,10 +167,21 @@ void MyContactListener::BeginContact(b2Contact * contact){
             printf("Chell choco con el piso\n");
             if(!bodyUserDataA) static_cast<Entity *>(bodyUserDataB)->startContact(b2Vec2(0,0));
         }
+        if(static_cast<Entity *>(bodyUserDataB)->getEntityName() == "Portal"){
+            if(!bodyUserDataA) {
+                b2Body *bodyA = contact->GetFixtureA()->GetBody();
+                b2Body *bodyB = contact->GetFixtureB()->GetBody();
+                printf("Portal choco con el piso\n");
+                b2Vec2 pos = b2Vec2(bodyB->GetPosition().x, bodyA->GetPosition().y) + colition_point;
+                static_cast<Entity *>(bodyUserDataB)->startContact(pos);
+                static_cast<Entity *>(bodyUserDataB)->setTransform(nullptr);
+            }
+
+        }
     }
     if (!bodyUserDataA || !bodyUserDataB) return;
     chell_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
-    portal_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
+    portal_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody(),colition_point);
     bottom_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
     energy_ball_colition(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
     energy_barrier_colition(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());

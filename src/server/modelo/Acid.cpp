@@ -15,7 +15,7 @@ std::string Acid::getEntityName() {
     return name;
 }
 
-void Acid::startContact(b2Vec2 pos) {
+void Acid::startContact(b2Vec2) {
     contact = true;
 }
 
@@ -43,7 +43,7 @@ b2Vec2 Acid::getSizes(){
     return sizes;
 }
 
-bool Acid::setTransform(Entity *body) {
+bool Acid::setTransform(Entity *) {
     return true;
 }
 

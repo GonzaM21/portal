@@ -39,7 +39,7 @@ void Gate::die() {
     live = false;
 }
 
-void Gate::startContact(b2Vec2 pos) {
+void Gate::startContact(b2Vec2) {
     status = true;
 }
 
@@ -47,7 +47,7 @@ void Gate::endContact() {
     contact = false;
 }
 
-bool Gate::setTransform(Entity *body) {
+bool Gate::setTransform(Entity *) {
     return true;
 }
 
