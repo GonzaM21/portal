@@ -6,22 +6,27 @@
 ### ¿Como correr el juego?
 Una vez descargado el repositorio, se debe instalar sdl, para la instalación del mismo se debe escribir en una terminal los siguientes comandos:
 
-sudo apt-get install libsdl2-dev
+		sudo apt-get install libsdl2-dev
 
-sudo apt-get install libsdl2-image-dev
+		sudo apt-get install libsdl2-image-dev
 
 Una vez instalado sdl, se debe descomprimir el archivo Box2d.zip, y copiar su contenido en la siguiente ruta ../src/server/modelo/3rdparty/Box2D-cmake
 
 Ya realizados estos pasos se debe abrir una terminal en la ruta ./portal los siguiente comandos:
-						cmake 	CMakeLists.txt
-						make (1)
+
+		cmake 	CMakeLists.txt
+
+		make (1)
+
 (1)Para realizar más rápido este proceso se recomienda utilizar el comando make -j4
 
 Si no ocurrio ningun error, ya se puede correr el juego, para esto primero se debe correr en una terminar el comando: 
-						./Server <puerto>
+
+		./Server <puerto>
 
 Seguido de este, en otra ventana de una terminal, se debe ingresar el siguiente comnado:
-						./Client <host> <puerto> new/join nombre_sala nombre_usuario
+
+		./Client <host> <puerto> new/join nombre_sala nombre_usuario
 
 El comando new se utiliza para crear una nueva partida con el nombre_sala que se le asigna, en caso que querer unirse a una partida se debe utilizar el comando join con el nombre * de la sala previamente creada.
 Una vez ejecutado este comando se debería abrir una ventana de color negro, para comenzar el juego se tocar la tecla con la flecha para abajo. Y luego de unos segundos el juego comienza.
