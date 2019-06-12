@@ -1,11 +1,12 @@
 #include "../Window.h"
 #include "Dying_player.h"
 #include "Player.h"
+#include "vista/TextureBase.h"
 #include "../Constants.h"
 #include <string>
 #include <iostream>
 
-DyingPlayer::DyingPlayer(const Window &window, const int &direction) : Sprite(PLAYER_FILENAME, window),
+DyingPlayer::DyingPlayer(const Window &window, const int &direction) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(PLAYER_SPRITE_ID), window),
                                                                        src(X_START_POSITION, Y_POSITION_PLAYER_DYING, WIDTH_PLAYER_DYING, HEIGHT_PLAYER_DYING),
                                                                        done(false), direction(direction)
 {

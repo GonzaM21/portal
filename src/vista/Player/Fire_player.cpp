@@ -2,6 +2,7 @@
 #include "../Constants.h"
 #include "Fire_player.h"
 #include "Player.h"
+#include "vista/TextureBase.h"
 #include <string>
 #include <iostream>
 #define X_POSITION 1
@@ -9,7 +10,7 @@
 #define WIDTH 150
 #define HEIGHT 200
 
-FirePlayer::FirePlayer(const Window &window, const int &direction) : Sprite(PLAYER_FILENAME, window),
+FirePlayer::FirePlayer(const Window &window, const int &direction) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(PLAYER_SPRITE_ID), window),
 																																		 src(X_START_POSITION, Y_POSITION_PLAYER_FIRE, WIDTH_PLAYER_FIRE, HEIGHT_PLAYER_FIRE),
 																																		 done(false),
 																																		 direction(direction)

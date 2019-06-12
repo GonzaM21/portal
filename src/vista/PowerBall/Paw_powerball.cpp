@@ -2,10 +2,11 @@
 #include "../Constants.h"
 #include "Paw_powerball.h"
 #include "PowerBall.h"
+#include "vista/TextureBase.h"
 #include <string>
 #include <iostream>
 
-PawPowerBall::PawPowerBall(const Window &window) : Sprite(POWERBALL_FILENAME, window),
+PawPowerBall::PawPowerBall(const Window &window) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(POWERBALL_SPRITE_ID), window),
                                                    src(X_START_POSITION, Y_POSITION_POWERBALL_PAW, WIDTH_POWERBALL_PAW, HEIGHT_POWERBALL_PAW)
 {
 }

@@ -3,7 +3,6 @@
 #include <string>
 #include "../Sprite.h"
 #include "../Rect.h"
-#include "Target_sprite.h"
 
 class EmitterSprite : public Sprite
 {

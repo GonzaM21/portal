@@ -2,11 +2,12 @@
 #include "Dancing_player.h"
 #include "Player.h"
 #include "../Constants.h"
+#include "vista/TextureBase.h"
 #include <string>
 #include <iostream>
 #define MAX_WIDTH (9 * WIDTH_PLAYER_DANCING + 9)
 
-DancingPlayer::DancingPlayer(const Window &window, const int &direction) : Sprite(PLAYER_FILENAME, window),
+DancingPlayer::DancingPlayer(const Window &window, const int &direction) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(PLAYER_SPRITE_ID), window),
                                                                            src(X_START_POSITION, Y_POSITION_PLAYER_DANCING, WIDTH_PLAYER_DANCING, HEIGHT_PLAYER_DANCING),
                                                                            direction(direction)
 {

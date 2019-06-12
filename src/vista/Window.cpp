@@ -2,6 +2,7 @@
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 #include "SdlException.h"
 #include "Window.h"
 #include "Constants.h"
@@ -14,7 +15,7 @@ Window::Window(int width, int height) : width(width), height(height), fullscreen
     {
         throw SdlException("Error en la inicialización", SDL_GetError());
     }
-    uint32_t flags = SDL_WINDOW_RESIZABLE | SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
+    uint32_t flags = SDL_WINDOW_RESIZABLE  | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED;
     errCode = SDL_CreateWindowAndRenderer(
         width, height, flags,
         &this->window, &this->renderer);

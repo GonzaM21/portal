@@ -1,10 +1,11 @@
 #include "../Window.h"
 #include "../Constants.h"
 #include "ButtonOff_button.h"
+#include "vista/TextureBase.h"
 #include <string>
 #include <iostream>
 
-ButtonOff::ButtonOff(const Window &window) : Sprite(BUTTON_FILENAME, window),
+ButtonOff::ButtonOff(const Window &window) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(BUTTON_SPRITE_ID), window),
                                              src(X_START_POSITION, Y_POSITION_BUTTON_OFF, WIDTH_BUTTON_OFF, HEIGHT_BUTTON_OFF)
 {
 }

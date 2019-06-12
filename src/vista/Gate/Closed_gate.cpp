@@ -3,10 +3,11 @@
 #include "Closed_gate.h"
 #include "../Sprite.h"
 #include "../Rect.h"
+#include "vista/TextureBase.h"
 #include <string>
 #include <iostream>
 
-ClosedGate::ClosedGate(const Window &window, const int &code) : Sprite(GATE_FILENAME, window),
+ClosedGate::ClosedGate(const Window &window, const int &code) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(GATE_SPRITE_ID), window),
                                                                 src(X_START_POSITION, Y_POSITION_GATE_CLOSED_1, WIDTH_GATE, HEIGHT_GATE)
 {
   y_position = 0;

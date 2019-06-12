@@ -1,7 +1,9 @@
 #include "vista/Model.h"
+#include "vista/TextureBase.h"
 
 Model::Model() : window(800, 800), camara(window), ownPlayerId(-1)
 {
+  TextureBase::getInstance(this->window.getRenderer());
 }
 
 void Model::setBlock(Rect &dest, const int &code)

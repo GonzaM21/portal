@@ -1,11 +1,12 @@
 #include "../Window.h"
 #include "../Constants.h"
 #include "JumpRise_player.h"
+#include "vista/TextureBase.h"
 #include "Player.h"
 #include <string>
 #include <iostream>
 
-RisingPlayer::RisingPlayer(const Window &window, const int &direction) : Sprite(PLAYER_FILENAME, window),
+RisingPlayer::RisingPlayer(const Window &window, const int &direction) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(PLAYER_SPRITE_ID), window),
                                                                          src(X_START_POSITION, Y_POSITION_PLAYER_RISING, WIDTH_PLAYER_RISING, HEIGHT_PLAYER_RISING),
                                                                          direction(direction)
 {

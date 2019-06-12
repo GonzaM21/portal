@@ -1,10 +1,52 @@
 #define X_START_POSITION 1
-#define BACKGROUND_FILENAME "resources/img/Fondo.png"
 
-/* PLAYER */
+/**
+ * Sprites ID
+*/
+#define PLAYER_SPRITE_ID 1
+#define BLOCK_SPRITE_ID 2
+#define GATE_SPRITE_ID 3
+#define EMITTER_SPRITE_ID 3
+#define BUTTON_SPRITE_ID 4
+#define ACID_SPRITE_ID 4
+#define ENERGY_BARRIER_SPRITE_ID 4
+#define PORTAL_BLUE_SPRITE_ID 6
+#define PORTAL_ORANGE_SPRITE_ID 7
+#define POWERBALL_SPRITE_ID 8
+#define ROCK_SPRITE_ID 8
+#define TARGET_SPRITE_ID 9
+
+/**
+ * Objects ID
+*/
+#define SET_ID_CODE 0
+#define PLAYER_CODE 1
+#define BLOCK_CODE 2
+#define GATE_CODE 3
+#define BUTTON_CODE 4
+#define ACID_CODE 5
+#define PORTAL_CODE 6
+#define POWERBALL_CODE 7
+#define ROCK_CODE 8
+#define ENERGY_BARRIER_CODE 9
+#define EMITTER_CODE 10
+
+/**
+ * Files 
+ **/
+#define BACKGROUND_FILENAME "resources/img/Fondo.png"
+#define BLOCK_FILENAME "resources/img/blocks.png"
+#define EMITTER_FILENAME BLOCK_FILENAME
 #define ICON_FILENAME "resources/img/icon.png"
 #define PLAYER_FILENAME "resources/img/Patricia_Wagon_Zero_Suit.png"
-
+#define GATE_FILENAME "resources/img/gates.png"
+#define TARGET_FILENAME "resources/img/target.png"
+#define ACID_FILENAME "resources/img/acidos.png"
+#define BUTTON_FILENAME "resources/img/acidos.png"
+#define PORTAL_BLUE_FILENAME "resources/img/portalAzul.png"
+#define PORTAL_ORANGE_FILENAME "resources/img/portalNaranja.png"
+#define POWERBALL_FILENAME "resources/img/liquids_powers_energy.png"
+#define ROCK_FILENAME "resources/img/liquids_powers_energy.png"
 /* Idle */
 #define Y_POSITION_PLAYER_IDLE 2755
 #define WIDTH_PLAYER_IDLE 150
@@ -65,7 +107,6 @@
 #define MAX_WIDTH_PLAYER_FIRE (9 * WIDTH_PLAYER_FIRE + 9)
 
 /* GATE */
-#define GATE_FILENAME "resources/img/gates.png"
 
 /* Common */
 #define WIDTH_GATE 193
@@ -104,7 +145,6 @@
 
 /* ACID */
 /* IDLE */
-#define ACID_FILENAME "resources/img/acidos.png"
 #define Y_POSITION_ACID_IDLE 1545
 #define WIDTH_ACID_IDLE 300
 #define HEIGHT_ACID_IDLE 61
@@ -116,7 +156,6 @@
 #define MAX_WIDTH_ACID_TOUCHED (5 * WIDTH_ACID_TOUCHED + 5)
 
 /* POWERBALL */
-#define POWERBALL_FILENAME "resources/img/liquids_powers_energy.png"
 
 /* Flying */
 #define Y_POSITION_POWERBALL_FLYING 1920
@@ -134,7 +173,6 @@
 #define HEIGHT_POWERBALL_PAW 180
 
 /* BUTTON */
-#define BUTTON_FILENAME "resources/img/acidos.png"
 
 /* ON */
 #define Y_POSITION_BUTTON_ON 202
@@ -147,10 +185,6 @@
 #define HEIGHT_BUTTON_OFF 45
 
 /* TARGET */
-#define TARGET_FILENAME "resources/img/target.png"
-
-/* BLOCKS */
-#define BLOCK_FILENAME "resources/img/blocks.png"
 
 /* Metal */
 #define Y_POSITION_BLOCK_METAL 600
@@ -184,29 +218,15 @@
 #define Y_POSITION_BLOCK_LAUNCH_UP 1242
 
 /*Portal azul*/
-#define PORTAL_BLUE_FILENAME "resources/img/portalAzul.png"
-#define PORTAL_ORANGE_FILENAME "resources/img/portalNaranja.png"
 #define Y_POSITION_PORTAL 1542
 #define WIDTH_PORTAL 300
 #define HEIGHT_PORTAL 300
 
 /*Rock*/
-#define ROCK_FILENAME "resources/img/liquids_powers_energy.png"
 #define Y_POSITION_ROCK 4513
 #define WIDTH_ROCK 85
 #define HEIGHT_ROCK 83
 
-#define SET_ID_CODE 0
-#define PLAYER_CODE 1
-#define BLOCK_CODE 2
-#define GATE_CODE 3
-#define BUTTON_CODE 4
-#define ACID_CODE 5
-#define PORTAL_CODE 6
-#define POWERBALL_CODE 7
-#define ROCK_CODE 8
-#define ENERGY_BARRIER_CODE 9
-#define EMITTER_CODE 10
 
 /**
  * Blocks Id

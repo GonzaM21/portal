@@ -3,6 +3,7 @@
 #include "Opening_gate.h"
 #include "../Sprite.h"
 #include "../Rect.h"
+#include "vista/TextureBase.h"
 #include <string>
 #include <iostream>
 #define X_POSITION 1
@@ -10,7 +11,7 @@
 #define WIDTH 193
 #define HEIGHT 385
 
-OpeningGate::OpeningGate(const Window &window, const int &code) : Sprite(GATE_FILENAME, window),
+OpeningGate::OpeningGate(const Window &window, const int &code) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(GATE_SPRITE_ID), window),
                                                                   src(X_START_POSITION, Y_POSITION_GATE_OPENING, WIDTH_GATE, HEIGHT_GATE)
 {
   y_position = 0;

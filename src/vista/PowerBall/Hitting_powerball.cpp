@@ -2,10 +2,11 @@
 #include "../Constants.h"
 #include "Hitting_powerball.h"
 #include "PowerBall.h"
+#include "vista/TextureBase.h"
 #include <string>
 #include <iostream>
 
-HittingPowerBall::HittingPowerBall(const Window &window) : Sprite(POWERBALL_FILENAME, window),
+HittingPowerBall::HittingPowerBall(const Window &window) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(POWERBALL_SPRITE_ID), window),
                                                            src(X_START_POSITION, Y_POSITION_POWERBALL_HITTING, WIDTH_POWERBALL_HITTING, HEIGHT_POWERBALL_HITTING)
 {
 }

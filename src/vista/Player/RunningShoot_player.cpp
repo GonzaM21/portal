@@ -1,11 +1,12 @@
 #include "../Window.h"
 #include "../Constants.h"
 #include "RunningShoot_player.h"
+#include "vista/TextureBase.h"
 #include "Player.h"
 #include <string>
 #include <iostream>
 
-RunningShootPlayer::RunningShootPlayer(const Window &window, const int &direction) : Sprite(PLAYER_FILENAME, window),
+RunningShootPlayer::RunningShootPlayer(const Window &window, const int &direction) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(PLAYER_SPRITE_ID), window),
                                                                                      src(X_START_POSITION, Y_POSITION_PLAYER_RUNNING_SHOOT, WIDTH_PLAYER_RUNNING_SHOOT, HEIGHT_PLAYER_RUNNING_SHOOT),
                                                                                      direction(direction)
 {

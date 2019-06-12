@@ -1,10 +1,11 @@
 #include "../Window.h"
 #include "../Constants.h"
 #include "Portal_blue_sprite.h"
+#include "vista/TextureBase.h"
 #include <string>
 #include <iostream>
 
-BluePortal::BluePortal(const Window &window, const int &direction) : Sprite(PORTAL_BLUE_FILENAME, window),
+BluePortal::BluePortal(const Window &window, const int &direction) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(PORTAL_BLUE_SPRITE_ID), window),
                                                                      src(X_START_POSITION, Y_POSITION_PORTAL, WIDTH_PORTAL, HEIGHT_PORTAL),
                                                                      direction(direction)
 {

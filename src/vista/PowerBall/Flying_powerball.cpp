@@ -2,10 +2,11 @@
 #include "../Constants.h"
 #include "Flying_powerball.h"
 #include "PowerBall.h"
+#include "vista/TextureBase.h"
 #include <string>
 #include <iostream>
 
-FlyingPowerBall::FlyingPowerBall(const Window &window) : Sprite(POWERBALL_FILENAME, window),
+FlyingPowerBall::FlyingPowerBall(const Window &window) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(POWERBALL_SPRITE_ID), window),
                                                          src(X_START_POSITION, Y_POSITION_POWERBALL_FLYING, WIDTH_POWERBALL_FLYING, HEIGHT_POWERBALL_FLYING)
 {
 }

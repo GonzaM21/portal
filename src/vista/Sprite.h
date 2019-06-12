@@ -12,7 +12,7 @@ public:
     /**
      * Crea un SDL_Texture, lanza una excepción si el filename es inválido
      **/
-    Sprite(const std::string &filename, const Window &window);
+    Sprite(SDL_Texture *texture, const Window &window);
     /**
      * Libera la memoria reservada por la textura
      **/
@@ -31,7 +31,6 @@ public:
     virtual void setDirection(const int& direction){this->direction = direction;};
 
 private:
-    SDL_Texture *loadTexture(const std::string &filename);
     SDL_Renderer *renderer;
     SDL_Texture *texture;
     Rect src;

@@ -179,33 +179,6 @@ Acid/Idle_acid.cpp.s:
 	cd /home/rusomej/Desktop/Juli/Fiuba/TallerDeProgramacion/tp4/actualizado/portal && $(MAKE) -f src/vista/CMakeFiles/clientevista.dir/build.make src/vista/CMakeFiles/clientevista.dir/Acid/Idle_acid.cpp.s
 .PHONY : Acid/Idle_acid.cpp.s
 
-Acid/Touched_acid.o: Acid/Touched_acid.cpp.o
-
-.PHONY : Acid/Touched_acid.o
-
-# target to build an object file
-Acid/Touched_acid.cpp.o:
-	cd /home/rusomej/Desktop/Juli/Fiuba/TallerDeProgramacion/tp4/actualizado/portal && $(MAKE) -f src/vista/CMakeFiles/clientevista.dir/build.make src/vista/CMakeFiles/clientevista.dir/Acid/Touched_acid.cpp.o
-.PHONY : Acid/Touched_acid.cpp.o
-
-Acid/Touched_acid.i: Acid/Touched_acid.cpp.i
-
-.PHONY : Acid/Touched_acid.i
-
-# target to preprocess a source file
-Acid/Touched_acid.cpp.i:
-	cd /home/rusomej/Desktop/Juli/Fiuba/TallerDeProgramacion/tp4/actualizado/portal && $(MAKE) -f src/vista/CMakeFiles/clientevista.dir/build.make src/vista/CMakeFiles/clientevista.dir/Acid/Touched_acid.cpp.i
-.PHONY : Acid/Touched_acid.cpp.i
-
-Acid/Touched_acid.s: Acid/Touched_acid.cpp.s
-
-.PHONY : Acid/Touched_acid.s
-
-# target to generate assembly for a file
-Acid/Touched_acid.cpp.s:
-	cd /home/rusomej/Desktop/Juli/Fiuba/TallerDeProgramacion/tp4/actualizado/portal && $(MAKE) -f src/vista/CMakeFiles/clientevista.dir/build.make src/vista/CMakeFiles/clientevista.dir/Acid/Touched_acid.cpp.s
-.PHONY : Acid/Touched_acid.cpp.s
-
 Blocks/Metal_block.o: Blocks/Metal_block.cpp.o
 
 .PHONY : Blocks/Metal_block.o
@@ -1448,6 +1421,33 @@ Sprite.cpp.s:
 	cd /home/rusomej/Desktop/Juli/Fiuba/TallerDeProgramacion/tp4/actualizado/portal && $(MAKE) -f src/vista/CMakeFiles/clientevista.dir/build.make src/vista/CMakeFiles/clientevista.dir/Sprite.cpp.s
 .PHONY : Sprite.cpp.s
 
+TextureBase.o: TextureBase.cpp.o
+
+.PHONY : TextureBase.o
+
+# target to build an object file
+TextureBase.cpp.o:
+	cd /home/rusomej/Desktop/Juli/Fiuba/TallerDeProgramacion/tp4/actualizado/portal && $(MAKE) -f src/vista/CMakeFiles/clientevista.dir/build.make src/vista/CMakeFiles/clientevista.dir/TextureBase.cpp.o
+.PHONY : TextureBase.cpp.o
+
+TextureBase.i: TextureBase.cpp.i
+
+.PHONY : TextureBase.i
+
+# target to preprocess a source file
+TextureBase.cpp.i:
+	cd /home/rusomej/Desktop/Juli/Fiuba/TallerDeProgramacion/tp4/actualizado/portal && $(MAKE) -f src/vista/CMakeFiles/clientevista.dir/build.make src/vista/CMakeFiles/clientevista.dir/TextureBase.cpp.i
+.PHONY : TextureBase.cpp.i
+
+TextureBase.s: TextureBase.cpp.s
+
+.PHONY : TextureBase.s
+
+# target to generate assembly for a file
+TextureBase.cpp.s:
+	cd /home/rusomej/Desktop/Juli/Fiuba/TallerDeProgramacion/tp4/actualizado/portal && $(MAKE) -f src/vista/CMakeFiles/clientevista.dir/build.make src/vista/CMakeFiles/clientevista.dir/TextureBase.cpp.s
+.PHONY : TextureBase.cpp.s
+
 Window.o: Window.cpp.o
 
 .PHONY : Window.o
@@ -1490,9 +1490,6 @@ help:
 	@echo "... Acid/Idle_acid.o"
 	@echo "... Acid/Idle_acid.i"
 	@echo "... Acid/Idle_acid.s"
-	@echo "... Acid/Touched_acid.o"
-	@echo "... Acid/Touched_acid.i"
-	@echo "... Acid/Touched_acid.s"
 	@echo "... Blocks/Metal_block.o"
 	@echo "... Blocks/Metal_block.i"
 	@echo "... Blocks/Metal_block.s"
@@ -1631,6 +1628,9 @@ help:
 	@echo "... Sprite.o"
 	@echo "... Sprite.i"
 	@echo "... Sprite.s"
+	@echo "... TextureBase.o"
+	@echo "... TextureBase.i"
+	@echo "... TextureBase.s"
 	@echo "... Window.o"
 	@echo "... Window.i"
 	@echo "... Window.s"

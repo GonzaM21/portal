@@ -13,7 +13,6 @@ public:
   Acid(const Window &window);
   ~Acid();
   int render(Camara &camara);
-  void setTouched();
   void setIdle();
   void setDestWorld(float x, float y, float widht, float heigh);
   Rect getDestWorld() { return dest_world; };

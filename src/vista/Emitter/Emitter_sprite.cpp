@@ -1,11 +1,12 @@
 #include "Emitter_sprite.h"
 #include "../Constants.h"
 #include "../Window.h"
+#include "vista/TextureBase.h"
 #include <string>
 #include <iostream>
 
-EmitterSprite::EmitterSprite(const Window &window, const int &code) : Sprite(BLOCK_FILENAME, window),
-                                                                                        src(0, 0, 0, 0)
+EmitterSprite::EmitterSprite(const Window &window, const int &code) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(EMITTER_SPRITE_ID), window),
+                                                                      src(0, 0, 0, 0)
 {
   switch (code)
   {

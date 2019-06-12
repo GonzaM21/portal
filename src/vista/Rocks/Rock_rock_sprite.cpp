@@ -1,13 +1,15 @@
 #include "../Window.h"
 #include "../Constants.h"
 #include "Rock_rock_sprite.h"
+#include "vista/TextureBase.h"
 #include <string>
 #include <iostream>
 #include <random>
 
-RockSprite::RockSprite(const Window &window) : Sprite(ROCK_FILENAME, window),
+RockSprite::RockSprite(const Window &window) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(ROCK_SPRITE_ID),window),
                                                src(X_START_POSITION, Y_POSITION_ROCK, WIDTH_ROCK, HEIGHT_ROCK)
 {  
+  
   float num_rock = std::rand() % (7) ;
   float new_x = X_START_POSITION + num_rock * WIDTH_ROCK + num_rock;
   this->src.set(new_x, Y_POSITION_ROCK , WIDTH_ROCK, HEIGHT_ROCK);

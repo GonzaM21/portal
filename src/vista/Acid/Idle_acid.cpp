@@ -3,10 +3,11 @@
 #include "Idle_acid.h"
 #include "../Sprite.h"
 #include "../Rect.h"
+#include "vista/TextureBase.h"
 #include <string>
 #include <iostream>
 
-IdleAcid::IdleAcid(const Window &window) : Sprite(ACID_FILENAME, window),
+IdleAcid::IdleAcid(const Window &window) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(ACID_SPRITE_ID), window),
 																					 src(X_START_POSITION, Y_POSITION_ACID_IDLE, WIDTH_ACID_IDLE, HEIGHT_ACID_IDLE)
 {
 }

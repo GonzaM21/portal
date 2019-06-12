@@ -6,26 +6,14 @@
 #include "SdlException.h"
 #include "Rect.h"
 
-Sprite::Sprite(const std::string &filename, const Window &window)
+Sprite::Sprite(SDL_Texture* texture, const Window &window)
     : renderer(window.getRenderer()), src(-1,-1,-1,-1)
 {
-    this->texture = loadTexture(filename);
+    this->texture = texture;
 }
 
 Sprite::~Sprite()
 {
-    SDL_DestroyTexture(this->texture);
-}
-
-SDL_Texture *Sprite::loadTexture(const std::string &filename)
-{
-    SDL_Surface *image = IMG_Load(filename.c_str());
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(this->renderer, image);
-    if (!texture)
-    {
-        throw SdlException("Error al cargar la textura", SDL_GetError());
-    }
-    return texture;
 }
 
 int Sprite::render(const Rect &src, const Rect &dest, SDL_RendererFlip flip, float angle) const

@@ -1,10 +1,12 @@
 #include "Target_sprite.h"
 #include "../Constants.h"
 #include "../Window.h"
+#include "vista/TextureBase.h"
+
 #include <string>
 #include <iostream>
 
-TargetSprite::TargetSprite(const Window &window, const int &state) : Sprite(TARGET_FILENAME, window),
+TargetSprite::TargetSprite(const Window &window, const int &state) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(TARGET_SPRITE_ID), window),
                                                                      src(0, 0, 224, 224), state(state)
 {
 }

@@ -3,10 +3,11 @@
 #include "../Rect.h"
 #include "../Sprite.h"
 #include "Open_gate.h"
+#include "vista/TextureBase.h"
 #include <string>
 #include <iostream>
 
-OpenGate::OpenGate(const Window &window, const int &code) : Sprite(GATE_FILENAME, window),
+OpenGate::OpenGate(const Window &window, const int &code) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(GATE_SPRITE_ID), window),
                                                             src(X_POSITION_GATE_OPEN, Y_POSITION_GATE_OPEN_1, WIDTH_GATE, HEIGHT_GATE)
 {
   int y_position = 0;
