@@ -8,6 +8,7 @@ Una vez descargado el repositorio, se debe instalar sdl, para la instalación de
 
 		sudo apt-get install libsdl2-dev
 
+
 		sudo apt-get install libsdl2-image-dev
 
 Una vez instalado sdl, se debe descomprimir el archivo Box2d.zip, y copiar su contenido en la siguiente ruta ../src/server/modelo/3rdparty/Box2D-cmake
@@ -16,9 +17,8 @@ Ya realizados estos pasos se debe abrir una terminal en la ruta ./portal los sig
 
 		cmake 	CMakeLists.txt
 
-		make (1)
 
-(1)Para realizar más rápido este proceso se recomienda utilizar el comando make -j4
+		make -j4
 
 Si no ocurrio ningun error, ya se puede correr el juego, para esto primero se debe correr en una terminar el comando: 
 
