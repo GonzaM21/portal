@@ -29,18 +29,13 @@ bool Portal::Move(float x_pos, float y_pos){
     std::cout<<"Posicion del portal: "<<position.x<<"   "<< - position.y<<std::endl;
     std::cout<<"Posicion mapa: "<<x_pos<<"   "<<-y_pos<<std::endl;
 
-    float number = abs((-y_pos) - position.y)/abs(x_pos - position.x);
-
-    float angle = atan(number);
+    float angle = atan2((-y_pos) - position.y, x_pos - position.x);
 
     std::cout<<"angle: "<<angle<<std::endl;
 
-    float x_force =  5.f;
-    float y_force = 5.f;
-    if ( x_pos < position.x) x_force = - 5.f;
-    if ( y_pos > position.y) y_force = - 5.f;
+    float force =  5.f;
 
-    velocity = b2Vec2(x_force * sin(angle), y_force * cos(angle));
+    velocity = b2Vec2(force * cos(angle), force * sin(angle));
 
     portal->SetLinearVelocity(velocity);
     std::cout<<"Velocity final "<<velocity.x<<" "<<velocity.y<<std::endl;
