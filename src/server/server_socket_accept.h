@@ -30,6 +30,11 @@ class SocketAccept {
         bool sktOpciones();
         bool addrinfo(char *srvn);
         bool sktSocketAccept();
+        bool socketIsValid();
+        void setSocketToInvalid();
+        SocketAccept& operator=(const SocketAccept&) = delete;
+        SocketAccept(SocketAccept&& other);
+        SocketAccept& operator=(SocketAccept&& other);
 };
 
 #endif

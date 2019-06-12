@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "server_initializer.h"
 #include "../server/server_client_acceptor.h"
 #include "../server/server_socket_accept.h"
 #include "../server/server_room_game.h"
@@ -14,33 +15,8 @@ int main(int argc, char *argv[]) {
             return 0;
         }
 
-        SocketAccept socket;
-
-        if (!socket.addrinfo(argv[1])) {
-            std::cout << "Error: addrinfo fail" << std::endl;
-            return 1;
-        }
-
-        if (!socket.sktSocketAccept()) {
-            std::cout << "Error: accept fail" << std::endl;
-            return 1;
-        }
-
-	    if (!socket.sktOpciones()) {
-            std::cout << "Error: setting options fail" << std::endl; 
-            return 1;		
-        }
-
-        if (!socket.bindSocketAccept()) {
-            std::cout << "Error: bind fail" << std::endl;
-            return 1;
-        }
-
-        if (!socket.listenSocketAccept()) {
-            std::cout << "Error: listen fail" << std::endl;
-            return 1;
-        }
-
+        Initializer initializer;
+        SocketAccept socket = initializer.initialiceSocketAccept(argv[1]);
         ClientAcceptor *acceptor = new ClientAcceptor(socket);
 
         acceptor->start();

@@ -2,8 +2,8 @@
 #include "../server/server_socket_accept.h"
 
 SocketAccept :: SocketAccept() {
-	s = 0;
-	skt = 0;
+	s = -1;
+	skt = -1;
 	opt = 1;
 }
 
@@ -84,3 +84,36 @@ SocketConnect SocketAccept :: acceptSocket() {
 	return SocketConnect(skt_aceptado);
 } 
 
+SocketAccept ::SocketAccept(SocketAccept&& other) {
+    this->s = std::move(other.s);
+	this->skt = std::move(other.skt);
+	this->opt = std::move(other.opt);
+	this->hints = std::move(other.hints);
+	this->ptr = std::move(other.ptr);
+	other.skt = -1;
+	other.s = -1;
+	other.opt = -1;
+	other.ptr = nullptr;
+}
+
+SocketAccept& SocketAccept ::operator=(SocketAccept&& other) {
+    this->s = std::move(other.s);
+	this->skt = std::move(other.skt);
+	this->opt = std::move(other.opt);
+	this->hints = std::move(other.hints);
+	this->ptr = std::move(other.ptr);
+	other.skt = -1;
+	other.s = -1;
+	other.opt = -1;
+	other.ptr = nullptr;
+	return *this;
+}
+
+bool SocketAccept::socketIsValid() {
+	return (this->s>=0 && this->skt>=0);
+}
+
+void SocketAccept::setSocketToInvalid() {
+	this->s = -1;
+	this->skt = -1;
+}
