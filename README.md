@@ -39,5 +39,28 @@ El personaje puede morir si toca un ácido o si es tocado por una bola de energi
 
 El objetivo del juego es poder llegar al pastel que se encuentra en algún lugar del mapa. Asi que buena suerte.
 
-## Manual provisorio
+## Tag
+
+La lista siguiente son los features/tareas que aun no fueron implementadas o faltan algunos cambios para que funcionen correctamente:
+
+1- Editor de mapas
+2- Pantalla de inicio
+3- Mover piedras
+4- Bolas de energía en movimiento
+5- Lanzadores
+6- Barreras de energía
+7- Puertas con botones
+8- Bloques triangulares
+9- Corregir bug de portales 
+10- Final del nivel (que el jugador pueda ganar)
+11- Ffmpeg
+12- Sonidos
+13- Leaks de memoria
+14- Cubrir race conditions al crear/unirse a salas
+15- Eliminar a un jugador cuando esta afk
+16- Refactor en el main del server
+17- Refactor al enviar mensajes desde el cliente al servidor
+18- Informe (con manual de instrucciones)
+19- Instalador
+
 
