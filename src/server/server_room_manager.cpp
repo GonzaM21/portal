@@ -6,6 +6,7 @@
 #include "../server/server_room_game.h"
 #include "../server/server_room_manager.h"
 #include "../common/common_socket_connect.h"
+#define MAX_PLAYERS 4 //deberia preguntar cunado se crea la sala?
 
 RoomManager :: RoomManager(ColaProtegida *events) {
     this->continue_running = true;
@@ -43,7 +44,7 @@ bool RoomManager :: roomExist(std::string &room_name) {
 
 bool RoomManager :: createRoom(std::string &name) {
     if (this->roomExist(name)) return false;
-    RoomGame *room = new RoomGame(name,4); //Harcodeado el size despues se cambia y lo pregunto cunado se crea la sala
+    RoomGame *room = new RoomGame(name,MAX_PLAYERS);
     this->rooms.push_back(room);
     this->rooms.back()->start();
     return true;

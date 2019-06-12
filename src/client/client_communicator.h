@@ -25,6 +25,7 @@ public : ClientCommunicator(SocketConnect socket,
     void startExecution();
     bool getReceivedMap();
     void receiveMap();
+    bool isRunnning();
     void splitMessage(std::string &message, std::vector<std::string> &arguments);
     void addMessageToSend(std::string message);
 };

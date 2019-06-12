@@ -34,7 +34,6 @@ class Communicator : public Thread {
         void receiveMessage();
         void endExecution();
         bool communicatorValid();
-
 };
 
 

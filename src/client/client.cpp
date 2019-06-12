@@ -23,10 +23,10 @@ void ejecutarVentana(int argc, char *argv[] ,std::string &host, std::string &por
 
 int main(int argc, char *argv[])
 {
-    // if (argc != 5) {
-    //     std::cout << "Error: invalid arguments." << std::endl;
-    //     return 0;
-    // }
+    if (argc != 6) {
+        std::cout << "Error: invalid arguments." << std::endl;
+        return 0;
+    }
     try {
         //std::string host, port, player_name;
         //ejecutarVentana(argc,argv,host,port,player_name);
@@ -36,13 +36,12 @@ int main(int argc, char *argv[])
         std::string mode = argv[3];
         std::string room_name = argv[4];
         std::string player_name = argv[5];
-        // std::string player_name = argv[5];
 
         ModelFacade model_facade;
         ClientCommunicator communicator(std::move(joiner.setSocket()), 
             mode, room_name, player_name, &model_facade);
 
-        if (!joiner.isValid()) return 0;
+        if (!joiner.isValid()) return 0; 
 
         Renderable *renderer_thread = new Renderable(&model_facade,&communicator);
         EventHandlerManager* handler = new EventHandlerManager(&communicator,&model_facade);

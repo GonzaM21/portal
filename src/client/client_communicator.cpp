@@ -27,7 +27,11 @@ void ClientCommunicator::receiveMessage() {
         this->protocol >> message;
         std::vector<std::string> arguments;
         splitMessage(message, arguments);
-        if (arguments.at(0) != "1") std::cout << message << std::endl;
+        if (arguments.at(0).substr(0,5) == "Error") {
+            this->endExecution();
+            message_queue.set_terminar_ejecucion();
+            break;
+        };
         this->model_facade->decodeMessages(arguments);
     }
 }
@@ -35,7 +39,6 @@ void ClientCommunicator::receiveMessage() {
 void ClientCommunicator::splitMessage(std::string &message, std::vector<std::string> &arguments) {
     std::stringstream ss(message);
     std::string token;
-    size_t word_num(0);
     while (getline(ss, token, ',')) {
         arguments.push_back(token);
     }
@@ -55,6 +58,11 @@ void ClientCommunicator ::receiveMap()
         }
         std::vector<std::string> arguments;
         splitMessage(msg, arguments);
+        if (arguments.at(0).substr(0,5) == "Error") {
+            this->endExecution();
+            message_queue.set_terminar_ejecucion();
+            break;
+        };
         this->model_facade->decodeMessages(arguments);
     }
 }
@@ -70,7 +78,6 @@ void ClientCommunicator ::sendMessage() {
         {
             std::string message("NULL");
             message = this->message_queue.pop();
-            std::cout << message << std::endl;
             if (!this->continue_running)
               break;
             if (message == "q")
@@ -98,4 +105,8 @@ void ClientCommunicator ::startExecution() {
 void ClientCommunicator ::endExecution() {
     this->continue_running = false;
     this->protocol.closeProtocol();
+}
+
+bool ClientCommunicator::isRunnning() {
+    return this->continue_running;
 }

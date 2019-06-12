@@ -1,5 +1,5 @@
 #include "server_client_acceptor.h"
-#include <vector>
+#include <list>
 
 ClientAcceptor :: ClientAcceptor(SocketAccept &socket) {
     this->continue_running = true;
@@ -16,34 +16,37 @@ void ClientAcceptor :: run() {
     ColaProtegida events;
     RoomManager *room_manager = new RoomManager(&events);
     room_manager->start();
-    std::vector<Communicator*> communicators;
+    std::list<Communicator*> communicators;
 
     while (this->continue_running) {
         SocketConnect socket_c = socket->acceptSocket();
         this->current_id ++;
         if (!this->continue_running) {
             continue;
+        } else {
+            std::string id = std::to_string(this->current_id);
+            communicators.push_back(new Communicator(std::move(socket_c),room_manager,&events,id));
+            communicators.back()->start();      
         }
-        std::string id = std::to_string(this->current_id);
-        communicators.push_back(new Communicator(std::move(socket_c),room_manager,&events,id));
-        communicators.back()->start();
-        for (unsigned int i = 0; i<communicators.size(); i++) {
-            if (!communicators[i]->communicatorValid()) {
-                communicators[i]->endExecution();
-                communicators[i]->join();
-                delete communicators[i];
-            }        
-        }        
+        for (auto i = communicators.begin(); i != communicators.end();) {
+            if ((*i)->communicatorValid()) {
+                ++i;
+            } else {
+                (*i)->join();
+                delete (*i);
+                i = communicators.erase(i);
+            }
+        }
     }
+
+    for (auto i = communicators.begin(); i!= communicators.end();) {
+        if ((*i)->communicatorValid()) (*i)->endExecution();
+        (*i)->join();
+        delete (*i);
+        i = communicators.erase(i);
+    }                
 
     room_manager->endExecution();
-
-    for (unsigned int i = 0; i<communicators.size(); i++) {
-        communicators[i]->endExecution();
-        communicators[i]->join();
-        delete communicators[i];        
-    }
-
     room_manager->join();
     delete room_manager;
 }

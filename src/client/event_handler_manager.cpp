@@ -9,7 +9,7 @@ EventHandlerManager :: EventHandlerManager(ClientCommunicator *communicator,
     this->model_facade = model_facade;
 }
 
-void EventHandlerManager :: run() {
+void EventHandlerManager :: run() { //habria que validar que el unico evento valido al principio sea start sino te deja ya moverte y poner portales
     while (this->continue_running)  {
         SDL_Event event;
         while (SDL_PollEvent(&event) != 0)
@@ -35,6 +35,7 @@ void EventHandlerManager :: run() {
                 case SDLK_DOWN:
                 {
                     std::cout << "ABAJO" << std::endl;
+                    if (!this->communicator->isRunnning()) break;
                     communicator->addMessageToSend("start");
                     break;
                 }
