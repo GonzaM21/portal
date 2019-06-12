@@ -8,7 +8,11 @@
 Model :: Model(Sender *sender) { 
     GameLoop *game_loop = new GameLoop(&this->world,sender,&this->data_base);
     this->game_loop = game_loop;
-    Ground ground(world, 0.f, -1.f, GROUND_WIDTH,GROUND_HEIGHT);
+    ground = new Ground(world, 0.f, -1.f, GROUND_WIDTH,GROUND_HEIGHT);
+}
+
+Model :: ~Model(){
+    delete ground;
 }
 
 void Model :: startGame() {

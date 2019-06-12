@@ -17,10 +17,11 @@ class Model {
         GameLoop *game_loop;
         ProtectedDataBase data_base;
         World world;
+        Ground * ground;
 
     public:
         explicit Model(Sender *sender);
-        ~Model() = default;
+        ~Model(); //= default;
         void startGame();
         bool gameStarted(); 
         void endGame();
