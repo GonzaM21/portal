@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
 
         Initializer initializer;
         SocketAccept socket = initializer.initialiceSocketAccept(argv[1]);
+        if (!socket.socketIsValid()) return 0;
         ClientAcceptor *acceptor = new ClientAcceptor(socket);
 
         acceptor->start();
