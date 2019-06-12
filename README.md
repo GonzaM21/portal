@@ -1,9 +1,9 @@
 # portal
-#TP4 - Taller de programación
+# TP4 - Taller de programación
 
-##Manual provisorio
+## Manual provisorio
 
-###¿Como correr el juego?
+### ¿Como correr el juego?
 * Una vez descargado el repositorio, se debe instalar sdl, para la instalación del mismo se debe escribir en una terminal los siguientes comandos:
 
 * sudo apt-get install libsdl2-dev
@@ -26,7 +26,7 @@
 * El comando new se utiliza para crear una nueva partida con el nombre_sala que se le asigna, en caso que querer unirse a una partida se debe utilizar el comando join con el nombre * de la sala previamente creada.
 * Una vez ejecutado este comando se debería abrir una ventana de color negro, para comenzar el juego se tocar la tecla con la flecha para abajo. Y luego de unos segundos el juego comienza.
 
-###¿Como jugar?
+### ¿Como jugar?
 * Para mover el usuario se deben utilizar las teclas “d” y “a” que mueven al personaje a la derecha o la izquierda. Con el botón “w” se puede saltar.
 * Para disparar portales se debe utilizar el mouse donde  se debe ingresar con un click la ubicación de donde se quiere crear el portal. Para crear portales de entrada (de color azul) se debe utilizar el click izquierdo, y para crear portales de salida (de color naranja) se debe utilizar el click derecho. Se pueden crear la cantidad deseada de portales.
 
@@ -34,5 +34,5 @@
 
 * El objetivo del juego es poder llegar al pastel que se encuentra en algún lugar del mapa. Asi que buena suerte.
 
-##Manual provisorio
+## Manual provisorio
 
