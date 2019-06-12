@@ -22,7 +22,7 @@ void SocketAccept :: setHints() {
 	memset(&hints, 0, sizeof(struct addrinfo));
 	hints.ai_family = AF_INET;     
 	hints.ai_socktype = SOCK_STREAM; 
-	hints.ai_flags = 0;  	
+	hints.ai_flags = AI_PASSIVE;  	
 }
 
 bool SocketAccept :: addrinfo(char *srvn) {

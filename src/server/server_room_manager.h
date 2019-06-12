@@ -6,9 +6,11 @@
 #include "../server/server_room_game.h"
 #include "../common/common_cola_protegida.h"
 #include "../common/common_socket_connect.h"
+#include <mutex>
 
 class RoomManager : public Thread {
     private:
+        std::mutex m;
         std::list<RoomGame*> rooms;
         bool continue_running;
         ColaProtegida *events;

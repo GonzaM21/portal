@@ -7,13 +7,14 @@
 #include "../common/Thread.h"
 #include "../server/server_sender.h"
 #include "../common/common_cola_protegida.h"
+#include <mutex>
 
 class RoomGame : public Thread {
     private:
+        std::mutex m;
         std::string name;
         ColaProtegida *messages;
         size_t size;
-        std::mutex m;
         std::list<std::string> players;
         Sender sender;
         void sendMessageFrom(std::string &player,std::string &message);
@@ -44,8 +45,7 @@ class RoomGame : public Thread {
 
         Sender* getSender();
 
-        void imprimirJugadores(); //HAY QUE BORRAR 
-        std::string getJugadores(); //HAY QUE BORRAR 
+        std::string getJugadores(); //HAY QUE BORRAR(creo) 
 };
 
 #endif

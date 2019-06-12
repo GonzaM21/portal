@@ -16,7 +16,7 @@ bool RoomManager :: idIsValid(const std::string &id) {
     while (true) {
         for (std::map<std::string,bool>::iterator 
         it=this->ids.begin(); it!=this->ids.end(); ++it) {
-            if (id == it->first) { //aca ya podria eliminar el id total no lo voy a utilizar denuevo
+            if (id == it->first) {
                 return it->second;
             }
         }
@@ -67,7 +67,7 @@ RoomManager :: ~RoomManager() {
     }        
 }
 
-RoomGame* RoomManager :: getCreatedRoom(std::string &room_name) { //Deberia mutear esto???
+RoomGame* RoomManager :: getCreatedRoom(std::string &room_name) {
     RoomGame *room_p = nullptr;
     while (!room_p) {
         for (RoomGame* & room : this->rooms) {
@@ -96,7 +96,7 @@ void RoomManager :: splitMessage(std::string &message,std::string &first_place,
     fourth_place = message; 
 }
 
-void RoomManager :: run() {
+void RoomManager :: run() { //como hay un solo hilo desencolando eventos y es el que crea la salas no hace falta mutear aca
     while (this->continue_running) {
         std::string mode("None");
         std::string room_name("None");
