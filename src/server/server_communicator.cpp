@@ -86,6 +86,8 @@ void Communicator :: run() {
         }
     } catch (const std::runtime_error& e) {
         std::cout << e.what() << std::endl;
+        std::string msg(this->player_name+","+"disconnect");
+        this->room->addMessageToSend(msg);
     } catch (...) {
         std::cout << "Error: unknown" << std::endl;
     }

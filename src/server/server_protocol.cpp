@@ -43,5 +43,8 @@ Command* Protoc :: deserialize(std::string &message) {
     if (content.at(1) == "r")  {
         return commandFactory.createCommandMoveRock(content.at(0));
     }    
+    if (content.at(1) == "disconnect")  {
+        return commandFactory.createCommandDisconnected(content.at(0));
+    }
     return nullptr;
 }

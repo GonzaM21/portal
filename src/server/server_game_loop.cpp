@@ -24,14 +24,16 @@ void GameLoop :: sendInitialData() {
     this->encoder.sendStoneBlocks();
     this->encoder.sendAcids();
     this->encoder.sendGates();
+    this->encoder.sendBarriers();
     this->encoder.sendEndMap();
 }
 
 void GameLoop :: sendDynamicData() { //aca va todo lo que se mueve
     this->encoder.sendPlayersPositions();
     this->encoder.sendPortals();
-    //this->encoder.sendRocks();
-    //this->encoder.sendEnergyBalls(); 
+    this->encoder.sendRocks();
+    this->encoder.sendEnergyBalls();
+    this->encoder.sendGates(); 
 }
 
 void GameLoop :: run() {
