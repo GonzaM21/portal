@@ -70,6 +70,14 @@ void MapParser :: createStoneBlock(nlohmann::json &object) {
     delete new_object;
 }
 
+void MapParser :: createEmitter(nlohmann::json &object) {
+    std::string direction(object.at("DIRECTION"));
+    ObjectEmitter* new_object = this->object_factory.createObjectEmitter((float)object.at("POS_X"),
+    (float)object.at("POS_Y"),(float)object.at("WIDTH"),direction,object.at("CHARGED"));
+    new_object->aggregate();
+    delete new_object;
+}
+
 void MapParser :: setBlockMethods() {
     this->block_methods[METAL_BLOCK] = &MapParser::createMetalBlock;
     this->block_methods[STONE_BLOCK] = &MapParser::createStoneBlock;
@@ -83,6 +91,7 @@ void MapParser :: setMethods() {
     this->methods[POWERBALL_CODE] = &MapParser::createPowerball;               
     this->methods[ROCK_CODE] = &MapParser::createRock;                     
     this->methods[ENERGY_BARRIER_CODE] = &MapParser::createEnergyBarrier;  
+    this->methods[EMITTER_CODE] = &MapParser::createEmitter;
 }
 
 void MapParser :: addObjectsToModel() {

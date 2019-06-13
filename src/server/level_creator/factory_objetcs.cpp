@@ -35,3 +35,8 @@ ObjectButton* ObjectFactory :: createObjectButton(float x_pos, float y_pos,int d
 ObjectEnergyBarrier* ObjectFactory ::createObjectEnergyBarrier(float x_pos,float y_pos,float large) {
     return new ObjectEnergyBarrier(this->model,x_pos,y_pos,large);
 }
+
+ObjectEmitter* ObjectFactory ::createObjectEmitter(float x_pos, float y_pos, 
+    float size,std::string& direction, int charged) {
+    return new ObjectEmitter(this->model,x_pos,y_pos,size,direction,charged);
+}

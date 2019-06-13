@@ -18,7 +18,7 @@ Gate::Gate(const Window &window, const int &code) : window(window), dest_world(0
 	this->changeState[2] = &Gate::setOpen;
 	this->changeState[1] = &Gate::setClosing;
 	this->changeState[0] = &Gate::setClosed;
-	this->sprite = states[3];
+	this->sprite = states[0];
 }
 
 int Gate::render(Camara &camara)
