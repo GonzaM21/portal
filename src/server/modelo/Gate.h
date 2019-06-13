@@ -13,11 +13,7 @@ class Gate : public Entity{
     bool live;
     bool contact;
     World& world;
-    b2Vec2 position;
-    //std::vector<Button*> buttons;
     std::map<Button*,bool> buttons;
-    bool status;
-    bool ball;
     bool door_is_open;
 public:
     Gate(World & world, float x_pos, float y_pos);
@@ -31,7 +27,6 @@ public:
     b2Vec2 getPosition();
     float getAngle();
     b2Vec2 getSizes();
-    //Button addButton(float x_pos,float y_pos);
     void addButton(Button* button,int pos);
     bool isOpen();
     ~Gate() = default;

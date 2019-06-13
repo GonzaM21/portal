@@ -14,10 +14,7 @@ Gate::Gate(World &world, float x_pos, float y_pos) : world(world){
     sizes = b2Vec2(GATE_WIDTH,GATE_LARGE);
     contact = false;
     live = true;
-    status = false;//no lo uso
     door_is_open = false;
-    ball = false;
-    position = gate->GetPosition();
 }
 
 std::string Gate::getEntityName() {
@@ -25,21 +22,13 @@ std::string Gate::getEntityName() {
 }
 
 bool Gate::lives() {
-    /*if(buttons.size() == 0) return true;
-    for(int i = 0; i < buttons.size(); ++ i){
-        if(!buttons[i]->getStatus()) return true;
-    }*/
-    bool state = true;
-    for (auto button: this->buttons) {
-      if (button.first->getStatus() != button.second) state=false;
+    /*bool state = true;
+    for (auto button: buttons) {
+      if (button.first->getStatus() != button.second) state = false;
     }
     door_is_open = state;
-    world.eraseBody(gate);
-    Filter_Data data(0);
-    gate = world.addCircle(position.x,position.y + 1,0.0001f,true,data);
-    gate->SetUserData(this);
-    status = true;//no lo uso
-    ball = true;
+    bool op_state = !state;
+    gate->IsActive(op_state);*/
     return true;
 }
 
@@ -48,7 +37,7 @@ void Gate::die() {
 }
 
 void Gate::startContact(b2Vec2) {
-    status = true;
+    contact = true;
 }
 
 void Gate::endContact() {
@@ -60,26 +49,17 @@ bool Gate::setTransform(Entity *) {
 }
 
 void Gate::changePosition() {
-    /*if(buttons.size() == 0) return;
-    for(int i = 0; i < buttons.size(); ++ i){
-        if(buttons[i]->getStatus()) return;
-    }*/
     bool state = true;
-    for (auto button: this->buttons) {
-      if (button.first->getStatus() != button.second) state=false;
+    for (auto button: buttons) {
+      if (button.first->getStatus() != button.second) state = false;
     }
     door_is_open = state;
-    if(!ball) return;
-    Filter_Data data(0);
-    gate = world.addPolygon(position.x,position.y,GATE_WIDTH/2,GATE_LARGE/2,true,data);
-    gate->SetUserData(this);
-    status = false;
-    ball = false;
+    gate->SetActive(state);
 }
 
 b2Vec2 Gate::getPosition() {
     if (!live) return b2Vec2(0,0);
-    return position;
+    return gate->GetPosition();
 }
 
 float Gate::getAngle() {
