@@ -71,6 +71,7 @@ int Chell_Player::getStatus(){
     if(velocity.y < 0) return CHELL_FALLING;
     if(velocity.y > 0) return CHELL_JUMPING;
     if(velocity.x != 0) return CHELL_RUNNING;
+    return 0;
 }
 
 int Chell_Player::getDirection() {
@@ -98,7 +99,7 @@ bool Chell_Player::setTransform(Entity * body) {
 
     teleport = true;
 
-    b2Vec2 velocity_actual = chell->GetLinearVelocity();
+    //b2Vec2 velocity_actual = chell->GetLinearVelocity();
     if(normal.x > 0){
         teleport_pos = position + b2Vec2(0.5,0.0);
     }
