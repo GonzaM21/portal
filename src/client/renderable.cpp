@@ -13,10 +13,10 @@ Renderable :: Renderable(ModelFacade *model_facade,
 
 void Renderable :: run() {
     while (this->continue_running) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(FPS));
         if (!this->communicator->getReceivedMap()) continue;
         if (!this->communicator->isRunnning()) break; //puede haber race condition? que pasa si da true y despues justo muere el communicator
         this->model_facade->renderAll();
-        std::this_thread::sleep_for(std::chrono::milliseconds(FPS));
     }
 }
 

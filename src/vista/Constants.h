@@ -47,6 +47,11 @@
 #define PORTAL_ORANGE_FILENAME "resources/img/portalNaranja.png"
 #define POWERBALL_FILENAME "resources/img/liquids_powers_energy.png"
 #define ROCK_FILENAME "resources/img/liquids_powers_energy.png"
+
+
+/**
+ * PLAYER
+*/
 /* Idle */
 #define Y_POSITION_PLAYER_IDLE 2755
 #define WIDTH_PLAYER_IDLE 150
@@ -106,7 +111,9 @@
 #define HEIGHT_PLAYER_FIRE 260
 #define MAX_WIDTH_PLAYER_FIRE (9 * WIDTH_PLAYER_FIRE + 9)
 
-/* GATE */
+/**
+ * GATE 
+ * */
 
 /* Common */
 #define WIDTH_GATE 193
@@ -143,7 +150,10 @@
 #define Y_POSITION_GATE_OPENING_5 5220
 #define Y_POSITION_GATE_OPENING 2050
 
-/* ACID */
+/**
+ *  ACID 
+ **/
+
 /* IDLE */
 #define Y_POSITION_ACID_IDLE 1545
 #define WIDTH_ACID_IDLE 300
@@ -172,7 +182,9 @@
 #define WIDTH_POWERBALL_PAW 165
 #define HEIGHT_POWERBALL_PAW 180
 
-/* BUTTON */
+/**
+ * BUTTON 
+ **/
 
 /* ON */
 #define Y_POSITION_BUTTON_ON 202
@@ -184,7 +196,9 @@
 #define WIDTH_BUTTON_OFF 175
 #define HEIGHT_BUTTON_OFF 45
 
-/* TARGET */
+/**
+ * BLOCK
+ **/
 
 /* Metal */
 #define Y_POSITION_BLOCK_METAL 600

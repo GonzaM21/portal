@@ -14,13 +14,20 @@ BluePortal::BluePortal(const Window &window, const int &direction) : Sprite(Text
 int BluePortal::render(const Rect &dest)
 {
   int response = 0;
-  if (direction == 1)
+  if (direction == 0)
   {
     response = Sprite::render(src, dest);
   }
-  else
+  else if (direction == 1)
+  {
+    response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 45);
+  }
+  else if (direction == 2)
   {
     response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 90);
+  } else
+  {
+    response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 135);
   }
   return response;
 }

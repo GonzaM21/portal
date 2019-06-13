@@ -1,4 +1,5 @@
 #include <chrono>
+#include <unistd.h>
 #include "event_handler_manager.h"
 #include "../common/Thread.h"
 
@@ -150,6 +151,7 @@ void EventHandlerManager :: run() { //habria que validar que el unico evento val
             }
             }
         }
+        usleep(20000);
     }
 }
 
