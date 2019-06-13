@@ -1,4 +1,6 @@
 #include "Gate.h"
+#define UP 0
+#define DOWN 1
 
 Gate::Gate(World &world, float x_pos, float y_pos) : world(world){
     Filter_Data data(OTHER_BITS);
@@ -12,7 +14,8 @@ Gate::Gate(World &world, float x_pos, float y_pos) : world(world){
     sizes = b2Vec2(GATE_WIDTH,GATE_LARGE);
     contact = false;
     live = true;
-    status = false;
+    status = false;//no lo uso
+    door_is_open = false;
     ball = false;
     position = gate->GetPosition();
 }
@@ -22,15 +25,20 @@ std::string Gate::getEntityName() {
 }
 
 bool Gate::lives() {
-    if(buttons.size() == 0) return true;
+    /*if(buttons.size() == 0) return true;
     for(int i = 0; i < buttons.size(); ++ i){
         if(!buttons[i]->getStatus()) return true;
+    }*/
+    bool state = true;
+    for (auto button: this->buttons) {
+      if (button.first->getStatus() != button.second) state=false;
     }
+    door_is_open = state;
     world.eraseBody(gate);
     Filter_Data data(0);
     gate = world.addCircle(position.x,position.y + 1,0.0001f,true,data);
     gate->SetUserData(this);
-    status = true;
+    status = true;//no lo uso
     ball = true;
     return true;
 }
@@ -52,10 +60,15 @@ bool Gate::setTransform(Entity *) {
 }
 
 void Gate::changePosition() {
-    if(buttons.size() == 0) return;
+    /*if(buttons.size() == 0) return;
     for(int i = 0; i < buttons.size(); ++ i){
         if(buttons[i]->getStatus()) return;
+    }*/
+    bool state = true;
+    for (auto button: this->buttons) {
+      if (button.first->getStatus() != button.second) state=false;
     }
+    door_is_open = state;
     if(!ball) return;
     Filter_Data data(0);
     gate = world.addPolygon(position.x,position.y,GATE_WIDTH/2,GATE_LARGE/2,true,data);
@@ -77,18 +90,11 @@ b2Vec2 Gate::getSizes() {
     return sizes;
 }
 
-Button Gate::addButton(float x_pos, float y_pos) {
-    Button button = Button(world,x_pos,y_pos);
-    buttons.push_back(&button);
-    return button;
+void Gate::addButton(Button *button, int pos) {
+    if (pos == UP) buttons[button] = true;
+    if (pos == DOWN) buttons[button] = false;
 }
 
 bool Gate::isOpen(){
-    return status;
-}
-
-Gate::~Gate(){
-    for(int i = 0; i < buttons.size(); ++ i){
-        //delete bottoms[i];
-    }
+    return door_is_open;
 }

@@ -1,6 +1,0 @@
-/home/jowi/Desktop/TP-FINAL-nuevo/tp4_taller1/src/server/modelo/CMakeFiles/rebuild_cache.dir
-/home/jowi/Desktop/TP-FINAL-nuevo/tp4_taller1/src/server/modelo/CMakeFiles/model.dir
-/home/jowi/Desktop/TP-FINAL-nuevo/tp4_taller1/src/server/modelo/CMakeFiles/edit_cache.dir
-/home/jowi/Desktop/TP-FINAL-nuevo/tp4_taller1/src/server/modelo/3rdparty/Box2D-cmake/CMakeFiles/rebuild_cache.dir
-/home/jowi/Desktop/TP-FINAL-nuevo/tp4_taller1/src/server/modelo/3rdparty/Box2D-cmake/CMakeFiles/Box2D-cmake.dir
-/home/jowi/Desktop/TP-FINAL-nuevo/tp4_taller1/src/server/modelo/3rdparty/Box2D-cmake/CMakeFiles/edit_cache.dir

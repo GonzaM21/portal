@@ -26,6 +26,11 @@
         "POS_Y": 2,
         "WIDTH": 1
     },
+    "ID_OBJETO100" : {
+        "TYPE": 3,
+        "POS_X": 16.0,
+        "POS_Y": 4
+    },
     "ID_OBJETO5" : {
         "TYPE": 2,
         "TYPE_OPTIONAL": 1,
@@ -229,7 +234,9 @@
     "ID_OBJETO79" : {
         "TYPE": 4,
         "POS_X": -5.0,
-        "POS_Y": 0
+        "POS_Y": 0,
+	"DOOR_ID": 1,
+	"STATE": 1
     },
     "ID_OBJETO19" : {
         "TYPE": 2,

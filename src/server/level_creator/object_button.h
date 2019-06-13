@@ -8,9 +8,11 @@ private:
     Model *model;
     float x_pos;
     float y_pos;
+    int door_id;
+    int state_to_open_door;
 
 public:
-    ObjectButton(Model *model,float x_pos, float y_pos);
+    ObjectButton(Model *model,float x_pos, float y_pos,int door_id,int state_to_open_door);
     ~ObjectButton() = default;
     void aggregate() override;
 };

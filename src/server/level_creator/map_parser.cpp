@@ -19,7 +19,7 @@ void MapParser :: createGate(nlohmann::json &object){
 
 void MapParser :: createButton(nlohmann::json &object){
     ObjectButton* new_object = this->object_factory.createObjectButton((float)object.at("POS_X"),
-    (float)object.at("POS_Y")); 
+    (float)object.at("POS_Y"),object.at("DOOR_ID"),object.at("STATE")); 
     new_object->aggregate();
     delete new_object;
 }

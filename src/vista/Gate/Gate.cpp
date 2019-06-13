@@ -10,14 +10,14 @@
 
 Gate::Gate(const Window &window, const int &code) : window(window), dest_world(0, 0, 0, 0), code(code)
 {
-	this->states[0] = new OpeningGate(window, code);
-	this->states[1] = new OpenGate(window, code);
-	this->states[2] = new ClosingGate(window, code);
-	this->states[3] = new ClosedGate(window, code);
-	this->changeState[0] = &Gate::setOpening;
-	this->changeState[1] = &Gate::setOpen;
-	this->changeState[2] = &Gate::setClosing;
-	this->changeState[3] = &Gate::setClosed;
+	this->states[3] = new OpeningGate(window, code);
+	this->states[2] = new OpenGate(window, code);
+	this->states[1] = new ClosingGate(window, code);
+	this->states[0] = new ClosedGate(window, code);
+	this->changeState[3] = &Gate::setOpening;
+	this->changeState[2] = &Gate::setOpen;
+	this->changeState[1] = &Gate::setClosing;
+	this->changeState[0] = &Gate::setClosed;
 	this->sprite = states[3];
 }
 

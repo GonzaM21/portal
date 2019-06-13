@@ -23,7 +23,7 @@ public:
     ObjectEnergyBall* createObjectEnergyBall(float x_pos, float y_pos);
     ObjectMetalBlock* createObjectMetalBlock(float x_pos, float y_pos,float size);
     ObjectStoneBlock* createObjectStoneBlock(float x_pos, float y_pos,float size);
-    ObjectButton* createObjectButton(float x_pos, float y_pos);
+    ObjectButton* createObjectButton(float x_pos, float y_pos,int door_id,int state_to_open_door);
 };
 
 

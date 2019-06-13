@@ -38,6 +38,7 @@ private:
     std::map<size_t, Energy_Emitters*> emitters;
     int width;
     int height;
+    void addButtonToDoor(Button *button,int door_id,int state);
 
 public:
     ProtectedDataBase() = default;
@@ -53,7 +54,7 @@ public:
     void addEnergyBall(World &world,float x_pos, float y_pos);
     void addMetalBlock(World &world,float x_pos, float y_pos,float size);
     void addStoneBlock(World &world,float x_pos, float y_pos,float size);
-    void addButton(World &world, float x_pos, float y_pos);
+    void addButton(World &world, float x_pos, float y_pos,int door_id,int state_to_open_door);
     void addGate(World &world, float x_pos, float y_pos);
     void addEmitter(World &world,float x_pos, float y_pos, float size,
       std::string& direction, bool charged);

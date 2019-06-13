@@ -28,6 +28,6 @@ ObjectStoneBlock* ObjectFactory :: createObjectStoneBlock(float x_pos, float y_p
     return new ObjectStoneBlock(this->model,x_pos,y_pos,size);
 }
 
-ObjectButton* ObjectFactory :: createObjectButton(float x_pos, float y_pos) {
-    return new ObjectButton(this->model, x_pos, y_pos);
+ObjectButton* ObjectFactory :: createObjectButton(float x_pos, float y_pos,int door_id,int state_to_open_door) {
+    return new ObjectButton(this->model, x_pos, y_pos,door_id,state_to_open_door);
 }

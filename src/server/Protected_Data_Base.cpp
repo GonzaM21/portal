@@ -57,10 +57,17 @@ void ProtectedDataBase :: addGate(World &world, float x_pos, float y_pos) { //te
     this->gates.insert({gate_id,new Gate(world,x_pos,y_pos)});      
 }
 
-void ProtectedDataBase :: addButton(World &world, float x_pos, float y_pos) { //tendra la puerta a la que se asignara el boton
+void ProtectedDataBase :: addButton(World &world, float x_pos, float y_pos,int door_id,int state_to_open_door) { //tendra la puerta a la que se asignara el boton
     std::unique_lock<std::mutex> lck(m);
     size_t button_id = this->buttons.size();
-    this->buttons.insert({button_id,new Button(world,x_pos,y_pos)});
+    Button *button = new Button(world,x_pos,y_pos);
+    this->buttons.insert({button_id,button});
+
+}
+
+void ProtectedDataBase :: addButtonToDoor(Button *button,int door_id,int state) {
+    if (door_id > (this->gates.size()-1)) return;
+    this->gates[door_id]->addButton(button,state);
 }
 
 void ProtectedDataBase :: addPlayer(World &world,std::string &player) {

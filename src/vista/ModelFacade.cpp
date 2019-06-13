@@ -46,7 +46,7 @@ void ModelFacade::setBlock(std::vector<std::string> arguments)
 void ModelFacade::setGate(std::vector<std::string> arguments)
 {
   Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
-  model.setGate(dest, atoi(arguments[1].c_str()), 3);//_Harcodeado
+  model.setGate(dest, atoi(arguments[1].c_str()), atoi(arguments[6].c_str()));
 }
 
 void ModelFacade::setButton(std::vector<std::string> arguments)

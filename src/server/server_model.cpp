@@ -82,8 +82,8 @@ void Model :: addStoneBlock(float x_pos, float y_pos,float size) {
     this->data_base.addStoneBlock(this->world,x_pos,y_pos,size);
 }
 
-void Model :: addButton(float x_pos, float y_pos) {
-    this->data_base.addButton(this->world,x_pos,y_pos);
+void Model :: addButton(float x_pos, float y_pos,int door_id,int state_to_open_door) {
+    this->data_base.addButton(this->world,x_pos,y_pos,door_id,state_to_open_door);
 }
 
 void Model :: addGate(float x_pos, float y_pos) {

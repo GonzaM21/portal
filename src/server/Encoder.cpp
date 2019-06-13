@@ -110,8 +110,9 @@ void Encoder :: sendGates() {
         std::string msg;
         b2Vec2 pos = gates[i]->getPosition();
         b2Vec2 size = gates[i]->getSizes();
+        int state = gates[i]->isOpen();
         msg = "3,"+ std::to_string(i+1)+ "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
-        "," + std::to_string(size.x) + "," + std::to_string(size.y);
+        "," + std::to_string(size.x) + "," + std::to_string(size.y) + "," +std::to_string(state);
         this->sender->addMessageToSend(msg);
     }
 }
@@ -166,7 +167,7 @@ void Encoder :: sendEmitters() {
 
 void Encoder ::sendWorldSizes() {  //Se necesita?¡?¡?¡?¡?¡?¡?¡¡?
     int width = (int)this->data_base->getWidth();
-    for (int i = -10; i<20; i++ ) {
+    for (int i = -30; i<30; i++ ) {
         std::string msg;
         msg = "2,1," + std::to_string(i) + ",1,1,1";
         this->sender->addMessageToSend(msg);
