@@ -12,6 +12,8 @@ Una vez descargado el repositorio, se debe instalar sdl y qt, para la instalaci√
 		
 		sudo apt-get install qt5-default
 
+		sudo apt-get install libsdl2-mixer-dev
+
 Una vez instalado sdl y qt, se debe descomprimir el archivo Box2d.zip, y copiar su contenido en la siguiente ruta ../src/server/modelo/3rdparty/Box2D-cmake
 
 Ya realizados estos pasos se debe abrir una terminal en la ruta ./portal los siguiente comandos:
