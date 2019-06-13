@@ -18,7 +18,7 @@ class RoomManager : public Thread {
         std::string &second_place,std::string &third_place,
         std::string &fourth_place);
         std::map<std::string,bool> ids;
-
+        void eliminateInactivesRooms();
 
     public:
         RoomManager(ColaProtegida *events);

@@ -97,6 +97,20 @@ void RoomManager :: splitMessage(std::string &message,std::string &first_place,
     fourth_place = message; 
 }
 
+void RoomManager::eliminateInactivesRooms() {
+    std::list<RoomGame*>::iterator it = this->rooms.begin();
+    while (it != this->rooms.end()) {
+        if (!((*it)->getRoomIsActive())) {
+            (*it)->endExecution();
+            (*it)->join(); 
+            delete (*it);
+            it = this->rooms.erase(it);
+        } else {
+            it++;
+        }
+    }
+}
+
 void RoomManager :: run() { //como hay un solo hilo desencolando eventos y es el que crea la salas no hace falta mutear aca
     while (this->continue_running) {
         std::string mode("None");
@@ -104,6 +118,7 @@ void RoomManager :: run() { //como hay un solo hilo desencolando eventos y es el
         std::string player_name("None");
         std::string player_id("None");
         std::string message = this->events->pop();
+        this->eliminateInactivesRooms();
         if (!this->continue_running) break;
         splitMessage(message,room_name,player_name,mode,player_id);
 

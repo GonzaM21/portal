@@ -8,6 +8,7 @@
 #include "../server/server_sender.h"
 #include "../common/common_cola_protegida.h"
 #include <mutex>
+#include <map>
 
 class RoomGame : public Thread {
     private:
@@ -15,13 +16,15 @@ class RoomGame : public Thread {
         std::string name;
         ColaProtegida *messages;
         size_t size;
-        std::list<std::string> players;
+        //std::list<std::string> players;
         Sender sender;
         void sendMessageFrom(std::string &player,std::string &message);
         bool continue_running;
         void splitMessage(std::string &message,std::string &first_place,
         std::string &second_place);
-
+        void roomStillActive();
+        std::map<std::string,bool> players;
+        bool room_is_active;
     public:
         RoomGame(std::string &name,size_t size);
         ~RoomGame();
@@ -46,6 +49,8 @@ class RoomGame : public Thread {
         Sender* getSender();
 
         std::string getJugadores(); //HAY QUE BORRAR(creo) 
+
+        bool getRoomIsActive();
 };
 
 #endif
