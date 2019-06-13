@@ -8,6 +8,7 @@
 #include "object_metal_block.h"
 #include "object_stone_block.h"
 #include "object_gate.h"
+#include "object_button.h"
 
 class ObjectFactory {
 private:
@@ -22,6 +23,7 @@ public:
     ObjectEnergyBall* createObjectEnergyBall(float x_pos, float y_pos);
     ObjectMetalBlock* createObjectMetalBlock(float x_pos, float y_pos,float size);
     ObjectStoneBlock* createObjectStoneBlock(float x_pos, float y_pos,float size);
+    ObjectButton* createObjectButton(float x_pos, float y_pos);
 };
 
 

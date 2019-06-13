@@ -56,11 +56,11 @@ La lista siguiente son los features/tareas que aun no fueron implementadas o fal
 11- Ffmpeg.
 12- Sonidos.
 13- Resolver leaks de memoria.
-14- Cubrir race conditions al crear/unirse a salas.
+14- Cubrir race conditions al crear/unirse a salas (OK).
 15- Eliminar a un jugador cuando esta afk.
-16- Refactor en el main del server.
+16- Refactor en el main del server. (OK)
 17- Refactor al enviar mensajes desde el cliente al servidor.
 18- Informe (con manual de instrucciones).
 19- Instalador.
-
+20- Portales en diagonal
 

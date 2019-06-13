@@ -7,36 +7,39 @@ MapParser :: MapParser(Model *model,std::string &json_file) : object_factory(mod
     this->model = model;
     this->json_file = json_file;
     this->setMethods();
-    this->setRockMethods();
+    this->setBlockMethods();
 }
 
 void MapParser :: createGate(nlohmann::json &object){
-    Object* new_object = this->object_factory.createObjectGate((float)object.at("POS_X"),
-    (float)object.at("POS_Y")); //Le tengo que agregar el alto
+    ObjectGate* new_object = this->object_factory.createObjectGate((float)object.at("POS_X"),
+    (float)object.at("POS_Y")); 
     new_object->aggregate();
     delete new_object;
 }
 
 void MapParser :: createButton(nlohmann::json &object){
-    //creo objeto
+    ObjectButton* new_object = this->object_factory.createObjectButton((float)object.at("POS_X"),
+    (float)object.at("POS_Y")); 
+    new_object->aggregate();
+    delete new_object;
 }
 
 void MapParser :: createAcid(nlohmann::json &object){
-    Object* new_object = this->object_factory.createObjectAcid((float)object.at("POS_X"),
+    ObjectAcid* new_object = this->object_factory.createObjectAcid((float)object.at("POS_X"),
     (float)object.at("POS_Y"),(float)object.at("WIDTH")); 
     new_object->aggregate();
     delete new_object;
 }
 
 void MapParser :: createPowerball(nlohmann::json &object){
-    Object* new_object = this->object_factory.createObjectEnergyBall((float)object.at("POS_X"),
+    ObjectEnergyBall* new_object = this->object_factory.createObjectEnergyBall((float)object.at("POS_X"),
     (float)object.at("POS_Y")); 
     new_object->aggregate();
     delete new_object;
 }
 
 void MapParser :: createRock(nlohmann::json &object){
-    Object* new_object = this->object_factory.createObjectRock((float)object.at("POS_X"),
+    ObjectRock* new_object = this->object_factory.createObjectRock((float)object.at("POS_X"),
     (float)object.at("POS_Y"),(float)object.at("WIDTH")); 
     new_object->aggregate();
     delete new_object;
@@ -46,52 +49,36 @@ void MapParser :: createEnergyBarrier(nlohmann::json &object){
     //creo objeto
 }
 
+void MapParser :: createShootBlock(nlohmann::json &object) {
+    //creo objeto
+}
+
+void MapParser :: createLauchBlock(nlohmann::json &object) {
+    //creo objeto
+}
+
 void MapParser :: createBlock(nlohmann::json &object){
-    (this->*(rock_methods[object.at("TYPE_OPTIONAL")]))(object);
+    (this->*(block_methods[object.at("TYPE_OPTIONAL")]))(object);
 }
 
 void MapParser :: createMetalBlock(nlohmann::json &object) {
-    Object* new_object = this->object_factory.createObjectMetalBlock((float)object.at("POS_X"),
+    ObjectMetalBlock* new_object = this->object_factory.createObjectMetalBlock((float)object.at("POS_X"),
     (float)object.at("POS_Y"),(float)object.at("WIDTH"));
     new_object->aggregate();
     delete new_object;
 }
 
 void MapParser :: createStoneBlock(nlohmann::json &object) {
-    Object* new_object = this->object_factory.createObjectStoneBlock((float)object.at("POS_X"),
+    ObjectStoneBlock* new_object = this->object_factory.createObjectStoneBlock((float)object.at("POS_X"),
     (float)object.at("POS_Y"),(float)object.at("WIDTH"));
     new_object->aggregate();
     delete new_object;
 }
 
-void MapParser :: createShootBlock(nlohmann::json &object) {
-    //creo objeto
-}
-
-void MapParser :: createLauchUpBlock(nlohmann::json &object) {
-    //creo objeto
-}
-
-void MapParser :: createLauchRightBlock(nlohmann::json &object) {
-    //creo objeto
-}
-
-void MapParser :: createLauchDownBlock(nlohmann::json &object) {
-    //creo objeto
-}
-
-void MapParser :: createLauchLeftBlock(nlohmann::json &object) {
-    //creo objeto
-}
-
-void MapParser :: setRockMethods() {
-    this->rock_methods[METAL_BLOCK] = &MapParser::createMetalBlock;
-    this->rock_methods[STONE_BLOCK] = &MapParser::createStoneBlock;
-    this->rock_methods[SHOOT_BLOCK] = &MapParser::createShootBlock;
-    this->rock_methods[LAUNCH_UP_BLOCK] = &MapParser::createLauchUpBlock;
-    this->rock_methods[LAUNCH_RIGHT_BLOCK] = &MapParser::createLauchRightBlock;
-    this->rock_methods[LAUNCH_DOWN_BLOCK] = &MapParser::createLauchDownBlock;
-    this->rock_methods[LAUNCH_LEFT_BLOCK] = &MapParser::createLauchLeftBlock;
+void MapParser :: setBlockMethods() {
+    this->block_methods[METAL_BLOCK] = &MapParser::createMetalBlock;
+    this->block_methods[STONE_BLOCK] = &MapParser::createStoneBlock;
+    this->block_methods[SHOOT_BLOCK] = &MapParser::createShootBlock;
 }
 
 void MapParser :: setMethods() {
@@ -101,7 +88,8 @@ void MapParser :: setMethods() {
     this->methods[ACID_CODE] = &MapParser::createAcid;                     
     this->methods[POWERBALL_CODE] = &MapParser::createPowerball;               
     this->methods[ROCK_CODE] = &MapParser::createRock;                     
-    this->methods[ENERGY_BARRIER_CODE] = &MapParser::createEnergyBarrier;           
+    this->methods[ENERGY_BARRIER_CODE] = &MapParser::createEnergyBarrier;
+    this->methods[EMITTER_CODE] = &MapParser::createLauchBlock;           
 }
 
 void MapParser :: addObjectsToModel() {
@@ -116,20 +104,3 @@ void MapParser :: addObjectsToModel() {
         (this->*(methods[element.at("TYPE")]))(element);//si no guardan numeros en el json vuela todo
     }
 }
-
-
-
-
-//
-
-//void MapParser :: 
-
-
-//for (int i=0; i<10; i++) {
-//    Object* new_object = this->object_factory.createObjectMetalBlock((float)i,-1.0f,1);
-//    new_object->aggregate();
-//    delete new_object;
-//}
-//Object* new_object = this->object_factory.createObjectAcid(3.0f,-1.0f,1.0f);
-//new_object->aggregate();
-//delete new_object;

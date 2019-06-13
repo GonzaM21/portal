@@ -27,3 +27,7 @@ ObjectGate* ObjectFactory :: createObjectGate(float x_pos,float y_pos) {
 ObjectStoneBlock* ObjectFactory :: createObjectStoneBlock(float x_pos, float y_pos, float size) {
     return new ObjectStoneBlock(this->model,x_pos,y_pos,size);
 }
+
+ObjectButton* ObjectFactory :: createObjectButton(float x_pos, float y_pos) {
+    return new ObjectButton(this->model, x_pos, y_pos);
+}

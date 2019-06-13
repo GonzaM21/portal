@@ -5,7 +5,7 @@
 class Object {
 public:
     Object() = default;
-    ~Object() = default;
+    virtual ~Object() {}
     virtual void aggregate() = 0;
 };
 

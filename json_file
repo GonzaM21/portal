@@ -226,6 +226,11 @@
         "POS_Y": 0,
         "WIDTH": 1
     },
+    "ID_OBJETO79" : {
+        "TYPE": 4,
+        "POS_X": -5.0,
+        "POS_Y": 0
+    },
     "ID_OBJETO19" : {
         "TYPE": 2,
         "TYPE_OPTIONAL": 1,

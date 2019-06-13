@@ -67,14 +67,15 @@ void Encoder :: sendRocks() {
     }
 }
 
-void Encoder :: sendBottoms() {
-    std::vector<Bottom*> bottoms = this->data_base->getBottoms();
-    for ( size_t i = 0; i<bottoms.size(); i++ ) {
+void Encoder :: sendButtons() {
+    std::vector<Bottom*> buttons = this->data_base->getButtons();
+    for ( size_t i = 0; i<buttons.size(); i++ ) {
         std::string msg;
-        b2Vec2 pos = bottoms[i]->getPosition();
-        b2Vec2 size = bottoms[i]->getSizes();
-        msg = "4," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
-        "," + std::to_string(size.x) + "," + std::to_string(size.y);
+        b2Vec2 pos = buttons[i]->getPosition();
+        b2Vec2 size = buttons[i]->getSizes();
+        int state = buttons[i]->getStatus();
+        msg = "4,"+ std::to_string(i+1) +","+std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+        "," + std::to_string(size.x) + "," + std::to_string(size.y) + "," +std::to_string(state);
         this->sender->addMessageToSend(msg);
     }
 }

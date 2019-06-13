@@ -18,7 +18,7 @@ void GameLoop :: sendInitialData() {
     this->encoder.sendPlayerIds();
     this->encoder.sendWorldSizes();
     this->encoder.sendMetalBlocks();
-    this->encoder.sendBottoms();    
+    this->encoder.sendButtons();    
     this->encoder.sendEnergyBalls();
     this->encoder.sendRocks();
     this->encoder.sendStoneBlocks();

@@ -21,7 +21,7 @@ public:
     void sendAcids();
     void sendWorldSizes();
     void sendRocks();
-    void sendBottoms();
+    void sendButtons();
     void sendEnergyBalls();
     void sendStoneBlocks();
     void sendGates();

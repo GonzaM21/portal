@@ -11,7 +11,6 @@ void splitMessage(std::string &message,
   std::vector<std::string> &content) {
     std::stringstream ss(message);
     std::string token;
-    size_t word_num(0);
     while (getline(ss,token, ',')) {
         content.push_back(token);
     }      
