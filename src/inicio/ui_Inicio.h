@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Inicio.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.12.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,12 +10,9 @@
 #define UI_INICIO_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -44,61 +41,61 @@ public:
     void setupUi(QWidget *Inicio)
     {
         if (Inicio->objectName().isEmpty())
-            Inicio->setObjectName(QStringLiteral("Inicio"));
+            Inicio->setObjectName(QString::fromUtf8("Inicio"));
         Inicio->resize(747, 535);
         groupBox = new QGroupBox(Inicio);
-        groupBox->setObjectName(QStringLiteral("groupBox"));
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
         groupBox->setGeometry(QRect(180, 60, 401, 331));
         horizontalLayoutWidget = new QWidget(groupBox);
-        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
         horizontalLayoutWidget->setGeometry(QRect(20, 30, 351, 80));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         label = new QLabel(horizontalLayoutWidget);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName(QString::fromUtf8("label"));
 
         horizontalLayout->addWidget(label);
 
         nombre = new QLineEdit(horizontalLayoutWidget);
-        nombre->setObjectName(QStringLiteral("nombre"));
+        nombre->setObjectName(QString::fromUtf8("nombre"));
 
         horizontalLayout->addWidget(nombre);
 
         horizontalLayoutWidget_2 = new QWidget(groupBox);
-        horizontalLayoutWidget_2->setObjectName(QStringLiteral("horizontalLayoutWidget_2"));
+        horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
         horizontalLayoutWidget_2->setGeometry(QRect(20, 120, 351, 80));
         horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         label_2 = new QLabel(horizontalLayoutWidget_2);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName(QString::fromUtf8("label_2"));
 
         horizontalLayout_2->addWidget(label_2);
 
         host = new QLineEdit(horizontalLayoutWidget_2);
-        host->setObjectName(QStringLiteral("host"));
+        host->setObjectName(QString::fromUtf8("host"));
 
         horizontalLayout_2->addWidget(host);
 
         horizontalLayoutWidget_3 = new QWidget(groupBox);
-        horizontalLayoutWidget_3->setObjectName(QStringLiteral("horizontalLayoutWidget_3"));
+        horizontalLayoutWidget_3->setObjectName(QString::fromUtf8("horizontalLayoutWidget_3"));
         horizontalLayoutWidget_3->setGeometry(QRect(20, 210, 351, 80));
         horizontalLayout_3 = new QHBoxLayout(horizontalLayoutWidget_3);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
         label_3 = new QLabel(horizontalLayoutWidget_3);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setObjectName(QString::fromUtf8("label_3"));
 
         horizontalLayout_3->addWidget(label_3);
 
         port = new QLineEdit(horizontalLayoutWidget_3);
-        port->setObjectName(QStringLiteral("port"));
+        port->setObjectName(QString::fromUtf8("port"));
 
         horizontalLayout_3->addWidget(port);
 
         submit = new QPushButton(groupBox);
-        submit->setObjectName(QStringLiteral("submit"));
+        submit->setObjectName(QString::fromUtf8("submit"));
         submit->setGeometry(QRect(20, 300, 351, 27));
 
         retranslateUi(Inicio);
@@ -108,12 +105,12 @@ public:
 
     void retranslateUi(QWidget *Inicio)
     {
-        Inicio->setWindowTitle(QApplication::translate("Inicio", "Step 3", 0));
+        Inicio->setWindowTitle(QApplication::translate("Inicio", "Step 3", nullptr));
         groupBox->setTitle(QString());
-        label->setText(QApplication::translate("Inicio", "Ingresar Nombre", 0));
-        label_2->setText(QApplication::translate("Inicio", "Ingresar host", 0));
-        label_3->setText(QApplication::translate("Inicio", "Ingresar puerto", 0));
-        submit->setText(QApplication::translate("Inicio", "Iniciar Juego", 0));
+        label->setText(QApplication::translate("Inicio", "Ingresar Nombre", nullptr));
+        label_2->setText(QApplication::translate("Inicio", "Ingresar host", nullptr));
+        label_3->setText(QApplication::translate("Inicio", "Ingresar puerto", nullptr));
+        submit->setText(QApplication::translate("Inicio", "Iniciar Juego", nullptr));
     } // retranslateUi
 
 };

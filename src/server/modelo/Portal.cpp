@@ -85,7 +85,6 @@ void Portal::changePosition() {
 
 b2Vec2 Portal::getPosition(){
     if(!live) return b2Vec2(0,0);
-    b2Vec2 vec = portal->GetLinearVelocity();
     return portal->GetPosition();
 }
 
@@ -144,7 +143,7 @@ bool Portal::changePortalPosition(float x_pos, float y_pos) {
     data.addMaskBits(OTHER_BITS);
     data.addMaskBits(BARRIER_BITS);
     data.addMaskBits(BALL_BITS);
-    portal = portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data);
+    portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data);
     portal->SetGravityScale(ZERO);
     portal->SetUserData(this);
     contact = false;

@@ -81,7 +81,7 @@ Energy_Ball Energy_Emitters::getEnergyBallShoted() {
 }
 
 Energy_Emitters::~Energy_Emitters() {
-    for(int i = 0;i < energy_balls.size();++i){
+    for(size_t i = 0;i < energy_balls.size();++i){
         delete energy_balls[i];
     }
 }
