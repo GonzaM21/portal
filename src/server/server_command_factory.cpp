@@ -29,3 +29,7 @@ CommandShoot* CommandFactory :: createCommandShoot(std::string &player,
   std::string &x_destiny,std::string &y_destiny,std::string &portal_num) {
     return new CommandShoot(this->model,player,x_destiny,y_destiny,portal_num);
 }
+
+CommandMoveRock* CommandFactory :: createCommandMoveRock(std::string &player) {
+    return new CommandMoveRock(this->model,player);
+}

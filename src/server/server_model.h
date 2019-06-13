@@ -32,7 +32,8 @@ class Model {
         World* getWorld();
         void makePlayerJump(std::string &player);
         void makePlayerMove(std::string &player,char &direction);
-        void shootPortal(std::string player,float x_destiny, float y_destiny,int portal_num);//portal num es 0 o 1, 0 in 1 out
+        void shootPortal(std::string &player,float x_destiny, float y_destiny,int portal_num);//portal num es 0 o 1, 0 in 1 out
+        void makePlayerMoveRock(std::string &player);
 
         //Funciones para agregar elementos al mapa
         void addRock(float x_pos, float y_pos, float radius);

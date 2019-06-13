@@ -20,7 +20,6 @@ void splitMessage(std::string &message,
 Command* Protoc :: deserialize(std::string &message) {
     std::vector<std::string> content;    
     splitMessage(message,content);
-    //esto lo tengo que cambiar, el cliente debe enviar numeros de comando 
     if (content.at(1) == "mates") {
         return commandFactory.createCommandMates();
     }
@@ -41,5 +40,8 @@ Command* Protoc :: deserialize(std::string &message) {
         return commandFactory.createCommandShoot(content.at(0),content.at(2),
           content.at(3),content.at(4));
     }
+    if (content.at(1) == "r")  {
+        return commandFactory.createCommandMoveRock(content.at(0));
+    }    
     return nullptr;
 }

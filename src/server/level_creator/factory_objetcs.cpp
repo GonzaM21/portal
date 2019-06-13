@@ -31,3 +31,7 @@ ObjectStoneBlock* ObjectFactory :: createObjectStoneBlock(float x_pos, float y_p
 ObjectButton* ObjectFactory :: createObjectButton(float x_pos, float y_pos,int door_id,int state_to_open_door) {
     return new ObjectButton(this->model, x_pos, y_pos,door_id,state_to_open_door);
 }
+
+ObjectEnergyBarrier* ObjectFactory ::createObjectEnergyBarrier(float x_pos,float y_pos,float large) {
+    return new ObjectEnergyBarrier(this->model,x_pos,y_pos,large);
+}

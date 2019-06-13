@@ -8,6 +8,7 @@
 #include "../server/server_command_move.h"
 #include "../server/server_command_jump.h"
 #include "../server/server_command_shoot.h"
+#include "../server/server_command_move_rock.h"
 #include "level_creator/map_parser.h"
 
 class CommandFactory {
@@ -25,6 +26,7 @@ public:
     CommandMove* createCommandMove(std::string &player,char &direction);
     CommandShoot* createCommandShoot(std::string &player,
       std::string &x_destiny,std::string &y_destiny,std::string &portal_num);
+    CommandMoveRock* createCommandMoveRock(std::string &player);
     //los demas comandos
 };
 

@@ -25,8 +25,6 @@ private:
     void createEnergyBarrier(nlohmann::json &object);
     void createMetalBlock(nlohmann::json &object);
     void createStoneBlock(nlohmann::json &object);
-    void createShootBlock(nlohmann::json &object);
-    void createLauchBlock(nlohmann::json &object);
 
 public:
     MapParser(Model *model,std::string &json_file);

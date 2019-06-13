@@ -54,8 +54,12 @@ void Model :: makePlayerMove(std::string &player,char &direction) {
     this->data_base.makePlayerMove(player,direction);
 }
 
-void Model :: shootPortal(std::string player,float x_destiny, float y_destiny,int portal_num) {
+void Model :: shootPortal(std::string &player,float x_destiny, float y_destiny,int portal_num) {
     this->data_base.shootPortal(this->world,player,x_destiny,y_destiny,portal_num);
+}
+
+void Model :: makePlayerMoveRock(std::string &player) {
+    std::cout << "No esta hecho todavia el comando move rock en el modelo\n";
 }
 
 void Model :: addPlayer(std::string &player) {

@@ -46,15 +46,10 @@ void MapParser :: createRock(nlohmann::json &object){
 }
 
 void MapParser :: createEnergyBarrier(nlohmann::json &object){
-    //creo objeto
-}
-
-void MapParser :: createShootBlock(nlohmann::json &object) {
-    //creo objeto
-}
-
-void MapParser :: createLauchBlock(nlohmann::json &object) {
-    //creo objeto
+    ObjectEnergyBarrier* new_object = this->object_factory.createObjectEnergyBarrier(
+    (float)object.at("POS_X"),(float)object.at("POS_Y"),(float)object.at("HEIGHT")); 
+    new_object->aggregate();
+    delete new_object;
 }
 
 void MapParser :: createBlock(nlohmann::json &object){
@@ -78,7 +73,6 @@ void MapParser :: createStoneBlock(nlohmann::json &object) {
 void MapParser :: setBlockMethods() {
     this->block_methods[METAL_BLOCK] = &MapParser::createMetalBlock;
     this->block_methods[STONE_BLOCK] = &MapParser::createStoneBlock;
-    this->block_methods[SHOOT_BLOCK] = &MapParser::createShootBlock;
 }
 
 void MapParser :: setMethods() {
@@ -88,8 +82,7 @@ void MapParser :: setMethods() {
     this->methods[ACID_CODE] = &MapParser::createAcid;                     
     this->methods[POWERBALL_CODE] = &MapParser::createPowerball;               
     this->methods[ROCK_CODE] = &MapParser::createRock;                     
-    this->methods[ENERGY_BARRIER_CODE] = &MapParser::createEnergyBarrier;
-    this->methods[EMITTER_CODE] = &MapParser::createLauchBlock;           
+    this->methods[ENERGY_BARRIER_CODE] = &MapParser::createEnergyBarrier;  
 }
 
 void MapParser :: addObjectsToModel() {
