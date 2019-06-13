@@ -23,6 +23,8 @@ public:
     //Contructor del mundo, en caso de preferencia se puede poner limites al mundo o cambiar la gravedad
     World(b2Vec2 gravity = b2Vec2(ZERO,-GRAVITY),b2Vec2 x_lim = b2Vec2(MAX_LIM,-MAX_LIM), b2Vec2 y_lim = b2Vec2(MAX_LIM,-MAX_LIM));
 
+    b2Body * addPlayer(float x_pos, float y_pos, float x_size, float y_size, bool static_obj, Filter_Data &data);
+
     //Crea y agrega un polygono al mundo
     b2Body* addPolygon(float x_pos, float y_pos,float x_size, float y_size,bool static_obj,Filter_Data & data);
 

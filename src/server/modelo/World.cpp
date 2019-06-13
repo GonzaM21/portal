@@ -43,6 +43,40 @@ bool World::validPosition(float x_pos, float y_pos) {
     return true;
 }
 
+b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, bool static_obj, Filter_Data &data) {
+    b2Body* polygonBody;
+    b2BodyDef polygonBodyDef;
+    b2FixtureDef polygonFixtureDef;
+
+    polygonBodyDef.type = static_obj ? b2BodyType::b2_staticBody : b2BodyType::b2_dynamicBody;
+
+    if (!validPosition(x_pos,y_pos)){
+        throw InvalidPosition();
+    }
+    polygonBodyDef.position = b2Vec2(x_pos + DELTA_POSITION, y_pos + DELTA_POSITION);
+    polygonBody = world->CreateBody(&polygonBodyDef);
+    b2PolygonShape polygonShape;
+    polygonShape.SetAsBox(x_size,y_size);
+    polygonFixtureDef.shape = &polygonShape;
+    polygonFixtureDef.density = DENSITY;
+    polygonFixtureDef.friction = FRICTION;
+    polygonBody->SetFixedRotation(true);
+    polygonFixtureDef.filter.categoryBits = data.getCategoryBits();
+    polygonFixtureDef.filter.maskBits = data.getMaskBits();
+    polygonBody->CreateFixture(&polygonFixtureDef);
+    /*b2CircleShape circleShape;
+    circleShape.m_radius = x_size;
+    polygonFixtureDef.shape = &circleShape;
+    circleShape.m_p.Set(x_pos, - y_pos + x_pos);
+    polygonBody->CreateFixture(&circleShape,1.0);
+    polygonShape.SetAsBox(0.05, 0.05, b2Vec2(0,-y_size), 0);
+    polygonFixtureDef.isSensor = true;
+    b2Fixture* footSensorFixture = polygonBody->CreateFixture(&polygonFixtureDef);
+    footSensorFixture->SetUserData(foot_data);*/
+    Bodies.push_back(polygonBody);
+    return polygonBody;
+}
+
 b2Body* World::addPolygon(float x_pos, float y_pos,float x_size, float y_size,bool static_obj,Filter_Data & data) {
     b2Body* polygonBody;
     b2BodyDef polygonBodyDef;
