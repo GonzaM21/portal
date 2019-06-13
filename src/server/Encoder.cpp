@@ -68,7 +68,7 @@ void Encoder :: sendRocks() {
 }
 
 void Encoder :: sendButtons() {
-    std::vector<Bottom*> buttons = this->data_base->getButtons();
+    std::vector<Button*> buttons = this->data_base->getButtons();
     for ( size_t i = 0; i<buttons.size(); i++ ) {
         std::string msg;
         b2Vec2 pos = buttons[i]->getPosition();

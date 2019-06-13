@@ -120,7 +120,7 @@ void Chell_Player::changePosition() {
     teleport = false;
 }
 
-void Chell_Player::startContact(b2Vec2 pos) {
+void Chell_Player::startContact(b2Vec2) {
     contact = true;
     bouncing = true;
     ++contact_counter;
@@ -139,38 +139,18 @@ std::string Chell_Player::getEntityName() {
     return name;
 }
 
-b2Vec2 calculatePortalPosition(b2Vec2 position,float x_pos, float y_pos){
-
-    std::cout<<position.x<<" al crear "<<position.y<<std::endl;
-
-    float x = 0;
-    float y = position.y;
-
-    if(position.x < x_pos){
-        x = position.x + DELTA_ENERGY_BALL_X - 0.02;
-    }
-    if(position.x > x_pos){
-        x = position.x - DELTA_ENERGY_BALL_X - 0.02;
-    }
-
-    return b2Vec2(x,y-0.02);
-}
 
 Portal * Chell_Player::shotPortalIn(float x_pos, float y_pos) {
     if(!live) return nullptr;
-    b2Vec2 position = chell->GetPosition();
-    b2Vec2 positionportal = calculatePortalPosition(position,x_pos,y_pos);
-    std::cout<<"Hi"<<positionportal.x<<" "<<positionportal.y<<std::endl;
-    Portal * ball = portals.shotPortalIn(world,positionportal.x,positionportal.y,x_pos,y_pos);
+    b2Vec2 position = chell->GetPosition() - b2Vec2(0.02,0.02);
+    Portal * ball = portals.shotPortalIn(world,position.x,position.y,x_pos,y_pos);
     return ball;
 }
 
 Portal * Chell_Player::shotPortalOut(float x_pos, float y_pos) {
     if(!live) return nullptr;
-    b2Vec2 position = chell->GetPosition();
-    b2Vec2 positionportal = calculatePortalPosition(position,x_pos,y_pos);
-    std::cout<<"Hi 2 "<<positionportal.x<<" "<<positionportal.y<<std::endl;
-    Portal * ball = portals.shotPortalOut(world,positionportal.x,positionportal.y,x_pos,y_pos);
+    b2Vec2 position = chell->GetPosition() - b2Vec2(0.02,0.02);
+    Portal * ball = portals.shotPortalOut(world,position.x,position.y,x_pos,y_pos);
     return ball;
 }
 

@@ -37,7 +37,7 @@ public:
     bool setTransform(Entity * body) override;
 
     //Pone al atributo contact en true
-    void startContact(b2Vec2 pos) override;
+    void startContact(b2Vec2) override;
 
     //Pone al atributo contact en flase
     void endContact() override;
@@ -69,5 +69,6 @@ public:
 
     Portal *getPortalIn();
     Portal *getPortalOut();
+    ~Chell_Player() = default;
 };
 #endif //TP4_CHELL_PLAYER_H

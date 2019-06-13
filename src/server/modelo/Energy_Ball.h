@@ -31,5 +31,6 @@ public:
     bool setTransform(Entity *) override;
     void changePosition() override;
     float getRadius();
+    ~Energy_Ball() = default;
 };
 #endif

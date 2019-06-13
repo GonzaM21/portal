@@ -20,6 +20,7 @@ public:
     void changePosition() override;
     b2Vec2 getPosition();
     b2Vec2 getSizes();
+    ~Energy_Barrier() = default;
 
 };
 

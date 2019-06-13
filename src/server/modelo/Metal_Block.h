@@ -28,5 +28,6 @@ public:
     b2Vec2 getPosition();
     float getAngle();
     b2Vec2 getSizes();
+    ~Metal_Block() = default;
 };
 #endif

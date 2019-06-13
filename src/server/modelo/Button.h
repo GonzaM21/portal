@@ -4,8 +4,8 @@
 #include "World.h"
 #include "Entity.h"
 
-class Bottom : public Entity{
-    b2Body * bottom;
+class Button : public Entity{
+    b2Body * button;
     std::string name;
     b2Vec2 sizes;
     bool live;
@@ -13,7 +13,7 @@ class Bottom : public Entity{
     World& world;
     bool status;
 public:
-    Bottom(World & world, float x_pos, float y_pos);
+    Button(World & world, float x_pos, float y_pos);
     std::string getEntityName() override;
     void startContact(b2Vec2) override;
     void endContact() override;
@@ -25,6 +25,7 @@ public:
     float getAngle();
     b2Vec2 getSizes();
     bool getStatus();
+    ~Button() = default;
 
 };
 

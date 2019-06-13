@@ -18,7 +18,7 @@
 #include "../server/modelo/Stone_Block.h"
 #include "../server/modelo/Player_Portals.h"
 #include "../server/modelo/Gate.h"
-#include "../server/modelo/Bottom.h"
+#include "server/modelo/Button.h"
 #include "../server/modelo/Energy_Barrier.h"
 #include "../server/modelo/Energy_Emitters.h"
 
@@ -33,7 +33,7 @@ private:
     std::map<size_t, Metal_Block*> metal_blocks;
     std::map<size_t, Stone_Block*> stone_blocks;
     std::map<size_t, Gate*> gates;
-    std::map<size_t, Bottom*> buttons;
+    std::map<size_t, Button*> buttons;
     std::map<size_t, Energy_Barrier*> barriers;
     std::map<size_t, Energy_Emitters*> emitters;
     int width;
@@ -68,7 +68,7 @@ public:
     std::vector<Energy_Ball*> getEnergyBalls();
     std::vector<Stone_Block*> getStoneBlocks();
     std::vector<Gate*> getGates();
-    std::vector<Bottom*> getButtons();
+    std::vector<Button*> getButtons();
     std::vector<Energy_Barrier*> getBarriers();
     std::vector<Energy_Emitters*> getEmitters();      
     float getWidth();

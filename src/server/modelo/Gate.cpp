@@ -22,9 +22,9 @@ std::string Gate::getEntityName() {
 }
 
 bool Gate::lives() {
-    if(bottoms.size() == 0) return true;
-    for(int i = 0; i < bottoms.size(); ++ i){
-        if(!bottoms[i]->getStatus()) return true;
+    if(buttons.size() == 0) return true;
+    for(int i = 0; i < buttons.size(); ++ i){
+        if(!buttons[i]->getStatus()) return true;
     }
     world.eraseBody(gate);
     Filter_Data data(0);
@@ -52,9 +52,9 @@ bool Gate::setTransform(Entity *) {
 }
 
 void Gate::changePosition() {
-    if(bottoms.size() == 0) return;
-    for(int i = 0; i < bottoms.size(); ++ i){
-        if(bottoms[i]->getStatus()) return;
+    if(buttons.size() == 0) return;
+    for(int i = 0; i < buttons.size(); ++ i){
+        if(buttons[i]->getStatus()) return;
     }
     if(!ball) return;
     Filter_Data data(0);
@@ -77,10 +77,10 @@ b2Vec2 Gate::getSizes() {
     return sizes;
 }
 
-Bottom Gate::addBottom(float x_pos, float y_pos) {
-    Bottom bottom = Bottom(world,x_pos,y_pos);
-    bottoms.push_back(&bottom);
-    return bottom;
+Button Gate::addButton(float x_pos, float y_pos) {
+    Button button = Button(world,x_pos,y_pos);
+    buttons.push_back(&button);
+    return button;
 }
 
 bool Gate::isOpen(){
@@ -88,7 +88,7 @@ bool Gate::isOpen(){
 }
 
 Gate::~Gate(){
-    for(int i = 0; i < bottoms.size(); ++ i){
+    for(int i = 0; i < buttons.size(); ++ i){
         //delete bottoms[i];
     }
 }

@@ -23,6 +23,6 @@ public:
     b2Vec2 getPosition();
     b2Vec2 getSizes();
     float getAngle();
-
+    ~Acid() = default;
 };
 #endif

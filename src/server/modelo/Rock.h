@@ -23,6 +23,7 @@ public:
     b2Vec2 getPosition();
     float getAngle();
     float getRadius();
+    ~Rock() = default;
 };
 
 

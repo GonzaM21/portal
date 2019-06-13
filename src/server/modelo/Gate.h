@@ -3,7 +3,7 @@
 
 #include "World.h"
 #include "Entity.h"
-#include "Bottom.h"
+#include "Button.h"
 
 class Gate : public Entity{
     b2Body * gate;
@@ -13,7 +13,7 @@ class Gate : public Entity{
     bool contact;
     World& world;
     b2Vec2 position;
-    std::vector<Bottom*> bottoms;
+    std::vector<Button*> buttons;
     bool status;
     bool ball;
 public:
@@ -28,7 +28,7 @@ public:
     b2Vec2 getPosition();
     float getAngle();
     b2Vec2 getSizes();
-    Bottom addBottom(float x_pos,float y_pos);
+    Button addButton(float x_pos,float y_pos);
     bool isOpen();
     ~Gate();
 

@@ -12,5 +12,6 @@ public:
     virtual bool lives() = 0;
     virtual bool setTransform(Entity *) = 0;
     virtual void changePosition() = 0;
+    virtual ~Entity() = default;
 };
 #endif
