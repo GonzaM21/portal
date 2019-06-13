@@ -12,7 +12,7 @@ ModelFacade::ModelFacade()
   methods[6] = &ModelFacade::setPortal;
   methods[7] = &ModelFacade::setPowerball;
   methods[8] = &ModelFacade::setRock;
-  // methods[9] = &ModelFacade::setEnergyBarrier;
+  methods[9] = &ModelFacade::setEnergyBarrier;
   methods[10] = &ModelFacade::setEnergyEmitter;
 }
 
@@ -87,4 +87,13 @@ void ModelFacade::setRock(std::vector<std::string> arguments)
 
 Window* ModelFacade::getWindow() {
   return this->model.getWindow();
+}
+
+void ModelFacade::setEnergyBarrier(std::vector<std::string> arguments) {
+  std::cout << arguments.at(0) << std::endl;
+  std::cout << arguments.at(1) << std::endl;
+  std::cout << arguments.at(2) << std::endl;
+  std::cout << arguments.at(3) << std::endl;
+  std::cout << arguments.at(4) << std::endl;
+  std::cout << "Sin terminar las barreras" << std::endl;
 }

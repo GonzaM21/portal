@@ -158,6 +158,7 @@ void Encoder :: sendEmitters() {
         std::string msg;
         b2Vec2 pos = emitters[i]->getPosition();
         b2Vec2 size = emitters[i]->getSizes();
+        //emitters[i]->
         msg = "10,"+ std::to_string(i+1)+ "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
         "," + std::to_string(size.x) + "," + std::to_string(size.y)+ ",0,0";
         //Direccion y state harcodeados, que hacemos? necesito getters

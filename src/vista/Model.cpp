@@ -36,9 +36,9 @@ void Model::setGate(Rect &dest, const int &id, const int &state)
 {
   if (id > gates.size())
   {
-    this->gates[id] = new Gate(window, state);
-    this->gates[id]->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
+    this->gates[id] = new Gate(window, id);
   }
+  this->gates[id]->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
   this->gates[id]->setState(state);
 }
 void Model::setButton(Rect &dest, const int &id, const int &state)
@@ -46,8 +46,8 @@ void Model::setButton(Rect &dest, const int &id, const int &state)
   if (id > buttons.size())
   {
     this->buttons[id] = new Button(window, state);
-    this->buttons[id]->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
   }
+  this->buttons[id]->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
   this->buttons[id]->setState(state);
 }
 void Model::setAcid(Rect &dest)

@@ -19,6 +19,7 @@ TextureBase::TextureBase(SDL_Renderer* renderer) : renderer(renderer)
 }
 
 void TextureBase::createTexture(const int& id, const std::string filename) {
+  //if (imgs.find(1) != imgs.end()) return;
   imgs[id] = IMG_Load(filename.c_str());
   textures[id] = SDL_CreateTextureFromSurface(this->renderer, imgs[id]);
 }

@@ -10,6 +10,7 @@
 #include "object_gate.h"
 #include "object_button.h"
 #include "object_energy_barrier.h"
+#include "object_emitter.h"
 
 class ObjectFactory {
 private:
@@ -26,6 +27,8 @@ public:
     ObjectStoneBlock* createObjectStoneBlock(float x_pos, float y_pos,float size);
     ObjectButton* createObjectButton(float x_pos, float y_pos,int door_id,int state_to_open_door);
     ObjectEnergyBarrier* createObjectEnergyBarrier(float x_pos,float y_pos,float large);
+    ObjectEmitter* createObjectEmitter(float x_pos, float y_pos, float size,std::string& 
+       direction, int charged);
 };
 
 
