@@ -14,7 +14,7 @@ void chell_validation(Entity * bodyA, Entity * bodyB){
     if(nameBodyB == "Chell_Player" && nameBodyA == "Acid") bodyB->die();
 }
 
-void chell_colitions(b2Body * bodyA,b2Body * bodyB){
+void chell_colitions(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
 
     void * userDataA = static_cast<Entity *>(bodyA->GetUserData());
     void * userDataB = static_cast<Entity *>(bodyB->GetUserData());
@@ -26,21 +26,25 @@ void chell_colitions(b2Body * bodyA,b2Body * bodyB){
 
     if(nameBodyA != "Chell_Player" && nameBodyB != "Chell_Player") return;
 
-    if(nameBodyA == "Chell_Player" && (nameBodyB == "Ground" || nameBodyB == "Button" || nameBodyB == "Rock")){
-        static_cast<Entity *>(userDataA)->startContact(bodyB->GetPosition());
+    if(colition_point.y >= 0 || colition_point.x !=0){
+        if(nameBodyA == "Chell_Player" && (nameBodyB == "Ground" || nameBodyB == "Button" || nameBodyB == "Rock")){
+            static_cast<Entity *>(userDataA)->startContact(bodyB->GetPosition());
+        }
+
+        if(nameBodyA == "Chell_Player" && (nameBodyB == "Metal_Block" || nameBodyB == "Stone_Block")){
+            static_cast<Entity *>(userDataA)->startContact(bodyB->GetPosition());
+        }
+
+        if(nameBodyB == "Chell_Player" && (nameBodyA == "Ground" || nameBodyA == "Button" || nameBodyA == "Rock")){
+            static_cast<Entity *>(userDataB)->startContact(bodyA->GetPosition());
+        }
+
+        if(nameBodyB == "Chell_Player" && (nameBodyA == "Metal_Block" || nameBodyA == "Stone_Block")){
+            static_cast<Entity *>(userDataB)->startContact(bodyA->GetPosition());
+        }
     }
 
-    if(nameBodyA == "Chell_Player" && (nameBodyB == "Metal_Block" || nameBodyB == "Stone_Block")){
-        static_cast<Entity *>(userDataA)->startContact(bodyB->GetPosition());
-    }
 
-    if(nameBodyB == "Chell_Player" && (nameBodyA == "Ground" || nameBodyA == "Button" || nameBodyA == "Rock")){
-        static_cast<Entity *>(userDataB)->startContact(bodyA->GetPosition());
-    }
-
-    if(nameBodyB == "Chell_Player" && (nameBodyA == "Metal_Block" || nameBodyA == "Stone_Block")){
-        static_cast<Entity *>(userDataB)->startContact(bodyA->GetPosition());
-    }
 
     chell_validation(static_cast<Entity *>(userDataA),static_cast<Entity *>(userDataB));
 
@@ -180,7 +184,7 @@ void MyContactListener::BeginContact(b2Contact * contact){
         }
     }
     if (!bodyUserDataA || !bodyUserDataB) return;
-    chell_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
+    chell_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody(),colition_point);
     portal_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody(),colition_point);
     button_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
     energy_ball_colition(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());

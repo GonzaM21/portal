@@ -13,7 +13,7 @@ Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world)
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(BALL_BITS);
     sizes = b2Vec2(CHELL_HIGH,CHELL_WIDTH);
-    chell = world.addPolygon(x_pos, y_pos, CHELL_WIDTH/2, CHELL_HIGH/2.f,false,data);
+    chell = world.addPlayer(x_pos, y_pos, CHELL_WIDTH/2, CHELL_HIGH/2.f,false,data);
     chell->SetUserData(this);
     direction_right = true;
 }

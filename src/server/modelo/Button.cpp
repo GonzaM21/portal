@@ -30,11 +30,13 @@ void Button::die() {
 void Button::startContact(b2Vec2) {
     contact = true;
     status = true;
+    printf("Boton activado\n");
 }
 
 void Button::endContact() {
     contact = false;
     status = false;
+    printf("Boton desactivado\n");
 }
 
 bool Button::setTransform(Entity *) {
