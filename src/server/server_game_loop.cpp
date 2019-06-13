@@ -20,6 +20,7 @@ void GameLoop :: sendInitialData() {
     this->encoder.sendMetalBlocks();
     this->encoder.sendButtons();    
     this->encoder.sendEnergyBalls();
+    this->encoder.sendEmitters();
     this->encoder.sendRocks();
     this->encoder.sendStoneBlocks();
     this->encoder.sendAcids();

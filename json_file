@@ -236,7 +236,15 @@
         "POS_X": -5.0,
         "POS_Y": -0.35,
 	"DOOR_ID": 1,
-	"STATE": 1
+	"STATE": 0
+    }, 
+    "ID_OBJETO101" : {         
+        "TYPE": 10,         
+        "POS_X": -15.0,         
+        "POS_Y": 0, 	
+        "WIDTH": 1, 	
+        "DIRECTION": "UP", 	
+        "CHARGED": 1	     
     },
     "ID_OBJETO19" : {
         "TYPE": 2,

@@ -6,6 +6,7 @@
 
 Emitter::Emitter(const Window &window, const int &code, const int &state) : dest_world(0, 0, 0, 0), sprite(window, code)
 {
+	std::cout << "emitter" << state << std::endl;
 	if (state == 0)
 	{
 		inactive = new TargetSprite(window, 1);

@@ -137,10 +137,14 @@ void Model::renderAll()
     portal_it->second->render(camara);
   }
 
-  std::map<int, Gate *>::iterator gate_it;
-  for (gate_it = gates.begin(); gate_it != gates.end(); gate_it++)
+  for (auto &gate : gates)
   {
-    gate_it->second->render(camara);
+    gate.second->render(camara);
+  }
+
+  for (auto &emitter : emitters)
+  {
+    emitter.second->render(camara);
   }
 
   std::map<int, Button *>::iterator button_it;

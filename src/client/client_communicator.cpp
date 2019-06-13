@@ -50,7 +50,7 @@ void ClientCommunicator ::receiveMap()
     {
         std::string msg;
         this->protocol >> msg;
-        std::cout << msg << std::endl;
+        // std::cout << msg << std::endl;
         if (msg == "F")
         {
             this->received_map = true;
@@ -82,10 +82,6 @@ void ClientCommunicator ::sendMessage() {
               break;
             if (message == "q")
                 break;
-            if (message == "fullscreen") {
-                model_facade->setFullscreen();
-                continue;
-            }
             this->protocol << message;
         }
         this->endExecution();

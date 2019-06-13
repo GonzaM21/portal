@@ -7,6 +7,7 @@
 #include "common/common_socket_connect.h"
 #include "common/common_protocol.h"
 #include "client/event_handler_thread.h"
+#include "client/Message_sender.h"
 #include "inicio/include/Inicio.h"
 #include <QApplication>
 
@@ -43,8 +44,9 @@ int main(int argc, char *argv[])
 
         if (!joiner.isValid()) return 0; 
 
+        MessageSender sender(&communicator);
         Renderable *renderer_thread = new Renderable(&model_facade,&communicator);
-        EventHandlerThread* handler = new EventHandlerThread(&communicator,&model_facade);
+        EventHandlerThread* handler = new EventHandlerThread(sender,&model_facade);
         renderer_thread->start();
         handler->start();
         communicator.startExecution();

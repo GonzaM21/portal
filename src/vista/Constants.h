@@ -5,8 +5,8 @@
 */
 #define PLAYER_SPRITE_ID 1
 #define BLOCK_SPRITE_ID 2
+#define EMITTER_SPRITE_ID 2
 #define GATE_SPRITE_ID 3
-#define EMITTER_SPRITE_ID 3
 #define BUTTON_SPRITE_ID 4
 #define ACID_SPRITE_ID 4
 #define ENERGY_BARRIER_SPRITE_ID 4
@@ -36,7 +36,7 @@
  **/
 #define BACKGROUND_FILENAME "resources/img/Fondo.png"
 #define BLOCK_FILENAME "resources/img/blocks.png"
-#define EMITTER_FILENAME BLOCK_FILENAME
+#define EMITTER_FILENAME "resources/img/blocks.png"
 #define ICON_FILENAME "resources/img/icon.png"
 #define PLAYER_FILENAME "resources/img/Patricia_Wagon_Zero_Suit.png"
 #define GATE_FILENAME "resources/img/gates.png"
