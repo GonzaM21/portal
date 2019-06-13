@@ -1,0 +1,8 @@
+CMakeFiles/
+*.a
+*.cmake
+Makefile
+.vscode/
+.idea/
+Client
+Server
