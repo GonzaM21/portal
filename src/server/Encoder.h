@@ -11,6 +11,7 @@ private:
     ProtectedDataBase *data_base;
     Sender *sender;
     std::mutex m;
+    void sendEnergyBall(Energy_Emitters* emitter);
 
 public:
     Encoder(ProtectedDataBase *data_base,Sender *sender);

@@ -130,14 +130,15 @@ void Encoder :: sendPortals() {
             if (portal == nullptr || !portal->isValid()) continue;
             b2Vec2 pos = portal->getPosition();
             b2Vec2 size = portal->getSizes();
+            int orientation = portal->getOrientation();
             std::string msg("6,"+std::to_string((i+1+portal_num)*4)+","+ std::to_string(pos.x) + ","
             + std::to_string(-pos.y) + "," + std::to_string(size.x * 2) + "," +
-            std::to_string(0.5)+","+std::to_string(portal_num)+",0,1");
+            std::to_string(0.5)+","+std::to_string(portal_num)+"," + std::to_string(orientation*2)
+            +",1");
             this->sender->addMessageToSend(msg);  
         }
     }
-    //Harcodeado la direccion y state, que serian?
-    //Hay dos portales con el mismo id, uno de entrada y otro de salida
+    //Harcodeado la direccion y state
 }
 
 void Encoder :: sendBarriers() {
@@ -163,8 +164,21 @@ void Encoder :: sendEmitters() {
         "," + std::to_string(size.x) + "," + std::to_string(size.y)+ ",0,0";
         //Direccion y state harcodeados, que hacemos? necesito getters
         this->sender->addMessageToSend(msg);
+        this->sendEnergyBall(emitters[i]);
     }
 }
+
+void Encoder::sendEnergyBall(Energy_Emitters* emitter) {
+    Energy_Ball* ball = emitter->getEnergyBallShoted();
+    if (ball == nullptr) return;
+    b2Vec2 pos = ball->getPosition();
+    float size = ball->getRadius();
+    std::string msg;
+    msg = "7," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+    "," + std::to_string(2*size) + "," + std::to_string(size) +",0";
+    this->sender->addMessageToSend(msg);
+}
+
 
 void Encoder ::sendWorldSizes() {  //Se necesita?¡?¡?¡?¡?¡?¡?¡¡?
     int width = (int)this->data_base->getWidth();

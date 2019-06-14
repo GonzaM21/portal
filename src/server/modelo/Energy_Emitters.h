@@ -25,7 +25,7 @@ public:
     bool lives() override;
     bool setTransform(Entity *) override;
     void changePosition() override;
-    Energy_Ball getEnergyBallShoted();
+    Energy_Ball* getEnergyBallShoted();
     ~Energy_Emitters();
 };
 

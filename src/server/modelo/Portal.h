@@ -54,6 +54,7 @@ public:
     b2Vec2 getSizes();
     float getradius();
     bool isValid();
+    int getOrientation();
     ~Portal() = default;
 
 };

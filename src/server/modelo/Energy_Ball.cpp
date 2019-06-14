@@ -38,7 +38,6 @@ bool Energy_Ball::Move(char direction){
 
 b2Vec2 Energy_Ball::getPosition(){
     if(!live) return b2Vec2(0,0);
-    std::cout<<"veloc: "<<energy_ball->GetLinearVelocity().x<<" "<<energy_ball->GetLinearVelocity().y<<std::endl;
     return energy_ball->GetPosition();
 }
 

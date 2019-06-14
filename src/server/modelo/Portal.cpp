@@ -94,6 +94,10 @@ bool Portal::isValid() {
     return result;
 }
 
+int Portal::getOrientation() {
+    return this->orientation;
+}
+
 b2Vec2 Portal::getNormal() {
     return normal;
 }

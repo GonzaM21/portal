@@ -20,7 +20,6 @@ void GameLoop :: sendInitialData() {
     this->encoder.sendMetalBlocks();
     this->encoder.sendButtons();    
     this->encoder.sendEnergyBalls();
-    this->encoder.sendEmitters();
     this->encoder.sendRocks();
     this->encoder.sendStoneBlocks();
     this->encoder.sendAcids();
@@ -33,8 +32,9 @@ void GameLoop :: sendDynamicData() { //aca va todo lo que se mueve
     this->encoder.sendPlayersPositions();
     this->encoder.sendPortals();
     this->encoder.sendRocks();
-    this->encoder.sendEnergyBalls();
+    //this->encoder.sendEnergyBalls();
     this->encoder.sendGates(); 
+    this->encoder.sendEmitters();
 }
 
 void GameLoop :: run() {

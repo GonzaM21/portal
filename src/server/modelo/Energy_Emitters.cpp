@@ -75,8 +75,9 @@ bool Energy_Emitters::setTransform(Entity *) {
     return true;
 }
 
-Energy_Ball Energy_Emitters::getEnergyBallShoted() {
-    return *energy_balls[energy_balls.size()-1];
+Energy_Ball* Energy_Emitters::getEnergyBallShoted() {
+    if (energy_balls.size() == 0) return nullptr;
+    return energy_balls[energy_balls.size()-1];
 }
 
 Energy_Emitters::~Energy_Emitters() {
