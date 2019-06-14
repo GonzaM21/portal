@@ -97,3 +97,7 @@ void ModelFacade::setEnergyBarrier(std::vector<std::string> arguments) {
   std::cout << arguments.at(4) << std::endl;
   std::cout << "Sin terminar las barreras" << std::endl;
 }
+
+void ModelFacade::convertToWorld(Rect &worldPostion, const Rect &virtualPostion) {
+  model.convertToWorld(worldPostion,virtualPostion);
+}

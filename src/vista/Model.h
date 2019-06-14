@@ -46,8 +46,9 @@ public:
     window.fullscreen();
   }
   Window *getWindow();
+  void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);
 
-private:
+private: 
   Window window;
   Camara camara;
   std::list<Block *> blocks;

@@ -21,7 +21,7 @@ int IdlePlayer::render(const Rect &dest)
 	int response;
 	if (direction == 1)
 	{
-		response = Sprite::render(src, dest);
+		response = Sprite::render(src, dest,SDL_FLIP_NONE,0,1);
 	}
 	else
 	{

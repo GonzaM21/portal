@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 
         if (!joiner.isValid()) return 0; 
 
-        MessageSender sender(&communicator);
+        MessageSender sender(&communicator, &model_facade);
         Renderable *renderer_thread = new Renderable(&model_facade,&communicator);
         EventHandlerThread* handler = new EventHandlerThread(sender,&model_facade);
         renderer_thread->start();

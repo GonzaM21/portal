@@ -29,7 +29,8 @@ void Emitter::setDestWorld(float x, float y, float width, float height)
 }
 
 void Emitter::setState(const int& state) {
-	inactive->setState(state);
+	std::cout << "Inactive " << state << std::endl;
+	inactive->setState(std::abs(state-1));
 }
 
 Emitter::~Emitter()

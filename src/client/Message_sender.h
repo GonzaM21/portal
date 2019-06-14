@@ -7,7 +7,7 @@
 
 class MessageSender {
 public:
-  MessageSender(ClientCommunicator *communicator);
+  MessageSender(ClientCommunicator *communicator, ModelFacade* modelFacade);
   ~MessageSender() {};
   void sendMoveRight();
   void sendMoveLeft();
@@ -22,6 +22,7 @@ public:
 private: 
   bool running;
   ClientCommunicator *communicator;
+  ModelFacade* modelFacade;
 };
 
 #endif

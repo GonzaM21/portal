@@ -24,8 +24,9 @@ public:
    int render(Sprite &sprite, Rect destWorld);
    void setWindow(float x, float y, float width, float height);
    void convertToVirtual(const Rect &worldPostion, Rect &virtualPostion);
+   void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);
 
-private:
+ private:
    const Window &window;
    int window_width;
    int window_height;

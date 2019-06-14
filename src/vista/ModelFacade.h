@@ -41,6 +41,7 @@ public:
   void setFullscreen() {model.fullscreen();}
   void renderAll();
   Window *getWindow();
+  void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);
 
 private:
   Model model;

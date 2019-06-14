@@ -98,10 +98,10 @@ void EventHandler::handleMouseButtonUp(SDL_MouseButtonEvent& mouseEvent) {
   // std::string msg = "p," + x_world + "," + y_world;
   switch (mouseEvent.button){
     case SDL_BUTTON_RIGHT:
-      messageSender.sendPortal(1.5, 0.5, 2);
+      messageSender.sendPortal(x, y, 2);
       break;
     case SDL_BUTTON_LEFT:
-      messageSender.sendPortal(-1.5, 0.5, 1);
+      messageSender.sendPortal(x, y, 1);
       break;
   }
 }

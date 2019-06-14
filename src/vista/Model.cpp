@@ -103,6 +103,11 @@ std::map<int, Gate *> Model::getGates()
   return gates;
 }
 
+void Model::convertToWorld(Rect &worldPostion, const Rect &virtualPostion)
+{
+  camara.convertToWorld(worldPostion, virtualPostion);
+}
+
 void Model::renderAll()
 {
   if (ownPlayerId == -1)
