@@ -27,7 +27,7 @@ public:
     ObjectStoneBlock* createObjectStoneBlock(float x_pos, float y_pos,float size);
     ObjectButton* createObjectButton(float x_pos, float y_pos,int door_id,int state_to_open_door);
     ObjectEnergyBarrier* createObjectEnergyBarrier(float x_pos,float y_pos,float large);
-    ObjectEmitter* createObjectEmitter(float x_pos, float y_pos, float size,std::string& 
+    ObjectEmitter* createObjectEmitter(float x_pos, float y_pos, float size,int 
        direction, int charged);
 };
 

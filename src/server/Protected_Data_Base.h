@@ -56,7 +56,7 @@ public:
     void addButton(World &world, float x_pos, float y_pos,int door_id,int state_to_open_door);
     void addGate(World &world, float x_pos, float y_pos);
     void addEmitter(World &world,float x_pos, float y_pos, float size,
-      std::string& direction, bool charged);
+      int direction, bool charged);
     void addEnergyBarrier(World &world,float x_pos, float y_pos, float large);
 
     //Getters

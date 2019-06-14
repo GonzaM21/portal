@@ -8,7 +8,7 @@ private:
 
 public:
     Initializer();
-    ~Initializer() =default;
+    ~Initializer() = default;
     SocketAccept initialiceSocketAccept(char *&port);
 };
 

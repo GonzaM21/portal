@@ -94,7 +94,7 @@ void Model :: addGate(float x_pos, float y_pos) {
     this->data_base.addGate(this->world,x_pos,y_pos);
 }
 
-void Model::addEmitter(float x_pos, float y_pos, float size,std::string& direction, bool charged) {
+void Model::addEmitter(float x_pos, float y_pos, float size,int direction, bool charged) {
     this->data_base.addEmitter(this->world,x_pos,y_pos,size,direction,charged);
 }
 

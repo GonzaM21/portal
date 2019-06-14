@@ -10,12 +10,12 @@ class Energy_Emitters : public Entity{
     b2Body * emitter;
     bool charged;
     b2Vec2 sizes;
-    std::string direction;
+    int direction;
     std::string name;
     int step_counter;
     std::vector<Energy_Ball *> energy_balls;
 public:
-    Energy_Emitters(World & world, float x_pos, float y_pos, float size,std::string& direction, bool charged);
+    Energy_Emitters(World & world, float x_pos, float y_pos, float size,int direction, bool charged);
     b2Vec2 getPosition();
     b2Vec2 getSizes();
     std::string getEntityName() override;

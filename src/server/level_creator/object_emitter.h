@@ -9,12 +9,12 @@ private:
     float x_pos;
     float y_pos;
     float size;
-    std::string direction;
+    int direction;
     bool charged;
 
 public:
     ObjectEmitter(Model *model,float x_pos, float y_pos, 
-        float size,std::string& direction, int charged);
+        float size,int direction, int charged);
     ~ObjectEmitter() = default;
     void aggregate() override;
 };

@@ -43,7 +43,7 @@ class Model {
         void addStoneBlock(float x_pos, float y_pos,float size);
         void addButton( float x_pos, float y_pos,int door_id,int state_to_open_door);
         void addGate( float x_pos, float y_pos);
-        void addEmitter(float x_pos, float y_pos, float size,std::string& direction, bool charged);
+        void addEmitter(float x_pos, float y_pos, float size,int direction, bool charged);
         void addEnergyBarrier(float x_pos, float y_pos, float large);
 };
 

@@ -1,11 +1,14 @@
 //
 // Created by gonzalo on 07/06/19.
 //
-
+#define RIGHT 0
+#define LEFT 1
+#define UP 2
+#define DOWN 3
 #include "Energy_Emitters.h"
 
-Energy_Emitters::Energy_Emitters(World &world, float x_pos, float y_pos, float size, std::string& direction, bool charged)
-                                : world(world), charged(charged), direction(direction), step_counter(0) {
+Energy_Emitters::Energy_Emitters(World &world, float x_pos, float y_pos, float size,int direction, bool charged)
+                                : world(world), charged(charged), step_counter(0) {
     Filter_Data data(1);
     data.addMaskBits(1);
     data.addMaskBits(2);
@@ -15,8 +18,8 @@ Energy_Emitters::Energy_Emitters(World &world, float x_pos, float y_pos, float s
     emitter = world.addBox(x_pos,y_pos,size/2.f,true,false,data);
     emitter->SetUserData(this);
     sizes = b2Vec2(size,size);
-    std::cout<<size<<std::endl;
     name = "Energy_Emitter";
+    this->direction = direction;
 }
 
 b2Vec2 Energy_Emitters::getPosition() {
@@ -46,15 +49,13 @@ bool Energy_Emitters::lives(){
     return true;
 }
 
-b2Vec2 calculate_postion(b2Vec2 position,b2Vec2 sizes ,std::string& direction){
+b2Vec2 calculate_postion(b2Vec2 position,b2Vec2 sizes ,int direction){
     float x = position.x - 0.02;
     float y = position.y - 0.02;
-    if(direction == "Right") x += (sizes.x/2.f + .7);
-    if(direction == "Left") x -= (sizes.x/2.f + .7);
-    if(direction == "Up") y += (sizes.y/2.f + .7);
-    if(direction == "Down") y -= (sizes.y/2.f + .7);
-
-    std::cout<<"Nueva position: "<<x<<"     "<<y<<std::endl;
+    if(direction == RIGHT) x += (sizes.x/2.f + .7);
+    if(direction == LEFT) x -= (sizes.x/2.f + .7); 
+    if(direction == UP) y += (sizes.y/2.f + .7);   
+    if(direction == DOWN) y -= (sizes.y/2.f + .7); 
     return b2Vec2(x,y);
 }
 
@@ -62,13 +63,11 @@ void Energy_Emitters::changePosition() {
     if(!charged) return;
     if(step_counter % 10 != 0) return;
     b2Vec2 pos = calculate_postion(emitter->GetPosition(),sizes,direction);
-
-    printf("Disparandoooooooooooooooooooooooooooooooooo\n");
     energy_balls.push_back(new Energy_Ball(world,pos.x,pos.y));
-    if(direction == "Right") energy_balls[energy_balls.size()-1]->Move('R');
-    if(direction == "Left") energy_balls[energy_balls.size()-1]->Move('L');
-    if(direction == "Up") energy_balls[energy_balls.size()-1]->Move('U');
-    if(direction == "Down") energy_balls[energy_balls.size()-1]->Move('D');
+    if(direction == RIGHT) energy_balls[energy_balls.size()-1]->Move('R');
+    if(direction == LEFT) energy_balls[energy_balls.size()-1]->Move('L');
+    if(direction == UP) energy_balls[energy_balls.size()-1]->Move('U');
+    if(direction == DOWN) energy_balls[energy_balls.size()-1]->Move('D');
     charged = false;
 }
 

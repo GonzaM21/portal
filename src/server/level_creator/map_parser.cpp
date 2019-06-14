@@ -71,9 +71,8 @@ void MapParser :: createStoneBlock(nlohmann::json &object) {
 }
 
 void MapParser :: createEmitter(nlohmann::json &object) {
-    std::string direction(object.at("DIRECTION"));
     ObjectEmitter* new_object = this->object_factory.createObjectEmitter((float)object.at("POS_X"),
-    (float)object.at("POS_Y"),(float)object.at("WIDTH"),direction,object.at("CHARGED"));
+    (float)object.at("POS_Y"),(float)object.at("WIDTH"),object.at("DIRECTION"),object.at("CHARGED"));
     new_object->aggregate();
     delete new_object;
 }

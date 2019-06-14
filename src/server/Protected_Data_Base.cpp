@@ -77,7 +77,7 @@ void ProtectedDataBase :: addPlayer(World &world,std::string &player) {
     this->player_ids.insert({player,this->players.size()});
 }
 
-void ProtectedDataBase :: addEmitter(World &world,float x_pos, float y_pos, float size,std::string& direction, bool charged) {
+void ProtectedDataBase :: addEmitter(World &world,float x_pos, float y_pos, float size,int direction, bool charged) {
     std::unique_lock<std::mutex> lck(m);
     size_t emitter_id = this->emitters.size();
     this->emitters.insert({emitter_id,new Energy_Emitters(world,x_pos,y_pos,size,direction,charged)});

@@ -37,6 +37,6 @@ ObjectEnergyBarrier* ObjectFactory ::createObjectEnergyBarrier(float x_pos,float
 }
 
 ObjectEmitter* ObjectFactory ::createObjectEmitter(float x_pos, float y_pos, 
-    float size,std::string& direction, int charged) {
+    float size,int direction, int charged) {
     return new ObjectEmitter(this->model,x_pos,y_pos,size,direction,charged);
 }
