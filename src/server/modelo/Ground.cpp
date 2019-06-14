@@ -44,3 +44,5 @@ b2Vec2 Ground::getPosition(){
 float Ground::getAngle(){
     return ground->GetAngle();
 }
+
+void Ground::startBouncing() {}

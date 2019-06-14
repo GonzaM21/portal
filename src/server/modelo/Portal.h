@@ -45,6 +45,7 @@ public:
     bool lives() override;
     bool setTransform(Entity * body) override;
     void changePosition() override;
+    void startBouncing() override ;
     bool havePartner();
     b2Vec2 getNormal();
     bool changePortalPosition(float x_pos, float y_pos);

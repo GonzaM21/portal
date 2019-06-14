@@ -78,3 +78,5 @@ void Energy_Ball::changePosition() {
     if(!contact) return;
     energy_ball->SetLinearVelocity(b2Vec2(0,0));
 }
+
+void Energy_Ball::startBouncing() {}

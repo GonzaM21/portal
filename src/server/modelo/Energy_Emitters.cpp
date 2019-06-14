@@ -85,3 +85,5 @@ Energy_Emitters::~Energy_Emitters() {
         delete energy_balls[i];
     }
 }
+
+void Energy_Emitters::startBouncing() {}

@@ -20,6 +20,7 @@ public:
     bool lives() override;
     bool setTransform(Entity *) override;
     void changePosition() override;
+    void startBouncing() override ;
     b2Vec2 getPosition();
     float getAngle();
     float getRadius();

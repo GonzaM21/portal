@@ -37,3 +37,5 @@ b2Vec2 Energy_Barrier::getSizes(){
 b2Vec2 Energy_Barrier::getPosition() {
     return barrier->GetPosition();
 }
+
+void Energy_Barrier::startBouncing() {}

@@ -24,6 +24,7 @@ public:
     void die() override;
     bool lives() override;
     bool setTransform(Entity *) override;
+    void startBouncing() override ;
     void changePosition() override;
     Energy_Ball* getEnergyBallShoted();
     ~Energy_Emitters();

@@ -30,6 +30,7 @@ public:
     bool lives() override;
     bool setTransform(Entity *) override;
     void changePosition() override;
+    void startBouncing() override ;
     float getRadius();
     ~Energy_Ball() = default;
 };

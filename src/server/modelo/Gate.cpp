@@ -78,3 +78,5 @@ void Gate::addButton(Button *button, int pos) {
 bool Gate::isOpen(){
     return door_is_open;
 }
+
+void Gate::startBouncing() {}

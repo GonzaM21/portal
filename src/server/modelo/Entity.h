@@ -6,12 +6,12 @@
 class Entity{
 public:
     virtual std::string getEntityName() = 0;
-    virtual void startContact(b2Vec2) = 0;
+    virtual void startContact(b2Vec2 pos) = 0;
     virtual void endContact() = 0;
     virtual void die() = 0;
     virtual bool lives() = 0;
-    virtual bool setTransform(Entity *) = 0;
+    virtual bool setTransform(Entity * body) = 0;
     virtual void changePosition() = 0;
-    virtual ~Entity() = default;
+    virtual void startBouncing() = 0;
 };
 #endif

@@ -53,3 +53,5 @@ bool Rock::setTransform(Entity *) {
 }
 
 void Rock::changePosition() {}
+
+void Rock::startBouncing() {}

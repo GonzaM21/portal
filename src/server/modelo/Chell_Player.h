@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "Portal.h"
 #include "Player_Portals.h"
+#include "Foot_Sensor.h"
 
 class Chell_Player : public Entity{
     b2Body* chell;
@@ -18,6 +19,8 @@ class Chell_Player : public Entity{
     bool win;
     b2Vec2 sizes;
     b2Vec2 teleport_pos;
+    Foot_Sensor * footSensor;
+    //b2Vec2 velocity;
     int contact_counter;
     int jumper_counter;
     bool direction_right;
@@ -65,10 +68,11 @@ public:
 
     bool lives() override;
 
+    void startBouncing() override ;
+
     int getDirection();
 
     Portal *getPortalIn();
     Portal *getPortalOut();
-    ~Chell_Player() = default;
 };
 #endif //TP4_CHELL_PLAYER_H

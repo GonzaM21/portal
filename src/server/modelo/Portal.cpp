@@ -186,3 +186,5 @@ bool Portal::setTransform(Entity * body){
     }
     return true;
 }
+
+void Portal::startBouncing() {}
