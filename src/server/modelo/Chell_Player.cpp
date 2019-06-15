@@ -99,18 +99,22 @@ bool Chell_Player::setTransform(Entity * body) {
     if(!dynamic_cast<Portal *>(body)->havePartner()) return false;
     if(!dynamic_cast<Portal *>(body)->getPartnerPortal()->lives()) return false;
 
-    b2Vec2 position = dynamic_cast<Portal *>(body)->getPartnerPortal()->getPosition();
+    teleport_pos = dynamic_cast<Portal *>(body)->getPartnerPortal()->getPosition();
     b2Vec2 normal = dynamic_cast<Portal *>(body)->getPartnerPortal()->getNormal();
 
     teleport = true;
-
     //b2Vec2 velocity_actual = chell->GetLinearVelocity();
-    if(normal.x > 0){
-        teleport_pos = position + b2Vec2(0.5,0.0);
+    if(normal.x > 1){
+        teleport_pos = teleport_pos + b2Vec2(0.7,0.0);
+    } else {
+        teleport_pos = teleport_pos - b2Vec2(0.7,0.0);
     }
-    else{
-        teleport_pos = position - b2Vec2(0.5,0.0);
+    if(normal.y > 1){
+        teleport_pos = teleport_pos + b2Vec2(0,0.7);
+    } else {
+        teleport_pos = teleport_pos - b2Vec2(0,0.7);
     }
+    std::cout<<"Normal "<<normal.x<<" "<<normal.y<<std::endl;
     //velocity = b2Vec2(abs(velocity_actual.x/2) * normal.x/2,velocity_actual.y * normal.y);
     return true;
 }
@@ -120,11 +124,12 @@ void Chell_Player::changePosition() {
         std::cout<<"frenate"<<std::endl;
         chell->SetLinearVelocity(b2Vec2(0,0));
         bouncing = false;
-        jumper_counter = 0;
+        //jumper_counter = 0;
     }
     if(!teleport) return;
     chell->SetTransform(teleport_pos,chell->GetAngle());
     chell->SetLinearVelocity(b2Vec2(0,0));
+    jumper_counter = 0;
     teleport = false;
 }
 
@@ -143,11 +148,9 @@ void Chell_Player::endContact() {
     std::cout<<"Chell end contact\n";
     if(chell->GetLinearVelocity().y < 0){
         contact = false;
-
-
     }
-    jumper_counter = 0;
-    bouncing = true;
+    jumper_counter = 1;
+    //bouncing = true;
     //--contact_counter;
 }
 

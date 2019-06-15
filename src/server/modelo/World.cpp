@@ -64,10 +64,8 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
     polygonBody = world->CreateBody(&polygonBodyDef);
     polygonBody->CreateFixture(&polygonFixtureDef);
     polygonBody->SetFixedRotation(true);
-    polygonFixtureDef.filter.categoryBits = data.getCategoryBits();
-    polygonFixtureDef.filter.maskBits = data.getMaskBits();
-    shape_polygon.SetAsBox(0.05, 0.05, b2Vec2(0, - y_pos + DELTA_POSITION),0);
-    //polygonFixtureDef.isSensor = true;
+    shape_polygon.SetAsBox(0.002, 0.002, b2Vec2(0, -y_size),0);
+    polygonFixtureDef.isSensor = true;
     b2Fixture* footSensorFixture  = polygonBody->CreateFixture(&polygonFixtureDef);
     std::cout<<"World: "<<foot_data<<std::endl;
     footSensorFixture->SetUserData(foot_data);
@@ -240,7 +238,7 @@ void World::Step(float time, int velocity, int position){
 }
 
 void World::moveBodies(){
-    for(int i = 0; i < Bodies.size(); ++i) {
+    for(size_t i = 0; i < Bodies.size(); ++i) {
         if (Bodies[i]->GetUserData()) {
             static_cast<Entity *>(Bodies[i]->GetUserData())->changePosition();
         }
@@ -248,7 +246,7 @@ void World::moveBodies(){
 }
 
 void World::eraseBody(b2Body *body) {
-    for(int i = 0; i < Bodies.size(); ++i) {
+    for(size_t i = 0; i < Bodies.size(); ++i) {
         if (Bodies[i] == body) {
             world->DestroyBody(Bodies[i]);
             Bodies.erase(Bodies.begin() + i);
@@ -259,7 +257,7 @@ void World::eraseBody(b2Body *body) {
 bool World::deleteBodies(){
 
     //std::cout<<"bodies sizes: "<<Bodies.size()<<std::endl;
-    for(int i = 0; i < Bodies.size(); ++i) {
+    for(size_t i = 0; i < Bodies.size(); ++i) {
         if (Bodies[i]->GetUserData()) {
             //std::cout<<"Nombre: "<<static_cast<Entity *>(Bodies[i]->GetUserData())->getEntityName()<<std::endl;
             if (!static_cast<Entity *>(Bodies[i]->GetUserData())->lives()) {
