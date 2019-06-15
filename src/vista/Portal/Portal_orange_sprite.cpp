@@ -13,15 +13,7 @@ OrangePortal::OrangePortal(const Window &window, const int &direction) : Sprite(
 
 int OrangePortal::render(const Rect &dest)
 {
-  int response = 0;
-  if (direction == 1)
-  {
-    response = Sprite::render(src, dest);
-  }
-  else
-  {
-    response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 90);
-  }
+  int response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 45 * direction);
   return response;
 }
 

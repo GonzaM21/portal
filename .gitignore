@@ -6,3 +6,4 @@ Makefile
 .idea/
 Client
 Server
+CMakeCache.txt
