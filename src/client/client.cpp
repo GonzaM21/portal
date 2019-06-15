@@ -9,7 +9,7 @@
 #include "client/event_handler_thread.h"
 #include "client/Message_sender.h"
 #include "map_editor/interface.h"
-#include "inicio/include/Inicio.h"
+#include "inicio/entrada/include/Inicio.h"
 #include <QApplication>
 
 int ejecutarVentana(int argc, char *argv[] ,std::string &host, std::string &port, std::string &player_name)

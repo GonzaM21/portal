@@ -18,7 +18,7 @@ add_subdirectory(src/vista)
 add_subdirectory(src/server)
 add_subdirectory(src/common)
 add_subdirectory(src/client)
-add_subdirectory(src/inicio)
+add_subdirectory(src/inicio/entrada)
 
 
 add_executable (Client
