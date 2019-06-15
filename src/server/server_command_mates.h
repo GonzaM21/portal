@@ -1,7 +1,7 @@
 #ifndef COMMAND_MATES_H
 #define COMMAND_MATES_H
 #include <string>
-#include "../server/server_command.h"
+#include "server_command.h"
 
 class CommandMates : public Command {
 private:

@@ -6,9 +6,9 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <signal.h>
-#include "../server/server_game_loop.h"
-#include "../server/server_sender.h"
-#include "../server/modelo/World.h"
+#include "server_game_loop.h"
+#include "server_sender.h"
+#include "modelo/World.h"
 #include "Protected_Data_Base.h"
 
 

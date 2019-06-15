@@ -1,4 +1,4 @@
-#include "../server/server_command_jump.h"
+#include "server_command_jump.h"
 
 CommandJump :: CommandJump(Model *model,std::string &player) {
     this->model = model;

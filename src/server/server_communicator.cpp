@@ -1,5 +1,5 @@
-#include "../server/server_communicator.h"
-#include "../server/server_room_manager.h"
+#include "server_communicator.h"
+#include "server_room_manager.h"
 #include "../common/common_error.h"
 
 Communicator :: Communicator(SocketConnect socket,RoomManager *room_manager,

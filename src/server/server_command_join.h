@@ -1,7 +1,7 @@
 #ifndef COMMAND_JOIN_H
 #define COMMAND_JOIN_H
 #include <string>
-#include "../server/server_command.h"
+#include "server_command.h"
 
 class CommandJoin : public Command {
 private:

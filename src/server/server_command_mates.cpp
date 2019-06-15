@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../server/server_command_mates.h"
+#include "server_command_mates.h"
 
 
 CommandMates :: CommandMates(Model *model) {

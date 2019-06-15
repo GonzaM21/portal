@@ -1,6 +1,6 @@
 #ifndef COMMAND_H
 #define COMMAND_H
-#include "../server/server_model.h"
+#include "server_model.h"
 
 class Command {
 public:

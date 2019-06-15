@@ -1,4 +1,4 @@
-#include "../server/server_command_move_rock.h"
+#include "server_command_move_rock.h"
 
 CommandMoveRock :: CommandMoveRock(Model *model,std::string &player) {
     this->model = model;

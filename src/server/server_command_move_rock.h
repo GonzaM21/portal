@@ -1,7 +1,7 @@
 #ifndef COMMAND_MOVE_ROCK_H
 #define COMMAND_MOVE_ROCK_H
 #include <string>
-#include "../server/server_command.h"
+#include "server_command.h"
 
 class CommandMoveRock : public Command {
 private:

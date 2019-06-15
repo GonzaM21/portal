@@ -1,7 +1,7 @@
 #ifndef COMMAND_DISCONNECTED_H
 #define COMMAND_DISCONNECTED_H
 #include <string>
-#include "../server/server_command.h"
+#include "server_command.h"
 
 class CommandDisconnected : public Command {
 private:

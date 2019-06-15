@@ -3,12 +3,12 @@
 #include <string>
 #include <list>
 #include <queue>
-#include "../server/server_model.h"
-#include "../common/Thread.h"
-#include "../server/server_sender.h"
-#include "../common/common_cola_protegida.h"
 #include <mutex>
 #include <map>
+#include "server_model.h"
+#include "server_sender.h"
+#include "../common/Thread.h"
+#include "../common/common_cola_protegida.h"
 
 class RoomGame : public Thread {
     private:

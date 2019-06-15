@@ -1,4 +1,4 @@
-#include "../server/server_command_disconnected.h"
+#include "server_command_disconnected.h"
 
 CommandDisconnected :: CommandDisconnected(std::map<std::string,bool>* players_connection
     ,std::string &player) {

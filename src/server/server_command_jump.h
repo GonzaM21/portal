@@ -1,7 +1,7 @@
 #ifndef COMMAND_JUMP_H
 #define COMMAND_JUMP_H
 #include <string>
-#include "../server/server_command.h"
+#include "server_command.h"
 
 class CommandJump : public Command {
 private:

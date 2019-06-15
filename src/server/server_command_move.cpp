@@ -1,4 +1,4 @@
-#include "../server/server_command_move.h"
+#include "server_command_move.h"
 
 CommandMove :: CommandMove(Model *model,std::string &player,char &direction) {
     this->model = model;

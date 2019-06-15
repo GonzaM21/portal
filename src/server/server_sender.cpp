@@ -1,4 +1,4 @@
-#include "../server/server_sender.h"
+#include "server_sender.h"
 #include <iostream>
 
 Sender :: ~Sender() {

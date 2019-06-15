@@ -1,1 +1,1 @@
-#include "../server/server_command.h"
+#include "server_command.h"

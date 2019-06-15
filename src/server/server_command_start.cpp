@@ -1,4 +1,4 @@
-#include "../server/server_command_start.h"
+#include "server_command_start.h"
 
 CommandStart :: CommandStart(Model *model) {
     this->model = model;
