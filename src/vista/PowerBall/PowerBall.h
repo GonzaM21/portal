@@ -9,7 +9,7 @@
 class PowerBall
 {
 public:
-  PowerBall(const Window &window, const int &state);
+  PowerBall(const Window &window, const int &state, const int& direction);
   ~PowerBall();
   int render(Camara &camara);
   void setFlying();

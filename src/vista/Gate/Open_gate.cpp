@@ -3,7 +3,7 @@
 #include "../Rect.h"
 #include "../Sprite.h"
 #include "Open_gate.h"
-#include "vista/TextureBase.h"
+#include "TextureBase.h"
 #include <string>
 #include <iostream>
 

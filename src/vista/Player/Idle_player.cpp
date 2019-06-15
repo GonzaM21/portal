@@ -2,7 +2,7 @@
 #include "../Window.h"
 #include "../Constants.h"
 #include "Idle_player.h"
-#include "vista/TextureBase.h"
+#include "TextureBase.h"
 #include <string>
 #include <iostream>
 #define X_POSITION 1

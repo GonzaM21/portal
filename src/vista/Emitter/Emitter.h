@@ -4,7 +4,7 @@
 #include "../Sprite.h"
 #include "../Rect.h"
 #include "Emitter_sprite.h"
-#include "vista/Emitter/Target_sprite.h"
+#include "Emitter/Target_sprite.h"
 #include "../Camara.h"
 
 class Emitter

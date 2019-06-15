@@ -2,7 +2,7 @@
 #include "../Constants.h"
 #include "Paw_powerball.h"
 #include "PowerBall.h"
-#include "vista/TextureBase.h"
+#include "TextureBase.h"
 #include <string>
 #include <iostream>
 

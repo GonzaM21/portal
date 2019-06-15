@@ -14,6 +14,7 @@
 #include <string>
 #include <iostream>
 #include <functional>
+#include <typeinfo>
 
 Player::Player(const Window &window, const int &direction) : dest_world(0, 0, 0, 0), window(window), direction(direction)
 {
@@ -45,52 +46,81 @@ int Player::render(Camara &camara)
 
 void Player::setIdle()
 {
-	this->sprite = this->states[0];
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[0]).name()) != 0)
+	{
+		this->sprite = this->states[0];
+	}
 }
 
 void Player::setRestIdle()
 {
-	this->sprite = this->states[1];
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[1]).name()) != 0)
+	{
+		this->sprite = this->states[1];
+	}
 }
 
 void Player::setRunning()
 {
-	this->sprite = this->states[2];
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[2]).name()) != 0)
+	{
+		this->sprite = this->states[2];
+	}
 }
 
 void Player::setDancing()
 {
-	this->sprite = this->states[3];
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[3]).name()) != 0)
+	{
+		this->sprite = this->states[3];
+	}
 }
 
 void Player::setDying()
 {
-	this->sprite = this->states[4];
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[4]).name()) != 0)
+	{
+		this->sprite = this->states[4];
+	}
 }
 
 
 void Player::setRunningShooting()
 {
-	this->sprite = this->states[5];
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[5]).name()) != 0)
+	{
+		this->sprite = this->states[5];
+	}
+	
 }
 
 void Player::setStop()
 {
-	this->sprite = this->states[6];
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[6]).name()) != 0)
+	{
+		this->sprite = this->states[6];
+	}
 }
 
 void Player::setRising()
 {
-	this->sprite = this->states[7];
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[7]).name()) != 0)
+	{
+		this->sprite = this->states[7];
+	}
 }
 
 void Player::setFalling()
 {
-	this->sprite = this->states[8];
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[8]).name()) != 0)
+	{
+		this->sprite = this->states[8];
+	}
 }
 void Player::setState(const int &state, const int &direction)
 {
 	(this->*(changeState[state]))();
+	std::cout << strcmp(typeid(*this->sprite).name(), typeid(*this->states[0]).name()) << std::endl;
 	this->sprite->setDirection(direction);
 	this->direction = direction;
 }

@@ -8,12 +8,12 @@
 #include <iostream>
 #include <typeinfo>
 
-PowerBall::PowerBall(const Window &window, const int &state) : window(window),
-																															 dest_world(0, 0, WIDTH_POWERBALL_FLYING, HEIGHT_POWERBALL_FLYING)
+PowerBall::PowerBall(const Window &window, const int &state, const int &direction) : window(window),
+																																											 dest_world(0, 0, WIDTH_POWERBALL_FLYING, HEIGHT_POWERBALL_FLYING)
 {
 	if (state == 0)
 	{
-		this->sprite = new FlyingPowerBall(window);
+		this->sprite = new FlyingPowerBall(window, direction);
 	}
 	else if (state == 1)
 	{

@@ -1,7 +1,7 @@
 #include "Shoot_block_sprite.h"
 #include "../Constants.h"
 #include "../Window.h"
-#include "vista/TextureBase.h"
+#include "TextureBase.h"
 #include <string>
 #include <iostream>
 

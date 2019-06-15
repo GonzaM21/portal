@@ -1,7 +1,7 @@
 #include "Stone_block_sprite.h"
 #include "../Window.h"
 #include "../Constants.h"
-#include "vista/TextureBase.h"
+#include "TextureBase.h"
 #include <string>
 #include <iostream>
 

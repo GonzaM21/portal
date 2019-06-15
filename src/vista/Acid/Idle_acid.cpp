@@ -3,7 +3,7 @@
 #include "Idle_acid.h"
 #include "../Sprite.h"
 #include "../Rect.h"
-#include "vista/TextureBase.h"
+#include "TextureBase.h"
 #include <string>
 #include <iostream>
 

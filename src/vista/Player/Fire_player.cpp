@@ -2,7 +2,7 @@
 #include "../Constants.h"
 #include "Fire_player.h"
 #include "Player.h"
-#include "vista/TextureBase.h"
+#include "TextureBase.h"
 #include <string>
 #include <iostream>
 #define X_POSITION 1

@@ -1,4 +1,4 @@
-#include "vista/Camara.h"
+#include "Camara.h"
 #include <iostream>
 #define FACTORX 0.12
 #define FACTORY 0.25
@@ -35,7 +35,6 @@ void Camara::convertToVirtual(const Rect &worldPostion, Rect &virtualPostion) {
 void Camara::convertToWorld(Rect &worldPostion, const Rect &virtualPostion) {
   float widthWorld = virtualPostion.getWidth() / (FACTORX * this->window_width);
   float heightWorld = virtualPostion.getHeight() / (FACTORX * this->window_height);
-  vision.prfloat();
   float xWorld = (virtualPostion.getX() - this->window_width / 2 + widthWorld / 2) / (FACTORX * this->window_width) + vision.getX();
   float yWorld = (virtualPostion.getY() - this->window_height / 2 + heightWorld / 2) / (FACTORX * this->window_height) + vision.getY();
   worldPostion.set(xWorld, yWorld, widthWorld, heightWorld);

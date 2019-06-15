@@ -1,6 +1,6 @@
-#include "vista/TextureBase.h"
-#include "vista/Constants.h"
-#include "vista/Sprite.h"
+#include "TextureBase.h"
+#include "Constants.h"
+#include "Sprite.h"
 
 TextureBase::TextureBase(SDL_Renderer* renderer) : renderer(renderer)
 {

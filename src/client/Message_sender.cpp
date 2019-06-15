@@ -23,9 +23,7 @@ void MessageSender::sendJump()
 void MessageSender::sendPortal(const int &x, const int &y, const int &code) {
   Rect virtualPos(x,y,0,0);
   Rect worldPos(0,0,0,0);
-  virtualPos.prfloat();
   modelFacade->convertToWorld(worldPos,virtualPos);
-  worldPos.prfloat();
   communicator->addMessageToSend("p," + std::to_string(worldPos.getX()) + "," + std::to_string(worldPos.getY()) + "," + std::to_string(code));
 }
 

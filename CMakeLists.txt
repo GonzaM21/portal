@@ -10,6 +10,7 @@ set(CMAKE_CXX_STANDARD 11)
 #include_directories(src)
 # Archivos generados por CMake
 include_directories(${PROJECT_BINARY_DIR}/src)
+include_directories(${PROJECT_BINARY_DIR}/src/vista)
 include_directories(${PROJECT_BINARY_DIR}/src/server/modelo)
 
 # Agrego la carpeta con los headers autogenerados a los includes

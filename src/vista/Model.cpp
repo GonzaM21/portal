@@ -1,5 +1,5 @@
-#include "vista/Model.h"
-#include "vista/TextureBase.h"
+#include "Model.h"
+#include "TextureBase.h"
 
 Model::Model() : window(800, 800), camara(window), ownPlayerId(-1)
 {
@@ -57,7 +57,7 @@ void Model::setAcid(Rect &dest)
 }
 void Model::setPowerball(Rect &dest, const int &state)
 {
-  this->powerballs.push_back(new PowerBall(window, state));
+  this->powerballs.push_back(new PowerBall(window, state, 0));
   this->powerballs.back()->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
 }
 void Model::setRock(Rect &dest, const int &id)
