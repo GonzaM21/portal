@@ -20,7 +20,8 @@ Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
     position = portal->GetPosition();
     radius = ENERGY_BALL;
     sizes = b2Vec2(PORTAL_WIDTH,PORTAL_HIGH);
-    ground = false;
+    orientation = 0;
+
 }
 
 bool Portal::Move(float x_pos, float y_pos){
@@ -47,32 +48,45 @@ bool Portal::Move(float x_pos, float y_pos){
 void Portal::changePosition() {
     if(!contact) return;
     if(contact){
-        if(body_pos.x - position.x == 0){
-            orientation = 1;
+        std::cout<<"resta: "<<abs(body_pos.x) - abs(position.x)<<" "<<abs(body_pos.y) - abs(position.y)<<std::endl;
+        if(abs(body_pos.x) - abs(position.x == 0)){
+            printf("Horizontal\n");
+            std::cout<<"Orientacion antes "<<orientation <<std::endl;
+            orientation = 0;
+            std::cout<<"Orientacion despues"<<orientation <<std::endl;
             if(body_pos.y < position.y) normal = b2Vec2(1.f,2.f);
             if(body_pos.y > position.y) normal = b2Vec2(1.f,-2.f);
-
         }
-        if(body_pos.y - position.y == 0){
-                orientation = 0;
+        if(abs(body_pos.y) - abs(position.y) == 0){
+            printf("Vertical\n");
+            std::cout<<"Orientacion antes "<<orientation <<std::endl;
+            orientation = 2;
+            std::cout<<"Orientacion despues"<<orientation <<std::endl;
+                orientation = 2;
                 if(body_pos.x < position.x) normal = b2Vec2(2.f,1.f);
 
                 if(body_pos.x > position.x) normal = b2Vec2(-2.f,1.f);
         }
-        if(ground) normal = b2Vec2(normal.x, normal.y * -1);
+        if(abs(body_pos.x - position.x) != 0 && abs(body_pos.y - position.y) != 0){
+            std::cout<<"Orientacion antes "<<orientation <<std::endl;
+            orientation = 3;
+            std::cout<<"Orientacion despues"<<orientation <<std::endl;
+        }
         Filter_Data data(ROCK_PORTAL_BITS);
         data.addMaskBits(OTHER_BITS);
         data.addMaskBits(CHELL_BITS);
         data.addMaskBits(ROCK_PORTAL_BITS);
-        if(orientation == 0){
-            portal = world.addPolygon(position.x - DELTA_POSITION
+        if(orientation == 2){
+            float delta = - PORTAL_WIDTH/2.f;
+            if(position.x > 0) delta = PORTAL_WIDTH/2.f;
+            portal = world.addPolygon(position.x - DELTA_POSITION + delta
                     ,position.y - DELTA_POSITION,PORTAL_WIDTH/2.F,PORTAL_HIGH/2.F,true,data);
-            sizes = b2Vec2(PORTAL_WIDTH,PORTAL_HIGH);
         }
-        if (orientation == 1) {
-            portal = world.addPolygon(position.x - DELTA_POSITION,position.y - DELTA_POSITION,PORTAL_HIGH/2.F,
+        if (orientation == 0) {
+            float delta = - PORTAL_WIDTH/2.f;
+            if(position.y > 0) delta = PORTAL_WIDTH/2.f;
+            portal = world.addPolygon(position.x - DELTA_POSITION,position.y - DELTA_POSITION + delta ,PORTAL_HIGH/2.F,
                     PORTAL_WIDTH/2.F,true,data);
-            sizes = b2Vec2(PORTAL_HIGH,PORTAL_WIDTH);
         }
         portal->SetUserData(this);
         contact = false;
@@ -85,7 +99,7 @@ void Portal::changePosition() {
 
 b2Vec2 Portal::getPosition(){
     if(!live) return b2Vec2(0,0);
-    return portal->GetPosition();
+    return portal->GetPosition();// + b2Vec2(0.2,0);
 }
 
 bool Portal::isValid() {
@@ -117,7 +131,7 @@ void Portal::endContact() {
     contact = false;
 }
 
-std::string Portal::getEntityName() {
+const std::string& Portal::getEntityName() {
     return name;
 }
 
@@ -169,20 +183,17 @@ b2Vec2 Portal::getSizes() {
 }
 
 bool Portal::setTransform(Entity * body){
-    if(body == nullptr){
-        body_pos = portal->GetPosition();
-        ground = true;
-        return true;
-    }
 
     if(body->getEntityName() == "Metal_Block"){
-        ground = false;
         body_pos = dynamic_cast<Metal_Block *>(body)->getPosition();
+
+
     }
 
     if(body->getEntityName() == "Ground"){
-        ground = false;
-        body_pos = dynamic_cast<Ground *>(body)->getPosition();
+        body_pos = b2Vec2(portal->GetPosition().x,dynamic_cast<Ground *>(body)->getPosition().y);
     }
     return true;
 }
+
+void Portal::startBouncing() {}

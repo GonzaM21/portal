@@ -54,7 +54,7 @@ void Energy_Ball::endContact() {
     contact = false;
 }
 
-std::string Energy_Ball::getEntityName() {
+const std::string& Energy_Ball::getEntityName() {
     return name;
 }
 
@@ -78,3 +78,5 @@ void Energy_Ball::changePosition() {
     if(!contact) return;
     energy_ball->SetLinearVelocity(b2Vec2(0,0));
 }
+
+void Energy_Ball::startBouncing() {}

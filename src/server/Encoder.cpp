@@ -133,7 +133,7 @@ void Encoder :: sendPortals() {
             int orientation = portal->getOrientation();
             std::string msg("6,"+std::to_string((i+1+portal_num)*4)+","+ std::to_string(pos.x) + ","
             + std::to_string(-pos.y) + "," + std::to_string(size.x * 2) + "," +
-            std::to_string(0.5)+","+std::to_string(portal_num)+"," + std::to_string(orientation*2)
+            std::to_string(0.5)+","+std::to_string(portal_num)+"," + std::to_string(portal->getOrientation())
             +",1");
             this->sender->addMessageToSend(msg);  
         }

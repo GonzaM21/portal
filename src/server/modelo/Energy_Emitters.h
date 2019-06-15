@@ -18,12 +18,13 @@ public:
     Energy_Emitters(World & world, float x_pos, float y_pos, float size,int direction, bool charged);
     b2Vec2 getPosition();
     b2Vec2 getSizes();
-    std::string getEntityName() override;
+    const std::string& getEntityName() override;
     void startContact(b2Vec2) override;
     void endContact() override;
     void die() override;
     bool lives() override;
     bool setTransform(Entity *) override;
+    void startBouncing() override ;
     void changePosition() override;
     Energy_Ball* getEnergyBallShoted();
     ~Energy_Emitters();

@@ -17,7 +17,7 @@ b2Vec2 Ground::getSizes() {
     return sizes;
 }
 
-std::string Ground::getEntityName(){
+const std::string& Ground::getEntityName(){
     return name;
 }
 
@@ -44,3 +44,5 @@ b2Vec2 Ground::getPosition(){
 float Ground::getAngle(){
     return ground->GetAngle();
 }
+
+void Ground::startBouncing() {}

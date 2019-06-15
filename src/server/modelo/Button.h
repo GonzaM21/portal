@@ -14,13 +14,14 @@ class Button : public Entity{
     bool status;
 public:
     Button(World & world, float x_pos, float y_pos);
-    std::string getEntityName() override;
+    const std::string& getEntityName() override;
     void startContact(b2Vec2) override;
     void endContact() override;
     void die() override;
     bool lives() override;
     bool setTransform(Entity *) override;
     void changePosition() override;
+    void startBouncing() override ;
     b2Vec2 getPosition();
     float getAngle();
     b2Vec2 getSizes();

@@ -30,7 +30,7 @@ b2Vec2 Energy_Emitters::getSizes() {
     return sizes;
 }
 
-std::string Energy_Emitters::getEntityName() {
+const std::string& Energy_Emitters::getEntityName() {
     return name;
 }
 
@@ -85,3 +85,5 @@ Energy_Emitters::~Energy_Emitters() {
         delete energy_balls[i];
     }
 }
+
+void Energy_Emitters::startBouncing() {}

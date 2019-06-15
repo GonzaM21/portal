@@ -23,7 +23,6 @@ class Portal : public Entity {
     b2Vec2 normal;
     b2Vec2 body_pos;
     float radius;
-    bool ground;
     int orientation; //0 = vertical, 1 = horizontal, 2 = inclinado desceciente, 3 = inclinado ascendente
 public:
     //Contructor de una bola de energia
@@ -38,13 +37,14 @@ public:
     //devuelve el valor del angulo de la bola de energia
     float getAngle();
 
-    std::string getEntityName() override;
+    const std::string& getEntityName() override;
     void startContact(b2Vec2 pos) override;
     void endContact() override;
     void die() override;
     bool lives() override;
     bool setTransform(Entity * body) override;
     void changePosition() override;
+    void startBouncing() override ;
     bool havePartner();
     b2Vec2 getNormal();
     bool changePortalPosition(float x_pos, float y_pos);

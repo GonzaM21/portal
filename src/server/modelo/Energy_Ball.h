@@ -23,13 +23,14 @@ public:
     //devuelve el valor del angulo de la bola de energia
     float getAngle();
 
-    std::string getEntityName() override;
+    const std::string& getEntityName() override;
     void startContact(b2Vec2) override;
     void endContact() override;
     void die() override;
     bool lives() override;
     bool setTransform(Entity *) override;
     void changePosition() override;
+    void startBouncing() override ;
     float getRadius();
     ~Energy_Ball() = default;
 };

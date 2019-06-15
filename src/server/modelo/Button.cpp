@@ -15,7 +15,7 @@ Button::Button(World &world, float x_pos, float y_pos) : world(world) {
     name = "Button";
 }
 
-std::string Button::getEntityName() {
+const std::string& Button::getEntityName() {
     return name;
 }
 
@@ -62,3 +62,5 @@ b2Vec2 Button::getSizes() {
 bool Button::getStatus(){
     return status;
 }
+
+void Button::startBouncing() {}

@@ -1,8 +1,8 @@
 #include "Joiner.h"
 
-Joiner::Joiner(char* &hostn,char* &srvn) {
-    this->hostn = hostn;
-    this->srvn = srvn;
+Joiner::Joiner(std::string &hostn,std::string &srvn) {
+    this->hostn = hostn.c_str();
+    this->srvn = srvn.c_str();
     this->is_valid = true;
 }
 

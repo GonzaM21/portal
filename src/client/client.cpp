@@ -8,35 +8,44 @@
 #include "common/common_protocol.h"
 #include "client/event_handler_thread.h"
 #include "client/Message_sender.h"
+#include "map_editor/interface.h"
 #include "inicio/include/Inicio.h"
 #include <QApplication>
 
-void ejecutarVentana(int argc, char *argv[] ,std::string &host, std::string &port, std::string &player_name)
+int ejecutarVentana(int argc, char *argv[] ,std::string &host, std::string &port, std::string &player_name)
 {
-    QApplication app(argc, argv);
+    //char *a[20];
+    //int n = 0;
+    //QApplication app(n, a);
     // Instancio el greeter
-    Inicio inicio(host,port,player_name);
-    inicio.show();
+    //Inicio inicio(host,port,player_name);
+    //inicio.show();
     // Arranca el loop de la UI
-    app.exec();
-    return;
+    //return app.exec();
+    //app.exit();
+    return 0;
 } 
 
 int main(int argc, char *argv[])
 {
-    if (argc != 6) {
-        std::cout << "Error: invalid arguments." << std::endl;
-        return 0;
-    }
+    //if (argc != 6) {
+    //    std::cout << "Error: invalid arguments." << std::endl;
+    //    return 0;
+    //}
     try {
-        //std::string host, port, player_name;
-        //ejecutarVentana(argc,argv,host,port,player_name);
-        //const char *hostC = host.c_str();
-        //const char *portC = port.c_str();
-        Joiner joiner(argv[1],argv[2]);
-        std::string mode = argv[3];
-        std::string room_name = argv[4];
-        std::string player_name = argv[5];
+        if (argc == 2) {
+            std::string file_name("json_file");
+            Interface interface(file_name);
+            interface.createMap();
+            return 0;
+        }
+        std::string host, port, player_name;
+        ejecutarVentana(argc,argv,host,port,player_name);
+        host = "127.0.0.1";
+        port = "8080";
+        Joiner joiner(host,port);
+        std::string mode = "new";
+        std::string room_name = "sala";
 
         ModelFacade model_facade;
         ClientCommunicator communicator(std::move(joiner.setSocket()), 
