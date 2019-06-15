@@ -42,7 +42,7 @@ b2Vec2 Metal_Block::getSizes() {
     return sizes;
 }
 
-std::string Metal_Block::getEntityName() {
+const std::string& Metal_Block::getEntityName() {
     return name;
 }
 

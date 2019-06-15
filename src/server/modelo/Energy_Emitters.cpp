@@ -30,7 +30,7 @@ b2Vec2 Energy_Emitters::getSizes() {
     return sizes;
 }
 
-std::string Energy_Emitters::getEntityName() {
+const std::string& Energy_Emitters::getEntityName() {
     return name;
 }
 

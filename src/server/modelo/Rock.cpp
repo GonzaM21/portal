@@ -15,7 +15,7 @@ Rock::Rock(World &world, float x_pos, float y_pos,float radius) : world(world){
     live = true;
 }
 
-std::string Rock::getEntityName() {
+const std::string& Rock::getEntityName() {
     return name;
 }
 

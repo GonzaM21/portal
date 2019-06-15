@@ -54,7 +54,7 @@ void Energy_Ball::endContact() {
     contact = false;
 }
 
-std::string Energy_Ball::getEntityName() {
+const std::string& Energy_Ball::getEntityName() {
     return name;
 }
 

@@ -11,7 +11,7 @@ Acid::Acid(World &world, float x_pos, float y_pos, float large) : world(world) {
     sizes = b2Vec2(large,0.01);
 }
 
-std::string Acid::getEntityName() {
+const std::string& Acid::getEntityName() {
     return name;
 }
 

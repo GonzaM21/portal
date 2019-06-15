@@ -5,7 +5,7 @@
 
 class Entity{
 public:
-    virtual std::string getEntityName() = 0;
+    virtual const std::string& getEntityName() = 0;
     virtual void startContact(b2Vec2 pos) = 0;
     virtual void endContact() = 0;
     virtual void die() = 0;
@@ -13,5 +13,6 @@ public:
     virtual bool setTransform(Entity * body) = 0;
     virtual void changePosition() = 0;
     virtual void startBouncing() = 0;
+    virtual ~Entity() = default;
 };
 #endif

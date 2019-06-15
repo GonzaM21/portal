@@ -9,7 +9,7 @@ class Foot_Sensor : public Entity {
     std::string name;
 public:
     explicit Foot_Sensor(Entity * chell_player);
-    std::string getEntityName() override;
+    const std::string& getEntityName() override;
     void startContact(b2Vec2 pos) override;
     void endContact()override;
     void die() override;

@@ -154,7 +154,7 @@ void Chell_Player::endContact() {
     //--contact_counter;
 }
 
-std::string Chell_Player::getEntityName() {
+const std::string& Chell_Player::getEntityName() {
     return name;
 }
 

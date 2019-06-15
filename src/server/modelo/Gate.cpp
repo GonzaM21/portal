@@ -17,7 +17,7 @@ Gate::Gate(World &world, float x_pos, float y_pos) : world(world){
     door_is_open = false;
 }
 
-std::string Gate::getEntityName() {
+const std::string& Gate::getEntityName() {
     return name;
 }
 

@@ -10,7 +10,7 @@ Energy_Barrier::Energy_Barrier(World &world, float x_pos, float y_pos, float lar
     name = "Energy_Barrier";
 }
 
-std::string Energy_Barrier::getEntityName(){
+const std::string& Energy_Barrier::getEntityName(){
     return name;
 }
 

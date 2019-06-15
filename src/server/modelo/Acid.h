@@ -13,7 +13,7 @@ class Acid : public Entity {
     b2Vec2 sizes;
 public:
     Acid(World & world,float x_pos, float y_pos,float large);
-    std::string getEntityName() override;
+    const std::string& getEntityName() override;
     void startContact(b2Vec2) override;
     void endContact()override;
     void die() override;

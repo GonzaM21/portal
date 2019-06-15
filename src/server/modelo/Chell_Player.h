@@ -47,7 +47,7 @@ public:
 
     void changePosition() override;
 
-    std::string getEntityName() override;
+    const std::string& getEntityName() override;
 
     //Retorna en un vector su posicion en x e y
     b2Vec2 getPosition();
