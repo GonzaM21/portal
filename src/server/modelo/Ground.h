@@ -19,6 +19,7 @@ public:
     bool setTransform(Entity *) override;
     void changePosition() override;
     void startBouncing() override ;
+    void win();
     b2Vec2 getSizes();
     b2Vec2 getPosition();
     float getAngle();

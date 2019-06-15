@@ -21,7 +21,7 @@ Metal_Block::Metal_Block(World &world,float x_pos, float y_pos, float size ,int 
     data.addMaskBits(BARRIER_BITS);
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(BALL_BITS);
-    block = world.addTriangle(x_pos,y_pos,size/2.f,angle,true,true,data);
+    block = world.addTriangle(x_pos,y_pos,size,angle,true,true,data);
     this->angle = angle;
     sizes = b2Vec2(size,size);
     block->SetUserData(this);
@@ -34,7 +34,7 @@ b2Vec2 Metal_Block::getPosition() {
     return block->GetPosition();
 }
 
-float Metal_Block::getAngle() {
+int Metal_Block::getAngle() {
     return angle;
 }
 
@@ -69,3 +69,5 @@ bool Metal_Block::setTransform(Entity *) {
 void Metal_Block::changePosition() {}
 
 void Metal_Block::startBouncing() {}
+
+void Metal_Block::win(){}

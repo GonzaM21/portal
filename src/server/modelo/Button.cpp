@@ -64,3 +64,5 @@ bool Button::getStatus(){
 }
 
 void Button::startBouncing() {}
+
+void Button::win() {}

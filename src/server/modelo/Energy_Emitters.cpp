@@ -7,14 +7,14 @@
 #define DOWN 3
 #include "Energy_Emitters.h"
 
-Energy_Emitters::Energy_Emitters(World &world, float x_pos, float y_pos, float size,int direction, bool charged)
-                                : world(world), charged(charged), step_counter(0) {
-    Filter_Data data(1);
-    data.addMaskBits(1);
-    data.addMaskBits(2);
-    data.addMaskBits(4);
-    data.addMaskBits(8);
-    data.addMaskBits(16);
+Energy_Emitters::Energy_Emitters(World &world, float x_pos, float y_pos, float size,int direction, bool charged,int frequency)
+                                : world(world), charged(charged), step_counter(0),frequency(frequency) {
+    Filter_Data data(OTHER_BITS);
+    data.addMaskBits(OTHER_BITS);
+    data.addMaskBits(CHELL_BITS);
+    data.addMaskBits(BARRIER_BITS);
+    data.addMaskBits(ROCK_PORTAL_BITS);
+    data.addMaskBits(BALL_BITS);
     emitter = world.addBox(x_pos,y_pos,size/2.f,true,false,data);
     emitter->SetUserData(this);
     sizes = b2Vec2(size,size);
@@ -52,6 +52,7 @@ bool Energy_Emitters::lives(){
 b2Vec2 calculate_postion(b2Vec2 position,b2Vec2 sizes ,int direction){
     float x = position.x - 0.02;
     float y = position.y - 0.02;
+    std::cout<< x << "  " << y <<std::endl;
     if(direction == RIGHT) x += (sizes.x/2.f + .7);
     if(direction == LEFT) x -= (sizes.x/2.f + .7); 
     if(direction == UP) y += (sizes.y/2.f + .7);   
@@ -61,8 +62,11 @@ b2Vec2 calculate_postion(b2Vec2 position,b2Vec2 sizes ,int direction){
 
 void Energy_Emitters::changePosition() {
     if(!charged) return;
-    if(step_counter % 10 != 0) return;
+    if(step_counter % frequency != 0) return;
     b2Vec2 pos = calculate_postion(emitter->GetPosition(),sizes,direction);
+
+    std::cout<<"Pos bola: "<<pos.x<<"  "<<pos.y<<std::endl;
+
     energy_balls.push_back(new Energy_Ball(world,pos.x,pos.y));
     if(direction == RIGHT) energy_balls[energy_balls.size()-1]->Move('R');
     if(direction == LEFT) energy_balls[energy_balls.size()-1]->Move('L');
@@ -87,3 +91,5 @@ Energy_Emitters::~Energy_Emitters() {
 }
 
 void Energy_Emitters::startBouncing() {}
+
+void Energy_Emitters::win(){}

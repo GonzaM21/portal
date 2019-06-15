@@ -13,9 +13,10 @@ class Energy_Emitters : public Entity{
     int direction;
     std::string name;
     int step_counter;
+    int frequency;
     std::vector<Energy_Ball *> energy_balls;
 public:
-    Energy_Emitters(World & world, float x_pos, float y_pos, float size,int direction, bool charged);
+    Energy_Emitters(World & world, float x_pos, float y_pos, float size,int direction, bool charged, int frequency = 50);
     b2Vec2 getPosition();
     b2Vec2 getSizes();
     const std::string& getEntityName() override;
@@ -26,6 +27,7 @@ public:
     bool setTransform(Entity *) override;
     void startBouncing() override ;
     void changePosition() override;
+    void win();
     Energy_Ball* getEnergyBallShoted();
     ~Energy_Emitters();
 };

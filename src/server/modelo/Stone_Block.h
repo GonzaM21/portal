@@ -7,7 +7,7 @@ class Stone_Block : public Entity{
     b2Body * block;
     std::string name;
     b2Vec2 sizes;
-    float angle;
+    int angle;
 public:
     //Contructor de un bloque de piedra cuadrado.
     Stone_Block(World &world,float x_pos, float y_pos,float size);
@@ -22,8 +22,9 @@ public:
     bool setTransform(Entity *) override;
     void changePosition() override;
     void startBouncing() override ;
+    void win();
     b2Vec2 getPosition();
-    float getAngle();
+    int getAngle();
     b2Vec2 getSizes();
 };
 

@@ -6,7 +6,7 @@
 class Metal_Block : public Entity{
     b2Body * block;
     b2Vec2 sizes;
-    float angle;
+    int angle;
     std::string name;
     bool live;
     bool contact;
@@ -25,9 +25,10 @@ public:
     bool setTransform(Entity *) override;
     void changePosition() override;
     void startBouncing() override ;
+    void win();
 
     b2Vec2 getPosition();
-    float getAngle();
+    int getAngle();
     b2Vec2 getSizes();
     ~Metal_Block() = default;
 };

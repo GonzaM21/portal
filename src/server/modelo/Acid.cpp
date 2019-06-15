@@ -50,3 +50,5 @@ bool Acid::setTransform(Entity *) {
 void Acid::changePosition() {}
 
 void Acid::startBouncing() {}
+
+void Acid::win() {}

@@ -26,3 +26,4 @@ bool Foot_Sensor::lives(){return true;}
 bool Foot_Sensor::setTransform(Entity*){return true;}
 void Foot_Sensor::changePosition(){}
 void Foot_Sensor::startBouncing() {}
+void Foot_Sensor::win(){}

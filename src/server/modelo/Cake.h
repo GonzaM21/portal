@@ -1,18 +1,14 @@
-#ifndef TP4_ACID_H
-#define TP4_ACID_H
+#ifndef TP4_CAKE_H
+#define TP4_CAKE_H
 
 #include "World.h"
-#include "Entity.h"
 
-class Acid : public Entity {
-    b2Body * acid;
-    World & world;
+class Cake : public Entity {
+    b2Body *  cake;
     std::string name;
-    bool contact;
-    bool live;
     b2Vec2 sizes;
 public:
-    Acid(World & world,float x_pos, float y_pos,float large);
+    Cake(World & world, float x_pos, float y_pos);
     const std::string& getEntityName() override;
     void startContact(b2Vec2) override;
     void endContact()override;
@@ -21,10 +17,12 @@ public:
     bool setTransform(Entity *) override;
     void changePosition() override;
     void startBouncing() override ;
+    void win();
     b2Vec2 getPosition();
     b2Vec2 getSizes();
-    float getAngle();
-    void win();
-    ~Acid() = default;
+    ~Cake() = default;
+
 };
+
+
 #endif

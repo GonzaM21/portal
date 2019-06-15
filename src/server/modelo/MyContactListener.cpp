@@ -8,10 +8,12 @@ void chell_validation(Entity * bodyA, Entity * bodyB){
     if(nameBodyA == "Chell_Player" && nameBodyB == "Portal") bodyA->setTransform(bodyB);
     if(nameBodyA == "Chell_Player" && nameBodyB == "Energy_Ball") bodyA->die();
     if(nameBodyA == "Chell_Player" && nameBodyB == "Acid") bodyA->die();
+    if(nameBodyA == "Chell_Player" && nameBodyB == "Cake") bodyA->win();
 
     if(nameBodyB == "Chell_Player" && nameBodyA == "Portal") bodyB->setTransform(bodyB);
     if(nameBodyB == "Chell_Player" && nameBodyA == "Energy_Ball") bodyB->die();
     if(nameBodyB == "Chell_Player" && nameBodyA == "Acid") bodyB->die();
+    if(nameBodyB == "Chell_Player" && nameBodyA == "Cake") bodyB->win();
 }
 
 void chell_colitions(b2Body * bodyA,b2Body * bodyB){
@@ -101,6 +103,9 @@ void portal_colitions(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
         static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
     }
 
+    if(nameBodyA == "Portal" && (nameBodyB == "Gate" || nameBodyB == "Stone_Block")){
+        static_cast<Entity *>(userDataA)->die();
+    }
 }
 
 void button_colitions(b2Body * bodyA,b2Body * bodyB){
@@ -121,7 +126,7 @@ void button_colitions(b2Body * bodyA,b2Body * bodyB){
     }
 }
 
-void energy_ball_colition(b2Body * bodyA,b2Body * bodyB){
+void energy_ball_colition(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
     void * userDataA = static_cast<Entity *>(bodyA->GetUserData());
     void * userDataB = static_cast<Entity *>(bodyB->GetUserData());
 
@@ -132,12 +137,19 @@ void energy_ball_colition(b2Body * bodyA,b2Body * bodyB){
 
     if(nameBodyA == "Energy_Ball" && nameBodyB == "Energy_Emitter"){
         static_cast<Entity *>(userDataA)->die();
-        static_cast<Entity *>(userDataB)->startContact(b2Vec2(0,0));
+        //static_cast<Entity *>(userDataB)->startContact(b2Vec2(0,0));
     }
 
     if(nameBodyB == "Energy_Ball" && nameBodyA == "Energy_Emitter"){
         static_cast<Entity *>(userDataB)->die();
-        static_cast<Entity *>(userDataA)->startContact(b2Vec2(0,0));
+        //static_cast<Entity *>(userDataA)->startContact(b2Vec2(0,0));
+    }
+
+    if(nameBodyA == "Energy_Ball" && nameBodyB == "Metal_Block"){
+        static_cast<Entity *>(userDataB)->startContact(colition_point);
+    }
+    if(nameBodyA == "Energy_Ball" && nameBodyB == "Stone_Block"){
+        static_cast<Entity *>(userDataA)->die();
     }
 }
 
@@ -191,7 +203,7 @@ void MyContactListener::BeginContact(b2Contact * contact){
     chell_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
     portal_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody(),colition_point);
     button_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
-    energy_ball_colition(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
+    energy_ball_colition(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody(),colition_point);
     energy_barrier_colition(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
 
 }

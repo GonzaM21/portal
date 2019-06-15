@@ -161,7 +161,7 @@ Portal * Portal::getPartnerPortal() {
 
 bool Portal::changePortalPosition(float x_pos, float y_pos) {
     if(!world.validPosition(x_pos,y_pos)) return false;
-    world.eraseBody(portal);
+    if (live) world.eraseBody(portal);
     Filter_Data data(ROCK_PORTAL_BITS);
     data.addMaskBits(OTHER_BITS);
     data.addMaskBits(BARRIER_BITS);
@@ -202,3 +202,5 @@ bool Portal::setTransform(Entity * body){
 }
 
 void Portal::startBouncing() {}
+
+void Portal::win(){}

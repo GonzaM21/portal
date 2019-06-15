@@ -45,4 +45,6 @@ float Ground::getAngle(){
     return ground->GetAngle();
 }
 
+void Ground::win() {}
+
 void Ground::startBouncing() {}

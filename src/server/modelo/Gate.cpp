@@ -80,3 +80,5 @@ bool Gate::isOpen(){
 }
 
 void Gate::startBouncing() {}
+
+void Gate::win(){}

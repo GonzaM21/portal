@@ -1,6 +1,7 @@
 #include <math.h>
 #include "Energy_Ball.h"
 #include "Macros.h"
+#include "Metal_Block.h"
 
 Energy_Ball::Energy_Ball(World& world, float x_pos, float y_pos): world(world) {
     Filter_Data data(BALL_BITS);
@@ -38,6 +39,8 @@ bool Energy_Ball::Move(char direction){
 
 b2Vec2 Energy_Ball::getPosition(){
     if(!live) return b2Vec2(0,0);
+    b2Vec2 veloc = energy_ball->GetLinearVelocity();
+    std::cout<<"Energy Ball velocity: "<<veloc.x<<"   "<<veloc.y<<std::endl;
     return energy_ball->GetPosition();
 }
 
@@ -46,7 +49,7 @@ float Energy_Ball::getAngle() {
     return energy_ball->GetAngle();
 }
 
-void Energy_Ball::startContact(b2Vec2) {
+void Energy_Ball::startContact(b2Vec2 pos) {
     contact = true;
 }
 
@@ -70,13 +73,16 @@ float Energy_Ball::getRadius() {
     return radius;
 }
 
-bool Energy_Ball::setTransform(Entity *) {
+bool Energy_Ball::setTransform(Entity * body) {
+    angle = dynamic_cast<Metal_Block *>(body)->getAngle();
     return true;
 }
 
 void Energy_Ball::changePosition() {
     if(!contact) return;
-    energy_ball->SetLinearVelocity(b2Vec2(0,0));
+    //energy_ball->SetLinearVelocity(b2Vec2(0,0));
 }
 
 void Energy_Ball::startBouncing() {}
+
+void Energy_Ball::win(){}

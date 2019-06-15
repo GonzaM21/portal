@@ -9,7 +9,7 @@ Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world)
     teleport = false;
     live = true;
     bouncing = true;
-    win = false;
+    winner = false;
     Filter_Data data(CHELL_BITS);
     data.addMaskBits(OTHER_BITS);
     data.addMaskBits(ROCK_PORTAL_BITS);
@@ -70,7 +70,7 @@ void Chell_Player::Brake(){
 
 int Chell_Player::getStatus(){
     if(!live) return CHELL_DYING;
-    if(win) return CHELL_DANCING;
+    if(winner) return CHELL_DANCING;
     b2Vec2 velocity = chell->GetLinearVelocity();
     if(velocity.x == 0 && velocity.y == 0) return CHELL_QUIET;
     if(velocity.y < 0) return CHELL_FALLING;
@@ -104,15 +104,15 @@ bool Chell_Player::setTransform(Entity * body) {
 
     teleport = true;
     //b2Vec2 velocity_actual = chell->GetLinearVelocity();
-    if(normal.x > 0){
-        teleport_pos = teleport_pos + b2Vec2(1.0,0.0);
+    if(normal.x > 1){
+        teleport_pos = teleport_pos + b2Vec2(0.7,0.0);
     } else {
-        teleport_pos = teleport_pos - b2Vec2(1.0,0.0);
+        teleport_pos = teleport_pos - b2Vec2(0.7,0.0);
     }
-    if(normal.y > 0){
-        teleport_pos = teleport_pos + b2Vec2(0.0,1.0);
+    if(normal.y > 1){
+        teleport_pos = teleport_pos + b2Vec2(0,0.7);
     } else {
-        teleport_pos = teleport_pos - b2Vec2(0.0,1.0);
+        teleport_pos = teleport_pos - b2Vec2(0,0.7);
     }
     std::cout<<"Normal "<<normal.x<<" "<<normal.y<<std::endl;
     //velocity = b2Vec2(abs(velocity_actual.x/2) * normal.x/2,velocity_actual.y * normal.y);
@@ -191,4 +191,8 @@ Portal* Chell_Player::getPortalIn() {
 
 Portal* Chell_Player::getPortalOut() {
     return this->portals.getPortalOut();
+}
+
+void Chell_Player::win(){
+    winner = true;
 }

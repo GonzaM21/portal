@@ -16,7 +16,7 @@ class Chell_Player : public Entity{
     bool contact;
     bool teleport;
     bool bouncing;
-    bool win;
+    bool winner;
     b2Vec2 sizes;
     b2Vec2 teleport_pos;
     Foot_Sensor * footSensor;
@@ -69,6 +69,8 @@ public:
     bool lives() override;
 
     void startBouncing() override ;
+
+    void win();
 
     int getDirection();
 
