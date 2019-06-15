@@ -3,8 +3,9 @@
 
 #include "World.h"
 
-class Stone_Block {
+class Stone_Block : public Entity{
     b2Body * block;
+    std::string name;
     b2Vec2 sizes;
     float angle;
 public:
@@ -12,8 +13,15 @@ public:
     Stone_Block(World &world,float x_pos, float y_pos,float size);
 
     //Contructor de un bloque de piedra triangular.
-    Stone_Block(World &world,float x_pos, float y_pos,float size ,float angle);
-
+    Stone_Block(World &world,float x_pos, float y_pos,float size ,int angle);
+    const std::string& getEntityName() override;
+    void startContact(b2Vec2) override;
+    void endContact() override;
+    void die() override;
+    bool lives() override;
+    bool setTransform(Entity *) override;
+    void changePosition() override;
+    void startBouncing() override ;
     b2Vec2 getPosition();
     float getAngle();
     b2Vec2 getSizes();

@@ -15,7 +15,7 @@ public:
     Metal_Block(World &world,float x_pos, float y_pos, float size);
 
     //Contructor de un bloque de metal triangular. Hay que pasarle la itad de los largos
-    Metal_Block(World &world,float x_pos, float y_pos,float size,float angle);
+    Metal_Block(World &world,float x_pos,float y_pos,float size,int angle);
 
     const std::string& getEntityName() override;
     void startContact(b2Vec2) override;

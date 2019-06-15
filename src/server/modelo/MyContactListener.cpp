@@ -24,7 +24,7 @@ void chell_colitions(b2Body * bodyA,b2Body * bodyB){
 
     std::cout<<"Colisionaron "<<nameBodyA<<" con "<<nameBodyB<<std::endl;
 
-    if (nameBodyA == "Chell_Player" && (nameBodyB == "Ground" || nameBodyB == "Bottom" || nameBodyB == "Rock")) {
+    if (nameBodyA == "Chell_Player" && (nameBodyB == "Ground" || nameBodyB == "Button" || nameBodyB == "Rock")) {
         static_cast<Entity *>(userDataA)->startBouncing();
     }
 
@@ -32,7 +32,7 @@ void chell_colitions(b2Body * bodyA,b2Body * bodyB){
         static_cast<Entity *>(userDataA)->startBouncing();
     }
 
-    if (nameBodyB == "Chell_Player" && (nameBodyA == "Ground" || nameBodyA == "Bottom" || nameBodyA == "Rock")) {
+    if (nameBodyB == "Chell_Player" && (nameBodyA == "Ground" || nameBodyA == "Button" || nameBodyA == "Rock")) {
         static_cast<Entity *>(userDataB)->startBouncing();
     }
 
@@ -48,11 +48,11 @@ void foot_sensor_colitions(Entity * foot_sensor, b2Body * body){
 
     std::string nameBody =  static_cast<Entity *>(body->GetUserData())->getEntityName();
 
-    if(nameBody == "Ground" || nameBody == "Bottom" || nameBody == "Rock"){
+    if(nameBody == "Ground" || nameBody == "Button" || nameBody == "Rock" || nameBody == "Gate"){
         foot_sensor->startContact(body->GetPosition());
     }
 
-    if(nameBody == "Metal_Block" || nameBody == "Stone_Block"){
+    if(nameBody == "Metal_Block" || nameBody == "Stone_Block" || nameBody == "Energy_Emmiter"){
         foot_sensor->startContact(body->GetPosition());
     }
 
@@ -103,20 +103,20 @@ void portal_colitions(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
 
 }
 
-void bottom_colitions(b2Body * bodyA,b2Body * bodyB){
+void button_colitions(b2Body * bodyA,b2Body * bodyB){
     void * userDataA = static_cast<Entity *>(bodyA->GetUserData());
     void * userDataB = static_cast<Entity *>(bodyB->GetUserData());
 
     std::string nameBodyA = static_cast<Entity *>(userDataA)->getEntityName();
     std::string nameBodyB = static_cast<Entity *>(userDataB)->getEntityName();
 
-    if(nameBodyA != "Bottom" && nameBodyB != "Bottom") return;
+    if(nameBodyA != "Button" && nameBodyB != "Button") return;
 
-    if(nameBodyA == "Bottom" && (nameBodyB == "Rock" || nameBodyB == "Chell_Player")){
+    if(nameBodyA == "Button" && (nameBodyB == "Rock" || nameBodyB == "Chell_Player")){
         static_cast<Entity *>(userDataA)->startContact(bodyB->GetPosition());
     }
 
-    if(nameBodyB == "Bottom" && (nameBodyA == "Rock" || nameBodyA == "Chell_Player")){
+    if(nameBodyB == "Button" && (nameBodyA == "Rock" || nameBodyA == "Chell_Player")){
         static_cast<Entity *>(userDataB)->startContact(bodyA->GetPosition());
     }
 }
@@ -190,7 +190,7 @@ void MyContactListener::BeginContact(b2Contact * contact){
     if (!bodyUserDataA || !bodyUserDataB) return;
     chell_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
     portal_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody(),colition_point);
-    bottom_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
+    button_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
     energy_ball_colition(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
     energy_barrier_colition(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
 
@@ -212,7 +212,7 @@ void chell_endContact(void * userDataA, void * userDataB){
     }
     printf("y aca\n");
     if(nameBodyA == "Chell_Player" && nameBodyB == "Stone_Block") static_cast<Entity *>(userDataA)->endContact();
-    if(nameBodyA == "Chell_Player" && nameBodyB == "Bottom") static_cast<Entity *>(userDataA)->endContact();
+    if(nameBodyA == "Chell_Player" && nameBodyB == "Button") static_cast<Entity *>(userDataA)->endContact();
 
     if(nameBodyB == "Chell_Player" && nameBodyA == "Ground") static_cast<Entity *>(userDataB)->endContact();
     if(nameBodyB == "Chell_Player" && nameBodyA == "Metal_Block") {
@@ -221,19 +221,19 @@ void chell_endContact(void * userDataA, void * userDataB){
     }
     printf("y aca2\n");
     if(nameBodyB == "Chell_Player" && nameBodyA == "Stone_Block") static_cast<Entity *>(userDataB)->endContact();
-    if(nameBodyB == "Chell_Player" && nameBodyA == "Bottom") static_cast<Entity *>(userDataB)->endContact();
+    if(nameBodyB == "Chell_Player" && nameBodyA == "Button") static_cast<Entity *>(userDataB)->endContact();
 }
 
-void bottom_endContact(void * userDataA, void * userDataB){
+void button_endContact(void * userDataA, void * userDataB){
     std::string nameBodyA = static_cast<Entity *>(userDataA)->getEntityName();
     std::string nameBodyB = static_cast<Entity *>(userDataB)->getEntityName();
-    if(nameBodyA != "Bottom" && nameBodyB != "Bottom") return;
+    if(nameBodyA != "Button" && nameBodyB != "Button") return;
 
-    if(nameBodyA == "Bottom" && nameBodyB == "Chell_Player") static_cast<Entity *>(userDataA)->endContact();
-    if(nameBodyA == "Bottom" && nameBodyB == "Rock") static_cast<Entity *>(userDataA)->endContact();
+    if(nameBodyA == "Button" && nameBodyB == "Chell_Player") static_cast<Entity *>(userDataA)->endContact();
+    if(nameBodyA == "Button" && nameBodyB == "Rock") static_cast<Entity *>(userDataA)->endContact();
 
-    if(nameBodyB == "Bottom" && nameBodyA == "Chell_Player") static_cast<Entity *>(userDataB)->endContact();
-    if(nameBodyB == "Bottom" && nameBodyA == "Rock") static_cast<Entity *>(userDataB)->endContact();
+    if(nameBodyB == "Button" && nameBodyA == "Chell_Player") static_cast<Entity *>(userDataB)->endContact();
+    if(nameBodyB == "Button" && nameBodyA == "Rock") static_cast<Entity *>(userDataB)->endContact();
 }
 
 void foot_sensor_end_contact(Entity * foot_sensor, b2Body * body){
@@ -242,11 +242,11 @@ void foot_sensor_end_contact(Entity * foot_sensor, b2Body * body){
 
     std::cout<<"name: "<<nameBody<<std::endl;
 
-    if(nameBody == "Ground" || nameBody == "Bottom" || nameBody == "Rock"){
+    if(nameBody == "Ground" || nameBody == "Button" || nameBody == "Rock" || nameBody == "Gate"){
         foot_sensor->endContact();
     }
 
-    if(nameBody == "Metal_Block" || nameBody == "Stone_Block"){
+    if(nameBody == "Metal_Block" || nameBody == "Stone_Block" || nameBody == "Energy_Emmiter"){
         foot_sensor->endContact();
     }
 
@@ -275,5 +275,5 @@ void MyContactListener::EndContact(b2Contact* contact){
 
     if (!bodyUserDataA || !bodyUserDataB) return;
     //chell_endContact(bodyUserDataA,bodyUserDataB);
-    bottom_endContact(bodyUserDataA,bodyUserDataB);
+    button_endContact(bodyUserDataA,bodyUserDataB);
 }
