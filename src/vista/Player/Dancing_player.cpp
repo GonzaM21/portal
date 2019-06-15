@@ -2,7 +2,7 @@
 #include "Dancing_player.h"
 #include "Player.h"
 #include "../Constants.h"
-#include "vista/TextureBase.h"
+#include "TextureBase.h"
 #include <string>
 #include <iostream>
 #define MAX_WIDTH (9 * WIDTH_PLAYER_DANCING + 9)

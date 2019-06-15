@@ -1,7 +1,7 @@
 #include "../Window.h"
 #include "../Constants.h"
 #include "Portal_orange_sprite.h"
-#include "vista/TextureBase.h"
+#include "TextureBase.h"
 #include <string>
 #include <iostream>
 

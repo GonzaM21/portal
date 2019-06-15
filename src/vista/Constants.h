@@ -258,8 +258,20 @@
 #define EMITTER_LEFT_BLOCK 4
 
 /**
- * EJEMPLOS
+ * Powerball ID
 */
+#define POWERBALL_UP 1
+#define POWERBALL_RIGHT 2
+#define POWERBALL_DOWN 3
+#define POWERBALL_LEFT 4
+
+/**
+ * Portals directions
+ * */
+#define PORTAL_HORIZONTAL 1
+#define PORTAL_VERTICAL 2
+#define PORTAL_45GRADES 3
+#define PORTAL_135GRADES 4
 
 /* AGREGAR BLOQUE */
 

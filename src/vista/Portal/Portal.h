@@ -1,9 +1,9 @@
 #ifndef __PORTAL_H__
 #define __PORTAL_H__
 #include <string>
-#include "../Rect.h"
-#include "../Window.h"
-#include "../Camara.h"
+#include "Rect.h"
+#include "Window.h"
+#include "Camara.h"
 
 class Portal
 {

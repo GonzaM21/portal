@@ -1,7 +1,7 @@
 #include "../Window.h"
 #include "../Constants.h"
 #include "JumpRise_player.h"
-#include "vista/TextureBase.h"
+#include "TextureBase.h"
 #include "Player.h"
 #include <string>
 #include <iostream>

@@ -3,7 +3,7 @@
 #include "Closing_gate.h"
 #include "../Sprite.h"
 #include "../Rect.h"
-#include "vista/TextureBase.h"
+#include "TextureBase.h"
 #include <string>
 #include <iostream>
 #define X_POSITION 1

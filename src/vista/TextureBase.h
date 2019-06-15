@@ -1,6 +1,6 @@
 #include <iostream>
 #include <map>
-#include "vista/Sprite.h"
+#include "Sprite.h"
 
 class TextureBase
 {

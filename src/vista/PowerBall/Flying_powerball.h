@@ -12,7 +12,7 @@ aqui aplicando un patrron state */
 class FlyingPowerBall : public Sprite
 {
 public:
-    FlyingPowerBall(const Window &window);
+    FlyingPowerBall(const Window &window,const int& direction);
     ~FlyingPowerBall();
     virtual int render(const Rect &dest);
     virtual void setSrc(Rect &src) override;
@@ -21,6 +21,7 @@ public:
 private:
     Rect src;
     bool done = false;
+    const int direction;
     // PawPowerBall paw;
 };
 

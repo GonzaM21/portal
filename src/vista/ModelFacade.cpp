@@ -1,4 +1,4 @@
-#include "vista/ModelFacade.h"
+#include "ModelFacade.h"
 #include <stdlib.h>
 
 ModelFacade::ModelFacade()

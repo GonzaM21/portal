@@ -1,8 +1,9 @@
 #include "../Window.h"
 #include "Dying_player.h"
 #include "Player.h"
-#include "vista/TextureBase.h"
+#include "TextureBase.h"
 #include "../Constants.h"
+#include <SDL2/SDL_mixer.h>
 #include <string>
 #include <iostream>
 
@@ -19,6 +20,14 @@ int DyingPlayer::render(const Rect &dest)
   {
     return -1;
   }
+  if (src.getX() == X_START_POSITION && src.getY() == Y_POSITION_PLAYER_DYING)
+  {
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+    Mix_Music *music = Mix_LoadMUS("resources/Gritodemujer.mp3");
+    Mix_VolumeMusic(MIX_MAX_VOLUME / 20);
+    Mix_PlayMusic(music, 1);
+  }
+  
   if (direction == 1)
   {
     response = Sprite::render(src, dest);
@@ -38,6 +47,7 @@ int DyingPlayer::render(const Rect &dest)
   {
     y_src = Y_POSITION_PLAYER_DYING;
     done = true;
+    Mix_PausedMusic();
   }
   src.set(x_src, y_src, WIDTH_PLAYER_DYING, HEIGHT_PLAYER_DYING);
   return response;

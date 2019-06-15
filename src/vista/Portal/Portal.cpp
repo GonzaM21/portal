@@ -1,8 +1,8 @@
 #include "Portal.h"
-#include "../Window.h"
+#include "Window.h"
 #include "Portal_blue_sprite.h"
 #include "Portal_orange_sprite.h"
-#include "../Constants.h"
+#include "Constants.h"
 #include <string>
 #include <iostream>
 #include <typeinfo>

@@ -2,7 +2,7 @@
 
 Joiner::Joiner(char* &hostn,char* &srvn) {
     this->hostn = hostn;
-    this->srvn =srvn;
+    this->srvn = srvn;
     this->is_valid = true;
 }
 

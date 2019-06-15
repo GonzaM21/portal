@@ -1,7 +1,7 @@
 #include "../Window.h"
 #include "../Constants.h"
 #include "Portal_blue_sprite.h"
-#include "vista/TextureBase.h"
+#include "TextureBase.h"
 #include <string>
 #include <iostream>
 
@@ -13,22 +13,7 @@ BluePortal::BluePortal(const Window &window, const int &direction) : Sprite(Text
 
 int BluePortal::render(const Rect &dest)
 {
-  int response = 0;
-  if (direction == 0)
-  {
-    response = Sprite::render(src, dest);
-  }
-  else if (direction == 1)
-  {
-    response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 45);
-  }
-  else if (direction == 2)
-  {
-    response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 90);
-  } else
-  {
-    response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 135);
-  }
+  int response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 45 * direction);
   return response;
 }
 
