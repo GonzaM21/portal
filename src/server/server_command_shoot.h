@@ -1,7 +1,7 @@
 #ifndef COMMAND_SHOOT_H
 #define COMMAND_SHOOT_H
 #include <string>
-#include "../server/server_command.h"
+#include "server_command.h"
 #include "level_creator/map_parser.h"
 
 class CommandShoot : public Command {

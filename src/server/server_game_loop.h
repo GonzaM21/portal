@@ -15,8 +15,8 @@
 #include <string>
 #include <time.h>
 #include <map>
-#include "../server/server_sender.h"
 #include "../common/Thread.h"
+#include "server_sender.h"
 #include "Protected_Data_Base.h"
 #include "Encoder.h"
 //#include "../server/modelo/doors"

@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
 #include "server_initializer.h"
-#include "../server/server_client_acceptor.h"
-#include "../server/server_socket_accept.h"
-#include "../server/server_room_game.h"
-#include "../server/server_room_manager.h"
+#include "server_client_acceptor.h"
+#include "server_socket_accept.h"
+#include "server_room_game.h"
+#include "server_room_manager.h"
 #include "../common/common_socket_connect.h"
 #include "../common/common_protocol.h"
 

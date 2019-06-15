@@ -3,8 +3,8 @@
 #include <sstream>
 #include <queue>
 #include <list>
-#include "../server/server_room_game.h"
-#include "../server/server_room_manager.h"
+#include "server_room_game.h"
+#include "server_room_manager.h"
 #include "../common/common_socket_connect.h"
 #define MAX_PLAYERS 4 //deberia preguntar cunado se crea la sala?
 

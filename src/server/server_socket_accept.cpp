@@ -1,5 +1,5 @@
 #define _POSIX_C_SOURCE 200112L
-#include "../server/server_socket_accept.h"
+#include "server_socket_accept.h"
 
 SocketAccept :: SocketAccept() {
 	s = -1;

@@ -1,7 +1,7 @@
 #ifndef COMMAND_MOVE_H
 #define COMMAND_MOVE_H
 #include <string>
-#include "../server/server_command.h"
+#include "server_command.h"
 
 class CommandMove : public Command {
 private:

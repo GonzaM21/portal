@@ -2,8 +2,8 @@
 #define MINUTE 60000
 #define SECOND 1000
 #define STEP_DURATION 40
-#include "server/server_game_loop.h"
-#include "server/modelo/Macros.h"
+#include "server_game_loop.h"
+#include "modelo/Macros.h"
 #include <chrono>
 
 GameLoop ::GameLoop(World *world, Sender *sender,

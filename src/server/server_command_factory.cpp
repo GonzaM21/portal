@@ -1,4 +1,4 @@
-#include "../server/server_command_factory.h"
+#include "server_command_factory.h"
 
 CommandFactory :: CommandFactory(Model *model,MapParser *map_parser,
     std::map<std::string,bool>* players_connection) {

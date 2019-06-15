@@ -1,15 +1,15 @@
 #ifndef COMMAND_FACTORY_H
 #define COMMAND_FACTORY_H
-#include "../server/server_model.h"
-#include "../server/server_command.h"
-#include "../server/server_command_mates.h"
-#include "../server/server_command_join.h"
-#include "../server/server_command_start.h"
-#include "../server/server_command_move.h"
-#include "../server/server_command_jump.h"
-#include "../server/server_command_shoot.h"
-#include "../server/server_command_move_rock.h"
-#include "../server/server_command_disconnected.h"
+#include "server_model.h"
+#include "server_command.h"
+#include "server_command_mates.h"
+#include "server_command_join.h"
+#include "server_command_start.h"
+#include "server_command_move.h"
+#include "server_command_jump.h"
+#include "server_command_shoot.h"
+#include "server_command_move_rock.h"
+#include "server_command_disconnected.h"
 #include "level_creator/map_parser.h"
 #include <map>
 

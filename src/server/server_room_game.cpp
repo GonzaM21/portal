@@ -3,11 +3,11 @@
 #include <sstream>
 #include <mutex>
 #include <memory>
-#include "../server/server_room_game.h"
-#include "../server/server_model.h"
-#include "../server/server_command.h"
-#include "../server/server_command_factory.h"
-#include "../server/server_protocol.h"
+#include "server_room_game.h"
+#include "server_model.h"
+#include "server_command.h"
+#include "server_command_factory.h"
+#include "server_protocol.h"
 #include "level_creator/map_parser.h"
 
 RoomGame :: RoomGame(std::string &name, size_t size) : sender() {

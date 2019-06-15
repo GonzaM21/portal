@@ -3,7 +3,7 @@
 #include <string>
 #include <list>
 #include <map>
-#include "../server/server_room_game.h"
+#include "server_room_game.h"
 #include "../common/common_cola_protegida.h"
 #include "../common/common_socket_connect.h"
 #include <mutex>

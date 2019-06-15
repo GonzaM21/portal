@@ -1,6 +1,6 @@
 #ifndef INITIALIZER
 #define INITIALIZER
-#include "../server/server_socket_accept.h"
+#include "server_socket_accept.h"
 
 class Initializer {
 private:

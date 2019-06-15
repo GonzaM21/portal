@@ -1,7 +1,7 @@
 #include <sstream>
 #include <memory>
 #include <vector>
-#include "../server/server_protocol.h"
+#include "server_protocol.h"
 
 Protoc :: Protoc(CommandFactory &commandFactory) : 
     commandFactory(commandFactory) {

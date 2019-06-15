@@ -1,5 +1,5 @@
-#include "../server/server_model.h"
-#include "../server/server_sender.h"
+#include "server_model.h"
+#include "server_sender.h"
 #include "../common/Constants.h"
 #include "level_creator/map_parser.h"
 

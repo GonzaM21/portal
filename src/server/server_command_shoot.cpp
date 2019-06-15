@@ -1,4 +1,4 @@
-#include "../server/server_command_shoot.h"
+#include "server_command_shoot.h"
 
 CommandShoot :: CommandShoot(Model *model,std::string &player,
   std::string &x_destiny,std::string &y_destiny,std::string &portal_num) {
