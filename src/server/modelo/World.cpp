@@ -34,7 +34,7 @@ bool World::validPosition(float x_pos, float y_pos) {
     if (y_pos > y_lim.x || y_pos < y_lim.y) {
         return false;
     }
-    for(int i = 0; i < Bodies.size(); ++i){
+    for(size_t i = 0; i < Bodies.size(); ++i){
         b2Vec2 pos_item = Bodies[i]->GetPosition();
         if(pos_item.x == x_pos && pos_item.y == y_pos){
             return false;
@@ -69,61 +69,8 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
     b2Fixture* footSensorFixture  = polygonBody->CreateFixture(&polygonFixtureDef);
     std::cout<<"World: "<<foot_data<<std::endl;
     footSensorFixture->SetUserData(foot_data);
-
     Bodies.push_back(polygonBody);
     return polygonBody;
-
-
-    /*b2Body* polygonBody;
-    b2BodyDef polygonBodyDef;
-    b2FixtureDef polygonFixtureDef;
-    if (!validPosition(x_pos,y_pos)) throw InvalidPosition();
-    polygonBodyDef.type =  b2BodyType::b2_dynamicBody;
-
-    polygonBody = world->CreateBody(&polygonBodyDef);
-    b2PolygonShape polygonShape;
-    polygonShape.SetAsBox(x_size,y_size - (x_size));
-
-    b2CircleShape circleShape;
-    circleShape.m_radius = x_size;
-    polygonFixtureDef.shape = &circleShape;
-    circleShape.m_p.Set(x_pos,y_pos - (x_size * 2));
-    polygonFixtureDef.shape = &polygonShape;
-    polygonFixtureDef.density = DENSITY;
-    polygonFixtureDef.friction = FRICTION;
-    polygonBody->SetFixedRotation(true);
-    polygonFixtureDef.filter.categoryBits = data.getCategoryBits();
-    polygonFixtureDef.filter.maskBits = data.getMaskBits();
-    polygonBodyDef.position = b2Vec2(x_pos + DELTA_POSITION, y_pos + DELTA_POSITION);
-    polygonBody->CreateFixture(&polygonFixtureDef);
-    polygonBody->CreateFixture(&circleShape,1);
-    Bodies.push_back(polygonBody);
-    return polygonBody;
-     b2Body* polygonBody;
-    b2BodyDef polygonBodyDef;
-    b2FixtureDef polygonFixtureDef;
-    if (!validPosition(x_pos,y_pos)) throw InvalidPosition();
-    polygonBodyDef.type =  b2BodyType::b2_dynamicBody;
-    b2Vec2 vertex[6];
-    vertex[0] = b2Vec2(x_size,y_size);
-    vertex[1] = b2Vec2(x_size,- y_size + 0.2);
-    vertex[2] = b2Vec2(x_size - 0.2 ,y_size);
-    vertex[3] = b2Vec2(- x_size + 0.2 ,y_size);
-    vertex[4] = b2Vec2(- x_size,- y_size + 0.2);
-    vertex[5] = b2Vec2(-x_size,y_size);
-    polygonBodyDef.position = b2Vec2(x_pos + DELTA_POSITION, y_pos + DELTA_POSITION);
-    polygonBody = world->CreateBody(&polygonBodyDef);
-    b2PolygonShape polygonShape;
-    polygonShape.Set(vertex,6);
-    polygonFixtureDef.shape = &polygonShape;
-    polygonFixtureDef.density = DENSITY;
-    polygonFixtureDef.friction = FRICTION;
-    polygonBody->SetFixedRotation(true);
-    polygonFixtureDef.filter.categoryBits = data.getCategoryBits();
-    polygonFixtureDef.filter.maskBits = data.getMaskBits();
-    polygonBody->CreateFixture(&polygonFixtureDef);
-    Bodies.push_back(polygonBody);
-    return polygonBody;*/
 }
 
 b2Body* World::addPolygon(float x_pos, float y_pos,float x_size, float y_size,bool static_obj,Filter_Data & data) {
@@ -169,6 +116,8 @@ b2Body* World::addBox(float x_pos, float y_pos,float size,bool static_obj,bool m
     boxFixtureDef.density = DENSITY;
     boxFixtureDef.friction = FRICTION;
     boxFixtureDef.restitution = metal ? METAL_RESITUTION : ZERO;
+    boxFixtureDef.filter.categoryBits = data.getCategoryBits();
+    boxFixtureDef.filter.maskBits = data.getMaskBits();
     boxBody->SetFixedRotation(true);
     boxBody->CreateFixture(&boxFixtureDef);
     Bodies.push_back(boxBody);
@@ -202,7 +151,7 @@ b2Body* World::addCircle(float x_pos, float y_pos,float radius, bool static_obj,
     return circleBody;
 }
 
-b2Body* World::addTriangle(float x_pos, float y_pos, float x_size, float y_size, bool static_obj,bool metal,Filter_Data data){
+b2Body* World::addTriangle(float x_pos, float y_pos, float size, int angle ,bool static_obj,bool metal,Filter_Data data){
     b2Body* triangleBody;
     b2BodyDef triangleBodyDef;
     b2FixtureDef triangleFixtureDef;
@@ -216,9 +165,23 @@ b2Body* World::addTriangle(float x_pos, float y_pos, float x_size, float y_size,
     triangleBody = world->CreateBody(&triangleBodyDef);
     b2PolygonShape shape_triangle;
     b2Vec2 vertices[3];
-    vertices[0].Set(x_size,0);
-    vertices[1].Set(0,y_size);
-    vertices[2].Set(x_size,y_size);
+    if (angle == 45){
+        vertices[0].Set((-2.0/3) * size, (-1.0/3) * size);
+        vertices[1].Set((1.0/3) * size, (-1.0/3) * size);
+        vertices[2].Set(1.0/3 * size, (2.0/3) * size);
+    } else if (angle == 135){
+        vertices[0].Set((2.0/3) * size, (-1.0/3) * size);
+        vertices[1].Set((-1.0/3) * size, (-1.0/3) * size);
+        vertices[2].Set((-1.0/3) * size, (2.0/3) * size);
+    } else if(angle == 225){
+        vertices[0].Set((2.0/3) * size, (1.0/3) * size);
+        vertices[1].Set((-1.0/3) * size, (-2.0/3) * size);
+        vertices[2].Set((-1.0/3) * size, (1.0/3) * size);
+    } else{
+        vertices[0].Set((-2.0/3) * size, (1.0/3) * size);
+        vertices[1].Set((1.0/3) * size, (1.0/3) * size);
+        vertices[2].Set((1.0/3) * size, (-2.0/3) * size);
+    }
     shape_triangle.Set(vertices,3);
     triangleFixtureDef.shape = &shape_triangle;
     triangleFixtureDef.density = DENSITY;

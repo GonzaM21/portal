@@ -7,7 +7,7 @@ Metal_Block::Metal_Block(World &world,float x_pos, float y_pos,float size){
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(BALL_BITS);
     block = world.addBox(x_pos,y_pos,size/2.f,true,true,data);
-    angle = 0;
+    angle = 90;
     sizes = b2Vec2(size,size);
     block->SetUserData(this);
     name = "Metal_Block";
@@ -15,14 +15,14 @@ Metal_Block::Metal_Block(World &world,float x_pos, float y_pos,float size){
     live = true;
 }
 
-Metal_Block::Metal_Block(World &world,float x_pos, float y_pos, float size ,float angle){
+Metal_Block::Metal_Block(World &world,float x_pos, float y_pos, float size ,int angle){
     Filter_Data data(OTHER_BITS);
     data.addMaskBits(CHELL_BITS);
     data.addMaskBits(BARRIER_BITS);
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(BALL_BITS);
-    //block = world.addTriangle(x_pos,y_pos,size/2.f,size/2.f,true,true,data);
-    angle = 0; //HAY QUE CAMBIARLO
+    block = world.addTriangle(x_pos,y_pos,size/2.f,angle,true,true,data);
+    this->angle = angle;
     sizes = b2Vec2(size,size);
     block->SetUserData(this);
     name = "Metal_Block";
