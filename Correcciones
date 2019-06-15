@@ -1,0 +1,69 @@
+Setup:
+    Falta indicar dependencia con CMake/make
+    Sería bueno también indicar versiones de las libraries con las que saben que funciona
+    El repo está sucio con CMakeFiles, .idea, etc. Limpiarlo (OK)
+    Si es third party, notar la desprolijidad que se ve en estos dos links:
+        https://github.com/julimej/portal/tree/v0.0.1/src/server/modelo/Box2D
+        https://github.com/julimej/portal/tree/v0.0.1/src/server/modelo/3rdparty (OK)
+    No compila:
+        - Falta el CMakeLists.txt del server
+        - Prueben bajar el proyecto en un entorno limpio y fixear la compilación ahí
+        - Tuvimos que hacer varios cambios en los CMakeLists.txt para que funcione. Están bastante mal estructurados, probablemente porque arrancaron como proyectos separados y cuando los quisieron juntar les quedó desprolijo. Si es el caso, indiquen cómo compilar los dos proyectos por separado, y a lo sumo implementen un script que haga esos pasos (como está no compila)
+        - Intenten eliminar este tipo de includes:
+            #include "../server/server_command_factory.h"
+            y pasarlos a algo como:
+            #include "server_command_factory.h"
+            Se puede lograr con la directiva include_directories() de CMake
+            Esa directiva agrega opciones de compilación '-I' para pasarle al compilador
+            La presencia de este tipo de includes nos habla de que tuvieron dificultades para armar los CMakeLists, o bien de que están flojos a la hora de compilar.
+            Si no les sale esta configuración, metan todos los archivos en las carpetas server, common, y client y listo. No pierdan demasiado tiempo con esto.
+    Hay muchísimos Warnings, y hay algunos que denotan posibles leaks/bugs
+    Correr `cppcheck --enable-all ./src` y corregir todos los errores que marca la herramienta (que pertenezcan a su código) también les va a ayudar a encontrar posibles bugs.
+
+
+General:
+    - Seguimos las instrucciones, se cierra la ventana, los procesos corren al 100% de CPU, y no se ve nada.
+    - Al menos un caso "feliz" en el que bajamos el código, compilamos, y ejecutamos un juego debe ser posible para aprobar. Concéntrense en esto, es lo más grave de todo.
+    - No hay tests? Cómo se aseguran que todo funcione?
+    - No hay editor.
+
+
+Client:
+    - Modularizar el código del main y borrar código comentado
+    - La idea del Facade es que tenga todos los métodos que soporta el cliente, para manejarlo desde código. Que ese Facade reciba un vector de elementos hace que no sea un Facade, sino una especie de Interpreter. La clase que oficia de Facade en su código es el Model. Digamos que tienen un problema de nombres
+    - Code-style: sigan uno, puede ser el del linter de los otros TPs por ejemplo.
+    - Modularizar el Event Handler.
+    - EventHandlerManager es el protocolo? =C Hacer un protocolo
+    - std::this_thread::sleep_for(std::chrono::milliseconds(FPS)); ---> FPS? o 1000/FPS?
+    - Puedo leer el código y darme cuenta, pero qué es un Joiner y por qué tiene un método setSocket() que devuelve un Socket?
+    - Revisar los imports, dejar los que se usan, borrar los que no.
+    - La clase Sprite carga la textura cada vez que se construye, entonces por ejemplo, cuando el Acid cambia de estado, cargan muy lentamente una textura nueva
+    - Dos clases que tienen un sprite distinto, y en el resto del código son iguales no ameritan un polimorfismo. Optimizar el criterio de elección entre una estructura de clases y una parametrización de una sola clase. (Digamos: Alumno y Profesor heredan de Persona, pero Julian, Joel y Gonzalo son instancias de Alumno, no nuevas clases)
+    - (this->*(changeState[state]))(); ---> Prefiero un switch-case, y en el server hicieron lo mismo. Si uno se tiene que poner a pensar para entender qué hace un código, no está del todo bien escrito.
+    - Los States que no son de la puerta también dicen que son el state de la puerta en la doc que pusieron arriba.
+    - Pasar las constantes que consideren editables a un archivo de configuración
+    - Además de lo que pusieron en el README, faltan sonidos
+
+    - En este módulo vemos en general una intención de escribir código "elegante", pero las técnicas que están usando les generan un montón de código (les consume mucho tiempo de laburo) y no les está aportando a la legibilidad ni a la extensibilidad o mantenibilidad. En este caso lo único que podemos recomendar es tranquilidad a la hora de pensar en el modelo, pero la única manera de ganar esa tranquilidad es con experiencia...
+    - También hay que prestarle mucha atención a ese criterio que les decía unos items más arriba, de elegir entre una estructura de herencia y una parametrización. Hay que pensar si lo que quieren es un nombre de clase nuevo, o un nombre de variable nuevo. Eso suele ayudar a pensar en esa decisión.
+
+
+Server:
+    - Falta una vuelta de tuerca en el map parser, así como está no sirve para terminar de desacoplar parser de modelo, y en todo caso está aportando complejidad al código. La vuelta de tuerca que faltaría sería agregar un double-dispatch en la creación/agregado de entities al modelo a partir de esos data objects intermedios. De esta manera se puede eliminar la dependencia parser->model.
+    - ClientAcceptor: La limpieza de clientes no los borra del vector, qué pasa si communicators[i] ya fue deleteado en una limpieza anterior? (OK)
+    - Hay código muy refactorizable en la parte del servidor en sí (manejo de mensajes, rooms, etc), algunos chequeos están demás, y agregar exceptions ayudaría a detectar errores más fácil, pero el modelo está bien. Asegúrense de que funcione, ya que no lo podemos probar porque el TP no levanta entero...
+    - La inicialización del Socket tiene que estar en la clase Socket, no en el main.
+    - Bottom == Button? (OK)
+    - Copia de strings en las entities. Devolver const std::string&
+    - En el modelo, si apreto el boton abajo, estando en el aire, se aplicaría una fuerza hardcodeada en el sentido contrario al avance, ¿es esto deseado?
+    - shotPortalIn y shotPortalOut hacen lo mismo, lo unico que cambia es la instancia del objeto. Evitar código duplicado
+    - Las macros.h deberían ir en un archivo de configuración.
+    - La clase portal tiene un leak por bala en el momento en el que la bala se convierte en portal:
+        No estás borrando el b2Body de la bala antes de la colisión. Si el usuario dispara un portal:
+            * crea un b2Body en el mundo (una bala)
+            * cuando se choca con una pared, esa bala se convierte en un portal
+            * se crea un nuevo b2Body que representa el portal, perdiendo la referencia al b2Body viejo, que representaba a la bala 
+    - Se crea un portal cuando choca con el costado de la pared, falta cuando se choca con el piso, en el techo, en un bloque triangular.
+
+    - En general lo más flojo en el server es la falta de features.
+    - Otra vez se nota la intención de escribir código prolijo usando patrones, pero a esas implementaciones les falta una "vuelta de tuerca" para cumplir con su objetivo (desacoplar en general).
