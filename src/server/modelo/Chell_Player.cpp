@@ -104,15 +104,15 @@ bool Chell_Player::setTransform(Entity * body) {
 
     teleport = true;
     //b2Vec2 velocity_actual = chell->GetLinearVelocity();
-    if(normal.x > 1){
-        teleport_pos = teleport_pos + b2Vec2(0.7,0.0);
+    if(normal.x > 0){
+        teleport_pos = teleport_pos + b2Vec2(1.0,0.0);
     } else {
-        teleport_pos = teleport_pos - b2Vec2(0.7,0.0);
+        teleport_pos = teleport_pos - b2Vec2(1.0,0.0);
     }
-    if(normal.y > 1){
-        teleport_pos = teleport_pos + b2Vec2(0,0.7);
+    if(normal.y > 0){
+        teleport_pos = teleport_pos + b2Vec2(0.0,1.0);
     } else {
-        teleport_pos = teleport_pos - b2Vec2(0,0.7);
+        teleport_pos = teleport_pos - b2Vec2(0.0,1.0);
     }
     std::cout<<"Normal "<<normal.x<<" "<<normal.y<<std::endl;
     //velocity = b2Vec2(abs(velocity_actual.x/2) * normal.x/2,velocity_actual.y * normal.y);

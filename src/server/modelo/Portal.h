@@ -23,6 +23,7 @@ class Portal : public Entity {
     b2Vec2 normal;
     b2Vec2 body_pos;
     float radius;
+    int angle;
     int orientation; //0 = vertical, 1 = horizontal, 2 = inclinado desceciente, 3 = inclinado ascendente
 public:
     //Contructor de una bola de energia

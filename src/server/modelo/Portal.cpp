@@ -29,9 +29,6 @@ bool Portal::Move(float x_pos, float y_pos){
 
     b2Vec2 velocity(0,0);
 
-    std::cout<<"Posicion del portal: "<<position.x<<"   "<< position.y<<std::endl;
-    std::cout<<"Posicion mapa: "<<x_pos<<"   "<<-y_pos<<std::endl;
-
     float angle = atan2((-y_pos) - position.y, x_pos - position.x);
 
     std::cout<<"angle: "<<angle<<std::endl;
@@ -48,30 +45,36 @@ bool Portal::Move(float x_pos, float y_pos){
 void Portal::changePosition() {
     if(!contact) return;
     if(contact){
-        std::cout<<"resta: "<<abs(body_pos.x) - abs(position.x)<<" "<<abs(body_pos.y) - abs(position.y)<<std::endl;
-        if(abs(body_pos.x) - abs(position.x == 0)){
-            printf("Horizontal\n");
-            std::cout<<"Orientacion antes "<<orientation <<std::endl;
-            orientation = 0;
-            std::cout<<"Orientacion despues"<<orientation <<std::endl;
-            if(body_pos.y < position.y) normal = b2Vec2(1.f,2.f);
-            if(body_pos.y > position.y) normal = b2Vec2(1.f,-2.f);
-        }
-        if(abs(body_pos.y) - abs(position.y) == 0){
-            printf("Vertical\n");
-            std::cout<<"Orientacion antes "<<orientation <<std::endl;
-            orientation = 2;
-            std::cout<<"Orientacion despues"<<orientation <<std::endl;
-                orientation = 2;
-                if(body_pos.x < position.x) normal = b2Vec2(2.f,1.f);
+        float x_subtraction = abs(body_pos.x) - abs(position.x);
+        float y_subtraction = abs(body_pos.y) - abs(position.y);
 
-                if(body_pos.x > position.x) normal = b2Vec2(-2.f,1.f);
+        std::cout<<"resta: "<<x_subtraction<<" "<<y_subtraction<<std::endl;
+
+        if(x_subtraction == 0 && angle == 90){
+
+            orientation = 0;
+
+            std::cout << "Normal portal: "<< normal.x<<"    "<<normal.y<<std::endl;
+
+            if(body_pos.y < position.y) normal = b2Vec2(0.f,1.f);
+            if(body_pos.y > position.y) normal = b2Vec2(0.f,-1.f);
+
+            std::cout << "Normal portal: "<< normal.x<<"    "<<normal.y<<std::endl;
+
+        } else if(y_subtraction == 0 && angle == 90){
+
+            orientation = 2;
+
+            if(body_pos.x < position.x) normal = b2Vec2(1.f,0.f);
+            if(body_pos.x > position.x) normal = b2Vec2(-1.f,0.f);
         }
-        if(abs(body_pos.x - position.x) != 0 && abs(body_pos.y - position.y) != 0){
-            std::cout<<"Orientacion antes "<<orientation <<std::endl;
+        if(abs(body_pos.x - position.x) != 0 && abs(body_pos.y - position.y) != 0 && angle != 90 ){
             orientation = 3;
-            std::cout<<"Orientacion despues"<<orientation <<std::endl;
         }
+
+        std::cout << "Normal portal: "<< normal.x<<"    "<<normal.y<<std::endl;
+
+
         Filter_Data data(ROCK_PORTAL_BITS);
         data.addMaskBits(OTHER_BITS);
         data.addMaskBits(CHELL_BITS);
@@ -79,12 +82,14 @@ void Portal::changePosition() {
         if(orientation == 2){
             float delta = - PORTAL_WIDTH/2.f;
             if(position.x > 0) delta = PORTAL_WIDTH/2.f;
+            world.eraseBody(portal);
             portal = world.addPolygon(position.x - DELTA_POSITION + delta
                     ,position.y - DELTA_POSITION,PORTAL_WIDTH/2.F,PORTAL_HIGH/2.F,true,data);
         }
         if (orientation == 0) {
             float delta = - PORTAL_WIDTH/2.f;
             if(position.y > 0) delta = PORTAL_WIDTH/2.f;
+            world.eraseBody(portal);
             portal = world.addPolygon(position.x - DELTA_POSITION,position.y - DELTA_POSITION + delta ,PORTAL_HIGH/2.F,
                     PORTAL_WIDTH/2.F,true,data);
         }
@@ -186,12 +191,12 @@ bool Portal::setTransform(Entity * body){
 
     if(body->getEntityName() == "Metal_Block"){
         body_pos = dynamic_cast<Metal_Block *>(body)->getPosition();
-
-
+        angle = dynamic_cast<Metal_Block *>(body)->getAngle();
     }
 
     if(body->getEntityName() == "Ground"){
         body_pos = b2Vec2(portal->GetPosition().x,dynamic_cast<Ground *>(body)->getPosition().y);
+        angle = 90;
     }
     return true;
 }
