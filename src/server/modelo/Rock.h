@@ -22,6 +22,9 @@ public:
     void changePosition() override;
     void startBouncing() override ;
     void win();
+    void applyForce(b2Vec2 force);
+    void setVelocity(b2Vec2 velocity);
+    void changePositionChell(b2Vec2 pos);
     b2Vec2 getPosition();
     float getAngle();
     float getRadius();

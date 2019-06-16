@@ -57,3 +57,15 @@ void Rock::changePosition() {}
 void Rock::startBouncing() {}
 
 void Rock::win(){}
+
+void Rock::applyForce(b2Vec2 force) {
+    rock->ApplyForceToCenter(force,true);
+}
+
+void Rock::changePositionChell(b2Vec2 pos) {
+    rock->SetTransform(pos,ZERO);
+}
+
+void Rock::setVelocity(b2Vec2 velocity) {
+    rock->SetLinearVelocity(velocity);
+}

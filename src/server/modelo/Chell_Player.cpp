@@ -19,6 +19,9 @@ Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world)
     chell = world.addPlayer(x_pos, y_pos, CHELL_WIDTH/2, CHELL_HIGH/2.f,data,footSensor);
     chell->SetUserData(this);
     direction_right = true;
+    rock = nullptr;
+    take = false;
+    taking = false;
 }
 
 bool Chell_Player::Jump(){
@@ -38,16 +41,32 @@ bool Chell_Player::Move(char &direction) {
         direction_right = true;
         if (actual_speed.y != 0) {
             chell->ApplyLinearImpulseToCenter(b2Vec2(CHELL_MOVE_FORCE/2,ZERO),true);
+            if(taking && rock != nullptr){
+                rock->changePositionChell(chell->GetPosition() + b2Vec2(0.8f,0.3f));
+                rock->applyForce(b2Vec2(CHELL_MOVE_FORCE/2,ZERO));
+            }
         } else {
-        chell->ApplyLinearImpulseToCenter(b2Vec2(CHELL_MOVE_FORCE,ZERO),true);
+            chell->ApplyLinearImpulseToCenter(b2Vec2(CHELL_MOVE_FORCE,ZERO),true);
+            if(taking && rock != nullptr){
+                rock->changePositionChell(chell->GetPosition() + b2Vec2(0.8f,0.3f));
+                rock->applyForce(b2Vec2(CHELL_MOVE_FORCE,ZERO));
+            }
         }
         return true;
     } else if(direction == 'a' && (actual_speed.x >= 0)){
         direction_right = false;
         if (actual_speed.y != 0) {
             chell->ApplyLinearImpulseToCenter(b2Vec2(-CHELL_MOVE_FORCE/2,ZERO),true);
+            if(taking && rock != nullptr){
+                rock->changePositionChell(chell->GetPosition() + b2Vec2(-0.8f,0.3f));
+                rock->applyForce(b2Vec2(-CHELL_MOVE_FORCE/2,ZERO));
+            }
         } else {
             chell->ApplyLinearImpulseToCenter(b2Vec2(-CHELL_MOVE_FORCE,ZERO),true);
+            if(taking && rock != nullptr){
+                rock->changePositionChell(chell->GetPosition() + b2Vec2(-0.8f,0.3f));
+                rock->applyForce(b2Vec2(-CHELL_MOVE_FORCE,ZERO));
+            }
         }
         return true;
     } else if(direction == 's') {
@@ -60,9 +79,16 @@ bool Chell_Player::Move(char &direction) {
 void Chell_Player::Brake(){
     if(chell->GetLinearVelocity().y == 0){
         chell->SetLinearVelocity(b2Vec2(0,0));
+        if(taking && rock != nullptr) rock->setVelocity(b2Vec2(ZERO,ZERO));
     } else{
-        if(chell->GetLinearVelocity().x < 0) chell->ApplyForceToCenter(b2Vec2(100.f,0),true);
-        if(chell->GetLinearVelocity().x > 0) chell->ApplyForceToCenter(b2Vec2(-100.f,0),true);
+        if(chell->GetLinearVelocity().x < 0){
+            chell->ApplyForceToCenter(b2Vec2(100.f,0),true);
+            if(taking && rock != nullptr) rock->applyForce(b2Vec2(100.f,ZERO));
+        }
+        if(chell->GetLinearVelocity().x > 0){
+            chell->ApplyForceToCenter(b2Vec2(-100.f,0),true);
+            if(taking && rock != nullptr) rock->applyForce(b2Vec2(-100.f,ZERO));
+        }
     }
 }
 
@@ -93,6 +119,11 @@ float Chell_Player::getAngle() {
 
 bool Chell_Player::setTransform(Entity * body) {
     if(!live) return false;
+
+    if(body->getEntityName() == "Rock"){
+        rock = (Rock *)body;
+        taking = true;
+    }
 
     if(!dynamic_cast<Portal *>(body)->havePartner()) return false;
     if(!dynamic_cast<Portal *>(body)->getPartnerPortal()->lives()) return false;
@@ -190,4 +221,15 @@ Portal* Chell_Player::getPortalOut() {
 
 void Chell_Player::win(){
     winner = true;
+}
+
+void Chell_Player::grabARock() {
+    take = true;
+}
+
+void Chell_Player::dropTheRock() {
+    take = false;
+    taking = false;
+    rock->setVelocity(b2Vec2(ZERO,ZERO));
+    rock = nullptr;
 }

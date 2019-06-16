@@ -6,6 +6,7 @@
 #include "Portal.h"
 #include "Player_Portals.h"
 #include "Foot_Sensor.h"
+#include "Rock.h"
 
 class Chell_Player : public Entity{
     b2Body* chell;
@@ -23,6 +24,9 @@ class Chell_Player : public Entity{
     b2Vec2 velocity;
     int jumper_counter;
     bool direction_right;
+    bool take;
+    bool taking;
+    Rock * rock;
 public:
     //Contructor del personaje
     Chell_Player(World &world,float x_pos, float y_pos);
@@ -53,6 +57,10 @@ public:
 
     //retorna el valor de su angulo
     float getAngle();
+
+    void grabARock();
+
+    void dropTheRock();
 
     b2Vec2 getSizes();
 
