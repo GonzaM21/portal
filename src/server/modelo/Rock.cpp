@@ -52,6 +52,10 @@ bool Rock::setTransform(Entity *) {
     return true;
 }
 
+void Rock::setGravity(int gravity) {
+    rock->SetGravityScale(gravity);
+}
+
 void Rock::changePosition() {}
 
 void Rock::startBouncing() {}

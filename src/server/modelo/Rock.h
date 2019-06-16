@@ -26,6 +26,7 @@ public:
     void setVelocity(b2Vec2 velocity);
     void changePositionChell(b2Vec2 pos);
     b2Vec2 getPosition();
+    void setGravity(int gravity);
     float getAngle();
     float getRadius();
     ~Rock() = default;
