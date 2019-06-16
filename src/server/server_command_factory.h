@@ -10,6 +10,8 @@
 #include "server_command_shoot.h"
 #include "server_command_move_rock.h"
 #include "server_command_disconnected.h"
+#include "server_command_kill.h"
+#include "server_command_suicide.h"
 #include "level_creator/map_parser.h"
 #include <map>
 
@@ -32,6 +34,8 @@ public:
       std::string &x_destiny,std::string &y_destiny,std::string &portal_num);
     CommandMoveRock* createCommandMoveRock(std::string &player);
     CommandDisconnected* createCommandDisconnected(std::string &player);
+    CommandKill* createCommandKill(std::string &voter);
+    CommandSuicide* createCommandSuicide(std::string &player);
     //los demas comandos
 };
 

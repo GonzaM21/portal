@@ -180,12 +180,21 @@ void Encoder::sendEnergyBall(Energy_Emitters* emitter) {
 }
 
 
-void Encoder ::sendWorldSizes() {  //Se necesita?¡?¡?¡?¡?¡?¡?¡¡?
+void Encoder ::sendWorldSizes() {  
     int width = (int)this->data_base->getWidth();
-    for (int i = -30; i<30; i++ ) {
+    for (int i = -GROUND_WIDTH/2.f; i<GROUND_WIDTH/2.f; i++ ) {
         std::string msg;
         msg = "2,1," + std::to_string(i) + ",1,1,1";
         this->sender->addMessageToSend(msg);
+        msg = "2,1," + std::to_string(i) + ",-10,1,1";
+        this->sender->addMessageToSend(msg);
+    }
+    for (int i= 0; i>-10; i--) {
+        std::string msg;
+        msg = "2,1," + std::to_string(-GROUND_WIDTH/2.f) +","+ std::to_string(i) +",1,1";
+        this->sender->addMessageToSend(msg);
+        msg = "2,1," + std::to_string(GROUND_WIDTH/2.f) +"," + std::to_string(i) +",1,1";
+        this->sender->addMessageToSend(msg);        
     }
 }
 

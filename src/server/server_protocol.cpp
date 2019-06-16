@@ -46,5 +46,11 @@ Command* Protoc :: deserialize(std::string &message) {
     if (content.at(1) == "disconnect")  {
         return commandFactory.createCommandDisconnected(content.at(0));
     }
+    if (content.at(1) == "1") {
+        return commandFactory.createCommandKill(content.at(0));
+    }
+    if (content.at(1) == "2") {
+        return commandFactory.createCommandSuicide(content.at(0));
+    }
     return nullptr;
 }

@@ -1,7 +1,9 @@
+#include <vector>
 #include "server_model.h"
 #include "server_sender.h"
 #include "../common/Constants.h"
 #include "level_creator/map_parser.h"
+#define EMPTY_VOTE ""
 
 
 
@@ -9,6 +11,19 @@ Model :: Model(Sender *sender) {
     GameLoop *game_loop = new GameLoop(&this->world,sender,&this->data_base);
     this->game_loop = game_loop;
     ground = new Ground(world, 0.f, -1.f, GROUND_WIDTH,GROUND_HEIGHT);
+    this->data_base.setLevel(world);
+}
+
+bool Model::levelComplete() {
+    std::vector<Chell_Player*> chells = this->data_base.getPlayers();
+    for (size_t i = 0; i<chells.size(); i++) {
+        if (chells[i]->getStatus() != 3) return false;
+    }
+    return true;
+}
+
+void Model::checkWinState() {
+    this->data_base.setWinState();
 }
 
 Model :: ~Model(){
@@ -16,7 +31,7 @@ Model :: ~Model(){
 }
 
 void Model :: startGame() {
-    if (this->gameStarted()) return;
+    if (this->gameRunning()) return;
     try {
         game_loop->start();
     } catch (const std::exception &e) {
@@ -38,7 +53,7 @@ std::string Model :: getTime() {
     return current_time; 
 }
 
-bool Model :: gameStarted() {
+bool Model :: gameRunning() {
     return this->game_loop->gameLoopStarted();
 }
 
@@ -60,6 +75,14 @@ void Model :: shootPortal(std::string &player,float x_destiny, float y_destiny,i
 
 void Model :: makePlayerMoveRock(std::string &player) {
     std::cout << "No esta hecho todavia el comando move rock en el modelo\n";
+}
+
+void Model ::killPlayer(std::string &player_name) {
+    this->data_base.killPlayer(player_name);
+}
+
+void Model ::voteToKill(std::string &voter) {
+    this->data_base.voteToKill(voter);
 }
 
 void Model :: addPlayer(std::string &player) {

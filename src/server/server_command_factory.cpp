@@ -39,3 +39,11 @@ CommandMoveRock* CommandFactory :: createCommandMoveRock(std::string &player) {
 CommandDisconnected* CommandFactory ::createCommandDisconnected(std::string &player) {
     return new CommandDisconnected(this->players_connection,player);
 }
+
+CommandKill* CommandFactory::createCommandKill(std::string &voter) {
+    return new CommandKill(this->model,voter);
+}
+
+CommandSuicide* CommandFactory::createCommandSuicide(std::string &player) {
+    return new CommandSuicide(this->model,player);
+}

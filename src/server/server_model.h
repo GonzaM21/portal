@@ -21,9 +21,9 @@ class Model {
 
     public:
         explicit Model(Sender *sender);
-        ~Model(); //= default;
+        ~Model();
         void startGame();
-        bool gameStarted(); 
+        bool gameRunning(); 
         void endGame();
         std::string getTime();
         void step();
@@ -32,8 +32,12 @@ class Model {
         World* getWorld();
         void makePlayerJump(std::string &player);
         void makePlayerMove(std::string &player,char &direction);
-        void shootPortal(std::string &player,float x_destiny, float y_destiny,int portal_num);//portal num es 0 o 1, 0 in 1 out
+        void shootPortal(std::string &player,float x_destiny, float y_destiny,int portal_num);
         void makePlayerMoveRock(std::string &player);
+        bool levelComplete();//lo llama gameroom en cada vuelta,si da true lo manejo en gameroom
+        void checkWinState();
+        void killPlayer(std::string &player_name);
+        void voteToKill(std::string &voter);
 
         //Funciones para agregar elementos al mapa
         void addRock(float x_pos, float y_pos, float radius);

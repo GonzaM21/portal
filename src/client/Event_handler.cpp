@@ -72,6 +72,14 @@ void EventHandler::handleKeyUp(SDL_KeyboardEvent& keyEvent) {
       messageSender.sendJump();
     }
       break;
+    case SDLK_1: {
+      messageSender.sendKillPlayer();
+      break;
+    }
+    case SDLK_2: {
+      messageSender.sendSuicide();
+      break;
+    }
     case SDLK_q: {
       std::cout << "exit" << std::endl;
       messageSender.sendQuitGame();

@@ -26,6 +26,8 @@ private:
     std::mutex m;
     std::map<std::string,size_t> player_ids;
     std::map<std::string, Chell_Player*> players;
+    std::map<std::string,std::string> vote_to_kill;
+    std::map<std::string,bool> player_reach_cake;
     std::map<size_t, Rock*> rocks;
     std::map<size_t, Acid*> acids;
     std::map<size_t, Energy_Ball*> energy_balls;
@@ -37,15 +39,24 @@ private:
     std::map<size_t, Energy_Emitters*> emitters;
     int width;
     int height;
+    bool win_state = false;
     void addButtonToDoor(Button *button,int door_id,int state);
+    void setVotes(std::map<std::string, size_t> &votes);
+    std::string getPlayerToKill();
+    void checkPlayerToKill(std::string &player_to_kill);
 
 public:
     ProtectedDataBase() = default;
     ~ProtectedDataBase() = default;
 
+    void setLevel(World &world);
+
     void makePlayerJump(std::string &player);
     void makePlayerMove(std::string &player,char &direction);
     void shootPortal(World &world,std::string &player,float x_destiny, float y_destiny,int portal_num);
+    void voteToKill(std::string &voter);
+    void killPlayer(std::string &player_name);
+    void setWinState();
 
     void addPlayer(World &world,std::string &player);
     void addRock(World &world,float x_pos, float y_pos, float radius);
@@ -58,7 +69,6 @@ public:
     void addEmitter(World &world,float x_pos, float y_pos, float size,
       int direction, bool charged);
     void addEnergyBarrier(World &world,float x_pos, float y_pos, float large);
-
     //Getters
     std::vector<std::string> getIds();
     std::vector<Chell_Player*> getPlayers();
@@ -72,7 +82,10 @@ public:
     std::vector<Energy_Barrier*> getBarriers();
     std::vector<Energy_Emitters*> getEmitters();      
     float getWidth();
-    float getHeight();  
+    float getHeight();
+    std::map<std::string,Chell_Player*> getPlayersMap();
+    bool getWinState();
+    std::map<std::string,std::string> getVoteToKill();  
 };
 
 #endif

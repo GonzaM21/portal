@@ -26,6 +26,7 @@ void ClientCommunicator::receiveMessage() {
         std::string message;
         this->protocol >> message;
         std::vector<std::string> arguments;
+        std::cout << message << std::endl;
         splitMessage(message, arguments);
         if (arguments.at(0).substr(0,5) == "Error") {
             this->endExecution();

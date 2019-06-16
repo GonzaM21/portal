@@ -49,3 +49,11 @@ void MessageSender::sendStop() {
 void MessageSender::sendFullscreen() {
   communicator->addMessageToSend("fullscreen");
 }
+
+void MessageSender::sendKillPlayer() {
+  communicator->addMessageToSend("1");
+}
+
+void MessageSender::sendSuicide() {
+  communicator->addMessageToSend("2");
+}

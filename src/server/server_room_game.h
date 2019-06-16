@@ -16,22 +16,28 @@ class RoomGame : public Thread {
         std::string name;
         ColaProtegida *messages;
         size_t size;
-        //std::list<std::string> players;
         Sender sender;
+        std::map<std::string,bool> players;
+        bool room_is_active;
+
+
         void sendMessageFrom(std::string &player,std::string &message);
         bool continue_running;
         void splitMessage(std::string &message,std::string &first_place,
         std::string &second_place);
+
+        //Settea la variable room_is_active a true o false
+        //dependiendo si hay o no jugadores conectados a la
+        //sala
         void roomStillActive();
-        std::map<std::string,bool> players;
-        bool room_is_active;
+
     public:
         RoomGame(std::string &name,size_t size);
         ~RoomGame();
 
+        //Setea las variables para poder finalizar
+        //la ejecucion de la sala correctamente.
         void endExecution();
-
-        virtual void run() override;
 
         //Recibe como parametro un jugador y lo agrega a la sala
         bool addPlayer(std::string &name);
@@ -39,17 +45,19 @@ class RoomGame : public Thread {
         //Envia un mensaje al resto de los jugadores que estan en
         //la sala del jugador que recibe por parametro
         //void sendMessageFrom(Player &player,std::string message);
-        
+
         bool playerInRoom(const std::string &name);
 
+        //Recibe como parametro un string y lo agrega a la 
+        //cola protegida de la sala.
         void addMessageToSend(std::string &message);
 
+        virtual void run() override;
+
+        //Getters
         std::string getName();
-
         Sender* getSender();
-
         std::string getJugadores(); //HAY QUE BORRAR(creo) 
-
         bool getRoomIsActive();
 };
 

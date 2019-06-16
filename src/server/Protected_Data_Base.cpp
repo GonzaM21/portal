@@ -1,9 +1,29 @@
 #include "Protected_Data_Base.h"
 #include <vector>
+#define EMPTY_VOTE ""
+
+void ProtectedDataBase::setLevel(World &world) {
+    for (int i = -GROUND_WIDTH/2.f; i<GROUND_WIDTH/2.f; i++ ) {
+        this->addMetalBlock(world,i,-10,1);
+    }
+    for (int i= 0; i>-10; i--) {
+        this->addMetalBlock(world,-GROUND_WIDTH/2.f, i,1);
+        this->addMetalBlock(world,GROUND_WIDTH/2.f, i,1);
+    }
+}
+
 
 void ProtectedDataBase :: makePlayerJump(std::string &player) {
     std::unique_lock<std::mutex> lck(m);
     this->players[player]->Jump();
+}
+
+void ProtectedDataBase ::voteToKill(std::string &voter) {//ACA TENIA QUE BUSCARLO CON LA FUNCION QUE ESTA ABAJO, DEBO ACOMODAR ESTO EN MODEL,FACTORY_COMMAND,COMANDO_KILLL/VER SUICIDAR, Y PROTOCOLO
+    std::unique_lock<std::mutex> lck(m);
+    std::string player_to_kill = getPlayerToKill();
+    if (!this->win_state) return;
+    this->vote_to_kill[voter] = player_to_kill;
+    this->checkPlayerToKill(player_to_kill); 
 }
 
 void ProtectedDataBase :: makePlayerMove(std::string &player,char &direction) {
@@ -75,6 +95,8 @@ void ProtectedDataBase :: addPlayer(World &world,std::string &player) {
     float pos = this->players.size();
     this->players.insert({player,new Chell_Player(world,0.f,0.2f)});
     this->player_ids.insert({player,this->players.size()});
+    this->vote_to_kill.insert({player,EMPTY_VOTE});
+    this->player_reach_cake.insert({player,false});
 }
 
 void ProtectedDataBase :: addEmitter(World &world,float x_pos, float y_pos, float size,int direction, bool charged) {
@@ -195,3 +217,53 @@ float ProtectedDataBase :: getWidth() {
 float ProtectedDataBase :: getHeight() {
   return GROUND_HEIGHT;
 }  
+
+std::map<std::string,Chell_Player*> ProtectedDataBase::getPlayersMap() {
+  return this->players;
+}
+
+bool ProtectedDataBase::getWinState() { 
+  return this->win_state;
+}
+
+std::map<std::string,std::string> ProtectedDataBase::getVoteToKill() {
+  return this->vote_to_kill;
+}
+
+void ProtectedDataBase::setWinState() {
+    std::unique_lock<std::mutex> lck(m);
+    if (this->win_state) return;
+    int counter = 0;
+    for (auto player : this->player_reach_cake) {
+        Chell_Player* chell = this->players[player.first];
+        player.second = chell->getStatus()==3;
+        if (player.second) counter++;
+    }
+    if (counter==this->player_reach_cake.size()-1) this->win_state=true;
+}
+
+void ProtectedDataBase::setVotes(std::map<std::string, size_t> &votes) {//PRIVADO
+    for (auto player : this->players)
+      votes.insert({player.first,0});
+}
+
+void ProtectedDataBase::checkPlayerToKill(std::string &player_to_kill) {//PRIVADO
+    size_t counter = 0;
+    for (auto player: this->vote_to_kill) {
+      if (player.first == player_to_kill) continue;
+      if (player.second == player_to_kill) counter++;
+    }
+    if (counter == this->players.size()-1) this->killPlayer(player_to_kill);
+}
+
+std::string ProtectedDataBase::getPlayerToKill() {//PRIVADO
+    for (auto player : this->player_reach_cake) 
+      if (!player.second) return player.first;
+}
+
+void ProtectedDataBase::killPlayer(std::string &player_name) {
+    if (!this->win_state) return;
+    this->players[player_name]->die();
+}
+
+//NOTA: REVISAR CUANDO ESTE EL CAKE SI DEBO MUTEAR ALGO MAS

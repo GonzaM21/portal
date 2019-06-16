@@ -24,5 +24,5 @@
 #define LAUNCH_DOWN_BLOCK 6
 #define LAUNCH_LEFT_BLOCK 7 //Faltan los bloques que son triagulares
 
-#define GROUND_WIDTH 200.f
+#define GROUND_WIDTH 100.f
 #define GROUND_HEIGHT 1.f

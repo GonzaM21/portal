@@ -46,6 +46,7 @@ int main(int argc, char *argv[])
         Joiner joiner(host,port);
         std::string mode = "new";
         std::string room_name = "sala";
+        player_name = "joel";
 
         ModelFacade model_facade;
         ClientCommunicator communicator(std::move(joiner.setSocket()), 
