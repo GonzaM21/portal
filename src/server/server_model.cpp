@@ -10,8 +10,21 @@
 Model :: Model(Sender *sender) { 
     GameLoop *game_loop = new GameLoop(&this->world,sender,&this->data_base);
     this->game_loop = game_loop;
-    ground = new Ground(world, 0.f, -1.f, GROUND_WIDTH,GROUND_HEIGHT);
+    this->ground = new Ground(world, 0.f, -1.f, GROUND_WIDTH,GROUND_HEIGHT);
     this->data_base.setLevel(world);
+    this->level_complete = false;
+}
+
+bool Model::getLevelComplete() {
+    return this->level_complete;
+}
+
+void Model::checkLevelComplete() {
+    if (this->levelComplete()) {
+        //this->game_loop->resetGameLoop();
+        delete this->ground;
+        this->level_complete = true;
+    }
 }
 
 bool Model::levelComplete() {
@@ -125,7 +138,16 @@ void Model::addEnergyBarrier(float x_pos, float y_pos, float large) {
     this->data_base.addEnergyBarrier(this->world,x_pos,y_pos,large);
 }
 
-std::string Model :: getJugadores() { //Puede llegar a servir mas adelante el comando creado por eso no borro
-    std::cout << "allalalalalalalalalal\n";
-    return "lalala";
+void Model :: sendInfoPlayers() { 
+    this->game_loop->sendInfoPlayers();
 }
+
+void Model::sendInfoRooms() {
+    this->game_loop->sendInfoRooms();
+}
+
+//void Model::resetModel() {
+//    //lo llamo desde room_game, chequeo si terminio el nivel ahi y meto esta funconi dentro de un if
+//    this->game_loop->resetGameLoop();
+//    //this->data_base.resetDataBase();
+//}

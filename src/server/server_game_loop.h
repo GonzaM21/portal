@@ -40,6 +40,9 @@ class GameLoop : public Thread {
         void step();
         void sendInitialData();
         void sendDynamicData();
+        //void resetGameLoop();
+        void sendInfoPlayers();
+        void sendInfoRooms();
 };
 
 #endif

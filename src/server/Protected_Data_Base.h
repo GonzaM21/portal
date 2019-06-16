@@ -85,6 +85,7 @@ public:
     float getWidth();
     float getHeight();
     std::map<std::string,Chell_Player*> getPlayersMap();
+    std::string getPlayersName();
     bool getWinState();
     std::map<std::string,std::string> getVoteToKill();  
 };

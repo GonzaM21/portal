@@ -13,6 +13,16 @@ GameLoop ::GameLoop(World *world, Sender *sender,
     this->world = world;
 }
 
+void GameLoop :: sendInfoPlayers() {
+    if (!this->gameLoopStarted())
+        this->encoder.sendPlayersName();
+}
+
+void GameLoop :: sendInfoRooms() {
+    //if (!this->gameLoopStarted())
+        //this->encoder.sendRoomsName(); no esta implementado todavia
+}
+
 void GameLoop :: sendInitialData() {
     this->encoder.sendPlayersPositions();
     this->encoder.sendPlayerIds();
@@ -53,7 +63,15 @@ void GameLoop :: run() {
 
 void GameLoop ::endGameLoop() {
     this->continue_running = false;
+    this->encoder.sendEndGame();
 }
+
+//void GameLoop::resetGameLoop() {
+//    this->encoder.sendEndLevel();
+//    this->time = 0;
+//    this->continue_running = false;
+//    //reseteo el mundo
+//}
 
 std::string GameLoop ::getFormat(int time) {
     std::string time_s = std::to_string(time);

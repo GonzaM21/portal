@@ -271,4 +271,19 @@ void ProtectedDataBase::killPlayer(std::string &player_name) {
     this->players[player_name]->die();
 }
 
+std::string ProtectedDataBase::getPlayersName() {
+    std::unique_lock<std::mutex> lck(m);
+    std::string players("");
+    size_t pos = 1;
+    for (auto player : this->players) {
+      if (pos == this->players.size()) {
+        players += player.first; 
+      } else {
+        players += player.first +",";
+        pos++;
+      }
+    }
+    return players;
+}
+
 //NOTA: REVISAR CUANDO ESTE EL CAKE SI DEBO MUTEAR ALGO MAS

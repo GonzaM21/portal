@@ -7,6 +7,5 @@ CommandMates :: CommandMates(Model *model) {
 }
 
 void CommandMates :: execute() {
-    std::string players = this->model->getJugadores();
-    std::cout << players << std::endl;
+    this->model->sendInfoPlayers();
 }

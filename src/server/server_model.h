@@ -18,6 +18,8 @@ class Model {
         ProtectedDataBase data_base;
         World world;
         Ground * ground;
+        bool level_complete;
+        bool levelComplete();
 
     public:
         explicit Model(Sender *sender);
@@ -28,16 +30,19 @@ class Model {
         std::string getTime();
         void step();
         void addPlayer(std::string &player);
-        std::string getJugadores(); //HAY QUE BORRAR
+        void sendInfoPlayers();
+        void sendInfoRooms();
         World* getWorld();
         void makePlayerJump(std::string &player);
         void makePlayerMove(std::string &player,char &direction);
         void shootPortal(std::string &player,float x_destiny, float y_destiny,int portal_num);
         void makePlayerMoveRock(std::string &player);
-        bool levelComplete();//lo llama gameroom en cada vuelta,si da true lo manejo en gameroom
         void checkWinState();
         void killPlayer(std::string &player_name);
         void voteToKill(std::string &voter);
+        void checkLevelComplete();
+        bool getLevelComplete();
+        //void resetModel(); 
 
         //Funciones para agregar elementos al mapa
         void addRock(float x_pos, float y_pos, float radius);

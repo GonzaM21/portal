@@ -1,5 +1,7 @@
 #include "Encoder.h"
-#define END_MAP "F"
+#define NEXT_LEVEL_CODE "0001"
+#define END_GAME_CODE "0002"
+#define END_MAP_CODE "0003"
 
 Encoder :: Encoder(ProtectedDataBase *data_base,Sender *sender) {
     this->data_base = data_base;
@@ -153,7 +155,7 @@ void Encoder :: sendBarriers() {
     }
 }
 
-void Encoder :: sendEmitters() {
+void Encoder :: sendEmitters() { //ARREGLAR
     std::vector<Energy_Emitters*> emitters = this->data_base->getEmitters();
     for ( size_t i = 0; i<emitters.size(); i++ ) {
         std::string msg;
@@ -201,4 +203,19 @@ void Encoder ::sendWorldSizes() {
 void Encoder :: sendEndMap() {
     std::string msg = "F";
     this->sender->addMessageToSend(msg);
+}
+
+void Encoder::sendEndLevel() {
+    std::string msg = NEXT_LEVEL_CODE;
+    this->sender->addMessageToSend(msg);
+}
+
+void Encoder::sendEndGame() {
+    std::string msg = END_GAME_CODE;
+    this->sender->addMessageToSend(msg);
+}
+
+void Encoder::sendPlayersName() {
+    std::string players = this->data_base->getPlayersName();
+    this->sender->addMessageToSend(players);
 }

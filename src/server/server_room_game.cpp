@@ -60,9 +60,6 @@ void RoomGame :: run() {
         command->execute();
         this->roomStillActive();
         model.checkWinState();
-        if (model.levelComplete()) {
-            std::cout << "NIVEL TERMINADO\n";
-        }
     }
     model.endGame();
 }

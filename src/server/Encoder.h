@@ -30,6 +30,10 @@ public:
     void sendPortals();
     void sendBarriers();
     void sendEmitters();
+    void sendEndLevel();
+    void sendEndGame();
+    void sendPlayersName();
+    void sendRoomsName();
 };
 
 #endif
