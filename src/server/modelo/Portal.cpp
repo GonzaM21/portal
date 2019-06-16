@@ -83,14 +83,14 @@ void Portal::changePosition() {
             float delta = - PORTAL_WIDTH/2.f;
             if(position.x > 0) delta = PORTAL_WIDTH/2.f;
             world.eraseBody(portal);
-            portal = world.addPolygon(position.x - DELTA_POSITION + delta
+            portal = world.addPolygon(position.x - DELTA_POSITION
                     ,position.y - DELTA_POSITION,PORTAL_WIDTH/2.F,PORTAL_HIGH/2.F,true,data);
         }
         if (orientation == 0) {
             float delta = - PORTAL_WIDTH/2.f;
             if(position.y > 0) delta = PORTAL_WIDTH/2.f;
             world.eraseBody(portal);
-            portal = world.addPolygon(position.x - DELTA_POSITION,position.y - DELTA_POSITION + delta ,PORTAL_HIGH/2.F,
+            portal = world.addPolygon(position.x - DELTA_POSITION,position.y - DELTA_POSITION ,PORTAL_HIGH/2.F,
                     PORTAL_WIDTH/2.F,true,data);
         }
         portal->SetUserData(this);

@@ -62,9 +62,10 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
     polygonFixtureDef.filter.categoryBits = data.getCategoryBits();
     polygonFixtureDef.filter.maskBits = data.getMaskBits();
     polygonBody = world->CreateBody(&polygonBodyDef);
+
     polygonBody->CreateFixture(&polygonFixtureDef);
     polygonBody->SetFixedRotation(true);
-    shape_polygon.SetAsBox(0.002, 0.002, b2Vec2(0, -y_size),0);
+    shape_polygon.SetAsBox(FOOT_SENSOR_SIZE, FOOT_SENSOR_SIZE, b2Vec2(ZERO, -y_size),0);
     polygonFixtureDef.isSensor = true;
     b2Fixture* footSensorFixture  = polygonBody->CreateFixture(&polygonFixtureDef);
     std::cout<<"World: "<<foot_data<<std::endl;
@@ -158,17 +159,18 @@ b2Body* World::addTriangle(float x_pos, float y_pos, float size, int angle ,bool
 
     triangleBodyDef.type = static_obj ? b2BodyType::b2_staticBody : b2BodyType::b2_dynamicBody;
 
-    if (!validPosition(x_pos,y_pos)){
-        throw InvalidPosition();
-    }
+    if (!validPosition(x_pos,y_pos)) throw InvalidPosition();
+
     triangleBodyDef.position = b2Vec2(x_pos + DELTA_POSITION,y_pos + DELTA_POSITION);
+
     triangleBody = world->CreateBody(&triangleBodyDef);
+
     b2PolygonShape shape_triangle;
     b2Vec2 vertices[3];
     if (angle == 45){
         vertices[0].Set((-2.0/3) * size, (-1.0/3) * size);
-        vertices[1].Set((1.0/3) * size, (-1.0/3) * size);
-        vertices[2].Set((1.0/3) * size, (2.0/3) * size);
+        vertices[1].Set((1.0/3) * size, (2.0/3) * size);
+        vertices[2].Set((1.0/3) * size, (-1.0/3) * size);
     } else if (angle == 135){
         vertices[0].Set((2.0/3) * size, (-1.0/3) * size);
         vertices[1].Set((-1.0/3) * size, (-1.0/3) * size);

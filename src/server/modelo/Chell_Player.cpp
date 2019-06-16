@@ -3,7 +3,7 @@
 //patron build
 //ver lo de las colcsiones
 
-Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world),contact_counter(0),jumper_counter(0){
+Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world),jumper_counter(0){
     name = "Chell_Player";
     contact = true;
     teleport = false;
@@ -16,7 +16,6 @@ Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world)
     data.addMaskBits(BALL_BITS);
     sizes = b2Vec2(CHELL_HIGH,CHELL_WIDTH);
     footSensor = new Foot_Sensor(this);
-    std::cout<<"Chell "<<footSensor<<std::endl;
     chell = world.addPlayer(x_pos, y_pos, CHELL_WIDTH/2, CHELL_HIGH/2.f,data,footSensor);
     chell->SetUserData(this);
     direction_right = true;
@@ -24,7 +23,6 @@ Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world)
 
 bool Chell_Player::Jump(){
     if(!live) return false;
-    std::cout<<"contact_counter: "<<contact<<"   "<<"Jumper_Counter: "<<jumper_counter<<std::endl;
    if (contact && jumper_counter == 0){
        chell->ApplyForceToCenter(b2Vec2(ZERO,CHELL_JUMP_FORCE),true);
        jumper_counter = 1;
@@ -80,7 +78,7 @@ int Chell_Player::getStatus(){
 }
 
 int Chell_Player::getDirection() {
-    return this->direction_right;
+    return direction_right;
 } 
 
 b2Vec2 Chell_Player::getPosition() {
@@ -103,19 +101,18 @@ bool Chell_Player::setTransform(Entity * body) {
     b2Vec2 normal = dynamic_cast<Portal *>(body)->getPartnerPortal()->getNormal();
 
     teleport = true;
-    //b2Vec2 velocity_actual = chell->GetLinearVelocity();
-    if(normal.x > 1){
-        teleport_pos = teleport_pos + b2Vec2(0.7,0.0);
-    } else {
-        teleport_pos = teleport_pos - b2Vec2(0.7,0.0);
+    if(normal.x > ZERO){
+        teleport_pos = teleport_pos + b2Vec2(CHELL_X_DELTA,ZERO);
+    } else if(normal.x < ZERO){
+        teleport_pos = teleport_pos - b2Vec2(CHELL_X_DELTA,ZERO);
     }
-    if(normal.y > 1){
-        teleport_pos = teleport_pos + b2Vec2(0,0.7);
-    } else {
-        teleport_pos = teleport_pos - b2Vec2(0,0.7);
+    if(normal.y > ZERO){
+        teleport_pos = teleport_pos + b2Vec2(ZERO,CHELL_Y_DELTA);
+    } else if (normal.y < ZERO){
+        teleport_pos = teleport_pos - b2Vec2(ZERO,CHELL_Y_DELTA);
     }
-    std::cout<<"Normal "<<normal.x<<" "<<normal.y<<std::endl;
-    //velocity = b2Vec2(abs(velocity_actual.x/2) * normal.x/2,velocity_actual.y * normal.y);
+
+    velocity = b2Vec2(CHELL_VELOCITY * normal.x,CHELL_VELOCITY * normal.y);
     return true;
 }
 
@@ -124,11 +121,12 @@ void Chell_Player::changePosition() {
         std::cout<<"frenate"<<std::endl;
         chell->SetLinearVelocity(b2Vec2(0,0));
         bouncing = false;
-        //jumper_counter = 0;
     }
     if(!teleport) return;
     chell->SetTransform(teleport_pos,chell->GetAngle());
-    chell->SetLinearVelocity(b2Vec2(0,0));
+    chell->SetLinearVelocity(velocity);
+    if(velocity.x > 0) direction_right = 1;
+    else direction_right = 0;
     jumper_counter = 0;
     teleport = false;
 }
@@ -140,7 +138,6 @@ void Chell_Player::startBouncing(){
 void Chell_Player::startContact(b2Vec2) {
     contact = true;
     printf("Empezo el contacto\n");
-    //++contact_counter;
     jumper_counter = 0;
 }
 
@@ -150,8 +147,6 @@ void Chell_Player::endContact() {
         contact = false;
     }
     jumper_counter = 1;
-    //bouncing = true;
-    //--contact_counter;
 }
 
 const std::string& Chell_Player::getEntityName() {

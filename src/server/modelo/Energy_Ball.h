@@ -10,6 +10,9 @@ class Energy_Ball : public Entity{
     bool live;
     bool contact;
     World& world;
+    float size;
+    b2Vec2 new_velocity;
+    bool change_velocity;
     int angle;
 public:
     //Contructor de una bola de energia
@@ -25,11 +28,11 @@ public:
     float getAngle();
 
     const std::string& getEntityName() override;
-    void startContact(b2Vec2 pos) override;
+    void startContact(b2Vec2) override;
     void endContact() override;
     void die() override;
     bool lives() override;
-    bool setTransform(Entity * body) override;
+    bool setTransform(Entity *) override;
     void changePosition() override;
     void startBouncing() override ;
     void win();

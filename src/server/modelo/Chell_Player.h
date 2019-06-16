@@ -20,8 +20,7 @@ class Chell_Player : public Entity{
     b2Vec2 sizes;
     b2Vec2 teleport_pos;
     Foot_Sensor * footSensor;
-    //b2Vec2 velocity;
-    int contact_counter;
+    b2Vec2 velocity;
     int jumper_counter;
     bool direction_right;
 public:

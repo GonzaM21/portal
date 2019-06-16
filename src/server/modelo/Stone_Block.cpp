@@ -7,6 +7,7 @@ Stone_Block::Stone_Block(World &world,float x_pos, float y_pos,float size){
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(BALL_BITS);
     block = world.addBox(x_pos,y_pos,size/2.f,true,false,data);
+    block->SetUserData(this);
     angle = 90;
     name = "Stone_Block";
     sizes = b2Vec2(size,size);
@@ -19,6 +20,7 @@ Stone_Block::Stone_Block(World &world,float x_pos, float y_pos,float size,int an
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(BALL_BITS);
     block = world.addTriangle(x_pos,y_pos,size/2,angle,true,false,data);
+    block->SetUserData(this);
     this->angle = angle;
     name = "Stone_Block";
     sizes = b2Vec2(BLOCK_SIZES,BLOCK_SIZES);

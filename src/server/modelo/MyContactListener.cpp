@@ -146,10 +146,20 @@ void energy_ball_colition(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
     }
 
     if(nameBodyA == "Energy_Ball" && nameBodyB == "Metal_Block"){
+        static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
+        static_cast<Entity *>(userDataA)->startContact(colition_point);
+    }
+
+    if(nameBodyB == "Energy_Ball" && nameBodyA == "Metal_Block"){
+        static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
         static_cast<Entity *>(userDataB)->startContact(colition_point);
     }
     if(nameBodyA == "Energy_Ball" && nameBodyB == "Stone_Block"){
         static_cast<Entity *>(userDataA)->die();
+    }
+
+    if(nameBodyB == "Energy_Ball" && nameBodyA == "Stone_Block"){
+        static_cast<Entity *>(userDataB)->die();
     }
 }
 
