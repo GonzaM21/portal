@@ -4,12 +4,17 @@
 
 void ProtectedDataBase::setLevel(World &world) {
     for (int i = -GROUND_WIDTH/2.f; i<GROUND_WIDTH/2.f; i++ ) {
-        this->addMetalBlock(world,i,-10,1);
+        this->addMetalBlock(world,i,-5,1);
     }
-    for (int i= 0; i>-10; i--) {
+    for (int i= 1; i>-6; i--) {
         this->addMetalBlock(world,-GROUND_WIDTH/2.f, i,1);
         this->addMetalBlock(world,GROUND_WIDTH/2.f, i,1);
     }
+}
+
+void ProtectedDataBase::makePlayerMoveRock(std::string &player) {
+    std::unique_lock<std::mutex> lck(m);
+    this->players[player]->grabARock();
 }
 
 

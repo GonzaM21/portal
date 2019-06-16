@@ -40,7 +40,7 @@ Command* Protoc :: deserialize(std::string &message) {
         return commandFactory.createCommandShoot(content.at(0),content.at(2),
           content.at(3),content.at(4));
     }
-    if (content.at(1) == "r")  {
+    if (content.at(1) == "e")  {
         return commandFactory.createCommandMoveRock(content.at(0));
     }    
     if (content.at(1) == "disconnect")  {

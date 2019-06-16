@@ -57,3 +57,7 @@ void MessageSender::sendKillPlayer() {
 void MessageSender::sendSuicide() {
   communicator->addMessageToSend("2");
 }
+
+void MessageSender::sendMoveRock() {
+  communicator->addMessageToSend("e");
+}

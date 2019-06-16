@@ -1,7 +1,13 @@
 {
 "OBJECTID0" : {
-    "POS_X": 1,
-    "POS_Y": 1,
+    "POS_X": 2,
+    "POS_Y": 0.5,
+    "TYPE": 8,
+    "WIDTH": 0.3
+},
+"OBJECTID1" : {
+    "POS_X": 4,
+    "POS_Y": 0,
     "TYPE": 2,
     "TYPE_OPTIONAL": 1,
     "WIDTH": 1

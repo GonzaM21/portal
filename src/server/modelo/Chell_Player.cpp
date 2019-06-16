@@ -124,26 +124,27 @@ bool Chell_Player::setTransform(Entity * body) {
         rock = (Rock *)body;
         taking = true;
     }
+    if (body->getEntityName() == "Portal") {
+        if(!dynamic_cast<Portal *>(body)->havePartner()) return false;
+        if(!dynamic_cast<Portal *>(body)->getPartnerPortal()->lives()) return false;
 
-    if(!dynamic_cast<Portal *>(body)->havePartner()) return false;
-    if(!dynamic_cast<Portal *>(body)->getPartnerPortal()->lives()) return false;
-
-    teleport_pos = dynamic_cast<Portal *>(body)->getPartnerPortal()->getPosition();
-    b2Vec2 normal = dynamic_cast<Portal *>(body)->getPartnerPortal()->getNormal();
-
-    teleport = true;
-    if(normal.x > ZERO){
-        teleport_pos = teleport_pos + b2Vec2(CHELL_X_DELTA,ZERO);
-    } else if(normal.x < ZERO){
-        teleport_pos = teleport_pos - b2Vec2(CHELL_X_DELTA,ZERO);
+        teleport_pos = dynamic_cast<Portal *>(body)->getPartnerPortal()->getPosition();
+        b2Vec2 normal = dynamic_cast<Portal *>(body)->getPartnerPortal()->getNormal();
+    
+        teleport = true;
+        if(normal.x > ZERO){
+            teleport_pos = teleport_pos + b2Vec2(CHELL_X_DELTA,ZERO);
+        } else if(normal.x < ZERO){
+            teleport_pos = teleport_pos - b2Vec2(CHELL_X_DELTA,ZERO);
+        }
+        if(normal.y > ZERO){
+            teleport_pos = teleport_pos + b2Vec2(ZERO,CHELL_Y_DELTA);
+        } else if (normal.y < ZERO){
+            teleport_pos = teleport_pos - b2Vec2(ZERO,CHELL_Y_DELTA);
+        }
+    
+        velocity = b2Vec2(CHELL_VELOCITY * normal.x,CHELL_VELOCITY * normal.y);
     }
-    if(normal.y > ZERO){
-        teleport_pos = teleport_pos + b2Vec2(ZERO,CHELL_Y_DELTA);
-    } else if (normal.y < ZERO){
-        teleport_pos = teleport_pos - b2Vec2(ZERO,CHELL_Y_DELTA);
-    }
-
-    velocity = b2Vec2(CHELL_VELOCITY * normal.x,CHELL_VELOCITY * normal.y);
     return true;
 }
 

@@ -74,7 +74,7 @@ void Model :: shootPortal(std::string &player,float x_destiny, float y_destiny,i
 }
 
 void Model :: makePlayerMoveRock(std::string &player) {
-    std::cout << "No esta hecho todavia el comando move rock en el modelo\n";
+    this->data_base.makePlayerMoveRock(player);
 }
 
 void Model ::killPlayer(std::string &player_name) {

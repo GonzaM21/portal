@@ -20,6 +20,7 @@ public:
   void sendFullscreen();
   void sendKillPlayer();
   void sendSuicide();
+  void sendMoveRock();
 
 private: 
   bool running;

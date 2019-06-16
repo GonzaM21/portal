@@ -53,6 +53,7 @@ public:
 
     void makePlayerJump(std::string &player);
     void makePlayerMove(std::string &player,char &direction);
+    void makePlayerMoveRock(std::string &player);
     void shootPortal(World &world,std::string &player,float x_destiny, float y_destiny,int portal_num);
     void voteToKill(std::string &voter);
     void killPlayer(std::string &player_name);
