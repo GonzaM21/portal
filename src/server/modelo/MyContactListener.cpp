@@ -6,11 +6,13 @@ void chell_validation(Entity * bodyA, Entity * bodyB){
     std::string nameBodyB = (bodyB)->getEntityName();
 
     if(nameBodyA == "Chell_Player" && nameBodyB == "Portal") bodyA->setTransform(bodyB);
+    if(nameBodyA == "Chell_Player" && nameBodyB == "Rock") bodyA->setTransform(bodyB);
     if(nameBodyA == "Chell_Player" && nameBodyB == "Energy_Ball") bodyA->die();
     if(nameBodyA == "Chell_Player" && nameBodyB == "Acid") bodyA->die();
     if(nameBodyA == "Chell_Player" && nameBodyB == "Cake") bodyA->win();
 
-    if(nameBodyB == "Chell_Player" && nameBodyA == "Portal") bodyB->setTransform(bodyB);
+    if(nameBodyB == "Chell_Player" && nameBodyA == "Portal") bodyB->setTransform(bodyA);
+    if(nameBodyB == "Chell_Player" && nameBodyA == "Rock") bodyB->setTransform(bodyA);
     if(nameBodyB == "Chell_Player" && nameBodyA == "Energy_Ball") bodyB->die();
     if(nameBodyB == "Chell_Player" && nameBodyA == "Acid") bodyB->die();
     if(nameBodyB == "Chell_Player" && nameBodyA == "Cake") bodyB->win();

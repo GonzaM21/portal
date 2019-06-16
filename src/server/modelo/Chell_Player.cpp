@@ -224,7 +224,8 @@ void Chell_Player::win(){
 }
 
 void Chell_Player::grabARock() {
-    take = true;
+    if(rock != nullptr && take) dropTheRock();
+    else take = true;
 }
 
 void Chell_Player::dropTheRock() {
