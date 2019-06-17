@@ -17,6 +17,8 @@ class World {
 
     //Metodo para crear paderes, piso y techo con los limites del mundo.
     void addGroundWallsRoof();
+    bool deleteBodies();
+    void moveBodies();
 public:
 
     //World();
@@ -43,18 +45,17 @@ public:
     //Metodo para validar posiciones, y los objetos no se creen fuera de los limites o se superpongan
     bool validPosition(float x_pos, float y_pos);
 
-    bool deleteBodies();
-
     b2Vec2 getWidth();
 
     b2Vec2 getHigh();
 
-    void moveBodies();
-    //Destructor
-    ~World();
-
     void eraseAllBodies();
 
     void eraseBody(b2Body * body);
+
+    //Destructor
+    ~World();
+
+
 };
 #endif
