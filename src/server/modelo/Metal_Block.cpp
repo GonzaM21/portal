@@ -6,7 +6,7 @@ Metal_Block::Metal_Block(World &world,float x_pos, float y_pos,float size){
     data.addMaskBits(BARRIER_BITS);
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(BALL_BITS);
-    block = world.addBox(x_pos,y_pos,size/2.f,true,true,data);
+    block = world.addBox(x_pos,y_pos,size/2.f,true,data);
     angle = 90;
     sizes = b2Vec2(size,size);
     block->SetUserData(this);
@@ -21,7 +21,7 @@ Metal_Block::Metal_Block(World &world,float x_pos, float y_pos, float size ,int 
     data.addMaskBits(BARRIER_BITS);
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(BALL_BITS);
-    block = world.addTriangle(x_pos,y_pos,size,angle,true,true,data);
+    block = world.addTriangle(x_pos,y_pos,size,angle,true,data);
     this->angle = angle;
     sizes = b2Vec2(size,size);
     block->SetUserData(this);

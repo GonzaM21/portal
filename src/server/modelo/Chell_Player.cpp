@@ -5,7 +5,7 @@
 
 Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world),jumper_counter(0){
     name = "Chell_Player";
-    contact = true;
+    contact = 0;
     teleport = false;
     live = true;
     bouncing = true;
@@ -26,7 +26,7 @@ Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world)
 
 bool Chell_Player::Jump(){
     if(!live) return false;
-   if (contact && jumper_counter == 0){
+   if (contact >= 1 && jumper_counter == 0){
        chell->ApplyForceToCenter(b2Vec2(ZERO,CHELL_JUMP_FORCE),true);
        jumper_counter = 1;
        return true;
@@ -149,7 +149,7 @@ bool Chell_Player::setTransform(Entity * body) {
 }
 
 void Chell_Player::changePosition() {
-    if(bouncing){
+    if(bouncing && contact == 0 && chell->GetLinearVelocity().y == 0){
         std::cout<<"frenate"<<std::endl;
         chell->SetLinearVelocity(b2Vec2(0,0));
         bouncing = false;
@@ -168,17 +168,17 @@ void Chell_Player::startBouncing(){
 }
 
 void Chell_Player::startContact(b2Vec2) {
-    contact = true;
+    ++contact;
     printf("Empezo el contacto\n");
     jumper_counter = 0;
 }
 
 void Chell_Player::endContact() {
     std::cout<<"Chell end contact\n";
-    if(chell->GetLinearVelocity().y < 0){
-        contact = false;
+    if(chell->GetLinearVelocity().y != 0){
+        jumper_counter = 1;
     }
-    jumper_counter = 1;
+    --contact;
 }
 
 const std::string& Chell_Player::getEntityName() {

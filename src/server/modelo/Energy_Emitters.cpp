@@ -15,7 +15,7 @@ Energy_Emitters::Energy_Emitters(World &world, float x_pos, float y_pos, float s
     data.addMaskBits(BARRIER_BITS);
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(BALL_BITS);
-    emitter = world.addBox(x_pos,y_pos,size/2.f,true,false,data);
+    emitter = world.addBox(x_pos,y_pos,size/2.f,true,data);
     emitter->SetUserData(this);
     sizes = b2Vec2(size,size);
     name = "Energy_Emitter";

@@ -29,13 +29,13 @@ public:
     b2Body* addPolygon(float x_pos, float y_pos,float x_size, float y_size,bool static_obj,Filter_Data & data);
 
     //crea y agrega una caja al mundo
-    b2Body* addBox(float x_pos, float y_pos,float size, bool static_obj,bool metal,Filter_Data & data);
+    b2Body* addBox(float x_pos, float y_pos,float size, bool static_obj,Filter_Data & data);
 
     //crea y agrega un circulo al mundo
-    b2Body* addCircle(float x_pos,float y_pos, float radius, bool static_obj,Filter_Data & data);
+    b2Body* addCircle(float x_pos,float y_pos, float radius, bool static_obj,Filter_Data & data, bool rock);
 
     //crea y agrega un triangulo al mundo
-    b2Body* addTriangle(float x_pos, float y_pos, float size,int angle,bool static_obj,bool metal,Filter_Data data);
+    b2Body* addTriangle(float x_pos, float y_pos, float size,int angle,bool static_obj,Filter_Data data);
 
     //Para que el mundo se "mueva" es necesario llamar a este metodo
     void Step(float time = 1.f/60.f, int velocity = 10, int position = 10);

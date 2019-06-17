@@ -8,7 +8,7 @@ Energy_Ball::Energy_Ball(World& world, float x_pos, float y_pos): world(world) {
     data.addMaskBits(CHELL_BITS);
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(OTHER_BITS);
-    energy_ball = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data);
+    energy_ball = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data,false);
     energy_ball->SetUserData(this);
     energy_ball->SetGravityScale(0);
     contact = false;
