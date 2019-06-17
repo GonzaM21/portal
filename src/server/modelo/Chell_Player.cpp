@@ -1,7 +1,6 @@
 #include "Chell_Player.h"
 #include "Macros.h"
-//patron build
-//ver lo de las colcsiones
+
 
 Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world),jumper_counter(0){
     name = "Chell_Player";
@@ -22,6 +21,8 @@ Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world)
     rock = nullptr;
     take = false;
     taking = false;
+    inmortal = false;
+    gravity = false;
 }
 
 bool Chell_Player::Jump(){
@@ -70,6 +71,14 @@ bool Chell_Player::Move(char &direction) {
         }
         return true;
     } else if(direction == 's') {
+        if (actual_speed.y != 0) {
+            chell->ApplyLinearImpulseToCenter(b2Vec2(ZERO,-CHELL_MOVE_FORCE/2.f),true);
+            if(taking && rock != nullptr){
+                rock->changePositionChell(chell->GetPosition() + b2Vec2(0.8f,0.3f));
+                rock->applyForce(b2Vec2(ZERO,-CHELL_MOVE_FORCE/2.f));
+            }
+        }
+    } else{
         this->Brake();
         return true;
     }
@@ -200,6 +209,7 @@ Portal * Chell_Player::shotPortalOut(float x_pos, float y_pos) {
 }
 
 void Chell_Player::die() {
+    if(inmortal) return;
     teleport_pos = chell->GetPosition();
     live = false;
 }
@@ -234,4 +244,24 @@ void Chell_Player::dropTheRock() {
     taking = false;
     rock->setVelocity(b2Vec2(ZERO,ZERO));
     rock = nullptr;
+}
+
+
+//respuesta: o (oscuridad)
+void Chell_Player::inmortalChell(){
+    if (inmortal) inmortal = false;
+    else inmortal = true;
+}
+
+
+//respuesta: v (viento)
+void Chell_Player::antiGravity() {
+    if(gravity){
+        chell->SetGravityScale(world.getGravity());
+        gravity = false;
+    }
+    else{
+        chell->SetGravityScale(ZERO);
+        gravity = true;
+    }
 }

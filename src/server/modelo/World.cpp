@@ -278,3 +278,7 @@ void World::eraseAllBodies() {
         Bodies.erase(Bodies.begin() + i);
     }
 }
+
+float World::getGravity() {
+    return world->GetGravity().y;
+}

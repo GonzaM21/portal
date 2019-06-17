@@ -53,6 +53,8 @@ public:
 
     void eraseBody(b2Body * body);
 
+    float getGravity();
+
     //Destructor
     ~World();
 
