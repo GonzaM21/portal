@@ -248,10 +248,10 @@ void Chell_Player::dropTheRock() {
 
 
 //respuesta: o (oscuridad)
-void Chell_Player:inmortalChell(){
+void Chell_Player::inmortalChell(){
     if (inmortal) inmortal = false;
     else inmortal = true;
-};
+}
 
 
 //respuesta: v (viento)
@@ -261,7 +261,7 @@ void Chell_Player::antiGravity() {
         gravity = false;
     }
     else{
-        chell->SetGravityScale(ZERO)
+        chell->SetGravityScale(ZERO);
         gravity = true;
     }
 }
