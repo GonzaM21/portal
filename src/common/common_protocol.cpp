@@ -50,7 +50,12 @@ Protocol :: Protocol(SocketConnect socket) {
 	this->socket = std::move(socket);
 }
 
-Protocol& Protocol :: operator>>(uint8_t &num) {
+void Protocol::setSocket(SocketConnect socket) {
+	this->socket = std::move(socket);
+}
+
+Protocol &Protocol ::operator>>(uint8_t &num)
+{
 	this->socket.reciveMessage((char*)&num,UINT8_SIZE);
 	return *this;
 }

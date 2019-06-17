@@ -9,20 +9,19 @@
 #include "client/event_handler_thread.h"
 #include "client/Message_sender.h"
 #include "map_editor/interface.h"
-#include "inicio/entrada/include/Inicio.h"
+#include "inicio/VentanaPrincipal.h"
+#include "client/ConfigPartida.h"
 #include <QApplication>
 
-int ejecutarVentana(int argc, char *argv[] ,std::string &host, std::string &port, std::string &player_name)
+int ejecutarVentana(int argc, char *argv[], ConfigPartida* configPartida, Joiner* joiner, ClientCommunicator* communicator)
 {
-    //char *a[20];
-    //int n = 0;
-    //QApplication app(n, a);
+    QApplication app(argc, argv);
     // Instancio el greeter
-    //Inicio inicio(host,port,player_name);
-    //inicio.show();
+    VentanaPrincipal ventanaprincipal(configPartida, joiner, communicator);
+    ventanaprincipal.show();
     // Arranca el loop de la UI
-    //return app.exec();
-    //app.exit();
+    return app.exec();
+    app.exit();
     return 0;
 } 
 
@@ -39,18 +38,14 @@ int main(int argc, char *argv[])
             interface.createMap();
             return 0;
         }
-        std::string host, port, player_name;
-        ejecutarVentana(argc,argv,host,port,player_name);
-        host = "127.0.0.1";
-        port = "8080";
-        Joiner joiner(host,port);
-        std::string mode = "new";
-        std::string room_name = "sala";
-        player_name = "joel";
-
+        ConfigPartida configPartida;
+        Joiner joiner;
         ModelFacade model_facade;
-        ClientCommunicator communicator(std::move(joiner.setSocket()), 
-            mode, room_name, player_name, &model_facade);
+        ClientCommunicator communicator(&model_facade);
+        ejecutarVentana(argc, argv, &configPartida, &joiner,&communicator);
+        // std::string mode = configPartida.getMode();
+        // std::string room_name = configPartida.getSalaName();
+        // std::string player_name = configPartida.getPlayerName();
 
         if (!joiner.isValid()) return 0; 
 

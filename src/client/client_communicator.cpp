@@ -3,10 +3,15 @@
 #include <sstream>
 #include "client/client_communicator.h"
 
-ClientCommunicator ::ClientCommunicator(SocketConnect socket, std::string &mode,
-    std::string &room_name, std::string &player_name, ModelFacade *model_facade) 
-    : protocol(std::move(socket)), model_facade(model_facade) {
+ClientCommunicator ::ClientCommunicator(ModelFacade *model_facade) 
+    : model_facade(model_facade) {
     this->continue_running = true;
+}
+
+void ClientCommunicator::set(SocketConnect socket,
+        std::string mode, std::string room_name,
+        std::string player_name) {
+    this->protocol.setSocket(std::move(socket)); 
     this->protocol << mode;
     this->protocol << room_name;
     this->protocol << player_name;
@@ -35,6 +40,18 @@ void ClientCommunicator::receiveMessage() {
         };
         this->model_facade->decodeMessages(arguments);
     }
+}
+
+std::vector<std::string> ClientCommunicator::getMates() {
+    std::cout << "lleho" << std::endl;
+    std::string mates("mates"); 
+    this->protocol << mates;
+    std::string message;
+    this->protocol >> message;
+    std::vector<std::string> arguments;
+    std::cout << message << std::endl;
+    splitMessage(message, arguments);
+    return arguments;
 }
 
 void ClientCommunicator::splitMessage(std::string &message, std::vector<std::string> &arguments) {

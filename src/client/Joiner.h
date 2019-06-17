@@ -7,12 +7,13 @@
 class Joiner {
 private:
     bool is_valid;
-    const char* hostn;
-    const char* srvn;
+    std::string hostn;
+    std::string srvn;
 
 public:
-    Joiner(std::string &hostn,std::string &srvn);
+    Joiner();
     ~Joiner() = default;
+    void set(std::string hostn,std::string srvn);
     SocketConnect setSocket();
     bool isValid();
 };

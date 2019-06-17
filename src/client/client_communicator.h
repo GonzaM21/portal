@@ -15,11 +15,13 @@ private:
     ColaProtegida message_queue;
     bool received_map = false;
 
-public : ClientCommunicator(SocketConnect socket,
-    std::string &mode, std::string &room_name,
-    std::string &player_name, ModelFacade *model_facade);
+public : ClientCommunicator( ModelFacade *model_facade);
     ~ClientCommunicator();
+    void set(SocketConnect socket,
+             std::string mode, std::string room_name,
+             std::string player_name); 
     void receiveMessage();
+    std::vector<std::string> getMates();
     void sendMessage();
     void endExecution();
     void startExecution();

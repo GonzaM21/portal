@@ -13,6 +13,8 @@ class Protocol {
         void recieveInt32(uint32_t *num);
     public:
         explicit Protocol(SocketConnect socket);
+        Protocol() {};
+        void setSocket(SocketConnect socket); 
         ~Protocol() = default;
         Protocol& operator>>(std::string &string);
         Protocol& operator>>(uint8_t &num);

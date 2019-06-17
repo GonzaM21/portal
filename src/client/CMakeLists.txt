@@ -10,4 +10,4 @@ file(GLOB_RECURSE libclientemodelo_srcs *.cpp)
 
 # Generar una libería estática con todo el cliente EXCEPTO el main
 add_library(clientemodelo ${libclientemodelo_srcs})
-target_link_libraries(clientemodelo common inicio pthread)
+target_link_libraries(clientemodelo ventanaprincipal common pthread)

@@ -25,7 +25,7 @@ int IdlePlayer::render(const Rect &dest)
 	}
 	else
 	{
-		response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 180);
+		response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 180,1);
 	}
 	int x_src = src.getX();
 	x_src = (x_src + WIDTH_PLAYER_IDLE + 2) % 1064;
