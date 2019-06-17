@@ -69,7 +69,37 @@ void Portal::changePosition() {
             if(body_pos.x > position.x) normal = b2Vec2(-1.f,0.f);
         }
         if(abs(body_pos.x - position.x) != 0 && abs(body_pos.y - position.y) != 0 && angle != 90 ){
-            orientation = 3;
+            int x_dif = int((abs(body_pos.x) - abs(position.x)) * 10000);
+            int y_dif = int((abs(body_pos.y) - abs(position.y))* 10000);
+            int x_dia = (int)((2.0/3) *10000);
+            int y_dia = (int)((1.0/3) *10000);
+            int extra_point = (int)((1.0/6) *10000);
+
+            std::cout<<abs(x_dif) - abs(y_dif)<<std::endl;
+
+            if( ( (abs(x_dif) % x_dia == 0) && (abs(y_dif) % y_dia == 0) )
+                || ((abs(x_dif) % extra_point == 0) && (abs(y_dif) % extra_point == 0) ) ){
+
+                if (angle == 45) {
+                    orientation = 1;
+                    normal = b2Vec2(1.f, 1.f);
+                } else if(angle == 225){
+                    orientation = 1;
+                    normal = b2Vec2(1.f, -1.f);
+                } else if(angle == 135){
+                    orientation = 3;
+                    normal = b2Vec2(-1.f,1.f);
+                } else{
+                    orientation = 3;
+                    normal = b2Vec2(-1.f,-1.f);
+                }
+            }else if ( (abs(x_dif) % y_dia == 0)  && (abs(y_dif) % extra_point == 0) ){
+                orientation = 2;
+                printf("Vertical\n");
+            } else if((abs(y_dif) % y_dia == 0)  && (abs(x_dif) % extra_point == 0)){
+                orientation = 0;
+                printf("Horizontal\n");
+            }
         }
 
         std::cout << "Normal portal: "<< normal.x<<"    "<<normal.y<<std::endl;
@@ -85,13 +115,17 @@ void Portal::changePosition() {
             world.eraseBody(portal);
             portal = world.addPolygon(position.x - DELTA_POSITION
                     ,position.y - DELTA_POSITION,PORTAL_WIDTH/2.F,PORTAL_HIGH/2.F,true,data);
-        }
-        if (orientation == 0) {
+        }else if (orientation == 0) {
             float delta = - PORTAL_WIDTH/2.f;
             if(position.y > 0) delta = PORTAL_WIDTH/2.f;
             world.eraseBody(portal);
             portal = world.addPolygon(position.x - DELTA_POSITION,position.y - DELTA_POSITION ,PORTAL_HIGH/2.F,
-                    PORTAL_WIDTH/2.F,true,data);
+                                      PORTAL_WIDTH/2.F,true,data);
+        } else{
+            world.eraseBody(portal);
+            portal = world.addPolygon(position.x - DELTA_POSITION
+                    ,position.y - DELTA_POSITION,PORTAL_WIDTH/2.F,PORTAL_HIGH/2.F,true,data);
+            portal->SetTransform(portal->GetPosition(),angle);
         }
         portal->SetUserData(this);
         contact = false;
@@ -100,6 +134,7 @@ void Portal::changePosition() {
         live = true;
     }
     portal->SetLinearVelocity(b2Vec2(0,0));
+}
 }
 
 b2Vec2 Portal::getPosition(){

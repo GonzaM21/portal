@@ -53,6 +53,8 @@ public:
     //Destructor
     ~World();
 
+    void eraseAllBodies();
+
     void eraseBody(b2Body * body);
 };
 #endif
