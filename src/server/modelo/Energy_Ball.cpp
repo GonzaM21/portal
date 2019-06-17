@@ -105,7 +105,7 @@ void Energy_Ball::startBouncing() {}
 
 void Energy_Ball::win(){}
 
-int Energy_Ball::get_direction(){
+int Energy_Ball::getDirection(){
     b2Vec2 actualVelocity = energy_ball->GetLinearVelocity();
     if(abs(actualVelocity.x) > abs(actualVelocity.y)){
         if(actualVelocity.x > 0) direction = 0;
