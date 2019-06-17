@@ -14,6 +14,7 @@ class Energy_Ball : public Entity{
     b2Vec2 new_velocity;
     bool change_velocity;
     int angle;
+    int direction;
 public:
     //Contructor de una bola de energia
     Energy_Ball(World& world, float x_pos, float y_pos);
@@ -36,6 +37,7 @@ public:
     void changePosition() override;
     void startBouncing() override ;
     void win();
+    int getDirection();
     float getRadius();
     ~Energy_Ball() = default;
 };

@@ -16,6 +16,7 @@ Energy_Ball::Energy_Ball(World& world, float x_pos, float y_pos): world(world) {
     name = "Energy_Ball";
     live = true;
     radius = ENERGY_BALL;
+    direction = 0;
 }
 
 bool Energy_Ball::Move(char direction){
@@ -103,3 +104,15 @@ void Energy_Ball::changePosition() {
 void Energy_Ball::startBouncing() {}
 
 void Energy_Ball::win(){}
+
+int Energy_Ball::get_direction(){
+    b2Vec2 actualVelocity = energy_ball->GetLinearVelocity();
+    if(abs(actualVelocity.x) > abs(actualVelocity.y)){
+        if(actualVelocity.x > 0) direction = 0;
+        if(actualVelocity.x < 0) direction = 1;
+    } else {
+        if(actualVelocity.y > 0) direction = 2;
+        if(actualVelocity.y < 0) direction = 3;
+    }
+    return direction;
+}
