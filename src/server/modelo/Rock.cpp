@@ -7,7 +7,7 @@ Rock::Rock(World &world, float x_pos, float y_pos,float radius) : world(world){
     data.addMaskBits(BARRIER_BITS);
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(BALL_BITS);
-    rock = world.addCircle(x_pos,y_pos,radius,false,data);
+    rock = world.addCircle(x_pos,y_pos,radius,false,data,true);
     rock->SetUserData(this);
     radius = radius;
     name = "Rock";

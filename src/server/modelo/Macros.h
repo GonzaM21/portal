@@ -5,13 +5,13 @@
 #define ZERO 0.0
 #define MAX_LIM 1000.0
 #define DELTA_WALLS 1.0
-#define FRICTION 0.0
+#define FRICTION 0.3
 #define DENSITY 1.0
 #define GROUND_HIGH 1.0
 #define BLOCK_SIZES 1.0
-#define METAL_RESITUTION 1.0
+#define ENERGY_BALL_RESITUTION 1.0
 #define DELTA_POSITION 0.02
-#define FOOT_SENSOR_SIZE 0.005
+#define FOOT_SENSOR_SIZE 0.04
 #define CHELL_HIGH 1.6
 #define CHELL_WIDTH 0.5
 #define CHELL_JUMP_FORCE 300.0

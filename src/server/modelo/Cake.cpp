@@ -6,7 +6,7 @@ Cake::Cake(World &world, float x_pos, float y_pos) {
     data.addMaskBits(BARRIER_BITS);
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(BALL_BITS);
-    cake = world.addBox(x_pos,y_pos,0.5,true,false,data);
+    cake = world.addBox(x_pos,y_pos,0.5,true,data);
     name = "Cake";
     sizes = b2Vec2(0.5,0.5);
 }

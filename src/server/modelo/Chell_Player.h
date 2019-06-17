@@ -14,7 +14,7 @@ class Chell_Player : public Entity{
     std::string name;
     World& world;
     bool live;
-    bool contact;
+    int contact;
     bool teleport;
     bool bouncing;
     bool winner;

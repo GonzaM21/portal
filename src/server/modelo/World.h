@@ -17,6 +17,8 @@ class World {
 
     //Metodo para crear paderes, piso y techo con los limites del mundo.
     void addGroundWallsRoof();
+    bool deleteBodies();
+    void moveBodies();
 public:
 
     //World();
@@ -29,13 +31,13 @@ public:
     b2Body* addPolygon(float x_pos, float y_pos,float x_size, float y_size,bool static_obj,Filter_Data & data);
 
     //crea y agrega una caja al mundo
-    b2Body* addBox(float x_pos, float y_pos,float size, bool static_obj,bool metal,Filter_Data & data);
+    b2Body* addBox(float x_pos, float y_pos,float size, bool static_obj,Filter_Data & data);
 
     //crea y agrega un circulo al mundo
-    b2Body* addCircle(float x_pos,float y_pos, float radius, bool static_obj,Filter_Data & data);
+    b2Body* addCircle(float x_pos,float y_pos, float radius, bool static_obj,Filter_Data & data, bool rock);
 
     //crea y agrega un triangulo al mundo
-    b2Body* addTriangle(float x_pos, float y_pos, float size,int angle,bool static_obj,bool metal,Filter_Data data);
+    b2Body* addTriangle(float x_pos, float y_pos, float size,int angle,bool static_obj,Filter_Data data);
 
     //Para que el mundo se "mueva" es necesario llamar a este metodo
     void Step(float time = 1.f/60.f, int velocity = 10, int position = 10);
@@ -43,18 +45,17 @@ public:
     //Metodo para validar posiciones, y los objetos no se creen fuera de los limites o se superpongan
     bool validPosition(float x_pos, float y_pos);
 
-    bool deleteBodies();
-
     b2Vec2 getWidth();
 
     b2Vec2 getHigh();
 
-    void moveBodies();
-    //Destructor
-    ~World();
-
     void eraseAllBodies();
 
     void eraseBody(b2Body * body);
+
+    //Destructor
+    ~World();
+
+
 };
 #endif

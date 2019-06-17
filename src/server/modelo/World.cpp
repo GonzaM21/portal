@@ -55,7 +55,7 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
     }
     polygonBodyDef.position = b2Vec2(x_pos + DELTA_POSITION, y_pos + DELTA_POSITION);
     b2PolygonShape shape_polygon;
-    shape_polygon.SetAsBox(x_size,y_size);
+    shape_polygon.SetAsBox(x_size,y_size - 0.1);
     polygonFixtureDef.shape = &shape_polygon;
     polygonFixtureDef.density = DENSITY;
     polygonFixtureDef.friction = FRICTION;
@@ -63,13 +63,29 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
     polygonFixtureDef.filter.maskBits = data.getMaskBits();
     polygonBody = world->CreateBody(&polygonBodyDef);
 
+    b2CircleShape shape_circle;
+    shape_circle.m_radius = 0.1;
+    shape_circle.m_p.Set(0.1,-(y_size - 0.1)/2);
+
+    b2FixtureDef circlefixtureDef;
+    circlefixtureDef.shape = &shape_circle;
+    polygonBody->CreateFixture(&circlefixtureDef);
+
+    b2CircleShape shape_circle2;
+    shape_circle2.m_radius = 0.1;
+    shape_circle2.m_p.Set(-0.1,-(y_size - 0.1)/2);
+
+    b2FixtureDef circlefixtureDef2;
+    circlefixtureDef2.shape = &shape_circle2;
+    polygonBody->CreateFixture(&circlefixtureDef2);
+
     polygonBody->CreateFixture(&polygonFixtureDef);
     polygonBody->SetFixedRotation(true);
     shape_polygon.SetAsBox(FOOT_SENSOR_SIZE, FOOT_SENSOR_SIZE, b2Vec2(ZERO, -y_size),0);
     polygonFixtureDef.isSensor = true;
     b2Fixture* footSensorFixture  = polygonBody->CreateFixture(&polygonFixtureDef);
-    std::cout<<"World: "<<foot_data<<std::endl;
     footSensorFixture->SetUserData(foot_data);
+
     Bodies.push_back(polygonBody);
     return polygonBody;
 }
@@ -99,7 +115,7 @@ b2Body* World::addPolygon(float x_pos, float y_pos,float x_size, float y_size,bo
     return polygonBody;
 }
 
-b2Body* World::addBox(float x_pos, float y_pos,float size,bool static_obj,bool metal,Filter_Data & data){
+b2Body* World::addBox(float x_pos, float y_pos,float size,bool static_obj,Filter_Data & data){
     b2Body* boxBody;
     b2BodyDef boxBodyDef;
     b2FixtureDef boxFixtureDef;
@@ -116,7 +132,7 @@ b2Body* World::addBox(float x_pos, float y_pos,float size,bool static_obj,bool m
     boxFixtureDef.shape = &shape_ground;
     boxFixtureDef.density = DENSITY;
     boxFixtureDef.friction = FRICTION;
-    boxFixtureDef.restitution = metal ? METAL_RESITUTION : ZERO;
+    boxFixtureDef.restitution = ZERO;
     boxFixtureDef.filter.categoryBits = data.getCategoryBits();
     boxFixtureDef.filter.maskBits = data.getMaskBits();
     boxBody->SetFixedRotation(true);
@@ -125,7 +141,7 @@ b2Body* World::addBox(float x_pos, float y_pos,float size,bool static_obj,bool m
     return boxBody;
 }
 
-b2Body* World::addCircle(float x_pos, float y_pos,float radius, bool static_obj,Filter_Data & data) {
+b2Body* World::addCircle(float x_pos, float y_pos,float radius, bool static_obj,Filter_Data & data, bool rock) {
     b2Body * circleBody;
     b2BodyDef circleBodyDef;
     b2FixtureDef circleFixtureDef;
@@ -144,7 +160,7 @@ b2Body* World::addCircle(float x_pos, float y_pos,float radius, bool static_obj,
     circleFixtureDef.shape = &shape_circle;
     circleFixtureDef.density = DENSITY;
     circleFixtureDef.friction = FRICTION;
-    circleFixtureDef.restitution = ZERO;
+    circleFixtureDef.restitution = rock ? ZERO : ENERGY_BALL_RESITUTION;
     circleFixtureDef.filter.categoryBits = data.getCategoryBits();
     circleFixtureDef.filter.maskBits = data.getMaskBits();
     circleBody->CreateFixture(&circleFixtureDef);
@@ -152,7 +168,7 @@ b2Body* World::addCircle(float x_pos, float y_pos,float radius, bool static_obj,
     return circleBody;
 }
 
-b2Body* World::addTriangle(float x_pos, float y_pos, float size, int angle ,bool static_obj,bool metal,Filter_Data data){
+b2Body* World::addTriangle(float x_pos, float y_pos, float size, int angle ,bool static_obj,Filter_Data data){
     b2Body* triangleBody;
     b2BodyDef triangleBodyDef;
     b2FixtureDef triangleFixtureDef;
@@ -195,7 +211,7 @@ b2Body* World::addTriangle(float x_pos, float y_pos, float size, int angle ,bool
     triangleFixtureDef.shape = &shape_triangle;
     triangleFixtureDef.density = DENSITY;
     triangleFixtureDef.friction = FRICTION;
-    triangleFixtureDef.restitution = metal ? METAL_RESITUTION : ZERO;
+    triangleFixtureDef.restitution = ZERO;
     triangleFixtureDef.filter.categoryBits = data.getCategoryBits();
     triangleFixtureDef.filter.maskBits = data.getMaskBits();
     triangleBody->CreateFixture(&triangleFixtureDef);

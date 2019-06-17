@@ -8,7 +8,7 @@ Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
     data.addMaskBits(OTHER_BITS);
     data.addMaskBits(BARRIER_BITS);
     data.addMaskBits(BALL_BITS);
-    portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data);
+    portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data,true);
     portal->SetGravityScale(ZERO);
     portal->SetUserData(this);
     contact = false;
@@ -104,27 +104,26 @@ void Portal::changePosition() {
 
         std::cout << "Normal portal: "<< normal.x<<"    "<<normal.y<<std::endl;
 
-
         Filter_Data data(ROCK_PORTAL_BITS);
         data.addMaskBits(OTHER_BITS);
         data.addMaskBits(CHELL_BITS);
         data.addMaskBits(ROCK_PORTAL_BITS);
         if(orientation == 2){
-            float delta = - PORTAL_WIDTH/2.f;
-            if(position.x > 0) delta = PORTAL_WIDTH/2.f;
+            //float delta = - PORTAL_WIDTH/2.f;
+            //if(position.x > 0) delta = PORTAL_WIDTH/2.f;
             world.eraseBody(portal);
             portal = world.addPolygon(position.x - DELTA_POSITION
-                    ,position.y - DELTA_POSITION,PORTAL_WIDTH/2.F,PORTAL_HIGH/2.F,true,data);
+                    ,position.y - DELTA_POSITION,PORTAL_WIDTH/2.f,PORTAL_HIGH/2.f,true,data);
         }else if (orientation == 0) {
-            float delta = - PORTAL_WIDTH/2.f;
-            if(position.y > 0) delta = PORTAL_WIDTH/2.f;
+            //float delta = - PORTAL_WIDTH/2.f;
+            //if(position.y > 0) delta = PORTAL_WIDTH/2.f;
             world.eraseBody(portal);
-            portal = world.addPolygon(position.x - DELTA_POSITION,position.y - DELTA_POSITION ,PORTAL_HIGH/2.F,
-                                      PORTAL_WIDTH/2.F,true,data);
+            portal = world.addPolygon(position.x - DELTA_POSITION,position.y - DELTA_POSITION ,PORTAL_HIGH/2.f,
+                    PORTAL_WIDTH/2.f,true,data);
         } else{
             world.eraseBody(portal);
             portal = world.addPolygon(position.x - DELTA_POSITION
-                    ,position.y - DELTA_POSITION,PORTAL_WIDTH/2.F,PORTAL_HIGH/2.F,true,data);
+                    ,position.y - DELTA_POSITION,PORTAL_HIGH/2.f,PORTAL_WIDTH/2.f,true,data);
             portal->SetTransform(portal->GetPosition(),angle);
         }
         portal->SetUserData(this);
@@ -135,7 +134,7 @@ void Portal::changePosition() {
     }
     portal->SetLinearVelocity(b2Vec2(0,0));
 }
-}
+
 
 b2Vec2 Portal::getPosition(){
     if(!live) return b2Vec2(0,0);
@@ -201,7 +200,7 @@ bool Portal::changePortalPosition(float x_pos, float y_pos) {
     data.addMaskBits(OTHER_BITS);
     data.addMaskBits(BARRIER_BITS);
     data.addMaskBits(BALL_BITS);
-    portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data);
+    portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data,true);
     portal->SetGravityScale(ZERO);
     portal->SetUserData(this);
     contact = false;
