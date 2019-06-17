@@ -35,8 +35,8 @@
  * Files 
  **/
 #define BACKGROUND_FILENAME "resources/img/Fondo.png"
-#define BLOCK_FILENAME "resources/img/blocks.png"
-#define EMITTER_FILENAME "resources/img/blocks.png"
+#define BLOCK_FILENAME "resources/img/Blocks.png"
+#define EMITTER_FILENAME "resources/img/Blocks.png"
 #define ICON_FILENAME "resources/img/icon.png"
 #define PLAYER_FILENAME "resources/img/Patricia_Wagon_Zero_Suit.png"
 #define GATE_FILENAME "resources/img/gates.png"

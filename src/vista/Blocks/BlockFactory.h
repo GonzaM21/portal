@@ -5,6 +5,7 @@
 #include "Stone_block.h"
 #include "Metal_block.h"
 #include "Shoot_block.h"
+#include "Triangle_block.h"
 
 class BlockFactory
 {
@@ -22,6 +23,22 @@ public:
     else if (code == 3)
     {
       return new ShootBlock(window);
+    }
+    else if (code == 4)
+    {
+      return new TriangleBlock(window,code%4);
+    }
+    else if (code == 5)
+    {
+      return new TriangleBlock(window,code%4);
+    }
+    else if (code == 6)
+    {
+      return new TriangleBlock(window,code%4);
+    }
+    else if (code == 7)
+    {
+      return new TriangleBlock(window,code%4);
     }
     return nullptr;
   }

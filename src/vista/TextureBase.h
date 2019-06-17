@@ -9,9 +9,6 @@ public:
   {
     if (instance == NULL)
       instance = new TextureBase(renderer);
-    else
-      std::cout << "Getting existing instance"<<std::endl;
-
     return instance;
   }
 
