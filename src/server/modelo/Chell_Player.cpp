@@ -1,7 +1,6 @@
 #include "Chell_Player.h"
 #include "Macros.h"
-//patron build
-//ver lo de las colcsiones
+
 
 Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world),jumper_counter(0){
     name = "Chell_Player";
@@ -70,6 +69,14 @@ bool Chell_Player::Move(char &direction) {
         }
         return true;
     } else if(direction == 's') {
+        if (actual_speed.y != 0) {
+            chell->ApplyLinearImpulseToCenter(b2Vec2(ZERO,-CHELL_MOVE_FORCE/2.f),true);
+            if(taking && rock != nullptr){
+                rock->changePositionChell(chell->GetPosition() + b2Vec2(0.8f,0.3f));
+                rock->applyForce(b2Vec2(ZERO,-CHELL_MOVE_FORCE/2.f));
+            }
+        }
+    } else{
         this->Brake();
         return true;
     }

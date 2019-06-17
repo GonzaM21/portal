@@ -72,6 +72,10 @@ void EventHandler::handleKeyUp(SDL_KeyboardEvent& keyEvent) {
       messageSender.sendJump();
       break;
     }
+    case SDLK_s: {
+        messageSender.sendDown();
+        break;
+    }
     case SDLK_e: {
       messageSender.sendMoveRock();
       break;

@@ -43,7 +43,7 @@ void MessageSender::sendStart(){
 }
 
 void MessageSender::sendStop() {
-  communicator->addMessageToSend("s");
+  communicator->addMessageToSend(".");
 }
 
 void MessageSender::sendFullscreen() {
@@ -60,4 +60,8 @@ void MessageSender::sendSuicide() {
 
 void MessageSender::sendMoveRock() {
   communicator->addMessageToSend("e");
+}
+
+void MessageSender::sendDown() {
+    communicator->addMessageToSend("s");
 }

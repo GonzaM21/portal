@@ -21,6 +21,7 @@ public:
   void sendKillPlayer();
   void sendSuicide();
   void sendMoveRock();
+  void sendDown();
 
 private: 
   bool running;
