@@ -67,8 +67,7 @@ void Portal::changePosition() {
 
             if(body_pos.x < position.x) normal = b2Vec2(1.f,0.f);
             if(body_pos.x > position.x) normal = b2Vec2(-1.f,0.f);
-        }
-        if(abs(body_pos.x - position.x) != 0 && abs(body_pos.y - position.y) != 0 && angle != 90 ){
+        }else if(abs(body_pos.x - position.x) != 0 && abs(body_pos.y - position.y) != 0 && angle != 90 ){
             int x_dif = int((abs(body_pos.x) - abs(position.x)) * 10000);
             int y_dif = int((abs(body_pos.y) - abs(position.y))* 10000);
             int x_dia = (int)((2.0/3) *10000);
@@ -195,7 +194,7 @@ Portal * Portal::getPartnerPortal() {
 
 bool Portal::changePortalPosition(float x_pos, float y_pos) {
     if(!world.validPosition(x_pos,y_pos)) return false;
-    if (live) world.eraseBody(portal);
+    world.eraseBody(portal);
     Filter_Data data(ROCK_PORTAL_BITS);
     data.addMaskBits(OTHER_BITS);
     data.addMaskBits(BARRIER_BITS);

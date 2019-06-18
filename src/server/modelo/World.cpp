@@ -66,18 +66,21 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
     b2CircleShape shape_circle;
     shape_circle.m_radius = 0.1;
     shape_circle.m_p.Set(0.1,-(y_size - 0.1)/2);
+    b2FixtureDef circleFixtureDef;
+    circleFixtureDef.filter.categoryBits = data.getCategoryBits();
+    circleFixtureDef.filter.maskBits = data.getMaskBits();
+    circleFixtureDef.shape = &shape_circle;
 
-    b2FixtureDef circlefixtureDef;
-    circlefixtureDef.shape = &shape_circle;
-    polygonBody->CreateFixture(&circlefixtureDef);
+    polygonBody->CreateFixture(&circleFixtureDef);
 
     b2CircleShape shape_circle2;
     shape_circle2.m_radius = 0.1;
     shape_circle2.m_p.Set(-0.1,-(y_size - 0.1)/2);
-
-    b2FixtureDef circlefixtureDef2;
-    circlefixtureDef2.shape = &shape_circle2;
-    polygonBody->CreateFixture(&circlefixtureDef2);
+    b2FixtureDef circleFixtureDef2;
+    circleFixtureDef2.shape = &shape_circle2;
+    circleFixtureDef2.filter.categoryBits = data.getCategoryBits();
+    circleFixtureDef2.filter.maskBits = data.getMaskBits();
+    polygonBody->CreateFixture(&circleFixtureDef2);
 
     polygonBody->CreateFixture(&polygonFixtureDef);
     polygonBody->SetFixedRotation(true);

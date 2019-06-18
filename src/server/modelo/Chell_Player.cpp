@@ -7,7 +7,6 @@ Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world)
     contact = 0;
     teleport = false;
     live = true;
-    bouncing = true;
     winner = false;
     Filter_Data data(CHELL_BITS);
     data.addMaskBits(OTHER_BITS);
@@ -38,32 +37,32 @@ bool Chell_Player::Jump(){
 bool Chell_Player::Move(char &direction) {
     b2Vec2 actual_speed = this->chell->GetLinearVelocity();
     if(!live) return false;
-    if(direction == 'd' && (actual_speed.x <= 0)){
+    if(direction == 'd'){
         direction_right = true;
         if (actual_speed.y != 0) {
-            chell->ApplyLinearImpulseToCenter(b2Vec2(CHELL_MOVE_FORCE/2,ZERO),true);
+            chell->SetLinearVelocity(b2Vec2(CHELL_MOVE_FORCE/2.f,actual_speed.y));
             if(taking && rock != nullptr){
                 rock->changePositionChell(chell->GetPosition() + b2Vec2(0.8f,0.3f));
-                rock->applyForce(b2Vec2(CHELL_MOVE_FORCE/2,ZERO));
+                rock->applyForce(b2Vec2(CHELL_MOVE_FORCE/4,ZERO));
             }
         } else {
-            chell->ApplyLinearImpulseToCenter(b2Vec2(CHELL_MOVE_FORCE,ZERO),true);
+            chell->SetLinearVelocity(b2Vec2(CHELL_MOVE_FORCE,ZERO));
             if(taking && rock != nullptr){
                 rock->changePositionChell(chell->GetPosition() + b2Vec2(0.8f,0.3f));
                 rock->applyForce(b2Vec2(CHELL_MOVE_FORCE,ZERO));
             }
         }
         return true;
-    } else if(direction == 'a' && (actual_speed.x >= 0)){
+    } else if(direction == 'a'){
         direction_right = false;
         if (actual_speed.y != 0) {
-            chell->ApplyLinearImpulseToCenter(b2Vec2(-CHELL_MOVE_FORCE/2,ZERO),true);
+            chell->SetLinearVelocity(b2Vec2(-CHELL_MOVE_FORCE/2.f,actual_speed.y));
             if(taking && rock != nullptr){
                 rock->changePositionChell(chell->GetPosition() + b2Vec2(-0.8f,0.3f));
-                rock->applyForce(b2Vec2(-CHELL_MOVE_FORCE/2,ZERO));
+                rock->applyForce(b2Vec2(-CHELL_MOVE_FORCE/4,ZERO));
             }
         } else {
-            chell->ApplyLinearImpulseToCenter(b2Vec2(-CHELL_MOVE_FORCE,ZERO),true);
+            chell->SetLinearVelocity(b2Vec2(-CHELL_MOVE_FORCE,ZERO));
             if(taking && rock != nullptr){
                 rock->changePositionChell(chell->GetPosition() + b2Vec2(-0.8f,0.3f));
                 rock->applyForce(b2Vec2(-CHELL_MOVE_FORCE,ZERO));
@@ -72,13 +71,14 @@ bool Chell_Player::Move(char &direction) {
         return true;
     } else if(direction == 's') {
         if (actual_speed.y != 0) {
-            chell->ApplyLinearImpulseToCenter(b2Vec2(ZERO,-CHELL_MOVE_FORCE/2.f),true);
+            chell->ApplyLinearImpulseToCenter(b2Vec2(ZERO,-CHELL_MOVE_FORCE/4.f),true);
             if(taking && rock != nullptr){
                 rock->changePositionChell(chell->GetPosition() + b2Vec2(0.8f,0.3f));
-                rock->applyForce(b2Vec2(ZERO,-CHELL_MOVE_FORCE/2.f));
+                rock->applyForce(b2Vec2(ZERO,-CHELL_MOVE_FORCE/4.f));
             }
         }
-    } else{
+    } else if (direction == 'z'){
+        printf("frenar\n");
         this->Brake();
         return true;
     }
@@ -158,11 +158,7 @@ bool Chell_Player::setTransform(Entity * body) {
 }
 
 void Chell_Player::changePosition() {
-    if(bouncing && contact == 0 && chell->GetLinearVelocity().y == 0){
-        std::cout<<"frenate"<<std::endl;
-        chell->SetLinearVelocity(b2Vec2(0,0));
-        bouncing = false;
-    }
+
     if(!teleport) return;
     chell->SetTransform(teleport_pos,chell->GetAngle());
     chell->SetLinearVelocity(velocity);
@@ -172,18 +168,14 @@ void Chell_Player::changePosition() {
     teleport = false;
 }
 
-void Chell_Player::startBouncing(){
-    bouncing = true;
-}
+void Chell_Player::startBouncing(){}
 
 void Chell_Player::startContact(b2Vec2) {
     ++contact;
-    printf("Empezo el contacto\n");
     jumper_counter = 0;
 }
 
 void Chell_Player::endContact() {
-    std::cout<<"Chell end contact\n";
     if(chell->GetLinearVelocity().y != 0){
         jumper_counter = 1;
     }

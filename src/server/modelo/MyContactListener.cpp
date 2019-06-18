@@ -1,22 +1,5 @@
 #include "MyContactListener.h"
 
-void chell_validation(Entity * bodyA, Entity * bodyB){
-
-    std::string nameBodyA = (bodyA)->getEntityName();
-    std::string nameBodyB = (bodyB)->getEntityName();
-
-    if(nameBodyA == "Chell_Player" && nameBodyB == "Portal") bodyA->setTransform(bodyB);
-    if(nameBodyA == "Chell_Player" && nameBodyB == "Rock") bodyA->setTransform(bodyB);
-    if(nameBodyA == "Chell_Player" && nameBodyB == "Energy_Ball") bodyA->die();
-    if(nameBodyA == "Chell_Player" && nameBodyB == "Acid") bodyA->die();
-    if(nameBodyA == "Chell_Player" && nameBodyB == "Cake") bodyA->win();
-
-    if(nameBodyB == "Chell_Player" && nameBodyA == "Portal") bodyB->setTransform(bodyA);
-    if(nameBodyB == "Chell_Player" && nameBodyA == "Rock") bodyB->setTransform(bodyA);
-    if(nameBodyB == "Chell_Player" && nameBodyA == "Energy_Ball") bodyB->die();
-    if(nameBodyB == "Chell_Player" && nameBodyA == "Acid") bodyB->die();
-    if(nameBodyB == "Chell_Player" && nameBodyA == "Cake") bodyB->win();
-}
 
 void chell_colitions(b2Body * bodyA,b2Body * bodyB){
 
@@ -28,23 +11,17 @@ void chell_colitions(b2Body * bodyA,b2Body * bodyB){
 
     std::cout<<"Colisionaron "<<nameBodyA<<" con "<<nameBodyB<<std::endl;
 
-    if (nameBodyA == "Chell_Player" && (nameBodyB == "Ground" || nameBodyB == "Button" || nameBodyB == "Rock")) {
-        static_cast<Entity *>(userDataA)->startBouncing();
-    }
+    if(nameBodyA == "Chell_Player" && nameBodyB == "Portal") static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
+    if(nameBodyA == "Chell_Player" && nameBodyB == "Rock") static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
+    if(nameBodyA == "Chell_Player" && nameBodyB == "Energy_Ball") static_cast<Entity *>(userDataA)->die();
+    if(nameBodyA == "Chell_Player" && nameBodyB == "Acid") static_cast<Entity *>(userDataA)->die();
+    if(nameBodyA == "Chell_Player" && nameBodyB == "Cake") static_cast<Entity *>(userDataA)->win();
 
-    if (nameBodyA == "Chell_Player" && (nameBodyB == "Metal_Block" || nameBodyB == "Stone_Block")) {
-        static_cast<Entity *>(userDataA)->startBouncing();
-    }
-
-    if (nameBodyB == "Chell_Player" && (nameBodyA == "Ground" || nameBodyA == "Button" || nameBodyA == "Rock")) {
-        static_cast<Entity *>(userDataB)->startBouncing();
-    }
-
-    if (nameBodyB == "Chell_Player" && (nameBodyA == "Metal_Block" || nameBodyA == "Stone_Block")) {
-        static_cast<Entity *>(userDataB)->startBouncing();
-    }
-
-    chell_validation(static_cast<Entity *>(userDataA),static_cast<Entity *>(userDataB));
+    if(nameBodyB == "Chell_Player" && nameBodyA == "Portal") static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
+    if(nameBodyB == "Chell_Player" && nameBodyA == "Rock") static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
+    if(nameBodyB == "Chell_Player" && nameBodyA == "Energy_Ball") static_cast<Entity *>(userDataB)->die();
+    if(nameBodyB == "Chell_Player" && nameBodyA == "Acid") static_cast<Entity *>(userDataB)->die();
+    if(nameBodyB == "Chell_Player" && nameBodyA == "Cake") static_cast<Entity *>(userDataB)->win();
 
 }
 

@@ -16,7 +16,6 @@ class Chell_Player : public Entity{
     bool live;
     int contact;
     bool teleport;
-    bool bouncing;
     bool winner;
     b2Vec2 sizes;
     b2Vec2 teleport_pos;
