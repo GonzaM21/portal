@@ -62,7 +62,7 @@ void Encoder :: sendRocks() {
     for ( size_t i = 0; i<rocks.size(); i++ ) {
         std::string msg;
         b2Vec2 pos = rocks[i]->getPosition();
-        float size = rocks[i]->getRadius();
+        float size = rocks[i]->getRadius() * 2;
         msg = "8," + std::to_string(i+1)+ "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
         "," + std::to_string(size) + "," + std::to_string(size);
         this->sender->addMessageToSend(msg);

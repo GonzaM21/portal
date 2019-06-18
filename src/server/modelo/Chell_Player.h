@@ -87,13 +87,13 @@ public:
 
     Portal *getPortalOut();
 
-    //De la inicial de esta adivinanza, encontraras como activar la inmortalidad: (ignorar los articulos)
+    //De la inicial de esta adivinanza, encontrarás como activar la inmortalidad: (ignorar los articulos)
     //No puedes verla ni sentirla, y ocupa todos los huecos: no puedes olerla ni oírla, está detrás de los astros,
-    // y está al píe de las colinas, llega primero, y se queda; mala risas y acaba vidas.
+    // y está al pie de las colinas, llega primero, y se queda; mala risas y acaba vidas.
     void inmortalChell();
 
 
-    //De la inicial de esta adivinanza, encontraras como quitar la gravedad: (ignorar los articulos)
+    //De la inicial de esta adivinanza, encontrarás como quitar la gravedad: (ignorar los articulos)
     // Canta sin voz, vuela sin alas, sin dientes muerde, sin boca habla.
     void antiGravity();
 };
