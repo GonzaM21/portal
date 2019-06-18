@@ -108,16 +108,16 @@ void Portal::changePosition() {
         data.addMaskBits(CHELL_BITS);
         data.addMaskBits(ROCK_PORTAL_BITS);
         if(orientation == 2){
-            //float delta = - PORTAL_WIDTH/2.f;
-            //if(position.x > 0) delta = PORTAL_WIDTH/2.f;
+            float delta = - PORTAL_WIDTH/2;
+            if(x_subtraction > 0) delta = PORTAL_WIDTH/2;
             world.eraseBody(portal);
-            portal = world.addPolygon(position.x - DELTA_POSITION
-                    ,position.y - DELTA_POSITION,PORTAL_WIDTH/2.f,PORTAL_HIGH/2.f,true,data);
+            portal = world.addPolygon(position.x - DELTA_POSITION + delta
+                    ,position.y - DELTA_POSITION,PORTAL_WIDTH/2.f ,PORTAL_HIGH/2.f,true,data);
         }else if (orientation == 0) {
-            //float delta = - PORTAL_WIDTH/2.f;
-            //if(position.y > 0) delta = PORTAL_WIDTH/2.f;
+            float delta = - PORTAL_WIDTH/2;
+            if(y_subtraction > 0) delta = PORTAL_WIDTH/2;
             world.eraseBody(portal);
-            portal = world.addPolygon(position.x - DELTA_POSITION,position.y - DELTA_POSITION ,PORTAL_HIGH/2.f,
+            portal = world.addPolygon(position.x - DELTA_POSITION,position.y + DELTA_POSITION + delta ,PORTAL_HIGH/2.f,
                     PORTAL_WIDTH/2.f,true,data);
         } else{
             world.eraseBody(portal);
@@ -225,6 +225,8 @@ bool Portal::setTransform(Entity * body){
     if(body->getEntityName() == "Metal_Block"){
         body_pos = dynamic_cast<Metal_Block *>(body)->getPosition();
         angle = dynamic_cast<Metal_Block *>(body)->getAngle();
+        b2Vec2 body_sizes = dynamic_cast<Metal_Block *>(body)->getSizes();
+        sizes = b2Vec2(PORTAL_WIDTH * body_sizes.x, PORTAL_HIGH);
     }
 
     if(body->getEntityName() == "Ground"){
