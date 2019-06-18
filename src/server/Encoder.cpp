@@ -178,9 +178,11 @@ void Encoder :: sendEmitters() { //ARREGLAR
         std::string msg;
         b2Vec2 pos = emitters[i]->getPosition();
         b2Vec2 size = emitters[i]->getSizes();
+        int charged = emitters[i]->isCharged();
+        int direction = emitters[i]->getDirection();
         //emitters[i]->
         msg = "10,"+ std::to_string(i+1)+ "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
-        "," + std::to_string(size.x) + "," + std::to_string(size.y)+ ",0,0";
+        "," + std::to_string(size.x) + "," + std::to_string(size.y)+","+std::to_string(direction)+","+std::to_string(charged);
         //Direccion y state harcodeados, que hacemos? necesito getters
         this->sender->addMessageToSend(msg);
         this->sendEnergyBall(emitters[i]);

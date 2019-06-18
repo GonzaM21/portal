@@ -189,6 +189,7 @@ bool Portal::setPartner(Portal *portal) {
 
 Portal * Portal::getPartnerPortal() {
     if(!partner) return nullptr;
+    if(partner->isABall()) return nullptr;
     return partner;
 }
 
@@ -239,3 +240,7 @@ bool Portal::setTransform(Entity * body){
 void Portal::startBouncing() {}
 
 void Portal::win(){}
+
+bool Portal::isABall() {
+    return ball;
+}

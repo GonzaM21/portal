@@ -19,6 +19,8 @@ public:
     Energy_Emitters(World & world, float x_pos, float y_pos, float size,int direction, bool charged, int frequency = 50);
     b2Vec2 getPosition();
     b2Vec2 getSizes();
+    int getDirection();
+    int isCharged();
     const std::string& getEntityName() override;
     void startContact(b2Vec2) override;
     void endContact() override;

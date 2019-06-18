@@ -52,7 +52,7 @@ public:
     bool changePortalPosition(float x_pos, float y_pos);
     bool setPartner(Portal * portal);
     Portal* getPartnerPortal();
-
+    bool isABall();
     b2Vec2 getSizes();
     float getradius();
     bool isValid();

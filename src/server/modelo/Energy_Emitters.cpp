@@ -93,3 +93,12 @@ Energy_Emitters::~Energy_Emitters() {
 void Energy_Emitters::startBouncing() {}
 
 void Energy_Emitters::win(){}
+
+int Energy_Emitters::isCharged() {
+    if(charged) return 1;
+    return 0;
+}
+
+int Energy_Emitters::getDirection() {
+    return direction;
+}

@@ -206,12 +206,10 @@ void chell_endContact(void * userDataA, void * userDataB){
     if(nameBodyA != "Chell_Player" && nameBodyB != "Chell_Player") return;
 
     if(nameBodyA == "Chell_Player" && nameBodyB == "Ground") static_cast<Entity *>(userDataA)->endContact();
-    printf("llega aca\n");
     if(nameBodyA == "Chell_Player" && nameBodyB == "Metal_Block"){
         static_cast<Entity *>(userDataA)->endContact();
         return;
     }
-    printf("y aca\n");
     if(nameBodyA == "Chell_Player" && nameBodyB == "Stone_Block") static_cast<Entity *>(userDataA)->endContact();
     if(nameBodyA == "Chell_Player" && nameBodyB == "Button") static_cast<Entity *>(userDataA)->endContact();
 

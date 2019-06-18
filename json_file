@@ -1,20 +1,337 @@
 {
 "OBJECTID0" : {
-    "POS_X": -2,
-    "POS_Y": 9,
+    "POS_X": 1,
+    "POS_Y": 0,
     "TYPE": 2,
     "TYPE_OPTIONAL": 1,
     "WIDTH": 1
 },
 "OBJECTID1" : {
-    "POS_X": -4,
-    "POS_Y": 0,
-    "TYPE": 11
+    "POS_X": 2,
+    "POS_Y": 1,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
 },
 "OBJECTID2" : {
-    "POS_X": 3,
+    "POS_X": 4.5,
     "POS_Y": -0.5,
     "TYPE": 5,
+    "WIDTH": 5
+},
+"OBJECTID3" : {
+    "POS_X": 3,
+    "POS_Y": 2,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID4" : {
+    "POS_X": 20,
+    "POS_Y": 5,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID5" : {
+    "POS_X": 4,
+    "POS_Y": 2,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID6" : {
+    "POS_X": 20,
+    "POS_Y": 5.6,
+    "TYPE": 11
+},
+"OBJECTID7" : {
+    "POS_X": 6,
+    "POS_Y": 2,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID8" : {
+    "POS_X": 7,
+    "POS_Y": 1,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID10" : {
+    "POS_X": 8,
+    "POS_Y": 0,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID11" : {
+    "POS_X": 9,
+    "POS_Y": 0,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID12" : {
+    "POS_X": 9,
+    "POS_Y": 1,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID13" : {
+    "POS_X": 9,
+    "POS_Y": 2,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID14" : {
+    "POS_X": 10,
+    "POS_Y": 2,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID15" : {
+    "POS_X": 11,
+    "POS_Y": 2,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID16" : {
+    "POS_X": 12,
+    "POS_Y": 2,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID17" : {
+    "POS_X": 13,
+    "POS_Y": 2,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID18" : {
+    "POS_X": 14,
+    "POS_Y": 2,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID19" : {
+    "POS_X": 15,
+    "POS_Y": 1,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID20" : {
+    "POS_X": 16,
+    "POS_Y": 0,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID21" : {
+    "POS_X": 20,
+    "POS_Y": 4,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID22" : {
+    "POS_X": 20,
+    "POS_Y": 3,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID23" : {
+    "POS_X": 24,
+    "POS_Y": 3,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID24" : {
+    "POS_X": 25,
+    "POS_Y": 3,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID25" : {
+    "POS_X": 23,
+    "POS_Y": 3,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID26" : {
+    "POS_X": 21,
+    "POS_Y": 3,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID27" : {
+    "POS_X": 19,
+    "POS_Y": 6,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID28" : {
+    "POS_X": 19,
+    "POS_Y": 3,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID29" : {
+    "POS_X": 19,
+    "POS_Y": 4,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID30" : {
+    "POS_X": 19,
+    "POS_Y": 5,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID32" : {
+    "POS_X": 29,
+    "POS_Y": 3,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID33" : {
+    "POS_X": 30,
+    "POS_Y": 2,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID34" : {
+    "POS_X": 34,
+    "POS_Y": 1,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID35" : {
+    "POS_X": 33,
+    "POS_Y": 0,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID36" : {
+    "POS_X": -2,
+    "POS_Y": 0,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID37" : {
+    "POS_X": -2,
+    "POS_Y": 1,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID38" : {
+    "POS_X": -2,
+    "POS_Y": 3,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID39" : {
+    "POS_X": -2,
+    "POS_Y": 2,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID40" : {
+    "POS_X": -2,
+    "POS_Y": 4,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID41" : {
+    "POS_X": -2,
+    "POS_Y": 5,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+}
+,
+"OBJECTID42" : {
+    "POS_X": 35,
+    "POS_Y": 5,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID43" : {
+    "POS_X": 35,
+    "POS_Y": 4,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID44" : {
+    "POS_X": 35,
+    "POS_Y": 3,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID45" : {
+    "POS_X": 35,
+    "POS_Y": 2,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID46" : {
+    "POS_X": 35,
+    "POS_Y": 1,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID47" : {
+    "POS_X": 35,
+    "POS_Y": 0,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID48" : {
+    "POS_X": 35,
+    "POS_Y": 6,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 2,
+    "WIDTH": 1
+},
+"OBJECTID49" : {
+    "CHARGED": 1,
+    "DIRECTION": 2,
+    "POS_X": 22,
+    "POS_Y": 3,
+    "TYPE": 10,
     "WIDTH": 1
 }
 }

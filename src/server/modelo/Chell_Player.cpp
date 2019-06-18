@@ -135,6 +135,7 @@ bool Chell_Player::setTransform(Entity * body) {
     }
     if (body->getEntityName() == "Portal") {
         if(!dynamic_cast<Portal *>(body)->havePartner()) return false;
+        if(dynamic_cast<Portal *>(body)->getPartnerPortal() == nullptr) return false;
         if(!dynamic_cast<Portal *>(body)->getPartnerPortal()->lives()) return false;
 
         teleport_pos = dynamic_cast<Portal *>(body)->getPartnerPortal()->getPosition();
