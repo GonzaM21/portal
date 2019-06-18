@@ -29,6 +29,10 @@ class GameLoop : public Thread {
         std::string getFormat(int time);
         World* world;
         Encoder encoder;
+        ProtectedDataBase *data_base;
+        int next_scenario;
+        bool checkLevelComplete();
+        void waitNextAction();
 
     public:
         GameLoop(World* world,Sender *sender,ProtectedDataBase *data_base);
@@ -40,9 +44,10 @@ class GameLoop : public Thread {
         void step();
         void sendInitialData();
         void sendDynamicData();
-        //void resetGameLoop();
+        void resetGameLoop();
         void sendInfoPlayers();
         void sendInfoRooms();
+        void setNextScenario(int action);
 };
 
 #endif

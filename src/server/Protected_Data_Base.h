@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <mutex>
+#include <vector>
 #include "../common/Constants.h"
 #include "modelo/World.h"
 #include "modelo/Ground.h"
@@ -37,6 +38,7 @@ private:
     std::map<size_t, Button*> buttons;
     std::map<size_t, Energy_Barrier*> barriers;
     std::map<size_t, Energy_Emitters*> emitters;
+    std::map<size_t,std::vector<std::string>> pending_buttons;
     int width;
     int height;
     bool win_state = false;
@@ -44,10 +46,21 @@ private:
     void setVotes(std::map<std::string, size_t> &votes);
     std::string getPlayerToKill();
     void checkPlayerToKill(std::string &player_to_kill);
+    void resetPlayers();
+    void resetAcids();
+    void resetRocks();
+    void resetEnergyBalls();
+    void resetMetalBlocks();
+    void resetStoneBlocks();
+    void resetGates();
+    void resetButtons();
+    void resetEnergyBarriers();
+    void resetEnergyEmitters();
+    void addPendingButtons();
 
 public:
     ProtectedDataBase() = default;
-    ~ProtectedDataBase() = default;
+    ~ProtectedDataBase();
 
     void setLevel(World &world);
 
@@ -88,6 +101,8 @@ public:
     std::string getPlayersName();
     bool getWinState();
     std::map<std::string,std::string> getVoteToKill();  
+
+    void resetDataBase();
 };
 
 #endif

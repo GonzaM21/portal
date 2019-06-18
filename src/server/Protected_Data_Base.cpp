@@ -87,11 +87,13 @@ void ProtectedDataBase :: addButton(World &world, float x_pos, float y_pos,int d
     size_t button_id = this->buttons.size();
     Button *button = new Button(world,x_pos,y_pos);
     this->buttons.insert({button_id,button});
-
+    //this->addButtonToDoor(button,door_id,state_to_open_door);
 }
 
 void ProtectedDataBase :: addButtonToDoor(Button *button,int door_id,int state) {
-    if (door_id > (this->gates.size()-1)) return;
+    if (door_id > (this->gates.size()-2)) {
+      //this->pending_buttons.
+    }
     this->gates[door_id]->addButton(button,state);
 }
 
@@ -285,5 +287,102 @@ std::string ProtectedDataBase::getPlayersName() {
     }
     return players;
 }
+
+ProtectedDataBase::~ProtectedDataBase() {
+    this->resetDataBase();
+}
+
+void ProtectedDataBase::resetDataBase() {
+    this->resetPlayers();
+    this->resetAcids();
+    this->resetRocks();
+    this->resetEnergyBalls();
+    this->resetMetalBlocks();
+    this->resetStoneBlocks();
+    this->resetGates();
+    this->resetButtons();
+    this->resetEnergyBarriers();
+    this->resetEnergyEmitters();
+}
+
+void ProtectedDataBase::resetPlayers() {
+    for (auto it = this->players.cbegin(); it != this->players.cend();) {
+        delete it->second;
+        it = this->players.erase(it); 
+    }
+    for (auto it= this->player_ids.cbegin(); it != this->player_ids.cend();) {
+        it = this->player_ids.erase(it); 
+    }
+    for (auto it= this->vote_to_kill.cbegin(); it != this->vote_to_kill.cend();) {
+        it = this->vote_to_kill.erase(it); 
+    }
+    for (auto it= this->player_reach_cake.cbegin(); it != this->player_reach_cake.cend();) {
+        it = this->player_reach_cake.erase(it); 
+    }  
+}
+
+void ProtectedDataBase::resetRocks() {
+    for (auto it = this->rocks.cbegin(); it != this->rocks.cend();) {
+        delete it->second;
+        it = this->rocks.erase(it); 
+    }  
+}
+
+void ProtectedDataBase::resetAcids() {
+    for (auto it = this->acids.cbegin(); it != this->acids.cend();) {
+        delete it->second;
+        it = this->acids.erase(it); 
+    } 
+}
+
+void ProtectedDataBase::resetEnergyBalls() {
+    for (auto it = this->energy_balls.cbegin(); it != this->energy_balls.cend();) {
+        delete it->second;
+        it = this->energy_balls.erase(it); 
+    } 
+}
+
+void ProtectedDataBase::resetMetalBlocks() {
+    for (auto it = this->metal_blocks.cbegin(); it != this->metal_blocks.cend();) {
+        delete it->second;
+        it = this->metal_blocks.erase(it); 
+    } 
+}
+
+void ProtectedDataBase::resetStoneBlocks() {
+    for (auto it = this->stone_blocks.cbegin(); it != this->stone_blocks.cend();) {
+        delete it->second;
+        it = this->stone_blocks.erase(it); 
+    } 
+}
+
+void ProtectedDataBase::resetGates() {
+    for (auto it = this->gates.cbegin(); it != this->gates.cend();) {
+        delete it->second;
+        it = this->gates.erase(it); 
+    } 
+}
+
+void ProtectedDataBase::resetButtons() {
+    for (auto it = this->buttons.cbegin(); it != this->buttons.cend();) {
+        delete it->second;
+        it = this->buttons.erase(it); 
+    } 
+}
+
+void ProtectedDataBase::resetEnergyBarriers() {
+    for (auto it = this->barriers.cbegin(); it != this->barriers.cend();) {
+        delete it->second;
+        it = this->barriers.erase(it); 
+    } 
+}
+
+void ProtectedDataBase::resetEnergyEmitters() {
+    for (auto it = this->emitters.cbegin(); it != this->emitters.cend();) {
+        delete it->second;
+        it = this->emitters.erase(it); 
+    } 
+}
+
 
 //NOTA: REVISAR CUANDO ESTE EL CAKE SI DEBO MUTEAR ALGO MAS

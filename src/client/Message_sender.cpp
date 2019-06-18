@@ -43,7 +43,7 @@ void MessageSender::sendStart(){
 }
 
 void MessageSender::sendStop() {
-  communicator->addMessageToSend(".");
+  communicator->addMessageToSend("z");
 }
 
 void MessageSender::sendFullscreen() {

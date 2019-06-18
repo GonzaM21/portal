@@ -13,16 +13,16 @@
 #include "server_command_kill.h"
 #include "server_command_suicide.h"
 #include "level_creator/map_parser.h"
+#include "server_level_manager.h"
 #include <map>
 
 class CommandFactory {
 private:
     Model *model;
-    MapParser *map_parser;
+    LevelManager *level_manager;
     std::map<std::string,bool>* players_connection;
-
 public:
-    CommandFactory(Model *model,MapParser *map_parser,
+    CommandFactory(Model *model,LevelManager *level_manager,
       std::map<std::string,bool>* players_connection);
     ~CommandFactory() = default;
     CommandMates* createCommandMates();

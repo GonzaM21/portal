@@ -1,7 +1,12 @@
 #include "Encoder.h"
-#define NEXT_LEVEL_CODE "0001"
-#define END_GAME_CODE "0002"
-#define END_MAP_CODE "0003"
+#define END_LEVEL_CODE "1"
+#define END_GAME_CODE "2"
+#define NEXT_LEVEL_CODE "3"
+#define START_MAP_CODE "4"
+#define END_MAP_CODE "5"
+#define OBJECT_CODE "6"
+#define MATES_CODE "7"
+#define ERROR_CODE "8" //Revisar donde envio los errores
 
 Encoder :: Encoder(ProtectedDataBase *data_base,Sender *sender) {
     this->data_base = data_base;
@@ -201,12 +206,12 @@ void Encoder ::sendWorldSizes() {
 }
 
 void Encoder :: sendEndMap() {
-    std::string msg = "F";
+    std::string msg = END_MAP_CODE;
     this->sender->addMessageToSend(msg);
 }
 
 void Encoder::sendEndLevel() {
-    std::string msg = NEXT_LEVEL_CODE;
+    std::string msg = END_LEVEL_CODE;
     this->sender->addMessageToSend(msg);
 }
 
@@ -215,7 +220,17 @@ void Encoder::sendEndGame() {
     this->sender->addMessageToSend(msg);
 }
 
+void Encoder::sendNextLevelStart() {
+    std::string msg = NEXT_LEVEL_CODE;
+    this->sender->addMessageToSend(msg);
+}
+
 void Encoder::sendPlayersName() {
-    std::string players = this->data_base->getPlayersName();
+    std::string players = MATES_CODE"," +this->data_base->getPlayersName();
     this->sender->addMessageToSend(players);
+}
+
+void Encoder::sendMapStart() {
+    std::string msg = START_MAP_CODE;
+    this->sender->addMessageToSend(msg);
 }

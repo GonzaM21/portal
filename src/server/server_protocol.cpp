@@ -29,7 +29,7 @@ Command* Protoc :: deserialize(std::string &message) {
     if (content.at(1) == "start") {
         return commandFactory.createCommandStart();
     }
-    if (content.at(1) == "d" || content.at(1) == "a" || content.at(1) == "s") {
+    if (content.at(1) == "d" || content.at(1) == "a" || content.at(1) == "s" || content.at(1) == "z") {
         char direction = (char)content.at(1)[0];
         return commandFactory.createCommandMove(content.at(0),direction);
     }

@@ -1,6 +1,7 @@
 #include "server_communicator.h"
 #include "server_room_manager.h"
 #include "../common/common_error.h"
+#define ERROR_CODE "8"
 
 Communicator :: Communicator(SocketConnect socket,RoomManager *room_manager,
   ColaProtegida *events,std::string id) : protocol(std::move(socket)) {
@@ -70,13 +71,22 @@ bool Communicator :: communicatorValid() {
     return this->is_valid;
 }
 
+//void Communicator::sendRooms() {
+//
+//}
+//
+//void Communicator::selectRoom(std::string &room) {
+//
+//}
+
+
 void Communicator :: run() {
     try {
         std::string game_room;
         std::string player_name;
         int initial_data_is_ok = this->setInitialData(game_room,player_name);
         if (!initial_data_is_ok) {
-            std::string m = "Error al crear/unirse a la sala\n";
+            std::string m = ERROR_CODE",Error al crear/unirse a la sala\n";
             this->protocol << m;
             this->is_valid = false;
         }

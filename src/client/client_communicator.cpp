@@ -1,10 +1,9 @@
 #include <thread>
 #include <vector>
-#include <sstream>
-#include "client/client_communicator.h"
+#include "client_communicator.h"
 
-ClientCommunicator ::ClientCommunicator(ModelFacade *model_facade) 
-    : model_facade(model_facade) {
+ClientCommunicator ::ClientCommunicator(ModelFacade *model_facade) :
+  deserializer(model_facade) {
     this->continue_running = true;
 }
 
@@ -26,68 +25,49 @@ void ClientCommunicator::addMessageToSend(std::string message) {
 }
 
 void ClientCommunicator::receiveMessage() {
-    this->receiveMap();
+    //this->receiveMap();
     while (this->continue_running) {
         std::string message;
         this->protocol >> message;
         std::vector<std::string> arguments;
-        std::cout << message << std::endl;
-        splitMessage(message, arguments);
-        if (arguments.at(0).substr(0,5) == "Error") {
+        this->deserializer.deserialize(message);
+        if (this->deserializer.getReceiveError()) {
             this->endExecution();
             message_queue.set_terminar_ejecucion();
-            break;
-        };
-        this->model_facade->decodeMessages(arguments);
+            break;            
+        }
     }
 }
 
 std::vector<std::string> ClientCommunicator::getMates() {
-    std::cout << "lleho" << std::endl;
-    std::string mates("mates"); 
-    this->protocol << mates;
-    std::string message;
-    this->protocol >> message;
-    std::vector<std::string> arguments;
-    std::cout << message << std::endl;
-    splitMessage(message, arguments);
-    return arguments;
+    return this->deserializer.getMates();
 }
 
-void ClientCommunicator::splitMessage(std::string &message, std::vector<std::string> &arguments) {
-    std::stringstream ss(message);
-    std::string token;
-    while (getline(ss, token, ',')) {
-        arguments.push_back(token);
-    }
-}
-
-void ClientCommunicator ::receiveMap()
-{
-    while (!this->received_map)
-    {
-        std::string msg;
-        this->protocol >> msg;
-        // std::cout << msg << std::endl;
-        if (msg == "F")
-        {
-            this->received_map = true;
-            return;
-        }
-        std::vector<std::string> arguments;
-        splitMessage(msg, arguments);
-        if (arguments.at(0).substr(0,5) == "Error") {
-            this->endExecution();
-            message_queue.set_terminar_ejecucion();
-            break;
-        };
-        this->model_facade->decodeMessages(arguments);
-    }
-}
+//void ClientCommunicator ::receiveMap()
+//{
+//    while (!this->received_map)
+//    {
+//        std::string msg;
+//        this->protocol >> msg;
+//        if (msg == "F")
+//        {
+//            this->received_map = true;
+//            return;
+//        }
+//        std::vector<std::string> arguments;
+//        splitMessage(msg, arguments);
+//        if (arguments.at(0).substr(0,5) == "Error") {
+//            this->endExecution();
+//            message_queue.set_terminar_ejecucion();
+//            break;
+//        };
+//        this->model_facade->decodeMessages(arguments);
+//    }
+//}
 
 bool ClientCommunicator::getReceivedMap()
 {
-    return this->received_map;
+    return this->deserializer.getReceiveMap();
 }
 
 void ClientCommunicator ::sendMessage() {
@@ -107,7 +87,7 @@ void ClientCommunicator ::sendMessage() {
     } catch (const std::runtime_error &e) {
         std::cout << e.what() << std::endl;
     } catch (...) {
-        std::cout << "Error inesperado(?)" << std::endl;
+        std::cout << "Error inesperado" << std::endl;
     }
 }
 

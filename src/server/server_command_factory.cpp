@@ -1,9 +1,9 @@
 #include "server_command_factory.h"
 
-CommandFactory :: CommandFactory(Model *model,MapParser *map_parser,
+CommandFactory :: CommandFactory(Model *model,LevelManager *level_manager,
     std::map<std::string,bool>* players_connection) {
     this->model = model;
-    this->map_parser = map_parser;
+    this->level_manager = level_manager;
     this->players_connection = players_connection;
 }
 

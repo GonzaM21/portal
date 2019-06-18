@@ -12,27 +12,6 @@ Model :: Model(Sender *sender) {
     this->game_loop = game_loop;
     this->ground = new Ground(world, 0.f, -1.f, GROUND_WIDTH,GROUND_HEIGHT);
     this->data_base.setLevel(world);
-    this->level_complete = false;
-}
-
-bool Model::getLevelComplete() {
-    return this->level_complete;
-}
-
-void Model::checkLevelComplete() {
-    if (this->levelComplete()) {
-        //this->game_loop->resetGameLoop();
-        delete this->ground;
-        this->level_complete = true;
-    }
-}
-
-bool Model::levelComplete() {
-    std::vector<Chell_Player*> chells = this->data_base.getPlayers();
-    for (size_t i = 0; i<chells.size(); i++) {
-        if (chells[i]->getStatus() != 3) return false;
-    }
-    return true;
 }
 
 void Model::checkWinState() {
@@ -146,8 +125,11 @@ void Model::sendInfoRooms() {
     this->game_loop->sendInfoRooms();
 }
 
-//void Model::resetModel() {
-//    //lo llamo desde room_game, chequeo si terminio el nivel ahi y meto esta funconi dentro de un if
-//    this->game_loop->resetGameLoop();
-//    //this->data_base.resetDataBase();
-//}
+void Model::resetModel() {
+    this->data_base.resetDataBase();
+    this->world.eraseAllBodies();
+}
+
+void Model::resetGameLoop() {
+    this->game_loop->setNextScenario(1);
+}

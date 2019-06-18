@@ -2,6 +2,10 @@
 #define MINUTE 60000
 #define SECOND 1000
 #define STEP_DURATION 40
+#define LEVEL_UNFINISH -1
+#define WAIT_ANSWER 0
+#define NEXT_LEVEL 1
+#define FINISH_GAME 2
 #include "server_game_loop.h"
 #include "modelo/Macros.h"
 #include <chrono>
@@ -11,6 +15,8 @@ GameLoop ::GameLoop(World *world, Sender *sender,
     this->time = 0;
     this->continue_running = true;
     this->world = world;
+    this->data_base = data_base;
+    this->next_scenario = LEVEL_UNFINISH;
 }
 
 void GameLoop :: sendInfoPlayers() {
@@ -24,6 +30,7 @@ void GameLoop :: sendInfoRooms() {
 }
 
 void GameLoop :: sendInitialData() {
+    this->encoder.sendMapStart();
     this->encoder.sendPlayersPositions();
     this->encoder.sendPlayerIds();
     this->encoder.sendWorldSizes();
@@ -58,20 +65,22 @@ void GameLoop :: run() {
         int wait_time = STEP_DURATION-delta_time; //deberia chequear que es mayor a 0
         std::this_thread::sleep_for(std::chrono::milliseconds(wait_time));
         this->time += STEP_DURATION;
+        if (this->checkLevelComplete()) {
+            this->encoder.sendEndLevel();
+            this->waitNextAction();
+        }
     }
 }
 
 void GameLoop ::endGameLoop() {
     this->continue_running = false;
-    this->encoder.sendEndGame();
 }
 
-//void GameLoop::resetGameLoop() {
-//    this->encoder.sendEndLevel();
-//    this->time = 0;
-//    this->continue_running = false;
-//    //reseteo el mundo
-//}
+void GameLoop::resetGameLoop() {
+    this->time = 0;
+    this->continue_running = true;
+    this->next_scenario = LEVEL_UNFINISH;
+}
 
 std::string GameLoop ::getFormat(int time) {
     std::string time_s = std::to_string(time);
@@ -93,4 +102,34 @@ std::string GameLoop ::getTime() {
 
 bool GameLoop ::gameLoopStarted() {
     return this->time != 0;
+}
+
+bool GameLoop::checkLevelComplete() {
+    std::vector<Chell_Player*> chells = this->data_base->getPlayers();
+    for (size_t i = 0; i<chells.size(); i++) {
+        if (chells[i]->getStatus() != 3) return false;
+    }
+    return true;
+}
+
+void GameLoop::waitNextAction() { //se lo llama una ves que todos los jugadores votaron que hacer
+    while (true) {
+        if (this->next_scenario == NEXT_LEVEL) {
+            this->encoder.sendNextLevelStart();
+            this->sendInitialData();
+            this->resetGameLoop();
+            break;
+        } else if (this->next_scenario == FINISH_GAME) {
+            this->encoder.sendEndGame();
+            this->endGameLoop();
+            break;
+        } else {
+            std::this_thread::sleep_for(std::chrono::milliseconds(STEP_DURATION));
+        }
+    }
+}
+
+void GameLoop::setNextScenario(int action) {
+    if (!this->checkLevelComplete()) return;
+    this->next_scenario = action;
 }

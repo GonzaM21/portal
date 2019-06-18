@@ -32,6 +32,8 @@ public:
     void sendEmitters();
     void sendEndLevel();
     void sendEndGame();
+    void sendNextLevelStart();
+    void sendMapStart();
     void sendPlayersName();
     void sendRoomsName();
 };

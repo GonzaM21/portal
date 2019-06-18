@@ -3,78 +3,67 @@
 #include "factory_objetcs.h"
 #include <fstream>
 
-MapParser :: MapParser(Model *model,std::string &json_file) : object_factory(model) {
-    this->model = model;
-    this->json_file = json_file;
+MapParser :: MapParser(Model *model) : object_factory(model) {
     this->setMethods();
     this->setBlockMethods();
 }
 
-void MapParser :: createGate(nlohmann::json &object){
+void MapParser :: createGate(nlohmann::json &object,std::list<Object*> &obj){
     ObjectGate* new_object = this->object_factory.createObjectGate((float)object.at("POS_X"),
     (float)object.at("POS_Y")); 
-    new_object->aggregate();
-    delete new_object;
+    obj.push_back(new_object);
 }
 
-void MapParser :: createButton(nlohmann::json &object){
+void MapParser :: createButton(nlohmann::json &object,std::list<Object*> &obj){
     ObjectButton* new_object = this->object_factory.createObjectButton((float)object.at("POS_X"),
     (float)object.at("POS_Y"),object.at("DOOR_ID"),object.at("STATE")); 
-    new_object->aggregate();
-    delete new_object;
+    obj.push_back(new_object);
 }
 
-void MapParser :: createAcid(nlohmann::json &object){
+void MapParser :: createAcid(nlohmann::json &object,std::list<Object*> &obj){
     ObjectAcid* new_object = this->object_factory.createObjectAcid((float)object.at("POS_X"),
     (float)object.at("POS_Y"),(float)object.at("WIDTH")); 
-    new_object->aggregate();
-    delete new_object;
+    obj.push_back(new_object);
 }
 
-void MapParser :: createPowerball(nlohmann::json &object){
+void MapParser :: createPowerball(nlohmann::json &object,std::list<Object*> &obj){
     ObjectEnergyBall* new_object = this->object_factory.createObjectEnergyBall((float)object.at("POS_X"),
     (float)object.at("POS_Y")); 
-    new_object->aggregate();
-    delete new_object;
+    obj.push_back(new_object);
 }
 
-void MapParser :: createRock(nlohmann::json &object){
+void MapParser :: createRock(nlohmann::json &object,std::list<Object*> &obj){
     ObjectRock* new_object = this->object_factory.createObjectRock((float)object.at("POS_X"),
     (float)object.at("POS_Y"),(float)object.at("WIDTH")); 
-    new_object->aggregate();
-    delete new_object;
+    obj.push_back(new_object);
 }
 
-void MapParser :: createEnergyBarrier(nlohmann::json &object){
+void MapParser :: createEnergyBarrier(nlohmann::json &object,std::list<Object*> &obj){
     ObjectEnergyBarrier* new_object = this->object_factory.createObjectEnergyBarrier(
     (float)object.at("POS_X"),(float)object.at("POS_Y"),(float)object.at("HEIGHT")); 
-    new_object->aggregate();
-    delete new_object;
+    obj.push_back(new_object);
 }
 
-void MapParser :: createBlock(nlohmann::json &object){
-    (this->*(block_methods[object.at("TYPE_OPTIONAL")]))(object);
+void MapParser :: createBlock(nlohmann::json &object,std::list<Object*> &obj){
+    (this->*(block_methods[object.at("TYPE_OPTIONAL")]))(object,obj);
 }
 
-void MapParser :: createMetalBlock(nlohmann::json &object) {
+void MapParser :: createMetalBlock(nlohmann::json &object,std::list<Object*> &obj) {
     ObjectMetalBlock* new_object = this->object_factory.createObjectMetalBlock((float)object.at("POS_X"),
     (float)object.at("POS_Y"),(float)object.at("WIDTH"));
-    new_object->aggregate();
-    delete new_object;
+    obj.push_back(new_object);
 }
 
-void MapParser :: createStoneBlock(nlohmann::json &object) {
+void MapParser :: createStoneBlock(nlohmann::json &object,std::list<Object*> &obj) {
     ObjectStoneBlock* new_object = this->object_factory.createObjectStoneBlock((float)object.at("POS_X"),
     (float)object.at("POS_Y"),(float)object.at("WIDTH"));
-    new_object->aggregate();
-    delete new_object;
+    obj.push_back(new_object);
 }
 
-void MapParser :: createEmitter(nlohmann::json &object) {
+void MapParser :: createEmitter(nlohmann::json &object,std::list<Object*> &obj) {
     ObjectEmitter* new_object = this->object_factory.createObjectEmitter((float)object.at("POS_X"),
     (float)object.at("POS_Y"),(float)object.at("WIDTH"),object.at("DIRECTION"),object.at("CHARGED"));
-    new_object->aggregate();
-    delete new_object;
+    obj.push_back(new_object);
 }
 
 void MapParser :: setBlockMethods() {
@@ -93,15 +82,17 @@ void MapParser :: setMethods() {
     this->methods[EMITTER_CODE] = &MapParser::createEmitter;
 }
 
-void MapParser :: addObjectsToModel() {
-    std::ifstream file(this->json_file);
+std::list<Object*> MapParser :: addObjectsToModel(std::string &json_file) {
+    std::list<Object*> obj;
+    std::ifstream file(json_file);
     if (!file.is_open()) {
         std::cout << "Error: File not found" << std::endl; //podria lanzar excepcion
-        return;
+        return obj;
     }
     nlohmann::json j;
     file >> j;
     for (auto& element : j) {
-        (this->*(methods[element.at("TYPE")]))(element);//si no guardan numeros en el json vuela todo
+        (this->*(methods[element.at("TYPE")]))(element,obj);
     }
+    return obj;
 }

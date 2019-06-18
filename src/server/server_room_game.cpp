@@ -9,6 +9,7 @@
 #include "server_command_factory.h"
 #include "server_protocol.h"
 #include "level_creator/map_parser.h"
+#include "server_level_manager.h"
 
 RoomGame :: RoomGame(std::string &name, size_t size) : sender() {
     this->name = name;
@@ -47,19 +48,18 @@ void RoomGame :: addMessageToSend(std::string &message) {
 
 void RoomGame :: run() {
     Model model(&sender);
-    std::string json("json_file");
-    MapParser map_parser(&model,json);
-    CommandFactory commandFactory(&model,&map_parser,&this->players);                                                                       //los parametros que necesite algun comando se lo debo pasar aca
+    LevelManager level_manager(&model,&this->players);
+    CommandFactory commandFactory(&model,&level_manager,&this->players);                                                                       //los parametros que necesite algun comando se lo debo pasar aca
     Protoc protocol(commandFactory);
-    map_parser.addObjectsToModel(); //TENGO QUE CAMBIAR ESTO POR UN COMANDO "CREATE WORLD O PARSE_WORLD"
+    level_manager.loadFirstLevel();
     while (this->continue_running) {
         std::string new_message = this->messages->pop();
-        if (new_message == "NULL") continue; // OJO CON ESTO continue o break
+        if (new_message == "NULL") continue;
         Command* command = protocol.deserialize(new_message);                                                   //std::shared_ptr<Command*> command(protocol.deserialize(new_message)); //recomendo que use share_ptr (?)
         if (command == nullptr) continue;
         command->execute();
         this->roomStillActive();
-        model.checkWinState();
+        model.checkWinState();                                              //esto se deberia hcer en el game_loop, se manda a los jugadores que termino el nivel en caso que quieran volver a jugar mandan cierto comando y aca se ve, mientras tanto si el comando es distitno al que deben mandar para pasar al proximo nivel se ignora. Salvo el comando de ifn de juego, so no quieren jugar mas se los saca de la sala.
     }
     model.endGame();
 }

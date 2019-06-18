@@ -44,10 +44,15 @@ bool RoomManager :: roomExist(std::string &room_name) {
 
 bool RoomManager :: createRoom(std::string &name) {
     if (this->roomExist(name)) return false;
+    this->rooms_name.push_back(name);
     RoomGame *room = new RoomGame(name,MAX_PLAYERS);
     this->rooms.push_back(room);
     this->rooms.back()->start();
     return true;
+}
+
+std::list<std::string> RoomManager::getRoomsName() {
+    return this->rooms_name;
 }
 
 bool RoomManager :: addPlayerToRoom(std::string &room_name,std::string &player_name){

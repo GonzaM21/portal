@@ -5,13 +5,14 @@
 #include "common/common_socket_connect.h"
 #include "vista/ModelFacade.h"
 #include "common/common_cola_protegida.h"
+#include "client_deserializer.h"
 
 class ClientCommunicator {
 private:
     Protocol protocol;
     bool continue_running;
     std::thread sender;
-    ModelFacade *model_facade;
+    ClientDeserializer deserializer;
     ColaProtegida message_queue;
     bool received_map = false;
 
@@ -28,7 +29,6 @@ public : ClientCommunicator( ModelFacade *model_facade);
     bool getReceivedMap();
     void receiveMap();
     bool isRunnning();
-    void splitMessage(std::string &message, std::vector<std::string> &arguments);
     void addMessageToSend(std::string message);
 };
 

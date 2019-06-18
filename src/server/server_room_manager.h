@@ -12,6 +12,7 @@ class RoomManager : public Thread {
     private:
         std::mutex m;
         std::list<RoomGame*> rooms;
+        std::list<std::string> rooms_name;
         bool continue_running;
         ColaProtegida *events;
         void splitMessage(std::string &message,std::string &first_place,
@@ -44,6 +45,8 @@ class RoomManager : public Thread {
         RoomGame *getCreatedRoom(std::string &room);
 
         bool idIsValid(const std::string &id);
+
+        std::list<std::string> getRoomsName();
 
         virtual void run() override;
 };
