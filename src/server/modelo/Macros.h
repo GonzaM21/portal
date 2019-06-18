@@ -5,7 +5,7 @@
 #define ZERO 0.0
 #define MAX_LIM 1000.0
 #define DELTA_WALLS 1.0
-#define FRICTION 0.3
+#define FRICTION 0.5
 #define DENSITY 1.0
 #define GROUND_HIGH 1.0
 #define BLOCK_SIZES 1.0
