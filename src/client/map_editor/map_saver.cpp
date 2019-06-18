@@ -6,6 +6,7 @@
 #define ROCK_ID "8"
 #define ENERGY_BARRIER_ID "9"
 #define ENERGY_EMITTER_ID "10"
+#define CAKE_ID "11"
 
 MapSaver::MapSaver(std::string &file_name) : file(file_name) {}
 
@@ -97,6 +98,17 @@ void MapSaver::addButton() {
     m["POS_X"] = pos_x;
     m["POS_Y"] = pos_y;
     this->objects.push_back(new JsonNode(m));
+}
+
+void MapSaver::addCake() {
+    std::string pos_x;
+    std::string pos_y;
+    std::map<std::string,std::string> m;
+    getPosition(pos_x,pos_y);
+    m["TYPE"] = CAKE_ID;
+    m["POS_X"] = pos_x;
+    m["POS_Y"] = pos_y;
+    this->objects.push_back(new JsonNode(m));    
 }
 
 void MapSaver::addEmitter() {

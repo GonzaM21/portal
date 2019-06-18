@@ -24,6 +24,10 @@ ObjectGate* ObjectFactory :: createObjectGate(float x_pos,float y_pos) {
     return new ObjectGate(this->model,x_pos,y_pos);
 }
 
+ObjectCake* ObjectFactory :: createObjectCake(float x_pos, float y_pos) {
+    return new ObjectCake(this->model,x_pos,y_pos);
+}
+
 ObjectStoneBlock* ObjectFactory :: createObjectStoneBlock(float x_pos, float y_pos, float size) {
     return new ObjectStoneBlock(this->model,x_pos,y_pos,size);
 }

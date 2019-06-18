@@ -14,6 +14,7 @@ void Interface::printMenu() {
     std::cout << "Roca (5)" << std::endl;
     std::cout << "Barrera de energia (6)" << std::endl;
     std::cout << "Emisor (7)" << std::endl;
+    std::cout << "Pastel (8)" << std::endl;
     std::cout << "Exit (0)"<< std::endl;
     std::cout << "Elija una opcion: ";
 }
@@ -31,8 +32,9 @@ std::string Interface:: createMap() {
         if (option_choose == "4") this->map.addAcid();
         if (option_choose == "5") this->map.addRock();
         if (option_choose == "6") this->map.addEnergyBarrier();
-        if (option_choose == "7") this->map.addEmitter();        
-        else std::cout << "Opicion invalida" << std::endl;
+        if (option_choose == "7") this->map.addEmitter(); 
+        if (option_choose == "8") this->map.addCake();       
+        else continue;
     }
     this->map.writeFile();
     return this->file_name;

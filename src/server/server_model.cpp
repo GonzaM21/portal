@@ -117,6 +117,10 @@ void Model::addEnergyBarrier(float x_pos, float y_pos, float large) {
     this->data_base.addEnergyBarrier(this->world,x_pos,y_pos,large);
 }
 
+void Model::addCake(float x_pos, float y_pos) {
+    this->data_base.addCake(this->world,x_pos,y_pos);
+}
+
 void Model :: sendInfoPlayers() { 
     this->game_loop->sendInfoPlayers();
 }

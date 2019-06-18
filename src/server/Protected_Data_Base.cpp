@@ -82,6 +82,12 @@ void ProtectedDataBase :: addGate(World &world, float x_pos, float y_pos) { //te
     this->gates.insert({gate_id,new Gate(world,x_pos,y_pos)});      
 }
 
+void ProtectedDataBase ::addCake(World &world, float x_pos, float y_pos) {
+    std::unique_lock<std::mutex> lck(m);
+    size_t cake_id = this->cakes.size();
+    this->cakes.insert({cake_id,new Cake(world,x_pos,y_pos)});      
+}
+
 void ProtectedDataBase :: addButton(World &world, float x_pos, float y_pos,int door_id,int state_to_open_door) { //tendra la puerta a la que se asignara el boton
     std::unique_lock<std::mutex> lck(m);
     size_t button_id = this->buttons.size();
@@ -188,6 +194,15 @@ std::vector<Gate*> ProtectedDataBase :: getGates() {
     gates.push_back(element.second);
   }
   return std::move(gates);
+}
+
+std::vector<Cake*> ProtectedDataBase :: getCakes() {
+  std::unique_lock<std::mutex> lck(m);
+  std::vector<Cake*> cakes;
+  for (auto const& element : this->cakes) {
+    cakes.push_back(element.second);
+  }
+  return std::move(cakes);
 }
 
 std::vector<Button*> ProtectedDataBase :: getButtons() {

@@ -15,6 +15,7 @@
 #define POWERBALL_SPRITE_ID 8
 #define ROCK_SPRITE_ID 8
 #define TARGET_SPRITE_ID 9
+#define CAKE_SPRITE_ID 10
 
 /**
  * Objects ID
@@ -30,6 +31,7 @@
 #define ROCK_CODE 8
 #define ENERGY_BARRIER_CODE 9
 #define EMITTER_CODE 10
+#define CAKE_CODE 11
 
 /**
  * Files 
@@ -47,7 +49,7 @@
 #define PORTAL_ORANGE_FILENAME "resources/img/portalNaranja.png"
 #define POWERBALL_FILENAME "resources/img/liquids_powers_energy.png"
 #define ROCK_FILENAME "resources/img/liquids_powers_energy.png"
-
+#define CAKE_FILENAME "resources/img/Cake_2.png"
 
 /**
  * PLAYER
@@ -272,6 +274,16 @@
 #define PORTAL_VERTICAL 2
 #define PORTAL_45GRADES 3
 #define PORTAL_135GRADES 4
+
+
+/*
+ * Cake
+*/
+#define Y_POSITION_CAKE 1
+#define WIDTH_CAKE 400
+#define HEIGHT_CAKE 400
+
+
 
 /* AGREGAR BLOQUE */
 

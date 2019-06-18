@@ -22,7 +22,8 @@ public:
     void addDoor();
     void addButton();
     void addEmitter();
-    void addRock();    
+    void addRock();  
+    void addCake();  
     void writeFile();
 }; 
 

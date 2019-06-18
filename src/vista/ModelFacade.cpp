@@ -14,6 +14,7 @@ ModelFacade::ModelFacade()
   methods[8] = &ModelFacade::setRock;
   methods[9] = &ModelFacade::setEnergyBarrier;
   methods[10] = &ModelFacade::setEnergyEmitter;
+  methods[11] = &ModelFacade::setCake;
 }
 
 void ModelFacade::decodeMessages(std::vector<std::string> arguments)
@@ -47,6 +48,11 @@ void ModelFacade::setGate(std::vector<std::string> arguments)
 {
   Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
   model.setGate(dest, atoi(arguments[1].c_str()), atoi(arguments[6].c_str()));
+}
+
+void ModelFacade::setCake(std::vector<std::string> arguments) {
+  Rect dest(atof(arguments[1].c_str()), atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()));
+  model.setCake(dest);
 }
 
 void ModelFacade::setButton(std::vector<std::string> arguments)

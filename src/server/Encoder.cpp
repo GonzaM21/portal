@@ -124,6 +124,18 @@ void Encoder :: sendGates() {
     }
 }
 
+void Encoder :: sendCake() {
+    std::vector<Cake*> cakes = this->data_base->getCakes();
+    for ( size_t i = 0; i<cakes.size(); i++ ) {
+        std::string msg;
+        b2Vec2 pos = cakes[i]->getPosition();
+        b2Vec2 size = cakes[i]->getSizes();
+        msg = "11," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+        "," + std::to_string(size.x) + "," + std::to_string(size.y);
+        this->sender->addMessageToSend(msg);
+    }
+}
+
 void Encoder :: sendPortals() {
     std::vector<Chell_Player*> chells = this->data_base->getPlayers();
     for ( size_t i = 0; i<chells.size(); i++ ) {

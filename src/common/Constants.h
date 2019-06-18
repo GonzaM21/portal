@@ -12,6 +12,7 @@
 #define ROCK_CODE 8
 #define ENERGY_BARRIER_CODE 9
 #define EMITTER_CODE 10
+#define CAKE_CODE 11
 
 /**
  * Blocks Id

@@ -16,6 +16,7 @@ TextureBase::TextureBase(SDL_Renderer* renderer) : renderer(renderer)
   createTexture(POWERBALL_SPRITE_ID, POWERBALL_FILENAME);
   createTexture(ROCK_SPRITE_ID, ROCK_FILENAME);
   createTexture(TARGET_SPRITE_ID,TARGET_FILENAME);
+  createTexture(CAKE_SPRITE_ID,CAKE_FILENAME);
 }
 
 void TextureBase::createTexture(const int& id, const std::string filename) {

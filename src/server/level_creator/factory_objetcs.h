@@ -11,6 +11,7 @@
 #include "object_button.h"
 #include "object_energy_barrier.h"
 #include "object_emitter.h"
+#include "object_cake.h"
 
 class ObjectFactory {
 private:
@@ -29,6 +30,7 @@ public:
     ObjectEnergyBarrier* createObjectEnergyBarrier(float x_pos,float y_pos,float large);
     ObjectEmitter* createObjectEmitter(float x_pos, float y_pos, float size,int 
        direction, int charged);
+    ObjectCake* createObjectCake(float x_pos, float y_pos);
 };
 
 

@@ -29,6 +29,7 @@ public:
     void sendEndMap();
     void sendPortals();
     void sendBarriers();
+    void sendCake();
     void sendEmitters();
     void sendEndLevel();
     void sendEndGame();

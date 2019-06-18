@@ -1,15 +1,20 @@
 {
 "OBJECTID0" : {
-    "POS_X": 2,
-    "POS_Y": 0.5,
-    "TYPE": 8,
-    "WIDTH": 0.3
-},
-"OBJECTID1" : {
-    "POS_X": 4,
-    "POS_Y": 0,
+    "POS_X": -2,
+    "POS_Y": 9,
     "TYPE": 2,
     "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},
+"OBJECTID1" : {
+    "POS_X": -4,
+    "POS_Y": 0,
+    "TYPE": 11
+},
+"OBJECTID2" : {
+    "POS_X": 3,
+    "POS_Y": -0.5,
+    "TYPE": 5,
     "WIDTH": 1
 }
 }

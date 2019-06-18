@@ -52,6 +52,7 @@ class Model {
         void addGate( float x_pos, float y_pos);
         void addEmitter(float x_pos, float y_pos, float size,int direction, bool charged);
         void addEnergyBarrier(float x_pos, float y_pos, float large);
+        void addCake(float x_pos, float y_pos);
 };
 
 #endif

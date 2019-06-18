@@ -42,6 +42,7 @@ void GameLoop :: sendInitialData() {
     this->encoder.sendAcids();
     this->encoder.sendGates();
     this->encoder.sendBarriers();
+    this->encoder.sendCake();
     this->encoder.sendEndMap();
 }
 

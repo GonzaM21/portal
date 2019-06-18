@@ -15,6 +15,7 @@
 #include "Portal/Portal.h"
 #include "Rocks/Rock.h"
 #include "Emitter/Emitter.h"
+#include "Cake/Cake.h"
 #include <list>
 #include <map>
 #include <unordered_map>
@@ -31,6 +32,7 @@ public:
   void setPortal(Rect &dest, const int &id, const int &code, const int &direction, const int &state);
   void setPowerball(Rect &dest, const int &state);
   void setRock(Rect &dest, const int &id);
+  void setCake(Rect &dest);
   void setEnergyEmitter(Rect &dest, const int &id, const int &direction, const int &state);
   void setPlayer(Rect &dest, const int &id, const int &state, const int &direction);
   std::list<Block *> getBlocks();
@@ -53,6 +55,7 @@ private:
   Camara camara;
   std::list<Block *> blocks;
   std::list<Acid *> acids;
+  std::list<Cake *> cakes;
   std::map<int, Rock *> rocks;
   std::map<int, Portal *> portals;
   std::list<PowerBall *> powerballs;

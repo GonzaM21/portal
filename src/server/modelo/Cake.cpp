@@ -8,6 +8,7 @@ Cake::Cake(World &world, float x_pos, float y_pos) {
     data.addMaskBits(BALL_BITS);
     cake = world.addBox(x_pos,y_pos,0.5,true,data);
     name = "Cake";
+    cake->SetUserData(this);
     sizes = b2Vec2(0.5,0.5);
 }
 

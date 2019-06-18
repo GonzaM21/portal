@@ -21,6 +21,7 @@
 #include "modelo/Button.h"
 #include "modelo/Energy_Barrier.h"
 #include "modelo/Energy_Emitters.h"
+#include "modelo/Cake.h"
 
 class ProtectedDataBase {
 private:
@@ -38,7 +39,8 @@ private:
     std::map<size_t, Button*> buttons;
     std::map<size_t, Energy_Barrier*> barriers;
     std::map<size_t, Energy_Emitters*> emitters;
-    std::map<size_t,std::vector<std::string>> pending_buttons;
+    std::map<size_t,std::vector<std::string>> pending_buttons;//todavia no andan
+    std::map<size_t, Cake*> cakes;
     int width;
     int height;
     bool win_state = false;
@@ -83,6 +85,7 @@ public:
     void addEmitter(World &world,float x_pos, float y_pos, float size,
       int direction, bool charged);
     void addEnergyBarrier(World &world,float x_pos, float y_pos, float large);
+    void addCake(World &world, float x_pos, float y_pos);
     //Getters
     std::vector<std::string> getIds();
     std::vector<Chell_Player*> getPlayers();
@@ -94,7 +97,8 @@ public:
     std::vector<Gate*> getGates();
     std::vector<Button*> getButtons();
     std::vector<Energy_Barrier*> getBarriers();
-    std::vector<Energy_Emitters*> getEmitters();      
+    std::vector<Energy_Emitters*> getEmitters(); 
+    std::vector<Cake*> getCakes();     
     float getWidth();
     float getHeight();
     std::map<std::string,Chell_Player*> getPlayersMap();

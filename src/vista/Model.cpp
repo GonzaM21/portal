@@ -41,6 +41,8 @@ void Model::setGate(Rect &dest, const int &id, const int &state)
   this->gates[id]->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
   this->gates[id]->setState(state);
 }
+
+
 void Model::setButton(Rect &dest, const int &id, const int &state)
 {
   if (id > buttons.size())
@@ -55,6 +57,12 @@ void Model::setAcid(Rect &dest)
   this->acids.push_back(new Acid(window));
   this->acids.back()->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
 }
+
+void Model::setCake(Rect &dest) {
+  this->cakes.push_back(new Cake(window));
+  this->cakes.back()->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());  
+}
+
 void Model::setPowerball(Rect &dest, const int &state)
 {
   this->powerballs.push_back(new PowerBall(window, state, 0));
@@ -162,7 +170,9 @@ void Model::renderAll()
   {
     player.second->render(camara);
   }
-
+  for (auto cake : cakes) {
+    cake->render(camara);
+  }
   window.render();
 }
 

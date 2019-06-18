@@ -14,6 +14,12 @@ void MapParser :: createGate(nlohmann::json &object,std::list<Object*> &obj){
     obj.push_back(new_object);
 }
 
+void MapParser :: createCake(nlohmann::json &object,std::list<Object*> &obj) {
+    ObjectCake* new_object = this->object_factory.createObjectCake((float)object.at("POS_X"),
+    (float)object.at("POS_Y")); 
+    obj.push_back(new_object);
+}
+
 void MapParser :: createButton(nlohmann::json &object,std::list<Object*> &obj){
     ObjectButton* new_object = this->object_factory.createObjectButton((float)object.at("POS_X"),
     (float)object.at("POS_Y"),object.at("DOOR_ID"),object.at("STATE")); 
@@ -80,6 +86,7 @@ void MapParser :: setMethods() {
     this->methods[ROCK_CODE] = &MapParser::createRock;                     
     this->methods[ENERGY_BARRIER_CODE] = &MapParser::createEnergyBarrier;  
     this->methods[EMITTER_CODE] = &MapParser::createEmitter;
+    this->methods[CAKE_CODE] = &MapParser::createCake;
 }
 
 std::list<Object*> MapParser :: addObjectsToModel(std::string &json_file) {
