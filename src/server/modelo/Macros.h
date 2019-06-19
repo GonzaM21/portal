@@ -42,6 +42,7 @@
 #define BARRIER_BITS 4
 #define ROCK_PORTAL_BITS 8
 #define BALL_BITS 16
+#define CHELL_WHEELS_RADIUS 0.1
 
 #define UNUSEDBODY(x) (void*)(x)
 #define UNUSEDB2VEC2(x) (void)(x)

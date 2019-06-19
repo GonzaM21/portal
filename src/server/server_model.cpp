@@ -73,7 +73,7 @@ void Model::makePlayerInmortal(std::string &player) {
     this->data_base.makePlayerInmortal(player);
 }
 void Model::makePlayerAntiGravity(std::string &player) {
-    this->data_base.makePlayerAntiGravity();
+    this->data_base.makePlayerAntiGravity(player);
 }
 
 void Model ::killPlayer(std::string &player_name) {
