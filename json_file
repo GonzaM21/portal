@@ -328,10 +328,44 @@
 },
 "OBJECTID49" : {
     "CHARGED": 1,
-    "DIRECTION": 2,
+    "DIRECTION": 0,
     "POS_X": 22,
     "POS_Y": 3,
     "TYPE": 10,
     "WIDTH": 1
+},
+"OBJECTOID51" : {
+    "TYPE" : 8,
+    "POS_X" : -4,
+    "POS_Y" : 0,
+    "WIDTH" : 0.3
+},
+"OBJECTOID52" : {
+    "TYPE" : 8,
+    "POS_X" : 1,
+    "POS_Y" : 1,
+    "WIDTH" : 0.3
+},
+"OBJECTID50" : {
+    "CHARGED": 0,
+    "DIRECTION": 2,
+    "POS_X": 22,
+    "POS_Y": 7,
+    "TYPE": 10,
+    "WIDTH": 1
+},
+"OBJECTID51" : {
+    "POS_X": 21,
+    "POS_Y": 9,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
+},"OBJECTID52" : {
+    "POS_X": 20,
+    "POS_Y": 9,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 1,
+    "WIDTH": 1
 }
 }
+

@@ -1,10 +1,10 @@
 //
 // Created by gonzalo on 07/06/19.
 //
-#define RIGHT 0
-#define LEFT 1
-#define UP 2
-#define DOWN 3
+#define RIGHT 1
+#define LEFT 3
+#define UP 0
+#define DOWN 2
 #include "Energy_Emitters.h"
 
 Energy_Emitters::Energy_Emitters(World &world, float x_pos, float y_pos, float size,int direction, bool charged,int frequency)

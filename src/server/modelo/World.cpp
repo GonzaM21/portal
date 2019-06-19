@@ -64,18 +64,17 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
     polygonBody = world->CreateBody(&polygonBodyDef);
 
     b2CircleShape shape_circle;
-    shape_circle.m_radius = 0.1;
-    shape_circle.m_p.Set(0.1,-(y_size - 0.1)/2);
+    shape_circle.m_radius = CHELL_WHEELS_RADIUS;
+    shape_circle.m_p.Set(x_size - CHELL_WHEELS_RADIUS,-(y_size - CHELL_WHEELS_RADIUS)/2);
     b2FixtureDef circleFixtureDef;
     circleFixtureDef.filter.categoryBits = data.getCategoryBits();
     circleFixtureDef.filter.maskBits = data.getMaskBits();
     circleFixtureDef.shape = &shape_circle;
-
     polygonBody->CreateFixture(&circleFixtureDef);
 
     b2CircleShape shape_circle2;
-    shape_circle2.m_radius = 0.1;
-    shape_circle2.m_p.Set(-0.1,-(y_size - 0.1)/2);
+    shape_circle2.m_radius = CHELL_WHEELS_RADIUS;
+    shape_circle2.m_p.Set(-x_size + CHELL_WHEELS_RADIUS,-(y_size - CHELL_WHEELS_RADIUS)/2);
     b2FixtureDef circleFixtureDef2;
     circleFixtureDef2.shape = &shape_circle2;
     circleFixtureDef2.filter.categoryBits = data.getCategoryBits();
@@ -84,7 +83,9 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
 
     polygonBody->CreateFixture(&polygonFixtureDef);
     polygonBody->SetFixedRotation(true);
+
     shape_polygon.SetAsBox(FOOT_SENSOR_SIZE, FOOT_SENSOR_SIZE, b2Vec2(ZERO, -y_size),0);
+    polygonFixtureDef.density = 0.01;
     polygonFixtureDef.isSensor = true;
     b2Fixture* footSensorFixture  = polygonBody->CreateFixture(&polygonFixtureDef);
     footSensorFixture->SetUserData(foot_data);

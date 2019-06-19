@@ -41,13 +41,13 @@ bool Chell_Player::Move(char &direction) {
         direction_right = true;
         if (actual_speed.y != 0) {
             chell->SetLinearVelocity(b2Vec2(CHELL_MOVE_FORCE/2.f,actual_speed.y));
-            if(taking && rock != nullptr){
+            if(taking && rock != nullptr && take){
                 rock->changePositionChell(chell->GetPosition() + b2Vec2(0.8f,0.3f));
                 rock->applyForce(b2Vec2(CHELL_MOVE_FORCE/4,ZERO));
             }
         } else {
             chell->SetLinearVelocity(b2Vec2(CHELL_MOVE_FORCE,ZERO));
-            if(taking && rock != nullptr){
+            if(taking && rock != nullptr && take){
                 rock->changePositionChell(chell->GetPosition() + b2Vec2(0.8f,0.3f));
                 rock->applyForce(b2Vec2(CHELL_MOVE_FORCE,ZERO));
             }
@@ -63,7 +63,7 @@ bool Chell_Player::Move(char &direction) {
             }
         } else {
             chell->SetLinearVelocity(b2Vec2(-CHELL_MOVE_FORCE,ZERO));
-            if(taking && rock != nullptr){
+            if(taking && rock != nullptr && take){
                 rock->changePositionChell(chell->GetPosition() + b2Vec2(-0.8f,0.3f));
                 rock->applyForce(b2Vec2(-CHELL_MOVE_FORCE,ZERO));
             }
@@ -72,7 +72,7 @@ bool Chell_Player::Move(char &direction) {
     } else if(direction == 's') {
         if (actual_speed.y != 0) {
             chell->ApplyLinearImpulseToCenter(b2Vec2(ZERO,-CHELL_MOVE_FORCE/4.f),true);
-            if(taking && rock != nullptr){
+            if(taking && rock != nullptr && take){
                 rock->changePositionChell(chell->GetPosition() + b2Vec2(0.8f,0.3f));
                 rock->applyForce(b2Vec2(ZERO,-CHELL_MOVE_FORCE/4.f));
             }
@@ -88,15 +88,15 @@ bool Chell_Player::Move(char &direction) {
 void Chell_Player::Brake(){
     if(chell->GetLinearVelocity().y == 0){
         chell->SetLinearVelocity(b2Vec2(0,0));
-        if(taking && rock != nullptr) rock->setVelocity(b2Vec2(ZERO,ZERO));
+        if(taking && rock != nullptr&& take) rock->setVelocity(b2Vec2(ZERO,ZERO));
     } else{
         if(chell->GetLinearVelocity().x < 0){
             chell->ApplyForceToCenter(b2Vec2(100.f,0),true);
-            if(taking && rock != nullptr) rock->applyForce(b2Vec2(100.f,ZERO));
+            if(taking && rock != nullptr && take) rock->applyForce(b2Vec2(100.f,ZERO));
         }
         if(chell->GetLinearVelocity().x > 0){
             chell->ApplyForceToCenter(b2Vec2(-100.f,0),true);
-            if(taking && rock != nullptr) rock->applyForce(b2Vec2(-100.f,ZERO));
+            if(taking && rock != nullptr && take) rock->applyForce(b2Vec2(-100.f,ZERO));
         }
     }
 }
@@ -129,7 +129,7 @@ float Chell_Player::getAngle() {
 bool Chell_Player::setTransform(Entity * body) {
     if(!live) return false;
 
-    if(body->getEntityName() == "Rock"){
+    if(body->getEntityName() == "Rock" && take){
         rock = (Rock *)body;
         taking = true;
     }

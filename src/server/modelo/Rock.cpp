@@ -9,7 +9,7 @@ Rock::Rock(World &world, float x_pos, float y_pos,float radius) : world(world){
     data.addMaskBits(BALL_BITS);
     rock = world.addCircle(x_pos,y_pos,radius,false,data,true);
     rock->SetUserData(this);
-    radius = radius;
+    this->radius = radius;
     name = "Rock";
     contact = false;
     live = true;
@@ -45,7 +45,7 @@ bool Rock::lives() {
 }
 
 float Rock::getRadius(){
-    return radius;
+    return this->radius;
 }
 
 bool Rock::setTransform(Entity *) {

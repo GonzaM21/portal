@@ -116,12 +116,12 @@ void energy_ball_colition(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
 
     if(nameBodyA == "Energy_Ball" && nameBodyB == "Energy_Emitter"){
         static_cast<Entity *>(userDataA)->die();
-        //static_cast<Entity *>(userDataB)->startContact(b2Vec2(0,0));
+        static_cast<Entity *>(userDataB)->startContact(b2Vec2(0,0));
     }
 
     if(nameBodyB == "Energy_Ball" && nameBodyA == "Energy_Emitter"){
         static_cast<Entity *>(userDataB)->die();
-        //static_cast<Entity *>(userDataA)->startContact(b2Vec2(0,0));
+        static_cast<Entity *>(userDataA)->startContact(b2Vec2(0,0));
     }
 
     if(nameBodyA == "Energy_Ball" && nameBodyB == "Metal_Block"){
@@ -186,7 +186,7 @@ void MyContactListener::BeginContact(b2Contact * contact){
         }
     }
 
-    std::cout<<"position colision: "<<colition_point.x<<"  "<<colition_point.y<<std::endl;
+    //std::cout<<"position colision: "<<colition_point.x<<"  "<<colition_point.y<<std::endl;
 
     if (!bodyUserDataA || !bodyUserDataB) return;
     chell_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
