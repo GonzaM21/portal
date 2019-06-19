@@ -57,6 +57,7 @@ void Window::fill(int r, int g, int b, int alpha)
 
 void Window::fill()
 {
+    SDL_RenderClear(this->renderer);
     int width,height;
     this->getSize(width,height);
     SDL_Rect sdlSrc = {0, 0,1920,1080};

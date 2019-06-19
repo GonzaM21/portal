@@ -58,16 +58,11 @@ int main(int argc, char *argv[])
         if (!joiner.isValid()) return 0; 
 
         MessageSender sender(&communicator, &model_facade);
-        Renderable *renderer_thread = new Renderable(&model_facade,&communicator);
-        EventHandlerThread* handler = new EventHandlerThread(sender,&model_facade);
-        renderer_thread->start();
+        EventHandlerThread* handler = new EventHandlerThread(sender);
         handler->start();
         communicator.startExecution();
         handler->endExecution();
         handler->join();
-        renderer_thread->endExecution();
-        renderer_thread->join();
-        delete renderer_thread;
         delete handler;
     } catch (const std::runtime_error &e) {
         std::cout << e.what() << std::endl;

@@ -17,7 +17,7 @@ ModelFacade::ModelFacade()
   methods[11] = &ModelFacade::setCake;
 }
 
-void ModelFacade::decodeMessages(std::vector<std::string> arguments)
+void ModelFacade::decodeMessages(std::vector<std::string> arguments)//esto habria que hacerlo en deserializer (interprete)
 {
   (this->*(methods[atoi(arguments[0].c_str())]))(arguments);
 }

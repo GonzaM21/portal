@@ -1,7 +1,7 @@
 #define HOUR 3600000
 #define MINUTE 60000
 #define SECOND 1000
-#define STEP_DURATION 40
+#define STEP_DURATION 40 //tiene que coincidir con el step del world 
 #define LEVEL_UNFINISH -1
 #define WAIT_ANSWER 0
 #define NEXT_LEVEL 1
@@ -59,11 +59,11 @@ void GameLoop :: run() {
     this->sendInitialData();
     while (this->continue_running) {
         auto t_start = std::chrono::high_resolution_clock::now();
-        world->Step();
+        world->Step(0.04);
         this->sendDynamicData();
         auto t_end = std::chrono::high_resolution_clock::now();
         int delta_time = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        int wait_time = STEP_DURATION-delta_time; //deberia chequear que es mayor a 0
+        int wait_time = STEP_DURATION-delta_time; //deberia chequear que es mayor a 0 //imprmir warning y dormir muy pcop tiempo. time step configurable
         std::this_thread::sleep_for(std::chrono::milliseconds(wait_time));
         this->time += STEP_DURATION;
         if (this->checkLevelComplete()) {

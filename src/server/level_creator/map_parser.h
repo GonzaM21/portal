@@ -11,7 +11,7 @@ class MapParser {
 private:
     ObjectFactory object_factory;
     typedef void (MapParser::*map_method_t)(nlohmann::json&,std::list<Object*>&);
-    std::unordered_map<int, map_method_t> methods;
+    std::unordered_map<int, map_method_t> methods; //functor
     std::unordered_map<int, map_method_t> block_methods;
     void setMethods();
     void setBlockMethods();

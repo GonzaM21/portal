@@ -94,11 +94,11 @@ void ProtectedDataBase :: addButton(World &world, float x_pos, float y_pos,int d
     Button *button = new Button(world,x_pos,y_pos);
     this->buttons.insert({button_id,button});
     //this->addButtonToDoor(button,door_id,state_to_open_door);
-}
+}//llamar desde afuera addButtons que agregue todos los botones a las puertas
 
 void ProtectedDataBase :: addButtonToDoor(Button *button,int door_id,int state) {
-    if (door_id > (this->gates.size()-2)) {
-      //this->pending_buttons.
+    if (door_id > (this->gates.size()-1)) {
+      return;
     }
     this->gates[door_id]->addButton(button,state);
 }

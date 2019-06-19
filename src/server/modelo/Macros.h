@@ -1,7 +1,7 @@
 #ifndef TP4_MACROS_H
 #define TP4_MACROS_H
 
-#define GRAVITY 15.81
+#define GRAVITY 9.81
 #define ZERO 0.0
 #define MAX_LIM 1000.0
 #define DELTA_WALLS 1.0
@@ -11,11 +11,10 @@
 #define BLOCK_SIZES 1.0
 #define ENERGY_BALL_RESITUTION 1.0
 #define DELTA_POSITION 0.02
-#define FOOT_SENSOR_SIZE 0.25
+#define FOOT_SENSOR_SIZE 0.04
 #define CHELL_HIGH 1.6
 #define CHELL_WIDTH 0.5
-#define CHELL_JUMP_FORCE 300.0
-#define CHELL_WHEELS_RADIUS 0.1
+#define CHELL_JUMP_FORCE 100.0
 #define CHELL_MOVE_FORCE 10.0
 #define CHELL_QUIET 0
 #define CHELL_RUNNING 2

@@ -11,17 +11,13 @@
 #include <vector>
 #include <string>
 #include "../vista/ModelFacade.h"
+#include "client_controller.h"
 
 
 class ClientDeserializer {
 private:
-    bool received_map;
-    bool in_a_level;
-    bool waiting_next_level;
-    bool receive_error;
-    bool game_finish;
-    std::vector<std::string> mates; //creo que nisiquiera es thread safety
-    ModelFacade *model_facade;
+    ClientController client_controller;
+
     void splitMessage(std::string &message,std::vector<std::string> &args);
     void receiveMap();
     void setMates(std::vector<std::string> args);
@@ -29,10 +25,11 @@ public:
     ClientDeserializer(ModelFacade *model_facade);
     ~ClientDeserializer() = default;
     void deserialize(std::string &message);
-    bool getReceiveMap();
-    bool getInLevel();
-    bool getWaitingNextLevel();
-    bool getReceiveError();
+    //bool getReceiveMap();
+    //bool getInLevel();
+    //bool getWaitingNextLevel();
+    //bool getReceiveError();
+    bool getReceiveError(); //estos dos metodos deberian volar de aca
     std::vector<std::string> getMates();
 };
 

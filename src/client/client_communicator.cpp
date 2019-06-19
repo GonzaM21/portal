@@ -25,7 +25,6 @@ void ClientCommunicator::addMessageToSend(std::string message) {
 }
 
 void ClientCommunicator::receiveMessage() {
-    //this->receiveMap();
     while (this->continue_running) {
         std::string message;
         this->protocol >> message;
@@ -41,33 +40,6 @@ void ClientCommunicator::receiveMessage() {
 
 std::vector<std::string> ClientCommunicator::getMates() {
     return this->deserializer.getMates();
-}
-
-//void ClientCommunicator ::receiveMap()
-//{
-//    while (!this->received_map)
-//    {
-//        std::string msg;
-//        this->protocol >> msg;
-//        if (msg == "F")
-//        {
-//            this->received_map = true;
-//            return;
-//        }
-//        std::vector<std::string> arguments;
-//        splitMessage(msg, arguments);
-//        if (arguments.at(0).substr(0,5) == "Error") {
-//            this->endExecution();
-//            message_queue.set_terminar_ejecucion();
-//            break;
-//        };
-//        this->model_facade->decodeMessages(arguments);
-//    }
-//}
-
-bool ClientCommunicator::getReceivedMap()
-{
-    return this->deserializer.getReceiveMap();
 }
 
 void ClientCommunicator ::sendMessage() {

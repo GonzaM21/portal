@@ -99,7 +99,7 @@ std::list<Object*> MapParser :: addObjectsToModel(std::string &json_file) {
     nlohmann::json j;
     file >> j;
     for (auto& element : j) {
-        (this->*(methods[element.at("TYPE")]))(element,obj);
+        (this->*(methods[element.at("TYPE")]))(element,obj); //deberia usar lambda
     }
     return obj;
 }

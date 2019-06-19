@@ -4,10 +4,9 @@
 #include "../common/Thread.h"
 #include "client/Event_handler.h"
 
-EventHandlerThread :: EventHandlerThread(MessageSender& sender ,
-    ModelFacade *model_facade) : eventHandler(sender){
+EventHandlerThread :: EventHandlerThread(MessageSender& sender) 
+    : eventHandler(sender){
     this->continue_running = true;
-    this->model_facade = model_facade;
 }
 
 void EventHandlerThread :: run() { //habria que validar que el unico evento valido al principio sea start sino te deja ya moverte y poner portales
