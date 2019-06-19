@@ -36,6 +36,8 @@ class Model {
         void makePlayerMove(std::string &player,char &direction);
         void shootPortal(std::string &player,float x_destiny, float y_destiny,int portal_num);
         void makePlayerMoveRock(std::string &player);
+        void makePlayerInmortal(std::string &player);
+        void makePlayerAntiGravity(std::string &player);
         void checkWinState();
         void killPlayer(std::string &player_name);
         void voteToKill(std::string &voter);

@@ -73,6 +73,8 @@ public:
     void voteToKill(std::string &voter);
     void killPlayer(std::string &player_name);
     void setWinState();
+    void makePlayerInmortal(std::string &player);
+    void makePlayerAntiGravity(std::string &player);
 
     void addPlayer(World &world,std::string &player);
     void addRock(World &world,float x_pos, float y_pos, float radius);

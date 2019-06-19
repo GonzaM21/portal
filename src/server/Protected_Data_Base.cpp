@@ -17,6 +17,17 @@ void ProtectedDataBase::makePlayerMoveRock(std::string &player) {
     this->players[player]->grabARock();
 }
 
+void ProtectedDataBase::makePlayerInmortal(std::string &player) {
+  std::unique_lock<std::mutex> lck(m);
+  this->players[player]->inmortalChell();
+}
+
+void ProtectedDataBase::makePlayerAntiGravity(std::string &player) {
+  std::unique_lock<std::mutex> lck(m);
+  this->players[player]->antiGravity();
+}
+
+
 
 void ProtectedDataBase :: makePlayerJump(std::string &player) {
     std::unique_lock<std::mutex> lck(m);

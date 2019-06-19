@@ -69,6 +69,13 @@ void Model :: makePlayerMoveRock(std::string &player) {
     this->data_base.makePlayerMoveRock(player);
 }
 
+void Model::makePlayerInmortal(std::string &player) {
+    this->data_base.makePlayerInmortal(player);
+}
+void Model::makePlayerAntiGravity(std::string &player) {
+    this->data_base.makePlayerAntiGravity();
+}
+
 void Model ::killPlayer(std::string &player_name) {
     this->data_base.killPlayer(player_name);
 }

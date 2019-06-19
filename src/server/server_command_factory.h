@@ -12,6 +12,8 @@
 #include "server_command_disconnected.h"
 #include "server_command_kill.h"
 #include "server_command_suicide.h"
+#include "server_command_anti_gravity.h"
+#include "server_command_inmortal.h"
 #include "level_creator/map_parser.h"
 #include "server_level_manager.h"
 #include <map>
@@ -36,7 +38,8 @@ public:
     CommandDisconnected* createCommandDisconnected(std::string &player);
     CommandKill* createCommandKill(std::string &voter);
     CommandSuicide* createCommandSuicide(std::string &player);
-    //los demas comandos
+    CommandInmortal* createCommandInmortal(std::string &player);
+    CommandAntiGravity* createCommandAntiGravity(std::string &player);
 };
 
 

@@ -52,29 +52,37 @@ void EventHandler::handleKeyDown(SDL_KeyboardEvent& keyEvent){
 void EventHandler::handleKeyUp(SDL_KeyboardEvent& keyEvent) {
   switch (keyEvent.keysym.sym)
   {
-    case SDLK_F11: {
+    case SDLK_F11: {//porque se manda un full screen(?) (fullscreen no esta funcionando)
       messageSender.sendFullscreen();
-    }
       break;
+    }
     case SDLK_d:{
       messageSender.sendStop();
-    }
       break;
+    }
+    case SDLK_o:{
+      messageSender.sendInmortalCheat();
+      break;
+    }
+    case SDLK_v:{
+      messageSender.sendAntiGravityCheat();
+      break;
+    }
     case SDLK_a: {
       messageSender.sendStop();
-    }
       break;
+    }
     case SDLK_r: {
       messageSender.sendResetPortals();
-    }
       break;
+    }
     case SDLK_w: {
       messageSender.sendJump();
       break;
     }
     case SDLK_s: {
-        messageSender.sendDown();
-        break;
+      messageSender.sendDown();
+      break;
     }
     case SDLK_e: {
       messageSender.sendMoveRock();
@@ -89,10 +97,9 @@ void EventHandler::handleKeyUp(SDL_KeyboardEvent& keyEvent) {
       break;
     }
     case SDLK_q: {
-      std::cout << "exit" << std::endl;
       messageSender.sendQuitGame();
-    }
       break;
+    }
     default:
       break;
   }

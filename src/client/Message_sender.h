@@ -22,6 +22,8 @@ public:
   void sendSuicide();
   void sendMoveRock();
   void sendDown();
+  void sendInmortalCheat();
+  void sendAntiGravityCheat();
 
 private: 
   bool running;

@@ -47,3 +47,12 @@ CommandKill* CommandFactory::createCommandKill(std::string &voter) {
 CommandSuicide* CommandFactory::createCommandSuicide(std::string &player) {
     return new CommandSuicide(this->model,player);
 }
+
+CommandInmortal* CommandFactory::createCommandInmortal(std::string &player) {
+    return new CommandInmortal(this->model, player);
+} 
+
+CommandAntiGravity* CommandFactory::createCommandAntiGravity(std::string &player) {
+    return new CommandAntiGravity(this->model, player);
+} 
+|

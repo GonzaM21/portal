@@ -63,5 +63,14 @@ void MessageSender::sendMoveRock() {
 }
 
 void MessageSender::sendDown() {
-    communicator->addMessageToSend("s");
+  communicator->addMessageToSend("s");
 }
+
+void MessageSender::sendInmortalCheat() {
+  communicator->addMessageToSend("o");
+}
+
+void MessageSender::sendAntiGravityCheat() {
+  communicator->addMessageToSend("v");
+}
+

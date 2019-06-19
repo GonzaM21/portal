@@ -52,5 +52,11 @@ Command* Protoc :: deserialize(std::string &message) {
     if (content.at(1) == "2") {
         return commandFactory.createCommandSuicide(content.at(0));
     }
+    if (content.at(1) == "v") {
+        return commandFactory.createCommandAntiGravity(content.at(0));
+    }
+    if (content.at(1) == "o") {
+        return commandFactory.createCommandInmortal(content.at(0));
+    }
     return nullptr;
 }
