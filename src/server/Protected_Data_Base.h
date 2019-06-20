@@ -39,12 +39,11 @@ private:
     std::map<size_t, Button*> buttons;
     std::map<size_t, Energy_Barrier*> barriers;
     std::map<size_t, Energy_Emitters*> emitters;
-    std::map<size_t,std::vector<std::string>> pending_buttons;//todavia no andan
+    std::map<Button*,std::vector<size_t>> pending_buttons;
     std::map<size_t, Cake*> cakes;
     int width;
     int height;
     bool win_state = false;
-    void addButtonToDoor(Button *button,int door_id,int state);
     void setVotes(std::map<std::string, size_t> &votes);
     std::string getPlayerToKill();
     void checkPlayerToKill(std::string &player_to_kill);
@@ -58,7 +57,6 @@ private:
     void resetButtons();
     void resetEnergyBarriers();
     void resetEnergyEmitters();
-    void addPendingButtons();
 
 public:
     ProtectedDataBase() = default;
@@ -76,6 +74,11 @@ public:
     void makePlayerInmortal(std::string &player);
     void makePlayerAntiGravity(std::string &player);
 
+
+    //Asocia todos los botones a su respectiva puerta
+    void addButtonToDoor();
+
+
     void addPlayer(World &world,std::string &player);
     void addRock(World &world,float x_pos, float y_pos, float radius);
     void addAcid(World &world,float x_pos, float y_pos, float large);
@@ -86,8 +89,9 @@ public:
     void addGate(World &world, float x_pos, float y_pos);
     void addEmitter(World &world,float x_pos, float y_pos, float size,
       int direction, bool charged);
-    void addEnergyBarrier(World &world,float x_pos, float y_pos, float large);
+    void addEnergyBarrier(World &world,float x_pos, float y_pos, float large, int orientation);
     void addCake(World &world, float x_pos, float y_pos);
+    void addTriangularBlock(World &world, float x_pos, float y_pos, float size, int type);
     //Getters
     std::vector<std::string> getIds();
     std::vector<Chell_Player*> getPlayers();

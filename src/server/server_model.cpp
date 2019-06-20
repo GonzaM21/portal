@@ -120,8 +120,12 @@ void Model::addEmitter(float x_pos, float y_pos, float size,int direction, bool 
     this->data_base.addEmitter(this->world,x_pos,y_pos,size,direction,charged);
 }
 
-void Model::addEnergyBarrier(float x_pos, float y_pos, float large) {
-    this->data_base.addEnergyBarrier(this->world,x_pos,y_pos,large);
+void Model::addTriangularBlock(float x_pos, float y_pos, float size,int type) {
+    this->data_base.addTriangularBlock(this->world,x_pos,y_pos,size,type);
+}
+
+void Model::addEnergyBarrier(float x_pos, float y_pos, float large, int orientation) {
+    this->data_base.addEnergyBarrier(this->world,x_pos,y_pos,large,orientation);
 }
 
 void Model::addCake(float x_pos, float y_pos) {
@@ -143,4 +147,8 @@ void Model::resetModel() {
 
 void Model::resetGameLoop() {
     this->game_loop->setNextScenario(1);
+}
+
+void Model::addButtonsToDoors() {
+    this->data_base.addButtonToDoor();
 }

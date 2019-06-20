@@ -12,15 +12,16 @@ void ClientDeserializer::deserialize(std::string &message) {
         this->client_controller.setReceiveError(arguments.at(1));
         return;
     } else if (arguments.at(0) == END_LEVEL_CODE && arguments.size() == 1) {
-        this->client_controller.setReceivedMap(true);
+        this->client_controller.setReceivedMap(false);
+        this->client_controller.setWaitingNextLevel(true);
         return;
     } else if (arguments.at(0) == END_GAME_CODE && arguments.size() == 1) {
         this->client_controller.setGameFinish();
         return;
     } else if (arguments.at(0) == NEXT_LEVEL_CODE && arguments.size() == 1) {
-         this->client_controller.setWaitingNextLevel(true);
-    } else if (arguments.at(0) == START_MAP_CODE && arguments.size() == 1) {
          this->client_controller.setWaitingNextLevel(false);
+    } else if (arguments.at(0) == START_MAP_CODE && arguments.size() == 1) {
+         //this->client_controller.setLoadingNextLevel(true);
     } else if (arguments.at(0) == END_MAP_CODE && arguments.size() == 1) {
         this->client_controller.setReceivedMap(true);
         return;

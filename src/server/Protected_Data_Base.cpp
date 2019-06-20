@@ -87,7 +87,7 @@ void ProtectedDataBase :: addStoneBlock(World &world,float x_pos, float y_pos,fl
     this->stone_blocks.insert({stone_block_id,new Stone_Block(world,x_pos,y_pos,size)});      
 }
 
-void ProtectedDataBase :: addGate(World &world, float x_pos, float y_pos) { //tendra un gate num que sera el id
+void ProtectedDataBase :: addGate(World &world, float x_pos, float y_pos) {//empieza de 0
     std::unique_lock<std::mutex> lck(m);
     size_t gate_id = this->gates.size();
     this->gates.insert({gate_id,new Gate(world,x_pos,y_pos)});      
@@ -104,14 +104,20 @@ void ProtectedDataBase :: addButton(World &world, float x_pos, float y_pos,int d
     size_t button_id = this->buttons.size();
     Button *button = new Button(world,x_pos,y_pos);
     this->buttons.insert({button_id,button});
-    //this->addButtonToDoor(button,door_id,state_to_open_door);
-}//llamar desde afuera addButtons que agregue todos los botones a las puertas
+    std::vector<size_t> info_button;
+    info_button.push_back(door_id);
+    info_button.push_back(state_to_open_door);
+    this->pending_buttons.insert({button,std::move(info_button)});
+}
 
-void ProtectedDataBase :: addButtonToDoor(Button *button,int door_id,int state) {
-    if (door_id > (this->gates.size()-1)) {
-      return;
+void ProtectedDataBase :: addButtonToDoor() {
+    for (auto button : this->pending_buttons) {
+      int door_id = button.second[0]; 
+      if (door_id >= this->gates.size()) continue;
+      Gate* gate = this->gates[door_id];
+      int state_to_open_door = button.second[1];
+      gate->addButton(button.first,state_to_open_door);
     }
-    this->gates[door_id]->addButton(button,state);
 }
 
 void ProtectedDataBase :: addPlayer(World &world,std::string &player) {
@@ -129,10 +135,11 @@ void ProtectedDataBase :: addEmitter(World &world,float x_pos, float y_pos, floa
     this->emitters.insert({emitter_id,new Energy_Emitters(world,x_pos,y_pos,size,direction,charged)});
 }
 
-void ProtectedDataBase :: addEnergyBarrier(World &world,float x_pos, float y_pos, float large) {
+void ProtectedDataBase :: addEnergyBarrier(World &world,float x_pos, float y_pos, float large
+  , int orientation) {
     std::unique_lock<std::mutex> lck(m);
     size_t emitter_id = this->barriers.size();
-    this->barriers.insert({emitter_id,new Energy_Barrier(world,x_pos,y_pos,large)});
+    this->barriers.insert({emitter_id,new Energy_Barrier(world,x_pos,y_pos,large)});//falta orientacion
 }
 
 std::vector<std::string> ProtectedDataBase :: getIds() {
@@ -345,6 +352,11 @@ void ProtectedDataBase::resetPlayers() {
     for (auto it= this->player_reach_cake.cbegin(); it != this->player_reach_cake.cend();) {
         it = this->player_reach_cake.erase(it); 
     }  
+}
+
+void ProtectedDataBase::addTriangularBlock(World &world, float x_pos,
+  float y_pos, float size, int type) {
+    std::cout << "Agrego bloque tringular" << std::endl;
 }
 
 void ProtectedDataBase::resetRocks() {

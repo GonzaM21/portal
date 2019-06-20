@@ -36,11 +36,17 @@ ObjectButton* ObjectFactory :: createObjectButton(float x_pos, float y_pos,int d
     return new ObjectButton(this->model, x_pos, y_pos,door_id,state_to_open_door);
 }
 
-ObjectEnergyBarrier* ObjectFactory ::createObjectEnergyBarrier(float x_pos,float y_pos,float large) {
-    return new ObjectEnergyBarrier(this->model,x_pos,y_pos,large);
+ObjectEnergyBarrier* ObjectFactory ::createObjectEnergyBarrier(float x_pos,float y_pos,float large,
+    int orientation) {
+    return new ObjectEnergyBarrier(this->model,x_pos,y_pos,large,orientation);
 }
 
 ObjectEmitter* ObjectFactory ::createObjectEmitter(float x_pos, float y_pos, 
     float size,int direction, int charged) {
     return new ObjectEmitter(this->model,x_pos,y_pos,size,direction,charged);
+}
+
+ObjectTriangularBlock* ObjectFactory::createObjectTriangularBlock(
+    float x_pos, float y_pos, float size,int type) {
+        return new ObjectTriangularBlock(this->model,x_pos,y_pos,size,type);
 }

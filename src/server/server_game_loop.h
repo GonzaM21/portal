@@ -19,7 +19,6 @@
 #include "server_sender.h"
 #include "Protected_Data_Base.h"
 #include "Encoder.h"
-//#include "../server/modelo/doors"
 
 
 class GameLoop : public Thread {

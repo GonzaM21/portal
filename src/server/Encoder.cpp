@@ -151,6 +151,7 @@ void Encoder :: sendPortals() {
             b2Vec2 pos = portal->getPosition();
             b2Vec2 size = portal->getSizes();
             int orientation = portal->getOrientation();
+            //int state = portal->
             std::string msg("6,"+std::to_string((i+1+portal_num)*4)+","+ std::to_string(pos.x) + ","
             + std::to_string(-pos.y) + "," + std::to_string(size.x*2) + "," +
             std::to_string(size.y)+","+std::to_string(portal_num)+"," + std::to_string(portal->getOrientation())
@@ -181,10 +182,8 @@ void Encoder :: sendEmitters() { //ARREGLAR
         b2Vec2 size = emitters[i]->getSizes();
         int charged = emitters[i]->isCharged();
         int direction = emitters[i]->getDirection();
-        //emitters[i]->
         msg = "10,"+ std::to_string(i+1)+ "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
         "," + std::to_string(size.x) + "," + std::to_string(size.y)+","+std::to_string(direction)+","+std::to_string(charged);
-        //Direccion y state harcodeados, que hacemos? necesito getters
         this->sender->addMessageToSend(msg);
         this->sendEnergyBall(emitters[i]);
     }
@@ -195,6 +194,7 @@ void Encoder::sendEnergyBall(Energy_Emitters* emitter) {
     if (ball == nullptr) return;
     b2Vec2 pos = ball->getPosition();
     float size = ball->getRadius();
+    int direction = ball->getDirection(); //ANDA MAL ESTO
     std::string msg;
     msg = "7," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
     "," + std::to_string(2*size) + "," + std::to_string(size) +",0";

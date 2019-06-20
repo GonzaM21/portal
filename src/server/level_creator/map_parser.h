@@ -26,6 +26,7 @@ private:
     void createStoneBlock(nlohmann::json &object,std::list<Object*> &obj);
     void createEmitter(nlohmann::json &object,std::list<Object*> &obj);
     void createCake(nlohmann::json &object,std::list<Object*> &obj);
+    void createTriangularBlock(nlohmann::json &object,std::list<Object*> &obj);
 
 public:
     MapParser(Model *model);

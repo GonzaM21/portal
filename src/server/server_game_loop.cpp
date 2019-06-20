@@ -46,11 +46,10 @@ void GameLoop :: sendInitialData() {
     this->encoder.sendEndMap();
 }
 
-void GameLoop :: sendDynamicData() { //aca va todo lo que se mueve
+void GameLoop :: sendDynamicData() { 
     this->encoder.sendPlayersPositions();
     this->encoder.sendPortals();
     this->encoder.sendRocks();
-    //this->encoder.sendEnergyBalls();
     this->encoder.sendGates(); 
     this->encoder.sendEmitters();
 }
@@ -59,7 +58,7 @@ void GameLoop :: run() {
     this->sendInitialData();
     while (this->continue_running) {
         auto t_start = std::chrono::high_resolution_clock::now();
-        world->Step(0.04);
+        world->Step(0.04);//no harcodear esto pasar a constantes
         this->sendDynamicData();
         auto t_end = std::chrono::high_resolution_clock::now();
         int delta_time = std::chrono::duration<double, std::milli>(t_end-t_start).count();

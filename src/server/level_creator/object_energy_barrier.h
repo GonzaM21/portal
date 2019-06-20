@@ -9,9 +9,11 @@ private:
     float x_pos;
     float y_pos;
     float large;
+    int orientation;
 
 public:
-    ObjectEnergyBarrier(Model *model,float x_pos, float y_pos,float large);
+    ObjectEnergyBarrier(Model *model,float x_pos, float y_pos,float large,
+    int orientation);
     ~ObjectEnergyBarrier() = default;
     void aggregate() override;
 };

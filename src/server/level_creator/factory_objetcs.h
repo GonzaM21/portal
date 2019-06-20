@@ -12,6 +12,7 @@
 #include "object_energy_barrier.h"
 #include "object_emitter.h"
 #include "object_cake.h"
+#include "object_triangular_block.h"
 
 class ObjectFactory {
 private:
@@ -27,10 +28,13 @@ public:
     ObjectMetalBlock* createObjectMetalBlock(float x_pos, float y_pos,float size);
     ObjectStoneBlock* createObjectStoneBlock(float x_pos, float y_pos,float size);
     ObjectButton* createObjectButton(float x_pos, float y_pos,int door_id,int state_to_open_door);
-    ObjectEnergyBarrier* createObjectEnergyBarrier(float x_pos,float y_pos,float large);
+    ObjectEnergyBarrier* createObjectEnergyBarrier(float x_pos,float y_pos,float large,
+    int orientation);
     ObjectEmitter* createObjectEmitter(float x_pos, float y_pos, float size,int 
        direction, int charged);
     ObjectCake* createObjectCake(float x_pos, float y_pos);
+    ObjectTriangularBlock* createObjectTriangularBlock(float x_pos, float y_pos, float size,int 
+       type);
 };
 
 

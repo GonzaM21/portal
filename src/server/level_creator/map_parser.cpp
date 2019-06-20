@@ -46,7 +46,8 @@ void MapParser :: createRock(nlohmann::json &object,std::list<Object*> &obj){
 
 void MapParser :: createEnergyBarrier(nlohmann::json &object,std::list<Object*> &obj){
     ObjectEnergyBarrier* new_object = this->object_factory.createObjectEnergyBarrier(
-    (float)object.at("POS_X"),(float)object.at("POS_Y"),(float)object.at("HEIGHT")); 
+    (float)object.at("POS_X"),(float)object.at("POS_Y"),(float)object.at("HEIGHT"),
+    object.at("ORIENTATION")); 
     obj.push_back(new_object);
 }
 
@@ -66,6 +67,13 @@ void MapParser :: createStoneBlock(nlohmann::json &object,std::list<Object*> &ob
     obj.push_back(new_object);
 }
 
+void MapParser ::createTriangularBlock(nlohmann::json &object,std::list<Object*> &obj) {
+    ObjectTriangularBlock* new_object = this->object_factory.createObjectTriangularBlock
+    ((float)object.at("POS_X"),(float)object.at("POS_Y"),(float)object.at("SIZE"),
+    object.at("TYPE_OPTINAL")); 
+    obj.push_back(new_object);
+}
+
 void MapParser :: createEmitter(nlohmann::json &object,std::list<Object*> &obj) {
     ObjectEmitter* new_object = this->object_factory.createObjectEmitter((float)object.at("POS_X"),
     (float)object.at("POS_Y"),(float)object.at("WIDTH"),object.at("DIRECTION"),object.at("CHARGED"));
@@ -75,6 +83,10 @@ void MapParser :: createEmitter(nlohmann::json &object,std::list<Object*> &obj) 
 void MapParser :: setBlockMethods() {
     this->block_methods[METAL_BLOCK] = &MapParser::createMetalBlock;
     this->block_methods[STONE_BLOCK] = &MapParser::createStoneBlock;
+    this->block_methods[3] = &MapParser::createTriangularBlock;//PONER CODIGOS
+    this->block_methods[4] = &MapParser::createTriangularBlock;
+    this->block_methods[5] = &MapParser::createTriangularBlock;
+    this->block_methods[6] = &MapParser::createTriangularBlock;
 }
 
 void MapParser :: setMethods() {

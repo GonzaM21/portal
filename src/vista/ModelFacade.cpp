@@ -24,7 +24,7 @@ void ModelFacade::decodeMessages(std::vector<std::string> arguments)//esto habri
 
 void ModelFacade::setPlayer(std::vector<std::string> arguments)
 {
-  Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
+  Rect dest(stof(arguments[2]), stof(arguments[3]), stof(arguments[4]), stof(arguments[5]));
   model.setPlayer(dest, atoi(arguments[1].c_str()), atoi(arguments[6].c_str()), atoi(arguments[7].c_str()));
 }
 
@@ -40,54 +40,54 @@ void ModelFacade::renderAll()
 
 void ModelFacade::setBlock(std::vector<std::string> arguments)
 {
-  Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
+  Rect dest(stof(arguments[2]), stof(arguments[3]), stof(arguments[4]), stof(arguments[5]));
   model.setBlock(dest, atoi(arguments[1].c_str()));
 }
 
 void ModelFacade::setGate(std::vector<std::string> arguments)
 {
-  Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
+  Rect dest(stof(arguments[2]), stof(arguments[3]), stof(arguments[4]), stof(arguments[5]));
   model.setGate(dest, atoi(arguments[1].c_str()), atoi(arguments[6].c_str()));
 }
 
 void ModelFacade::setCake(std::vector<std::string> arguments) {
-  Rect dest(atof(arguments[1].c_str()), atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()));
+  Rect dest(stof(arguments[1]), stof(arguments[2]), stof(arguments[3]), stof(arguments[4]));
   model.setCake(dest);
 }
 
 void ModelFacade::setButton(std::vector<std::string> arguments)
 {
-  Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
+  Rect dest(stof(arguments[2]), stof(arguments[3]), stof(arguments[4]), stof(arguments[5]));
   model.setButton(dest, atoi(arguments[1].c_str()), atoi(arguments[6].c_str()));
 }
 
 void ModelFacade::setAcid(std::vector<std::string> arguments)
 {
-  Rect dest(atof(arguments[1].c_str()), atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()));
+  Rect dest(stof(arguments[1]), stof(arguments[2]), stof(arguments[3]), stof(arguments[4]));
   model.setAcid(dest);
 }
 
 void ModelFacade::setPortal(std::vector<std::string> arguments)
 {
-  Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
+  Rect dest(stof(arguments[2]), stof(arguments[3]), stof(arguments[4]), stof(arguments[5]));
   model.setPortal(dest, atoi(arguments[1].c_str()), atoi(arguments[6].c_str()), atoi(arguments[7].c_str()), atoi(arguments[8].c_str()));
 }
 
 void ModelFacade::setEnergyEmitter(std::vector<std::string> arguments)
 {
-  Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
+  Rect dest(stof(arguments[2]), stof(arguments[3]), stof(arguments[4]), stof(arguments[5]));
   model.setEnergyEmitter(dest, atoi(arguments[1].c_str()), atoi(arguments[6].c_str()), atoi(arguments[7].c_str()));
 }
 
 void ModelFacade::setPowerball(std::vector<std::string> arguments)
 {
-  Rect dest(atof(arguments[1].c_str()), atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()));
+  Rect dest(stof(arguments[1]), stof(arguments[2]), stof(arguments[3]), stof(arguments[4]));
   model.setPowerball(dest, atoi(arguments[5].c_str()));
 }
 
 void ModelFacade::setRock(std::vector<std::string> arguments)
 {
-  Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
+  Rect dest(stof(arguments[2]), stof(arguments[3]), stof(arguments[4]), stof(arguments[5]));
   model.setRock(dest, atoi(arguments[1].c_str()));
 }
 

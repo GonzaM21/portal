@@ -38,6 +38,7 @@ void LevelManager::loadLevel() {
         delete (*i);
         i = objects.erase(i);
     }
+    this->model->addButtonsToDoors();
 }
 
 void LevelManager::loadNextLevel() {
