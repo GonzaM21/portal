@@ -3,6 +3,8 @@
 #include "Metal_Block.h"
 #include "Ground.h"
 
+#define PI 3.14159265359
+
 Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
     Filter_Data data(ROCK_PORTAL_BITS);
     data.addMaskBits(OTHER_BITS);
@@ -123,7 +125,7 @@ void Portal::changePosition() {
             world.eraseBody(portal);
             portal = world.addPolygon(position.x - DELTA_POSITION
                     ,position.y - DELTA_POSITION,PORTAL_HIGH/2.f,PORTAL_WIDTH/2.f,true,data);
-            portal->SetTransform(portal->GetPosition(),angle);
+            portal->SetTransform(portal->GetPosition(),angle * PI/180);
         }
         portal->SetUserData(this);
         contact = false;

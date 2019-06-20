@@ -9,8 +9,9 @@ class Energy_Barrier : public Entity {
     World & world;
     std::string name;
     b2Vec2 sizes;
+    int orientation;
 public:
-    Energy_Barrier(World & world,float x_pos, float y_pos, float large);
+    Energy_Barrier(World & world,float x_pos, float y_pos, float large, int orientation);
     const std::string& getEntityName() override;
     void startContact(b2Vec2) override;
     void endContact() override;
