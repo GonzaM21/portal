@@ -12,7 +12,7 @@ RockSprite::RockSprite(const Window &window) : Sprite(TextureBase::getInstance(w
   
   float num_rock = std::rand() % (7) ;
   float new_x = X_START_POSITION + num_rock * WIDTH_ROCK + num_rock;
-  this->src.set(X_START_POSITION, Y_POSITION_ROCK , WIDTH_ROCK, HEIGHT_ROCK);
+  this->src.set(new_x, Y_POSITION_ROCK , WIDTH_ROCK, HEIGHT_ROCK);
 }
 
 int RockSprite::render(const Rect &dest)

@@ -50,6 +50,7 @@
 #define POWERBALL_FILENAME "resources/img/liquids_powers_energy.png"
 #define ROCK_FILENAME "resources/img/liquids_powers_energy.png"
 #define CAKE_FILENAME "resources/img/Cake_2.png"
+#define ENERGY_BARRIER_FILENAME "resources/img/acidos.png"
 
 /**
  * PLAYER
@@ -243,6 +244,12 @@
 #define WIDTH_ROCK 85
 #define HEIGHT_ROCK 83
 
+/**
+ * Energy Barrier
+*/
+#define Y_POSITION_ENERGY_BARRIER 1627
+#define WIDTH_ENERGY_BARRIER 228
+#define HEIGHT_ENERGY_BARRIER 228
 
 /**
  * Blocks Id
