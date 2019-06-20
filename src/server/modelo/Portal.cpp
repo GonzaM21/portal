@@ -195,7 +195,7 @@ Portal * Portal::getPartnerPortal() {
 
 bool Portal::changePortalPosition(float x_pos, float y_pos) {
     if(!world.validPosition(x_pos,y_pos)) return false;
-    if(!live)world.eraseBody(portal);
+    if(live)world.eraseBody(portal);
     printf("cambia pos\n");
     Filter_Data data(ROCK_PORTAL_BITS);
     data.addMaskBits(OTHER_BITS);
