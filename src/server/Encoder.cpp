@@ -93,8 +93,9 @@ void Encoder :: sendEnergyBalls() {
         std::string msg;
         b2Vec2 pos = energy_balls[i]->getPosition();
         float size = energy_balls[i]->getRadius();
+        int direction = energy_balls[i]->getDirection();
         msg = "7," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
-        "," + std::to_string(2*size) + "," + std::to_string(size) +",0";
+        "," + std::to_string(2*size) + "," + std::to_string(size) +","+std::to_string(direction);
         this->sender->addMessageToSend(msg);
     }
 }

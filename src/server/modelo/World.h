@@ -14,6 +14,7 @@ class World {
     std::vector<b2Body*> Bodies;
     b2Vec2 x_lim;
     b2Vec2 y_lim;
+    b2Vec2 gravity;
 
     //Metodo para crear paderes, piso y techo con los limites del mundo.
     void addGroundWallsRoof();

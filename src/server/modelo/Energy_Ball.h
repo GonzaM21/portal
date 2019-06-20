@@ -15,6 +15,8 @@ class Energy_Ball : public Entity{
     bool change_velocity;
     int angle;
     int direction;
+    b2Vec2 velocity;
+    b2Vec2 position;
 public:
     //Contructor de una bola de energia
     Energy_Ball(World& world, float x_pos, float y_pos);

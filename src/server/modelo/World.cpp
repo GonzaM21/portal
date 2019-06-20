@@ -5,7 +5,7 @@
 #include "MyContactListener.h"
 #include "Macros.h"
 
-World::World(b2Vec2 gravity,b2Vec2 x_lim, b2Vec2 y_lim){
+World::World(b2Vec2 gravity,b2Vec2 x_lim, b2Vec2 y_lim): gravity(gravity){
     world = new b2World(gravity);
     ContactListener = new MyContactListener;
     world->SetContactListener(ContactListener);
@@ -74,7 +74,7 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
 
     b2CircleShape shape_circle2;
     shape_circle2.m_radius = CHELL_WHEELS_RADIUS;
-    shape_circle2.m_p.Set(-x_size + CHELL_WHEELS_RADIUS,-(y_size - CHELL_WHEELS_RADIUS)/2);
+    shape_circle2.m_p.Set(- x_size + CHELL_WHEELS_RADIUS,-(y_size - CHELL_WHEELS_RADIUS)/2);
     b2FixtureDef circleFixtureDef2;
     circleFixtureDef2.shape = &shape_circle2;
     circleFixtureDef2.filter.categoryBits = data.getCategoryBits();
@@ -82,13 +82,15 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
     polygonBody->CreateFixture(&circleFixtureDef2);
 
     polygonBody->CreateFixture(&polygonFixtureDef);
-    polygonBody->SetFixedRotation(true);
+
 
     shape_polygon.SetAsBox(FOOT_SENSOR_SIZE, FOOT_SENSOR_SIZE, b2Vec2(ZERO, -y_size),0);
     polygonFixtureDef.density = 0.01;
     polygonFixtureDef.isSensor = true;
     b2Fixture* footSensorFixture  = polygonBody->CreateFixture(&polygonFixtureDef);
     footSensorFixture->SetUserData(foot_data);
+
+    polygonBody->SetFixedRotation(true);
 
     Bodies.push_back(polygonBody);
     return polygonBody;
@@ -284,5 +286,7 @@ void World::eraseAllBodies() {
 }
 
 float World::getGravity() {
-    return world->GetGravity().y;
+    std::
+    cout<<world->GetGravity().x<<"  "<<world->GetGravity().y<<std::endl;
+    return gravity.y;
 }
