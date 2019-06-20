@@ -290,7 +290,31 @@
 #define WIDTH_CAKE 400
 #define HEIGHT_CAKE 400
 
+/*
+ * Music ID
+ */
 
+#define AMBIENT_MUSIC_ID 0
+#define CHELL_STEP_FX_ID 1
+#define CHELL_JUMP_FX_ID 2
+#define ENERGY_BALL_FX_ID 3
+#define GATE_FX_ID 4
+#define PORTAL_SHOT_FX_ID 5
+#define ROCK_DEAD_FX_ID 6
+#define CHELL_SCREAM_ID 7
+
+/*
+ * Music Files
+ */
+
+#define AMBIENT_MUSIC "resources/Music/Ambient.mp3"
+#define CHELL_STEP_FX "resources/Music/chell_step2.wav"
+#define CHELL_JUMP_FX "resources/Music/Chell_jump.wav"
+#define ENERGY_BALL_FX "resources/Music/energy_ball_show.wav"
+#define GATE_FX "resources/Music/Gate_sound.mp3"
+#define PORTAL_SHOT_FX "resources/Music/portal_sound.mp3"
+#define ROCK_DEAD_FX "resources/Music/Rock_dead.mp3"
+#define CHELL_SCREAM "resources/Music/scream.mp3"
 
 /* AGREGAR BLOQUE */
 
