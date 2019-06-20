@@ -21,26 +21,18 @@ Energy_Ball::Energy_Ball(World& world, float x_pos, float y_pos): world(world) {
 
 bool Energy_Ball::Move(char direction){
     if(direction == 'R'){
-        energy_ball->SetLinearVelocity(b2Vec2(ENERGY_BALL_FORCE,ZERO));
         velocity = b2Vec2(ENERGY_BALL_FORCE,ZERO);
-        return true;
-    }
-    if(direction == 'L'){
-        energy_ball->SetLinearVelocity(b2Vec2(-ENERGY_BALL_FORCE,ZERO));
+    } else if(direction == 'L'){
         velocity = b2Vec2(-ENERGY_BALL_FORCE,ZERO);
-        return true;
-    }
-    if(direction == 'U'){
-        energy_ball->SetLinearVelocity(b2Vec2(ZERO,ENERGY_BALL_FORCE));
+    }else if(direction == 'U'){
         velocity = b2Vec2(ZERO,ENERGY_BALL_FORCE);
-        return true;
-    }
-    if(direction == 'D'){
-        energy_ball->SetLinearVelocity(b2Vec2(ZERO,-ENERGY_BALL_FORCE));
+    }else if(direction == 'D'){
         velocity = b2Vec2(ZERO,-ENERGY_BALL_FORCE);
-        return true;
+    } else {
+        return false;
     }
-    return false;
+    energy_ball->SetLinearVelocity(velocity);
+    return true;
 }
 
 b2Vec2 Energy_Ball::getPosition(){
@@ -55,7 +47,7 @@ float Energy_Ball::getAngle() {
 
 void Energy_Ball::startContact(b2Vec2) {
     std::cout<<"cONTACTOoooooooooooooooooooooooooooooooooooooooooooooooo\n";
-    position = energy_ball->GetPosition();
+    //position = energy_ball->GetPosition();
     std::cout<<"veloc: "<<velocity.x<<" "<<velocity.y<<std::endl;
     std::cout<<"cONTACTO\n";
     /*std::cout<<pos.x<<""<<pos.y<<std::endl;
@@ -105,9 +97,10 @@ bool Energy_Ball::setTransform(Entity *) {
 }
 
 void Energy_Ball::changePosition() {
+    if (!contact) position = energy_ball->GetPosition();
     if (contact){
         std::cout<<"ENERGY BALL ENTR222222222222\n";
-        energy_ball->SetTransform(position,0);
+        //energy_ball->SetTransform(position,0);
         energy_ball->SetLinearVelocity(velocity);
         contact = false;
     }

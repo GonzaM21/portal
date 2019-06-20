@@ -132,7 +132,7 @@ void energy_ball_colition(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
 
     if(nameBodyB == "Energy_Ball" && nameBodyA == "Energy_Emitter"){
         static_cast<Entity *>(userDataB)->die();
-        //static_cast<Entity *>(userDataA)->startContact(b2Vec2(0,0));
+        static_cast<Entity *>(userDataA)->startContact(b2Vec2(0,0));
     }
 
     if(nameBodyA == "Energy_Ball" && nameBodyB == "Metal_Block"){
@@ -150,13 +150,6 @@ void energy_ball_colition(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
 
     if(nameBodyB == "Energy_Ball" && nameBodyA == "Stone_Block"){
         static_cast<Entity *>(userDataB)->die();
-    }
-    if(nameBodyB == "Energy_Ball"){
-        std::cout<<"ENERGY BALL ENTR\n";
-        static_cast<Entity *>(userDataA)->startContact(b2Vec2(0,0));
-    } else{
-        std::cout<<"ENERGY BALL ENTR2\n";
-        static_cast<Entity *>(userDataB)->startContact(b2Vec2(0,0));
     }
 
 }
