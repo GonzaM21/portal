@@ -1,35 +1,34 @@
 #ifndef CLIENT_CONTROLLER_H
 #define CLIENT_CONTROLLER_H
-#include <vector>
-#include <string>
+#include "event_handler_thread.h"
+#include "qt_executor.h"
 #include "renderable.h"
-#include "../vista/ModelFacade.h"
+#include "scene_manager.h"
+#include "Joiner.h"
+#include "client_deserializer.h"
+#include "client_communicator.h"
+#include "data_container.h"
 
 class ClientController {
 private:
-    Renderable *renderer_thread;
-    ModelFacade *model_facade;
-    bool receive_error;
-    //bool received_map;
-    bool waiting_next_level;
-    bool game_finish;
-    std::string error_message;
-    std::vector<std::string> mates;
+    ClientCommunicator* communicator;
+    EventHandlerThread* handler;
+    Renderable* renderer_thread;
+    ClientDeserializer deserializer;
+    SceneManager scene_manager;
+    DataContainer data_container;
+    PositionConverter converter;
+    bool continue_running;
 
-public: 
-    ClientController(ModelFacade *model_facade);
+    void initializeCommunication(); 
+    void evaluateDataContainer();
+
+public:
+    ClientController();
     ~ClientController();
-    void setReceivedMap(bool received_map);
-    void setReceiveError(std::string &error_message);
-    void setWaitingNextLevel(bool waiting_next_level);
-    void setGameFinish();
-    void setMates(std::vector<std::string> &args);
-    //bool getReceivedMap();
-    bool getWaitingNextLevel();
-    bool getGameFinish();
-    bool getReceiveError();
-    void decodeObjectMessage(std::vector<std::string> &args);
-    std::vector<std::string> getMates();
+    int runInitialWindow(int argc, char *argv[]);
+    void endExecution();
+    void mainLoop();
 };
 
 #endif

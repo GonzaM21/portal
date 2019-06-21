@@ -1,8 +1,8 @@
 #ifndef __VENTANAPRINCIPAL_H__
 #define __VENTANAPRINCIPAL_H__
 
-#include "client/ConfigPartida.h"
-#include "client/Joiner.h"
+#include "../client/MatchConfig.h"
+#include "../client/Joiner.h"
 #include <QWidget>
 
 namespace Ui {
@@ -14,7 +14,7 @@ class VentanaPrincipal : public QWidget
     Q_OBJECT
 
 public:
-    VentanaPrincipal(ConfigPartida *configPartida, Joiner *joiner, ClientCommunicator* communicator, QWidget *parent = 0);
+    VentanaPrincipal(MatchConfig *match_config, Joiner *joiner, ClientCommunicator* communicator, QWidget *parent = 0);
     virtual ~VentanaPrincipal();
 
 private slots:
@@ -34,7 +34,7 @@ private slots:
 
 private:
     Ui::VentanaPrincipal *ui;
-    ConfigPartida* partida;
+    MatchConfig* partida;
     Joiner* joiner;
     ClientCommunicator* communicator;
 };

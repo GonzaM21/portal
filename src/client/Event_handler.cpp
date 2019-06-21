@@ -1,8 +1,10 @@
 #include <unistd.h>
 #include <SDL2/SDL.h>
 #include "client/Event_handler.h"
+#include "position_converter.h"
 
-EventHandler::EventHandler(MessageSender& sender) : messageSender(sender) {
+EventHandler::EventHandler(ClientCommunicator *client_communicator,
+  PositionConverter &converter)  : messageSender(client_communicator,converter) {
 } 
 
 void EventHandler::handleEvent(SDL_Event &event) {
@@ -52,7 +54,7 @@ void EventHandler::handleKeyDown(SDL_KeyboardEvent& keyEvent){
 void EventHandler::handleKeyUp(SDL_KeyboardEvent& keyEvent) {
   switch (keyEvent.keysym.sym)
   {
-    case SDLK_F11: {//porque se manda un full screen(?) (fullscreen no esta funcionando)
+    case SDLK_F11: {
       messageSender.sendFullscreen();
       break;
     }
@@ -108,10 +110,9 @@ void EventHandler::handleKeyUp(SDL_KeyboardEvent& keyEvent) {
 void EventHandler::handleMouseButtonUp(SDL_MouseButtonEvent& mouseEvent) {
   int x;
   int y;
-  SDL_GetMouseState(&x,
-                    &y);
-  std::cout << "clicked"
-            << "x " << x << "y " << y << std::endl;
+  SDL_GetMouseState(&x,&y);
+  //std::cout << "clicked"
+  //          << "x " << x << "y " << y << std::endl;
   // Window *window = this->->getWindow();
   // int width, height;
   // window->getSize(width, height);

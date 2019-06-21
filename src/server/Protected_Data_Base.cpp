@@ -99,6 +99,14 @@ void ProtectedDataBase ::addCake(World &world, float x_pos, float y_pos) {
     this->cakes.insert({cake_id,new Cake(world,x_pos,y_pos)});      
 }
 
+void ProtectedDataBase::addTriangularBlock(World &world, float x_pos,
+  float y_pos, float size, int type) {
+    std::unique_lock<std::mutex> lck(m);
+    size_t triag_block_id = this->triangular_blocks.size();
+    this->triangular_blocks.insert({triag_block_id,new Metal_Block(world,x_pos,y_pos,size,45+(type-1)*90)});
+}
+
+
 void ProtectedDataBase :: addButton(World &world, float x_pos, float y_pos,int door_id,int state_to_open_door) { //tendra la puerta a la que se asignara el boton
     std::unique_lock<std::mutex> lck(m);
     size_t button_id = this->buttons.size();
@@ -139,7 +147,7 @@ void ProtectedDataBase :: addEnergyBarrier(World &world,float x_pos, float y_pos
   , int orientation) {
     std::unique_lock<std::mutex> lck(m);
     size_t emitter_id = this->barriers.size();
-    this->barriers.insert({emitter_id,new Energy_Barrier(world,x_pos,y_pos,large)});//falta orientacion
+    this->barriers.insert({emitter_id,new Energy_Barrier(world,x_pos,y_pos,large,orientation)});
 }
 
 std::vector<std::string> ProtectedDataBase :: getIds() {
@@ -250,6 +258,15 @@ std::vector<Energy_Emitters*> ProtectedDataBase :: getEmitters() {
   return std::move(emitters);
 }
 
+std::vector<Metal_Block*> ProtectedDataBase :: getTriangularBlocks() {
+  std::unique_lock<std::mutex> lck(m);
+  std::vector<Metal_Block*> triangular_blocks;
+  for (auto const& element : this->triangular_blocks) {
+    triangular_blocks.push_back(element.second);
+  }
+  return std::move(triangular_blocks);
+}
+
 float ProtectedDataBase :: getWidth() {
   return GROUND_WIDTH;
 }
@@ -352,11 +369,6 @@ void ProtectedDataBase::resetPlayers() {
     for (auto it= this->player_reach_cake.cbegin(); it != this->player_reach_cake.cend();) {
         it = this->player_reach_cake.erase(it); 
     }  
-}
-
-void ProtectedDataBase::addTriangularBlock(World &world, float x_pos,
-  float y_pos, float size, int type) {
-    std::cout << "Agrego bloque tringular" << std::endl;
 }
 
 void ProtectedDataBase::resetRocks() {

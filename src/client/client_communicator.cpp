@@ -2,8 +2,7 @@
 #include <vector>
 #include "client_communicator.h"
 
-ClientCommunicator ::ClientCommunicator(ModelFacade *model_facade) :
-  deserializer(model_facade) {
+ClientCommunicator ::ClientCommunicator() {
     this->continue_running = true;
 }
 
@@ -21,41 +20,39 @@ ClientCommunicator::~ClientCommunicator() {
 }
 
 void ClientCommunicator::addMessageToSend(std::string message) {
-    this->message_queue.push(message);
+    this->sender_queue.push(message);
+}
+
+std::string ClientCommunicator::popMessageReceived() {
+    return this->receiver_queue.pop();
 }
 
 void ClientCommunicator::receiveMessage() {
     while (this->continue_running) {
         std::string message;
         this->protocol >> message;
-        std::vector<std::string> arguments;
-        this->deserializer.deserialize(message);
-        if (this->deserializer.getReceiveError()) {
-            this->endExecution();
-            message_queue.set_terminar_ejecucion();
-            break;            
-        }
+        this->receiver_queue.push(message);
     }
 }
 
 std::vector<std::string> ClientCommunicator::getMates() {
-    return this->deserializer.getMates();
+    std::vector<std::string> vect;
+    vect.push_back("la re concha de la lora");
+    return std::move(vect);
+}
+
+std::string ClientCommunicator::getMode() {
+    return "la re concha de la lora";
 }
 
 void ClientCommunicator ::sendMessage() {
     try {
-        while (this->continue_running)
-        {
-            std::string message("NULL");
-            message = this->message_queue.pop();
-            if (!this->continue_running)
-              break;
-            if (message == "q")
-                break;
+        while (this->continue_running) {
+            std::string message(this->sender_queue.pop());
+            if (!this->continue_running || message == "q") break;
             this->protocol << message;
         }
         this->endExecution();
-        message_queue.set_terminar_ejecucion();
     } catch (const std::runtime_error &e) {
         std::cout << e.what() << std::endl;
     } catch (...) {
@@ -63,13 +60,15 @@ void ClientCommunicator ::sendMessage() {
     }
 }
 
-void ClientCommunicator ::startExecution() {
+void ClientCommunicator ::run() {
     this->sender = std::thread(&ClientCommunicator::sendMessage, this);
     this->receiveMessage();
 }
 
 void ClientCommunicator ::endExecution() {
     this->continue_running = false;
+    this->sender_queue.set_terminar_ejecucion();
+    this->receiver_queue.set_terminar_ejecucion();
     this->protocol.closeProtocol();
 }
 

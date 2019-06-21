@@ -2,16 +2,16 @@
 #define RENDERABLE_H
 
 #include "../common/Thread.h"
-#include "../vista/ModelFacade.h"
+#include "scene_manager.h"
 
 class Renderable : public Thread {
 private:
-    ModelFacade *model_facade;
+    SceneManager *scene_manager;
     bool continue_running;
     bool map_received;
 
 public:
-    Renderable(ModelFacade *model_facade);
+    Renderable(SceneManager *scene_manager);
     ~Renderable() = default;
     virtual void run() override;
     void setMapReceived(bool map_recevied);

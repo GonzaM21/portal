@@ -10,27 +10,30 @@
 #define ERROR_CODE "8"
 #include <vector>
 #include <string>
-#include "../vista/ModelFacade.h"
-#include "client_controller.h"
+#include "data_container.h"
+#include "scene_manager.h"
 
+/*  
+*  ClientDeserializer: Es la clase encargada de tomar un mensaje
+*  del servidor y transformarlo en una accion que deba realizar 
+*  el cliente.
+*/
 
 class ClientDeserializer {
 private:
-    ClientController client_controller;
+    DataContainer *data_container;
+    SceneManager *scene_manager;
 
+    //Recibe como parametro un mensaje y un vector. Separa el mensaje
+    //por coma insertando cada palabra en el vector 
     void splitMessage(std::string &message,std::vector<std::string> &args);
-    void receiveMap();
-    void setMates(std::vector<std::string> args);
+
 public:
-    ClientDeserializer(ModelFacade *model_facade);
+    ClientDeserializer(DataContainer *data_container,SceneManager *scene_manager);
     ~ClientDeserializer() = default;
+
+    //Recibe como parametro un mensaje y lo deserializa
     void deserialize(std::string &message);
-    //bool getReceiveMap();
-    //bool getInLevel();
-    //bool getWaitingNextLevel();
-    //bool getReceiveError();
-    bool getReceiveError(); //estos dos metodos deberian volar de aca
-    std::vector<std::string> getMates();
 };
 
 #endif

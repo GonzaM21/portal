@@ -189,6 +189,20 @@ void Encoder :: sendEmitters() { //ARREGLAR
     }
 }
 
+void Encoder:: sendTriangularBlocks() {
+    std::vector<Metal_Block*> triangular_blocks = this->data_base->getTriangularBlocks();
+    for ( size_t i = 0; i<triangular_blocks.size(); i++ ) {
+        std::string msg;
+        b2Vec2 pos = triangular_blocks[i]->getPosition();
+        b2Vec2 size = triangular_blocks[i]->getSizes();
+        int angle = triangular_blocks[i]->getAngle();
+        int type = ((angle-45)/90)+4;
+        msg = "2," + std::to_string(type) +"," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+        "," + std::to_string(size.x) + "," + std::to_string(size.y);
+        this->sender->addMessageToSend(msg);
+    }
+}
+
 void Encoder::sendEnergyBall(Energy_Emitters* emitter) {
     Energy_Ball* ball = emitter->getEnergyBallShoted();
     if (ball == nullptr) return;

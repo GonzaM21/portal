@@ -3,9 +3,9 @@
 #include <string>
 #include <list>
 
-VentanaPrincipal::VentanaPrincipal(ConfigPartida *configPartida, Joiner* joinerParam,ClientCommunicator* communicatorParam,QWidget *parent) : QWidget(parent),
+VentanaPrincipal::VentanaPrincipal(MatchConfig *match_config, Joiner* joinerParam,ClientCommunicator* communicatorParam,QWidget *parent) : QWidget(parent),
                                                                                                     ui(new Ui::VentanaPrincipal),
-                                                                                                    partida(configPartida),
+                                                                                                    partida(match_config),
                                                                                                     joiner(joinerParam),
                                                                                                     communicator(communicatorParam)                                                              
 {

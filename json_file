@@ -41,8 +41,8 @@
     "WIDTH": 1
 },
 "OBJECTID6" : {
-    "POS_X": 20,
-    "POS_Y": 5.6,
+    "POS_X": -1,
+    "POS_Y": 0.1,
     "TYPE": 11
 },
 "OBJECTID7" : {
@@ -340,12 +340,6 @@
     "POS_Y" : 0,
     "WIDTH" : 0.3
 },
-"OBJECTOID52" : {
-    "TYPE" : 8,
-    "POS_X" : 1,
-    "POS_Y" : 1,
-    "WIDTH" : 0.3
-},
 "OBJECTID50" : {
     "CHARGED": 0,
     "DIRECTION": 2,
@@ -360,7 +354,15 @@
     "TYPE": 2,
     "TYPE_OPTIONAL": 1,
     "WIDTH": 1
-},"OBJECTID52" : {
+},
+"OBJECTID53" : {
+    "POS_X": 3,
+    "POS_Y": 4,
+    "TYPE": 2,
+    "TYPE_OPTIONAL": 4,
+    "SIZE": 1
+},
+"OBJECTID52" : {
     "POS_X": 20,
     "POS_Y": 9,
     "TYPE": 2,

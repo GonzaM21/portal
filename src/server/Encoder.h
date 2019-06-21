@@ -36,7 +36,8 @@ public:
     void sendNextLevelStart();
     void sendMapStart();
     void sendPlayersName();
-    void sendRoomsName();
+    //void sendRoomsName();
+    void sendTriangularBlocks();
 };
 
 #endif

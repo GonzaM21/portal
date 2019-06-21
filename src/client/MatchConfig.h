@@ -1,16 +1,15 @@
-#ifndef __CONFIGPARTIDA_H__
-#define __CONFIGPARTIDA_H__
+#ifndef MATCH_CONFIGURATION_H__
+#define MATCH_CONFIGURATION_H__
 
 #include <unistd.h>
 #include <SDL2/SDL.h>
-#include "client/client_communicator.h"
-#include "client/Message_sender.h"
+#include "client_communicator.h"
+#include "Message_sender.h"
 
-class ConfigPartida
-{
+class MatchConfig {
 public:
-  ConfigPartida(){};
-  ~ConfigPartida(){};
+  MatchConfig(){};
+  ~MatchConfig(){};
   void setHost(std::string host) {this->host = host;};
   void setPort(std::string port) { this->port = port; };
   void setPlayerName(std::string player_name) { this->player_name = player_name; };

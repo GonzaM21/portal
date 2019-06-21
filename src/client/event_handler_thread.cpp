@@ -1,11 +1,11 @@
 #include <chrono>
 #include <unistd.h>
 #include "event_handler_thread.h"
+#include "Event_handler.h"
 #include "../common/Thread.h"
-#include "client/Event_handler.h"
 
-EventHandlerThread :: EventHandlerThread(MessageSender& sender) 
-    : eventHandler(sender){
+EventHandlerThread :: EventHandlerThread(ClientCommunicator *client_communicator,
+    PositionConverter &converter) : eventHandler(client_communicator,converter) {
     this->continue_running = true;
 }
 
@@ -14,7 +14,7 @@ void EventHandlerThread :: run() { //habria que validar que el unico evento vali
         SDL_Event event;
         while (SDL_PollEvent(&event) != 0)
         {
-            eventHandler.handleEvent(event);
+            this->eventHandler.handleEvent(event);
         }
         usleep(20000);
     }

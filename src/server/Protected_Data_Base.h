@@ -41,6 +41,7 @@ private:
     std::map<size_t, Energy_Emitters*> emitters;
     std::map<Button*,std::vector<size_t>> pending_buttons;
     std::map<size_t, Cake*> cakes;
+    std::map<size_t,Metal_Block*> triangular_blocks;
     int width;
     int height;
     bool win_state = false;
@@ -104,7 +105,8 @@ public:
     std::vector<Button*> getButtons();
     std::vector<Energy_Barrier*> getBarriers();
     std::vector<Energy_Emitters*> getEmitters(); 
-    std::vector<Cake*> getCakes();     
+    std::vector<Cake*> getCakes();
+    std::vector<Metal_Block*> getTriangularBlocks();     
     float getWidth();
     float getHeight();
     std::map<std::string,Chell_Player*> getPlayersMap();

@@ -1,35 +1,37 @@
 #include "client_deserializer.h"
-
 #include <sstream>
 
-ClientDeserializer::ClientDeserializer(ModelFacade *model_facade) 
-    : client_controller(model_facade) {}
+ClientDeserializer::ClientDeserializer(DataContainer *data_container
+    ,SceneManager *scene_manager) {
+        this->scene_manager = scene_manager;
+        this->data_container = data_container;
+    }
 
 void ClientDeserializer::deserialize(std::string &message) {
     std::vector<std::string> arguments;
     this->splitMessage(message,arguments);
     if (arguments.at(0) == ERROR_CODE && arguments.size() == 2) {
-        this->client_controller.setReceiveError(arguments.at(1));
+        this->data_container->setReceiveError(arguments.at(1));
         return;
     } else if (arguments.at(0) == END_LEVEL_CODE && arguments.size() == 1) {
-        this->client_controller.setReceivedMap(false);
-        this->client_controller.setWaitingNextLevel(true);
+        this->data_container->setReceivedMap(false);
+        this->data_container->setWaitingNextLevel(true);
         return;
     } else if (arguments.at(0) == END_GAME_CODE && arguments.size() == 1) {
-        this->client_controller.setGameFinish();
+        this->data_container->setGameFinish();
         return;
     } else if (arguments.at(0) == NEXT_LEVEL_CODE && arguments.size() == 1) {
-         this->client_controller.setWaitingNextLevel(false);
+         this->data_container->setWaitingNextLevel(false);
     } else if (arguments.at(0) == START_MAP_CODE && arguments.size() == 1) {
-         //this->client_controller.setLoadingNextLevel(true);
+         //this->data_container->setLoadingNextLevel(true);
     } else if (arguments.at(0) == END_MAP_CODE && arguments.size() == 1) {
-        this->client_controller.setReceivedMap(true);
+        this->data_container->setReceivedMap(true);
         return;
     } else if (arguments.at(0) == MATES_CODE && arguments.size() == 1) {
-        arguments.erase(arguments.begin(),arguments.begin()+1);
-        this->client_controller.setMates(arguments);
-    } else {//ESTE DEFAULT NO ES EL MEJOR, DEBERIA SER UN SWITCH CASE QUIZAA EL MURO ESTE DE IF Y PONER OTRO DEFAULT
-        this->client_controller.decodeObjectMessage(arguments);
+        //algo
+    } else {
+        this->scene_manager->decodeObjectMessage(arguments);
+
     }
 }
 
@@ -39,12 +41,4 @@ void ClientDeserializer::splitMessage(std::string &message,std::vector<std::stri
     while (getline(ss, token, ',')) {
         args.push_back(token);
     }
-}
-
-bool ClientDeserializer::getReceiveError() {
-    return this->client_controller.getReceiveError();
-}
-
-std::vector<std::string> ClientDeserializer::getMates() {
-    return this->client_controller.getMates();
 }

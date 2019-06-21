@@ -1,38 +1,34 @@
 #include "Message_sender.h"
 #include <string>
 
-MessageSender::MessageSender(ClientCommunicator* communicator, ModelFacade* modelFacade) 
-        :communicator(communicator),
-        modelFacade(modelFacade) 
-        {}
+MessageSender::MessageSender(ClientCommunicator* communicator,
+        PositionConverter &converter) 
+        :communicator(communicator),position_converter(converter) {
+}
 
-void MessageSender::sendMoveRight(){
+void MessageSender::sendMoveRight() {
   communicator->addMessageToSend("d");
 }
 
-void MessageSender::sendMoveLeft()
-{
+void MessageSender::sendMoveLeft() {
   communicator->addMessageToSend("a");
 }
 
-void MessageSender::sendJump()
-{
+void MessageSender::sendJump() {
   communicator->addMessageToSend("w");
 }
 
 void MessageSender::sendPortal(const int &x, const int &y, const int &code) {
-  Rect virtualPos(x,y,0,0);
-  Rect worldPos(0,0,0,0);
-  modelFacade->convertToWorld(worldPos,virtualPos);
-  communicator->addMessageToSend("p," + std::to_string(worldPos.getX()) + "," + std::to_string(worldPos.getY()) + "," + std::to_string(code));
+  std::vector<int> world_coords = this->position_converter.convertToWorld(x,y);
+  communicator->addMessageToSend("p," + std::to_string(world_coords.at(0)) + "," + 
+    std::to_string(world_coords.at(1)) + "," + std::to_string(code));
 }
 
 void MessageSender::sendResetPortals() {
   communicator->addMessageToSend("r");
 }
 
-void MessageSender::sendQuitGame()
-{
+void MessageSender::sendQuitGame() {
   communicator->addMessageToSend("q");
 }
 
