@@ -93,7 +93,7 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
 
 
     shape_polygon.SetAsBox(FOOT_SENSOR_SIZE, FOOT_SENSOR_SIZE, b2Vec2(ZERO, -y_size),0);
-    //polygonFixtureDef.density = 0.01;
+    polygonFixtureDef.density = 0.01;
     polygonFixtureDef.isSensor = true;
     b2Fixture* footSensorFixture  = polygonBody->CreateFixture(&polygonFixtureDef);
     footSensorFixture->SetUserData(foot_data);
@@ -191,28 +191,28 @@ b2Body* World::addTriangle(float x_pos, float y_pos, float size, int angle ,bool
 
     if (!validPosition(x_pos,y_pos)) throw InvalidPosition();
 
-    triangleBodyDef.position = b2Vec2(x_pos + DELTA_POSITION,y_pos + DELTA_POSITION);
+    triangleBodyDef.position = b2Vec2(x_pos - DELTA_POSITION ,y_pos - DELTA_POSITION);
 
     triangleBody = world->CreateBody(&triangleBodyDef);
 
     b2PolygonShape shape_triangle;
     b2Vec2 vertices[3];
     if (angle == 45){
-        vertices[0].Set((-2.0/3) * size, (-1.0/3) * size);
-        vertices[1].Set((1.0/3) * size, (2.0/3) * size);
+        vertices[0].Set((-1.8/3) * size, (-1.0/3) * size);
+        vertices[1].Set((1.0/3) * size, (1.8/3) * size);
         vertices[2].Set((1.0/3) * size, (-1.0/3) * size);
     } else if (angle == 135){
-        vertices[0].Set((2.0/3) * size, (-1.0/3) * size);
+        vertices[0].Set((1.8/3) * size, (-1.0/3) * size);
         vertices[1].Set((-1.0/3) * size, (-1.0/3) * size);
-        vertices[2].Set((-1.0/3) * size, (2.0/3) * size);
+        vertices[2].Set((-1.0/3) * size, (1.8/3) * size);
     } else if(angle == 225){
-        vertices[0].Set((2.0/3) * size, (1.0/3) * size);
-        vertices[1].Set((-1.0/3) * size, (-2.0/3) * size);
-        vertices[2].Set((-1.0/3) * size, (1.0/3) * size);
+        vertices[0].Set((2.0/3) * size, (1.2/3) * size);
+        vertices[1].Set((-1.2/3) * size, (-2.0/3) * size);
+        vertices[2].Set((-1.2/3) * size, (1.2/3) * size);
     } else{
-        vertices[0].Set((-2.0/3) * size, (1.0/3) * size);
+        vertices[0].Set((-1.8/3) * size, (1.0/3) * size);
         vertices[1].Set((1.0/3) * size, (1.0/3) * size);
-        vertices[2].Set((1.0/3) * size, (-2.0/3) * size);
+        vertices[2].Set((1.0/3) * size, (-1.8/3) * size);
     }
 
     printf("lado del triangulo ");
@@ -224,7 +224,7 @@ b2Body* World::addTriangle(float x_pos, float y_pos, float size, int angle ,bool
     shape_triangle.Set(vertices,3);
     triangleFixtureDef.shape = &shape_triangle;
     triangleFixtureDef.density = DENSITY;
-    triangleFixtureDef.friction = FRICTION;
+    triangleFixtureDef.friction = FRICTION * 10;
     triangleFixtureDef.restitution = ZERO;
     triangleFixtureDef.filter.categoryBits = data.getCategoryBits();
     triangleFixtureDef.filter.maskBits = data.getMaskBits();

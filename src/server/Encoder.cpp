@@ -122,7 +122,7 @@ void Encoder :: sendGates() {
         b2Vec2 size = gates[i]->getSizes();
         int state = gates[i]->isOpen();
         msg = "3,"+ std::to_string(i+1)+ "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
-        "," + std::to_string(size.x) + "," + std::to_string(size.y) + "," +std::to_string(state);
+        "," + std::to_string(size.x) + "," + std::to_string(size.y) + "," + std::to_string(state);
         this->sender->addMessageToSend(msg);
     }
 }
@@ -198,7 +198,13 @@ void Encoder:: sendTriangularBlocks() {
         b2Vec2 pos = triangular_blocks[i]->getPosition();
         b2Vec2 size = triangular_blocks[i]->getSizes();
         int angle = triangular_blocks[i]->getAngle();
-        int type = ((angle-45)/90)+4;
+        std::cout<<"angle "<<angle<<std::endl;
+        int type = 0;
+        if (angle == 135) type = 4;
+        if(angle == 45) type = 5;
+        if(angle == 225) type = 7;
+        if (angle == 315)type = 6;// ((angle-45)/90)+3;
+        std::cout<<"type "<<type<<std::endl;
         msg = "2," + std::to_string(type) +"," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
         "," + std::to_string(size.x) + "," + std::to_string(size.y);
         this->sender->addMessageToSend(msg);

@@ -103,7 +103,13 @@ void ProtectedDataBase::addTriangularBlock(World &world, float x_pos,
   float y_pos, float size, int type) {
     std::unique_lock<std::mutex> lck(m);
     size_t triag_block_id = this->triangular_blocks.size();
-    this->triangular_blocks.insert({triag_block_id,new Metal_Block(world,x_pos,y_pos,size,45+(type-1)*90)});
+    float angle = 45;
+    std::cout<<"tipo "<<type<<std::endl;
+    if (type == 4) angle = 135;
+    if (type == 5) angle = 45;
+    if (type == 6) angle = 315;
+    if (type == 7) angle = 225;
+    this->triangular_blocks.insert({triag_block_id,new Metal_Block(world,x_pos,y_pos,size,angle)});
 }
 
 

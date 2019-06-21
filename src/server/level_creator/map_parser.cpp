@@ -83,10 +83,10 @@ void MapParser :: createEmitter(nlohmann::json &object,std::list<Object*> &obj) 
 void MapParser :: setBlockMethods() {
     this->block_methods[METAL_BLOCK] = &MapParser::createMetalBlock;
     this->block_methods[STONE_BLOCK] = &MapParser::createStoneBlock;
-    this->block_methods[3] = &MapParser::createTriangularBlock;//PONER CODIGOS
-    this->block_methods[4] = &MapParser::createTriangularBlock;
+    this->block_methods[4] = &MapParser::createTriangularBlock;//PONER CODIGOS
     this->block_methods[5] = &MapParser::createTriangularBlock;
     this->block_methods[6] = &MapParser::createTriangularBlock;
+    this->block_methods[7] = &MapParser::createTriangularBlock;
 }
 
 void MapParser :: setMethods() {

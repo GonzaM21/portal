@@ -24,20 +24,9 @@ public:
     {
       return new ShootBlock(window);
     }
-    else if (code == 4)
+    else if (code >= 4)
     {
-      return new TriangleBlock(window,code%4);
-    }
-    else if (code == 5)
-    {
-      return new TriangleBlock(window,code%4);
-    }
-    else if (code == 6)
-    {
-      return new TriangleBlock(window,code%4);
-    }
-    else if (code == 7)
-    {
+        std::cout<<"code:              "<<code<<std::endl;
       return new TriangleBlock(window,code%4);
     }
     return nullptr;

@@ -71,7 +71,8 @@ void Gate::addButton(Button *button, int pos) {
 }
 
 bool Gate::isOpen(){
-    return door_is_open;
+    if (door_is_open) return 1;
+    else return 0;
 }
 
 void Gate::win(){}

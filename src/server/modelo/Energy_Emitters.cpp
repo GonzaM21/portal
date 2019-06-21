@@ -1,6 +1,3 @@
-//
-// Created by gonzalo on 07/06/19.
-//
 #define RIGHT 1
 #define LEFT 3
 #define UP 0
@@ -52,8 +49,8 @@ bool Energy_Emitters::lives(){
 }
 
 b2Vec2 calculate_postion(b2Vec2 position,b2Vec2 sizes ,int direction){
-    float x = position.x - 0.02;
-    float y = position.y - 0.02;
+    float x = position.x - DELTA_POSITION;
+    float y = position.y - DELTA_POSITION;
     std::cout<< x << "  " << y <<std::endl;
     if(direction == RIGHT) x += (sizes.x/2.f + .7);
     if(direction == LEFT) x -= (sizes.x/2.f + .7); 
