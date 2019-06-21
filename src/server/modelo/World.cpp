@@ -7,10 +7,10 @@
 
 #define DELTA_WALLS 1.0
 #define DENSITY 1.0
-#define FRICTION 0.5
-#define CHELL_WHEELS_RADIUS 0.3
+#define FRICTION 0.3
+#define CHELL_WHEELS_RADIUS 0.05
 #define ENERGY_BALL_RESITUTION 1.0
-#define FOOT_SENSOR_SIZE 0.2
+#define FOOT_SENSOR_SIZE 0.15
 #define ENERGY_BALL_RESITUTION 1.0
 
 World::World(b2Vec2 gravity,b2Vec2 x_lim, b2Vec2 y_lim): gravity(gravity){
@@ -73,7 +73,7 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
 
     b2CircleShape shape_circle;
     shape_circle.m_radius = CHELL_WHEELS_RADIUS;
-    shape_circle.m_p.Set(x_size - CHELL_WHEELS_RADIUS,-(y_size - CHELL_WHEELS_RADIUS)/2);
+    shape_circle.m_p.Set(CHELL_WHEELS_RADIUS * 2 ,-(y_size - CHELL_WHEELS_RADIUS)/2);
     b2FixtureDef circleFixtureDef;
     circleFixtureDef.filter.categoryBits = data.getCategoryBits();
     circleFixtureDef.filter.maskBits = data.getMaskBits();
@@ -82,7 +82,7 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
 
     b2CircleShape shape_circle2;
     shape_circle2.m_radius = CHELL_WHEELS_RADIUS;
-    shape_circle2.m_p.Set(- x_size + CHELL_WHEELS_RADIUS,-(y_size - CHELL_WHEELS_RADIUS)/2);
+    shape_circle2.m_p.Set(-CHELL_WHEELS_RADIUS*2,-(y_size - CHELL_WHEELS_RADIUS)/2);
     b2FixtureDef circleFixtureDef2;
     circleFixtureDef2.shape = &shape_circle2;
     circleFixtureDef2.filter.categoryBits = data.getCategoryBits();
@@ -93,7 +93,7 @@ b2Body * World::addPlayer(float x_pos, float y_pos, float x_size, float y_size, 
 
 
     shape_polygon.SetAsBox(FOOT_SENSOR_SIZE, FOOT_SENSOR_SIZE, b2Vec2(ZERO, -y_size),0);
-    polygonFixtureDef.density = 0.01;
+    //polygonFixtureDef.density = 0.01;
     polygonFixtureDef.isSensor = true;
     b2Fixture* footSensorFixture  = polygonBody->CreateFixture(&polygonFixtureDef);
     footSensorFixture->SetUserData(foot_data);

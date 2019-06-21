@@ -67,8 +67,6 @@ void Energy_Emitters::changePosition() {
     if(step_counter % frequency != 0) return;
     b2Vec2 pos = calculate_postion(emitter->GetPosition(),sizes,direction);
 
-    std::cout<<"Pos bola: "<<pos.x<<"  "<<pos.y<<std::endl;
-
     energy_balls.push_back(new Energy_Ball(world,pos.x,pos.y));
     if(direction == RIGHT) energy_balls[energy_balls.size()-1]->Move('R');
     if(direction == LEFT) energy_balls[energy_balls.size()-1]->Move('L');
