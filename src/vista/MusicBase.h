@@ -2,9 +2,11 @@
 #define PORTAL_MUSICBASE_H
 
 #include <SDL2/SDL_mixer.h>
+#include "Constants.h"
+#include <map>
 
 class MusicBase {
-    std::map<int, Mix_music*> music;
+    std::map<int, Mix_Chunk*> music;
     static MusicBase *instance;
 public:
     static MusicBase *getInstance(){
@@ -15,12 +17,13 @@ public:
 
     MusicBase();
     void createMusic(const int &id, const std::string filename);
-    Mix_Music * getMusic(const int &id);
+    Mix_Chunk * getMusic(const int &id);
 
     virtual ~MusicBase();
 
-    MusiceBase(MusicBase const &);
+    MusicBase(MusicBase const &);
     MusicBase &operator=(MusicBase const &);
+    void playMusic(const int &id);
 };
 
 

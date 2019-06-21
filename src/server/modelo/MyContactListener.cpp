@@ -1,7 +1,7 @@
 #include "MyContactListener.h"
 
 
-void chell_colitions(b2Body * bodyA,b2Body * bodyB){
+void chell_colitions(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
 
     void * userDataA = static_cast<Entity *>(bodyA->GetUserData());
     void * userDataB = static_cast<Entity *>(bodyB->GetUserData());
@@ -12,7 +12,14 @@ void chell_colitions(b2Body * bodyA,b2Body * bodyB){
     std::cout<<"Colisionaron "<<nameBodyA<<" con "<<nameBodyB<<std::endl;
 
     if(nameBodyA == "Chell_Player" && nameBodyB == "Portal") static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
-    if(nameBodyA == "Chell_Player" && nameBodyB == "Rock") static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
+    if(nameBodyA == "Chell_Player" && nameBodyB == "Rock"){
+        if (colition_point.y >= 0.68){
+            static_cast<Entity *>(userDataA)->die();
+        }
+        else {
+            static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
+        }
+    }
     if(nameBodyA == "Chell_Player" && nameBodyB == "Energy_Ball"){
         static_cast<Entity *>(userDataA)->die();
         static_cast<Entity *>(userDataB)->startContact(b2Vec2(0,0));
@@ -21,7 +28,14 @@ void chell_colitions(b2Body * bodyA,b2Body * bodyB){
     if(nameBodyA == "Chell_Player" && nameBodyB == "Cake") static_cast<Entity *>(userDataA)->win();
 
     if(nameBodyB == "Chell_Player" && nameBodyA == "Portal") static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
-    if(nameBodyB == "Chell_Player" && nameBodyA == "Rock") static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
+    if(nameBodyB == "Chell_Player" && nameBodyA == "Rock"){
+        if (colition_point.y == 0.68){
+            static_cast<Entity *>(userDataB)->die();
+        }
+        else {
+            static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
+        }
+    }
     if(nameBodyB == "Chell_Player" && nameBodyA == "Energy_Ball"){
         static_cast<Entity *>(userDataB)->die();
         static_cast<Entity *>(userDataA)->startContact(b2Vec2(0,0));
@@ -52,7 +66,7 @@ void portal_colitions(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
     std::string nameBodyA = static_cast<Entity *>(userDataA)->getEntityName();
     std::string nameBodyB = static_cast<Entity *>(userDataB)->getEntityName();
 
-    std::cout<<"position colision: "<<colition_point.x<<"  "<<colition_point.y<<std::endl;
+    //std::cout<<"position colision: "<<colition_point.x<<"  "<<colition_point.y<<std::endl;
 
     if(nameBodyA != "Portal" && nameBodyB != "Portal") return;
 
@@ -198,10 +212,8 @@ void MyContactListener::BeginContact(b2Contact * contact){
         }
     }
 
-    //std::cout<<"position colision: "<<colition_point.x<<"  "<<colition_point.y<<std::endl;
-
     if (!bodyUserDataA || !bodyUserDataB) return;
-    chell_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
+    chell_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody(),colition_point);
     portal_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody(),colition_point);
     button_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
     energy_ball_colition(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody(),colition_point);

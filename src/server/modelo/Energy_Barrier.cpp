@@ -45,3 +45,7 @@ b2Vec2 Energy_Barrier::getPosition() {
 void Energy_Barrier::startBouncing() {}
 
 void Energy_Barrier::win() {}
+
+int Energy_Barrier::getOrientation() {
+    return orientation;
+}

@@ -23,6 +23,7 @@ public:
     void win();
     b2Vec2 getPosition();
     b2Vec2 getSizes();
+    int getOrientation();
     ~Energy_Barrier() = default;
 
 };

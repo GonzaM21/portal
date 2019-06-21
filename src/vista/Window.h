@@ -1,6 +1,6 @@
 #ifndef __WINDOW_H__
 #define __WINDOW_H__
-
+#include "MusicBase.h"
 class SDL_Window;
 class SDL_Renderer;
 class SDL_Texture;
@@ -26,6 +26,7 @@ private:
     int height;
     SDL_Window *window;
     SDL_Renderer *renderer;
+    MusicBase * musicPlayer;
     bool fullscreened;
 };
 

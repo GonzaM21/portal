@@ -8,7 +8,7 @@
 #include "Constants.h"
 #include <iostream>
 
-Window::Window(int width, int height) : width(width), height(height), fullscreened(false)
+Window::Window(int width, int height) : width(width), height(height), fullscreened(false), musicPlayer(new MusicBase())
 {
     int errCode = SDL_Init(SDL_INIT_EVERYTHING);
     if (errCode)
@@ -27,10 +27,11 @@ Window::Window(int width, int height) : width(width), height(height), fullscreen
     SDL_SetWindowIcon(window, image); // The icon is attached to the window pointer  
     image = IMG_Load(BACKGROUND_FILENAME);
     this->background = SDL_CreateTextureFromSurface(this->renderer, image);
-    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-    Mix_Music *music = Mix_LoadMUS("resources/Music/Ambient.mp3");
-    Mix_VolumeMusic(MIX_MAX_VOLUME/20);
-    Mix_PlayMusic(music, -1);
+    musicPlayer->playMusic(AMBIENT_MUSIC_ID);
+    //Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+    //Mix_Music *music = Mix_LoadMUS("resources/Music/Ambient.mp3");
+    //Mix_VolumeMusic(MIX_MAX_VOLUME/20);
+    //Mix_PlayMusic(music, -1);
 }
 
 Window::~Window()
@@ -46,6 +47,7 @@ Window::~Window()
         SDL_DestroyWindow(this->window);
         this->window = nullptr;
     }
+    delete musicPlayer;
 }
 
 void Window::fill(int r, int g, int b, int alpha)

@@ -55,7 +55,7 @@ void Gate::changePosition() {
       std::cout<<"for: "<<button.first->getStatus()<<button.second<<std::endl;
     }
     door_is_open = state;
-    std::cout<<"Puerta activada"<<door_is_open<<" true "<<true<<std::endl;
+    //std::cout<<"Puerta activada"<<door_is_open<<" true "<<true<<std::endl;
     gate->SetActive(!door_is_open);
 }
 
