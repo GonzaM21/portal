@@ -1,4 +1,5 @@
 #include "Metal_Block.h"
+#include "Macros.h"
 
 Metal_Block::Metal_Block(World &world,float x_pos, float y_pos,float size){
     Filter_Data data(OTHER_BITS);
@@ -23,6 +24,7 @@ Metal_Block::Metal_Block(World &world,float x_pos, float y_pos, float size ,int 
     data.addMaskBits(BALL_BITS);
     block = world.addTriangle(x_pos,y_pos,size,angle,true,data);
     this->angle = angle;
+    std::cout << "Angle "<<angle<<std::endl;
     sizes = b2Vec2(size,size);
     block->SetUserData(this);
     name = "Metal_Block";
@@ -67,7 +69,5 @@ bool Metal_Block::setTransform(Entity *) {
 }
 
 void Metal_Block::changePosition() {}
-
-void Metal_Block::startBouncing() {}
 
 void Metal_Block::win(){}

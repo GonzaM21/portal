@@ -2,6 +2,8 @@
 #include "Energy_Ball.h"
 #include "Macros.h"
 #include "Metal_Block.h"
+#define ENERGY_BALL 0.5
+#define ENERGY_BALL_FORCE 15.0
 
 Energy_Ball::Energy_Ball(World& world, float x_pos, float y_pos): world(world) {
     Filter_Data data(BALL_BITS);
@@ -46,26 +48,6 @@ float Energy_Ball::getAngle() {
 }
 
 void Energy_Ball::startContact(b2Vec2) {
-    std::cout<<"cONTACTOoooooooooooooooooooooooooooooooooooooooooooooooo\n";
-    //position = energy_ball->GetPosition();
-    std::cout<<"veloc: "<<velocity.x<<" "<<velocity.y<<std::endl;
-    std::cout<<"cONTACTO\n";
-    /*std::cout<<pos.x<<""<<pos.y<<std::endl;
-    b2Vec2 ball_velocity = energy_ball->GetLinearVelocity();
-    std::cout<<"Veloc "<<ball_velocity.x<<"  "<<ball_velocity.y<<std::endl;
-
-    std::cout<<"Veloc antes"<<new_velocity.x<<"  "<<new_velocity.y<<std::endl;
-    std::cout<<(-2.0/3.0) * size<<(-1.0/3.0) * size<<std::endl;
-    std::cout<<pos.x - ((-2.0/3) * size)<<"  "<<(pos.y - (-1.0/3) * size)<<std::endl;
-
-    if( ball_velocity.x != 0 && ball_velocity.y != 0){
-        printf("entro\n");
-        new_velocity = b2Vec2(0,ball_velocity.x);
-        change_velocity = true;
-    }
-
-    std::cout<<"Veloc dps "<<new_velocity.x<<"  "<<new_velocity.y<<std::endl;*/
-
     contact = true;
 }
 
@@ -90,27 +72,15 @@ float Energy_Ball::getRadius() {
 }
 
 bool Energy_Ball::setTransform(Entity *) {
-    /*angle = dynamic_cast<Metal_Block *>(body)->getAngle();
-    size = dynamic_cast<Metal_Block *>(body)->getSizes().x;
-    std::cout<<size<<std::endl;*/
     return true;
 }
 
-void Energy_Ball::changePosition() {
-    if (!contact) position = energy_ball->GetPosition();
-    if (contact){
-        std::cout<<"ENERGY BALL ENTR222222222222\n";
-        //energy_ball->SetTransform(position,0);
-        energy_ball->SetLinearVelocity(velocity);
-        contact = false;
-    }
-}
-
-void Energy_Ball::startBouncing() {}
+void Energy_Ball::changePosition() {}
 
 void Energy_Ball::win(){}
 
 int Energy_Ball::getDirection(){
+    if(!live) return 0;
     b2Vec2 actualVelocity = energy_ball->GetLinearVelocity();
     if(abs(actualVelocity.x) > abs(actualVelocity.y)){
         if(actualVelocity.x > 0) direction = 0;

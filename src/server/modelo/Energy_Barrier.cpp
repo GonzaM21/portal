@@ -1,5 +1,7 @@
 #include "Energy_Barrier.h"
+#include "Macros.h"
 #define PI 3.14159265359
+#define ENERGY_BARRIER_WIDTH 0.1
 
 Energy_Barrier::Energy_Barrier(World &world, float x_pos, float y_pos, float large,int orientation) : world(world), orientation(orientation){
     Filter_Data data(BARRIER_BITS);
@@ -41,8 +43,6 @@ b2Vec2 Energy_Barrier::getSizes(){
 b2Vec2 Energy_Barrier::getPosition() {
     return barrier->GetPosition();
 }
-
-void Energy_Barrier::startBouncing() {}
 
 void Energy_Barrier::win() {}
 

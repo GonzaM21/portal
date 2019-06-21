@@ -4,8 +4,12 @@
 #include <vector>
 #include "Box2D/Box2D.h"
 #include "MyContactListener.h"
-#include "Macros.h"
+//#include "Macros.h"
 #include "Filter_Data.h"
+
+#define GRAVITY 8.0
+#define ZERO 0.0
+#define MAX_LIM 1000
 
 
 class World {

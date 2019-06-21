@@ -6,6 +6,8 @@
 #define UP 0
 #define DOWN 2
 #include "Energy_Emitters.h"
+#include "Macros.h"
+
 
 Energy_Emitters::Energy_Emitters(World &world, float x_pos, float y_pos, float size,int direction, bool charged,int frequency)
                                 : world(world), charged(charged), step_counter(0),frequency(frequency) {
@@ -65,8 +67,6 @@ void Energy_Emitters::changePosition() {
     if(step_counter % frequency != 0) return;
     b2Vec2 pos = calculate_postion(emitter->GetPosition(),sizes,direction);
 
-    std::cout<<"Pos bola: "<<pos.x<<"  "<<pos.y<<std::endl;
-
     energy_balls.push_back(new Energy_Ball(world,pos.x,pos.y));
     if(direction == RIGHT) energy_balls[energy_balls.size()-1]->Move('R');
     if(direction == LEFT) energy_balls[energy_balls.size()-1]->Move('L');
@@ -89,8 +89,6 @@ Energy_Emitters::~Energy_Emitters() {
         delete energy_balls[i];
     }
 }
-
-void Energy_Emitters::startBouncing() {}
 
 void Energy_Emitters::win(){}
 

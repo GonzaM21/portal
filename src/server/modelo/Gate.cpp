@@ -1,6 +1,9 @@
 #include "Gate.h"
+#include "Macros.h"
 #define UP 0
 #define DOWN 1
+#define GATE_LARGE 2.0
+#define GATE_WIDTH 1.0
 
 Gate::Gate(World &world, float x_pos, float y_pos) : world(world){
     Filter_Data data(OTHER_BITS);
@@ -22,13 +25,6 @@ const std::string& Gate::getEntityName() {
 }
 
 bool Gate::lives() {
-    /*bool state = true;
-    for (auto button: buttons) {
-      if (button.first->getStatus() != button.second) state = false;
-    }
-    door_is_open = state;
-    bool op_state = !state;
-    gate->IsActive(op_state);*/
     return true;
 }
 
@@ -64,10 +60,6 @@ b2Vec2 Gate::getPosition() {
     return gate->GetPosition();
 }
 
-float Gate::getAngle() {
-    return 0;
-}
-
 b2Vec2 Gate::getSizes() {
     return sizes;
 }
@@ -81,7 +73,5 @@ void Gate::addButton(Button *button, int pos) {
 bool Gate::isOpen(){
     return door_is_open;
 }
-
-void Gate::startBouncing() {}
 
 void Gate::win(){}

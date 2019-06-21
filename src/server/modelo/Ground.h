@@ -8,21 +8,29 @@ class Ground : public Entity{
     b2Vec2 sizes;
     std::string name;
 public:
-
-    //Contructor de la clase Ground. Hay que pasarle la mitad de largo y la mitad de la altura
+    //Contructor de la clase Ground.
     Ground(World &world,float x_pos, float y_pos,  float width, float high);
+    //Retorna el nombre de la clase
     const std::string& getEntityName() override;
+    //no hace nada
     void startContact(b2Vec2) override;
+    //no hace nada
     void endContact() override;
+    //no hace nada
     void die() override;
+    //Retorna true, no muere
     bool lives() override;
+    //no hace nada
     bool setTransform(Entity *) override;
+    //no hace nada
     void changePosition() override;
-    void startBouncing() override ;
-    void win();
+    //no hace nada
+    void win() override;
+    //retorna el tamaño (x,y)
     b2Vec2 getSizes();
+    //retorna su posicion (x,y)
     b2Vec2 getPosition();
-    float getAngle();
+    //destructor
     ~Ground() = default;
 };
 

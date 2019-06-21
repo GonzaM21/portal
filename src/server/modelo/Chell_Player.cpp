@@ -1,6 +1,18 @@
 #include "Chell_Player.h"
 #include "Macros.h"
-
+#define CHELL_HIGH 1.6
+#define CHELL_WIDTH 0.5
+#define CHELL_JUMP_FORCE 100.0
+#define CHELL_MOVE_FORCE 5.0
+#define CHELL_QUIET 0
+#define CHELL_RUNNING 2
+#define CHELL_DANCING 3
+#define CHELL_DYING 4
+#define CHELL_JUMPING 7
+#define CHELL_FALLING 8
+#define CHELL_VELOCITY 5.0
+#define CHELL_Y_DELTA 1.0
+#define CHELL_X_DELTA 0.7
 
 Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world),jumper_counter(0){
     name = "Chell_Player";
@@ -114,6 +126,7 @@ bool Chell_Player::setTransform(Entity * body) {
     jumper_counter = 0;
     if(body->getEntityName() == "Rock" && take){
         rock = (Rock *)body;
+        rock->setGravity(0);
         taking = true;
     }
     if (body->getEntityName() == "Portal") {
@@ -154,13 +167,11 @@ void Chell_Player::changePosition() {
     if(!teleport) return;
     chell->SetTransform(teleport_pos,chell->GetAngle());
     chell->SetLinearVelocity(velocity);
-    if(velocity.x > 0) direction_right = 1;
-    else direction_right = 0;
+    if(velocity.x > 0) direction_right = true;
+    else direction_right = false;
     jumper_counter = 0;
     teleport = false;
 }
-
-void Chell_Player::startBouncing(){}
 
 void Chell_Player::startContact(b2Vec2) {
     ++contact;
@@ -226,7 +237,7 @@ void Chell_Player::grabARock() {
 void Chell_Player::dropTheRock() {
     take = false;
     taking = false;
-    rock->setVelocity(b2Vec2(ZERO,ZERO));
+    rock->setGravity(1);
     rock = nullptr;
     jumper_counter = 0;
 }
@@ -234,25 +245,26 @@ void Chell_Player::dropTheRock() {
 
 //respuesta: o (oscuridad)
 void Chell_Player::inmortalChell(){
-    std::cout<<"cheat activado1\n";
-    if (inmortal) inmortal = false;
-    else inmortal = true;
+    inmortal = !inmortal;
+    if(inmortal) std::cout<<"INMORTALIDAD ACTIVADA\n";
+    else std::cout<<"INMORTALIDAD DESACTIVADA\n";
 }
 
 
 //respuesta: v (viento)
 void Chell_Player::antiGravity() {
-
-    std::cout<<"cheat activado\n";
-    std::cout<<chell->GetGravityScale()<<std::endl;
     if(gravity){
-        std::cout<<chell->GetGravityScale()<<std::endl;
-        std::cout<<world.getGravity()<<std::endl;
         chell->SetGravityScale(1);
         gravity = false;
+        std::cout<<"ANTIGRAVEDAD DESACTIVADA\n";
     }
     else{
         chell->SetGravityScale(ZERO);
         gravity = true;
+        std::cout<<"ANTIGRAVEDAD ACTIVADA\n";
     }
+}
+
+Chell_Player::~Chell_Player() {
+    delete footSensor;
 }

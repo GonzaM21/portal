@@ -1,6 +1,5 @@
 #include "Ground.h"
 #include "Macros.h"
-
 Ground::Ground(World &world,float x_pos, float y_pos,  float width, float high){
     Filter_Data data(OTHER_BITS);
     data.addMaskBits(CHELL_BITS);
@@ -41,10 +40,4 @@ b2Vec2 Ground::getPosition(){
     return ground->GetPosition();
 }
 
-float Ground::getAngle(){
-    return ground->GetAngle();
-}
-
 void Ground::win() {}
-
-void Ground::startBouncing() {}

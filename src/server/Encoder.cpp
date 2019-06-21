@@ -7,6 +7,8 @@
 #define OBJECT_CODE "6"
 #define MATES_CODE "7"
 #define ERROR_CODE "8" //Revisar donde envio los errores
+#define CHELL_HIGH 1.6
+#define CHELL_WIDTH 0.5
 
 Encoder :: Encoder(ProtectedDataBase *data_base,Sender *sender) {
     this->data_base = data_base;
