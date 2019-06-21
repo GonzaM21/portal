@@ -6,6 +6,8 @@
 #define UP 0
 #define DOWN 2
 #include "Energy_Emitters.h"
+#include "Macros.h"
+
 
 Energy_Emitters::Energy_Emitters(World &world, float x_pos, float y_pos, float size,int direction, bool charged,int frequency)
                                 : world(world), charged(charged), step_counter(0),frequency(frequency) {
@@ -89,8 +91,6 @@ Energy_Emitters::~Energy_Emitters() {
         delete energy_balls[i];
     }
 }
-
-void Energy_Emitters::startBouncing() {}
 
 void Energy_Emitters::win(){}
 

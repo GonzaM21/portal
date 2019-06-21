@@ -2,15 +2,19 @@
 #include "Macros.h"
 #include "Metal_Block.h"
 #include "Ground.h"
+#include "Macros.h"
 
 #define PI 3.14159265359
+#define PORTAL_HIGH 1.0
+#define PORTAL_WIDTH 0.3
+#define BALL 0.5
 
 Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
     Filter_Data data(ROCK_PORTAL_BITS);
     data.addMaskBits(OTHER_BITS);
     data.addMaskBits(BARRIER_BITS);
     data.addMaskBits(BALL_BITS);
-    portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data,true);
+    portal = world.addCircle(x_pos,y_pos,BALL,false,data,true);
     portal->SetGravityScale(ZERO);
     portal->SetUserData(this);
     contact = false;
@@ -20,7 +24,7 @@ Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
     ball = true;
     send_it = false;
     position = portal->GetPosition();
-    radius = ENERGY_BALL;
+    radius = BALL;
     sizes = b2Vec2(PORTAL_WIDTH,PORTAL_HIGH);
     orientation = 0;
 
@@ -70,15 +74,24 @@ void Portal::changePosition() {
             if(body_pos.x < position.x) normal = b2Vec2(1.f,0.f);
             if(body_pos.x > position.x) normal = b2Vec2(-1.f,0.f);
         }else if(abs(body_pos.x - position.x) != 0 && abs(body_pos.y - position.y) != 0 && angle != 90 ){
+
             int x_dif = int((abs(body_pos.x) - abs(position.x)) * 10000);
             int y_dif = int((abs(body_pos.y) - abs(position.y))* 10000);
             int x_dia = (int)((2.0/3) *10000);
             int y_dia = (int)((1.0/3) *10000);
             int extra_point = (int)((1.0/6) *10000);
 
-            std::cout<<abs(x_dif) - abs(y_dif)<<std::endl;
+            std::cout<<x_dif<<" "<<x_dia<<" "<<y_dif<<" "<<y_dia<<" angke "<<angle<<" rad "<< angle * PI/180<<std::endl;
 
-            if( ( (abs(x_dif) % x_dia == 0) && (abs(y_dif) % y_dia == 0) )
+            if(angle == 315 ){
+                if((abs(x_dif) == 6666 && abs(y_dif) == 3333) || (abs(x_dif) == 6666 && abs(y_dif) == 1666)
+                                                                || (abs(x_dif) == 3333 && abs(y_dif) == 6666)){
+                        orientation = 3;
+                        normal = b2Vec2(-1.f,-1.f);
+                }
+            }
+
+            /*if( ( (abs(x_dif) % x_dia == 0) && (abs(y_dif) % y_dia == 0) )
                 || ((abs(x_dif) % extra_point == 0) && (abs(y_dif) % extra_point == 0) ) ){
 
                 if (angle == 45) {
@@ -96,11 +109,15 @@ void Portal::changePosition() {
                 }
             }else if ( (abs(x_dif) % y_dia == 0)  && (abs(y_dif) % extra_point == 0) ){
                 orientation = 2;
+                if(body_pos.x < position.x) normal = b2Vec2(1.f,0.f);
+                if(body_pos.x > position.x) normal = b2Vec2(-1.f,0.f);
                 printf("Vertical\n");
             } else if((abs(y_dif) % y_dia == 0)  && (abs(x_dif) % extra_point == 0)){
                 orientation = 0;
+                if(body_pos.y < position.y) normal = b2Vec2(0.f,1.f);
+                if(body_pos.y > position.y) normal = b2Vec2(0.f,-1.f);
                 printf("Horizontal\n");
-            }
+            }*/
         }
 
         std::cout << "Normal portal: "<< normal.x<<"    "<<normal.y<<std::endl;
@@ -135,7 +152,6 @@ void Portal::changePosition() {
     }
     portal->SetLinearVelocity(b2Vec2(0,0));
 }
-
 
 b2Vec2 Portal::getPosition(){
     if(!live) return b2Vec2(0,0);
@@ -183,8 +199,8 @@ bool Portal::lives(){
     return live;
 }
 
-bool Portal::setPartner(Portal *portal) {
-    partner = portal;
+bool Portal::setPartner(Portal *portal_partner) {
+    partner = portal_partner;
     have_partner = true;
     return true;
 }
@@ -198,12 +214,11 @@ Portal * Portal::getPartnerPortal() {
 bool Portal::changePortalPosition(float x_pos, float y_pos) {
     if(!world.validPosition(x_pos,y_pos)) return false;
     if(live)world.eraseBody(portal);
-    printf("cambia pos\n");
     Filter_Data data(ROCK_PORTAL_BITS);
     data.addMaskBits(OTHER_BITS);
     data.addMaskBits(BARRIER_BITS);
     data.addMaskBits(BALL_BITS);
-    portal = world.addCircle(x_pos,y_pos,ENERGY_BALL,false,data,true);
+    portal = world.addCircle(x_pos,y_pos,BALL,false,data,true);
     portal->SetGravityScale(ZERO);
     portal->SetUserData(this);
     contact = false;
@@ -241,7 +256,6 @@ bool Portal::setTransform(Entity * body){
     return true;
 }
 
-void Portal::startBouncing() {}
 
 void Portal::win(){}
 

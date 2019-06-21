@@ -12,7 +12,6 @@ public:
     virtual bool lives() = 0;
     virtual bool setTransform(Entity * body) = 0;
     virtual void changePosition() = 0;
-    virtual void startBouncing() = 0;
     virtual void win() = 0;
     virtual ~Entity() = default;
 };

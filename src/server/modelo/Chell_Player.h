@@ -49,8 +49,10 @@ public:
     //Pone al atributo contact en flase
     void endContact() override;
 
+    //En caso de teletraportarse se cambia de posicion
     void changePosition() override;
 
+    //devuelve le nombre de la clase
     const std::string& getEntityName() override;
 
     //Retorna en un vector su posicion en x e y
@@ -59,12 +61,16 @@ public:
     //retorna el valor de su angulo
     float getAngle();
 
+    //Agarra una roca
     void grabARock();
 
+    //sueta la roca tomada previamente
     void dropTheRock();
 
+    //devuelve su tamano (x,y)
     b2Vec2 getSizes();
 
+    //devuelve su esta, caminando, saltando, etc.
     int getStatus();
 
     //El personaje dispara un portal segun la direccion indicada
@@ -72,18 +78,22 @@ public:
 
     Portal * shotPortalOut(float x_pos, float y_pos);
 
+    //mata al personaje
     void die() override;
 
+    //retorna si esta vivo ono
     bool lives() override;
 
-    void startBouncing() override ;
+    //En caso de tocar una cake, el personaje gana
+    void win() override;
 
-    void win();
-
+    //retorna si esta yendo para la derecha o izquierda
     int getDirection();
 
+    //devueve el portal de entrada disparado
     Portal *getPortalIn();
 
+    //devuelve el portal de salida dispado
     Portal *getPortalOut();
 
     //De la inicial de esta adivinanza, encontrarás como activar la inmortalidad: (ignorar los articulos)
@@ -95,5 +105,7 @@ public:
     //De la inicial de esta adivinanza, encontrarás como quitar la gravedad: (ignorar los articulos)
     // Canta sin voz, vuela sin alas, sin dientes muerde, sin boca habla.
     void antiGravity();
+
+    ~Chell_Player();
 };
 #endif //TP4_CHELL_PLAYER_H

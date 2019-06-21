@@ -9,8 +9,6 @@ void chell_colitions(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
     std::string nameBodyA = static_cast<Entity *>(userDataA)->getEntityName();
     std::string nameBodyB = static_cast<Entity *>(userDataB)->getEntityName();
 
-    std::cout<<"Colisionaron "<<nameBodyA<<" con "<<nameBodyB<<std::endl;
-
     if(nameBodyA == "Chell_Player" && nameBodyB == "Portal") static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
     if(nameBodyA == "Chell_Player" && nameBodyB == "Rock"){
         if (colition_point.y >= 0.68){
@@ -65,8 +63,6 @@ void portal_colitions(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
 
     std::string nameBodyA = static_cast<Entity *>(userDataA)->getEntityName();
     std::string nameBodyB = static_cast<Entity *>(userDataB)->getEntityName();
-
-    //std::cout<<"position colision: "<<colition_point.x<<"  "<<colition_point.y<<std::endl;
 
     if(nameBodyA != "Portal" && nameBodyB != "Portal") return;
 
@@ -192,10 +188,7 @@ void MyContactListener::BeginContact(b2Contact * contact){
 
     b2Vec2 colition_point = contact->GetManifold()->localPoint;
 
-    //if(!contact->GetFixtureA()->GetUserData() && !contact->GetFixtureB()->GetUserData()) printf("NO hay data\n");
-
     if(contact->GetFixtureA()->GetUserData()){
-       // printf("Foot_ sensor deberia estar aca\n");
         void * foot_sensor = contact->GetFixtureA()->GetUserData();
         std::cout<<static_cast<Entity *>(foot_sensor)->getEntityName()<<std::endl;
         if(static_cast<Entity *>(foot_sensor)->getEntityName() == "Foot_Sensor"){
@@ -204,7 +197,6 @@ void MyContactListener::BeginContact(b2Contact * contact){
     }
 
     if(contact->GetFixtureB()->GetUserData()){
-        //printf("o aca\n");
         void * foot_sensor = contact->GetFixtureB()->GetUserData();
         std::cout<<static_cast<Entity *>(foot_sensor)->getEntityName()<<std::endl;
         if(static_cast<Entity *>(foot_sensor)->getEntityName() == "Foot_Sensor") {
@@ -275,7 +267,6 @@ void foot_sensor_end_contact(Entity * foot_sensor, b2Body * body){
 
 }
 
-
 void MyContactListener::EndContact(b2Contact* contact){
     void* bodyUserDataA = contact->GetFixtureA()->GetBody()->GetUserData();
     void* bodyUserDataB = contact->GetFixtureB()->GetBody()->GetUserData();
@@ -297,6 +288,5 @@ void MyContactListener::EndContact(b2Contact* contact){
     }
 
     if (!bodyUserDataA || !bodyUserDataB) return;
-    //chell_endContact(bodyUserDataA,bodyUserDataB);
     button_endContact(bodyUserDataA,bodyUserDataB);
 }

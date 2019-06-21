@@ -50,7 +50,7 @@
 #define POWERBALL_FILENAME "resources/img/liquids_powers_energy.png"
 #define ROCK_FILENAME "resources/img/liquids_powers_energy.png"
 #define CAKE_FILENAME "resources/img/Cake_2.png"
-#define ENERGY_BARRIER_FILENAME "resources/img/acidos.png"
+#define ENERGY_BARRIER_FILENAME "resources/img/Energy_Barrier.png"
 
 /**
  * PLAYER

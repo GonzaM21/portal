@@ -1,5 +1,8 @@
 #include "Button.h"
 #include "Filter_Data.h"
+#include "Macros.h"
+#define BOTTOM_LARGE 1.0
+#define BOTTOM_HIGH 0.25
 
 Button::Button(World &world, float x_pos, float y_pos) : world(world) {
     Filter_Data data(OTHER_BITS);
@@ -50,11 +53,6 @@ b2Vec2 Button::getPosition() {
     return button->GetPosition();
 }
 
-float Button::getAngle() {
-    if(!live) return 0;
-    return button->GetAngle();
-}
-
 b2Vec2 Button::getSizes() {
     return sizes;
 }
@@ -62,7 +60,5 @@ b2Vec2 Button::getSizes() {
 bool Button::getStatus(){
     return status;
 }
-
-void Button::startBouncing() {}
 
 void Button::win() {}

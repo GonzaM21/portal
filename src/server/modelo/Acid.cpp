@@ -1,5 +1,7 @@
 #include "Acid.h"
 #include "Filter_Data.h"
+#include "Macros.h"
+
 Acid::Acid(World &world, float x_pos, float y_pos, float large) : world(world) {
     name = "Acid";
     contact = false;
@@ -35,10 +37,6 @@ b2Vec2 Acid::getPosition() {
     return acid->GetPosition();
 }
 
-float Acid::getAngle() {
-    return acid->GetAngle();
-}
-
 b2Vec2 Acid::getSizes(){
     return sizes;
 }
@@ -48,7 +46,5 @@ bool Acid::setTransform(Entity *) {
 }
 
 void Acid::changePosition() {}
-
-void Acid::startBouncing() {}
 
 void Acid::win() {}

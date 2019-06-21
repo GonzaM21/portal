@@ -5,6 +5,14 @@
 #include "MyContactListener.h"
 #include "Macros.h"
 
+#define DELTA_WALLS 1.0
+#define DENSITY 1.0
+#define FRICTION 0.5
+#define CHELL_WHEELS_RADIUS 0.3
+#define ENERGY_BALL_RESITUTION 1.0
+#define FOOT_SENSOR_SIZE 0.2
+#define ENERGY_BALL_RESITUTION 1.0
+
 World::World(b2Vec2 gravity,b2Vec2 x_lim, b2Vec2 y_lim): gravity(gravity){
     world = new b2World(gravity);
     ContactListener = new MyContactListener;
@@ -249,13 +257,9 @@ void World::eraseBody(b2Body *body) {
 }
 
 bool World::deleteBodies(){
-
-    //std::cout<<"bodies sizes: "<<Bodies.size()<<std::endl;
     for(size_t i = 0; i < Bodies.size(); ++i) {
         if (Bodies[i]->GetUserData()) {
-            //std::cout<<"Nombre: "<<static_cast<Entity *>(Bodies[i]->GetUserData())->getEntityName()<<std::endl;
             if (!static_cast<Entity *>(Bodies[i]->GetUserData())->lives()) {
-                //std::cout<<"Mato a "<<static_cast<Entity *>(Bodies[i]->GetUserData())->getEntityName()<<std::endl;
                 world->DestroyBody(Bodies[i]);
                 Bodies.erase(Bodies.begin() + i);
                 return true;

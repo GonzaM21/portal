@@ -14,19 +14,27 @@ public:
 
     //Contructor de un bloque de piedra triangular.
     Stone_Block(World &world,float x_pos, float y_pos,float size ,int angle);
+    //Retorna el nombre de la clase
     const std::string& getEntityName() override;
+    //no hace nada
     void startContact(b2Vec2) override;
+    //no hace nada
     void endContact() override;
+    //no hace nada
     void die() override;
+    //retorna true, nunca muere
     bool lives() override;
+    //no hace nada
     bool setTransform(Entity *) override;
+    //no hace nada
     void changePosition() override;
-    void startBouncing() override ;
-    void win();
+    //no hace nada
+    void win() override;
+    //retorna la posicion (x,y)
     b2Vec2 getPosition();
+    //retorna el angulo que tiene
     int getAngle();
+    //retorna el tamano que tiene
     b2Vec2 getSizes();
 };
-
-
 #endif

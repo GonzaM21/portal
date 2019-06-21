@@ -1,4 +1,6 @@
 #include "Stone_Block.h"
+#include "Macros.h"
+
 
 Stone_Block::Stone_Block(World &world,float x_pos, float y_pos,float size){
     Filter_Data data(OTHER_BITS);
@@ -23,7 +25,7 @@ Stone_Block::Stone_Block(World &world,float x_pos, float y_pos,float size,int an
     block->SetUserData(this);
     this->angle = angle;
     name = "Stone_Block";
-    sizes = b2Vec2(BLOCK_SIZES,BLOCK_SIZES);
+    sizes = b2Vec2(size,size);
 }
 
 b2Vec2 Stone_Block::getPosition() {
@@ -57,7 +59,5 @@ bool Stone_Block::setTransform(Entity *) {
 }
 
 void Stone_Block::changePosition() {}
-
-void Stone_Block::startBouncing() {}
 
 void Stone_Block::win(){}

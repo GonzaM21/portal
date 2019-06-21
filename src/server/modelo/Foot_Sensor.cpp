@@ -1,7 +1,3 @@
-//
-// Created by gm21 on 12/06/19.
-//
-
 #include "Foot_Sensor.h"
 
 Foot_Sensor::Foot_Sensor(Entity *chell_player) {
@@ -25,5 +21,4 @@ void Foot_Sensor::die(){}
 bool Foot_Sensor::lives(){return true;}
 bool Foot_Sensor::setTransform(Entity*){return true;}
 void Foot_Sensor::changePosition(){}
-void Foot_Sensor::startBouncing() {}
 void Foot_Sensor::win(){}
