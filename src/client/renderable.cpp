@@ -1,4 +1,4 @@
-#define FPS 80
+#define FPS 20
 
 #include <chrono>
 #include "renderable.h"
@@ -19,7 +19,7 @@ void Renderable :: endExecution() {
 
 void Renderable :: run() {
     while (true) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(FPS));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000/FPS));
         if (!this->map_received) continue;
         if (!this->continue_running) break; //puede haber race condition? que pasa si da true y despues justo muere el communicator
         this->scene_manager->renderAll();

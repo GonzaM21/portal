@@ -14,18 +14,14 @@ private:
     ClientCommunicator* communicator;
     EventHandlerThread* handler;
     Renderable* renderer_thread;
-    ClientDeserializer deserializer;
-    SceneManager scene_manager;
-    DataContainer data_container;
-    PositionConverter converter;
     bool continue_running;
 
     void initializeCommunication(); 
-    void evaluateDataContainer();
+    void evaluateDataContainer(DataContainer *data_container);
 
 public:
     ClientController();
-    ~ClientController();
+    ~ClientController() =default;
     int runInitialWindow(int argc, char *argv[]);
     void endExecution();
     void mainLoop();

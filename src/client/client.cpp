@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
         ClientController controller;
         if (controller.runInitialWindow(argc,argv) == -1) return 0;
         controller.mainLoop();
+        controller.endExecution();
     } catch (const std::runtime_error &e) {
         std::cout << e.what() << std::endl;
     } catch (...) {

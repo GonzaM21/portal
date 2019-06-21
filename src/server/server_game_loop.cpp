@@ -63,7 +63,11 @@ void GameLoop :: run() {
         this->sendDynamicData();
         auto t_end = std::chrono::high_resolution_clock::now();
         int delta_time = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        int wait_time = STEP_DURATION-delta_time; //deberia chequear que es mayor a 0 //imprmir warning y dormir muy pcop tiempo. time step configurable
+        int wait_time = STEP_DURATION-delta_time;
+        if (wait_time <= 0) {
+            std::cout << "ALERTA: Servidor no llega a procesar todos los eventos." << std::endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        }
         std::this_thread::sleep_for(std::chrono::milliseconds(wait_time));
         this->time += STEP_DURATION;
         if (this->checkLevelComplete()) {

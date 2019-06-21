@@ -28,10 +28,16 @@ std::string ClientCommunicator::popMessageReceived() {
 }
 
 void ClientCommunicator::receiveMessage() {
-    while (this->continue_running) {
-        std::string message;
-        this->protocol >> message;
-        this->receiver_queue.push(message);
+    try {
+        while (this->continue_running) {
+            std::string message;
+            this->protocol >> message;
+            this->receiver_queue.push(message);
+        }
+    } catch (const std::runtime_error &e) {
+        std::cout << e.what() << std::endl;
+    } catch (...) {
+        std::cout << "Error inesperado" << std::endl;
     }
 }
 
@@ -46,18 +52,12 @@ std::string ClientCommunicator::getMode() {
 }
 
 void ClientCommunicator ::sendMessage() {
-    try {
-        while (this->continue_running) {
-            std::string message(this->sender_queue.pop());
-            if (!this->continue_running || message == "q") break;
-            this->protocol << message;
-        }
-        this->endExecution();
-    } catch (const std::runtime_error &e) {
-        std::cout << e.what() << std::endl;
-    } catch (...) {
-        std::cout << "Error inesperado" << std::endl;
+    while (this->continue_running) {
+        std::string message(this->sender_queue.pop());
+        if (!this->continue_running || message == "q") break;
+        this->protocol << message;
     }
+    this->endExecution();
 }
 
 void ClientCommunicator ::run() {

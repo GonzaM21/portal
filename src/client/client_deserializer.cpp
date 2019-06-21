@@ -5,7 +5,14 @@ ClientDeserializer::ClientDeserializer(DataContainer *data_container
     ,SceneManager *scene_manager) {
         this->scene_manager = scene_manager;
         this->data_container = data_container;
+}
+
+void printVector(std::vector<std::string> &args) {
+    for (auto elem : args) {
+        std::cout << elem;
     }
+    std::cout << std::endl;
+}
 
 void ClientDeserializer::deserialize(std::string &message) {
     std::vector<std::string> arguments;
@@ -29,9 +36,13 @@ void ClientDeserializer::deserialize(std::string &message) {
         return;
     } else if (arguments.at(0) == MATES_CODE && arguments.size() == 1) {
         //algo
-    } else {
+    } else if (arguments.at(0) == "NULL"){
+        std::cout << "Invalid message" << std::endl;
+        this->data_container->setGameFinish();
+        return;
+    } else { 
+        printVector(arguments);
         this->scene_manager->decodeObjectMessage(arguments);
-
     }
 }
 

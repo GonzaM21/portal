@@ -1,24 +1,16 @@
 #include "client_controller.h"
 
-ClientController::ClientController() : 
-    deserializer(&data_container,&scene_manager),
-    converter(this->scene_manager.getModelFacade()) {
+ClientController::ClientController() {
     this->communicator = new ClientCommunicator();
-    this->handler = new EventHandlerThread(this->communicator,this->converter);
-    this->renderer_thread = new Renderable(&this->scene_manager);
     this->continue_running = true;
 }
 
 void ClientController::endExecution() {
-    this->continue_running = false;
-}
-
-ClientController::~ClientController() {
     this->handler->endExecution();
-    this->handler->join();
-    this->communicator->endExecution();
-    this->communicator->join();
     this->renderer_thread->endExecution();
+    this->communicator->endExecution();
+    this->handler->join();
+    this->communicator->join();
     this->renderer_thread->join();
     delete this->communicator;
     delete this->handler;
@@ -40,19 +32,31 @@ void ClientController::initializeCommunication() {
     this->communicator->start();    
 }
 
-void ClientController::evaluateDataContainer() {
-    this->renderer_thread->setMapReceived(this->data_container.getReceivedMap());
-    if (this->data_container.getGameFinish()) this->endExecution();
+void ClientController::evaluateDataContainer(DataContainer *data_container) {
+    this->renderer_thread->setMapReceived(data_container->getReceivedMap());
+    if (data_container->getGameFinish()) this->continue_running = false;
 }
 
 void ClientController::mainLoop() {
-    std::setlocale(LC_NUMERIC,"C");
-    this->initializeCommunication();
-    while (true) {
-        std::string msg = this->communicator->popMessageReceived();
-        if (!this->continue_running) break;
-        this->deserializer.deserialize(msg);
-        this->evaluateDataContainer();
+    try {
+        SceneManager scene_manager;
+        DataContainer data_container;
+        ClientDeserializer deserializer(&data_container,&scene_manager);
+        PositionConverter converter(scene_manager.getModelFacade());
+        this->handler = new EventHandlerThread(this->communicator,converter);
+        this->renderer_thread = new Renderable(&scene_manager);
+        std::setlocale(LC_NUMERIC,"C");
+        this->initializeCommunication();
+        while (true) {
+            std::string msg = this->communicator->popMessageReceived();
+            if (!this->continue_running) break;
+            deserializer.deserialize(msg);
+            this->evaluateDataContainer(&data_container);
+        }
+    } catch (const std::runtime_error &e) {
+        std::cout << e.what() << std::endl;
+    } catch (...) {
+        std::cout << "Error inesperado" << std::endl;
     }
 }
 
