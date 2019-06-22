@@ -134,6 +134,8 @@ void Model::renderAll()
   {
     acid->render(camara);
   }
+  
+  for (auto barrier : barriers) barrier->render(camara);
 
   std::map<int, Rock *>::iterator rock_it;
   for (rock_it = rocks.begin(); rock_it != rocks.end(); rock_it++)

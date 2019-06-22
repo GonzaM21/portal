@@ -21,6 +21,7 @@ Communicator :: ~Communicator() {
 
 void Communicator :: endExecution() {
     this->continue_running = false;
+    this->is_valid = false;
     this->protocol.closeProtocol();
 }
 

@@ -69,7 +69,7 @@ void MapParser :: createStoneBlock(nlohmann::json &object,std::list<Object*> &ob
 
 void MapParser ::createTriangularBlock(nlohmann::json &object,std::list<Object*> &obj) {
     ObjectTriangularBlock* new_object = this->object_factory.createObjectTriangularBlock
-    ((float)object.at("POS_X"),(float)object.at("POS_Y"),(float)object.at("SIZE"),
+    ((float)object.at("POS_X"),(float)object.at("POS_Y"),(float)object.at("WIDTH"),
     object.at("TYPE_OPTIONAL")); 
     obj.push_back(new_object);
 }

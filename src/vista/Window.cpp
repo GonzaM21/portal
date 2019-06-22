@@ -25,7 +25,7 @@ Window::Window(int width, int height) : width(width), height(height), fullscreen
     }
     SDL_Surface *image = IMG_Load(ICON_FILENAME);
     SDL_SetWindowIcon(window, image);
-    musicPlayer->playMusic(AMBIENT_MUSIC_ID);
+    //musicPlayer->playMusic(AMBIENT_MUSIC_ID);
     //Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
     //Mix_Music *music = Mix_LoadMUS("resources/Music/Ambient.mp3");
     //Mix_VolumeMusic(MIX_MAX_VOLUME/20);

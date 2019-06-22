@@ -40,7 +40,7 @@ void Rock::endContact() {
 }
 
 void Rock::die() {
-    live = false;
+    live = true;
 }
 
 bool Rock::lives() {

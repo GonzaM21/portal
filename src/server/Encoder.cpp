@@ -170,7 +170,8 @@ void Encoder :: sendBarriers() {
         std::string msg;
         b2Vec2 pos = barriers[i]->getPosition();
         b2Vec2 size = barriers[i]->getSizes();
-        msg = "9,"+ std::to_string(i+1)+ "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+        int orientation = barriers[i]->getOrientation();
+        msg = "9,"+ std::to_string(orientation)+ "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
         "," + std::to_string(size.x) + "," + std::to_string(size.y);
         this->sender->addMessageToSend(msg);
     }
