@@ -25,6 +25,7 @@ public:
     void putNextLevelScene(); 
     void putGameScene();
     int getActualScreen();
+    EndLevelScreen *getEndLevelScreen();
 };
 
 #endif

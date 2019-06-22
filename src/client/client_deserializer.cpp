@@ -23,6 +23,7 @@ void ClientDeserializer::deserialize(std::string &message) {
     } else if (arguments.at(0) == END_LEVEL_CODE && arguments.size() == 1) {
         this->data_container->setReceivedMap(false);
         this->data_container->setWaitingNextLevel(true);
+        this->data_container->setEndLevel(true);
         return;
     } else if (arguments.at(0) == END_GAME_CODE && arguments.size() == 1) {
         this->data_container->setGameFinish();
@@ -30,7 +31,7 @@ void ClientDeserializer::deserialize(std::string &message) {
     } else if (arguments.at(0) == NEXT_LEVEL_CODE && arguments.size() == 1) {
          this->data_container->setWaitingNextLevel(false);
     } else if (arguments.at(0) == START_MAP_CODE && arguments.size() == 1) {
-         //this->data_container->setLoadingNextLevel(true);
+         this->data_container->setEndLevel(false);
     } else if (arguments.at(0) == END_MAP_CODE && arguments.size() == 1) {
         this->data_container->setReceivedMap(true);
         return;
@@ -38,10 +39,11 @@ void ClientDeserializer::deserialize(std::string &message) {
         //algo
     } else if (arguments.at(0) == "NULL"){
         std::cout << "Invalid message" << std::endl;
+        //if (this->data_container->getEndLevel())
         this->data_container->setGameFinish();
         return;
     } else { 
-        printVector(arguments);
+        //printVector(arguments);
         this->scene_manager->decodeObjectMessage(arguments);
     }
 }

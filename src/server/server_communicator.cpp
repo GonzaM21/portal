@@ -10,6 +10,7 @@ Communicator :: Communicator(SocketConnect socket,RoomManager *room_manager,
     this->continue_running = true;
     this->is_valid = true;
     this->id = id;
+    this->room = nullptr;
 }
 
 Communicator :: ~Communicator() {
@@ -96,8 +97,9 @@ void Communicator :: run() {
         }
     } catch (const std::runtime_error& e) {
         std::cout << e.what() << std::endl;
+        this->is_valid = false;
         std::string msg(this->player_name+","+"disconnect");
-        this->room->addMessageToSend(msg);
+        if (this->room != nullptr) this->room->addMessageToSend(msg);
     } catch (...) {
         std::cout << "Error: unknown" << std::endl;
     }

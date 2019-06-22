@@ -15,10 +15,4 @@ bool EndLevelScreen::clickOnNext(int x,int y) {
     return this->next.clickOnButton(x,y);
 }
 
-void EndLevelScreen::setBackground() {
-    this->window.setBackground(BACKGROUND_PATH);
-}
-
-void EndLevelScreen::renderScene() {
-
-}
+void EndLevelScreen::renderScene() {}

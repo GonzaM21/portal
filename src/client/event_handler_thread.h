@@ -13,10 +13,11 @@ private:
 
 public:
     EventHandlerThread(ClientCommunicator *client_communicator,
-      PositionConverter &converter);
+      PositionConverter &converter,LocalSceneLogic &local_scene_logic);
     ~EventHandlerThread() = default;
     virtual void run() override;
     void endExecution();
+    void setSendDataLocally(bool send_locally);
 };
 
 #endif

@@ -8,7 +8,7 @@
 #include "Constants.h"
 #include <iostream>
 
-Window::Window(int width, int height,const char* backgound) : width(width), height(height), fullscreened(false), musicPlayer(new MusicBase())
+Window::Window(int width, int height) : width(width), height(height), fullscreened(false), musicPlayer(new MusicBase())
 {
     int errCode = SDL_Init(SDL_INIT_EVERYTHING);
     if (errCode)
@@ -24,9 +24,7 @@ Window::Window(int width, int height,const char* backgound) : width(width), heig
         throw SdlException("Error al crear ventana", SDL_GetError());
     }
     SDL_Surface *image = IMG_Load(ICON_FILENAME);
-    SDL_SetWindowIcon(window, image); // The icon is attached to the window pointer  
-    image = IMG_Load(backgound);
-    this->background = SDL_CreateTextureFromSurface(this->renderer, image);
+    SDL_SetWindowIcon(window, image);
     musicPlayer->playMusic(AMBIENT_MUSIC_ID);
     //Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
     //Mix_Music *music = Mix_LoadMUS("resources/Music/Ambient.mp3");
@@ -89,7 +87,6 @@ void Window::getSize(int &width, int &height) const
 
 void Window::fullscreen()
 {   
-    std::cout << fullscreened << std::endl;
     if (fullscreened == true)
     {
         SDL_SetWindowFullscreen(this->window, 0);

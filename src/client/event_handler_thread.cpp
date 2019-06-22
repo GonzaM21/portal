@@ -3,9 +3,11 @@
 #include "event_handler_thread.h"
 #include "Event_handler.h"
 #include "../common/Thread.h"
+#include "local_scene_logic.h"
 
 EventHandlerThread :: EventHandlerThread(ClientCommunicator *client_communicator,
-    PositionConverter &converter) : eventHandler(client_communicator,converter) {
+    PositionConverter &converter,LocalSceneLogic &local_scene_logic) 
+    : eventHandler(client_communicator,converter,local_scene_logic) {
     this->continue_running = true;
 }
 
@@ -22,4 +24,8 @@ void EventHandlerThread :: run() { //habria que validar que el unico evento vali
 
 void EventHandlerThread :: endExecution() {
     this->continue_running = false;
+}
+
+void EventHandlerThread :: setSendDataLocally(bool send_locally) {
+    this->eventHandler.setSendDataLocally(send_locally);
 }

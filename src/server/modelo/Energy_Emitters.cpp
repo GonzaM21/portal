@@ -51,7 +51,7 @@ bool Energy_Emitters::lives(){
 b2Vec2 calculate_postion(b2Vec2 position,b2Vec2 sizes ,int direction){
     float x = position.x - DELTA_POSITION;
     float y = position.y - DELTA_POSITION;
-    std::cout<< x << "  " << y <<std::endl;
+    //std::cout<< x << "  " << y <<std::endl;
     if(direction == RIGHT) x += (sizes.x/2.f + .7);
     if(direction == LEFT) x -= (sizes.x/2.f + .7); 
     if(direction == UP) y += (sizes.y/2.f + .7);   

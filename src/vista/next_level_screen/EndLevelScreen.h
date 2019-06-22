@@ -14,7 +14,6 @@ public:
     bool clickOnExit(int x,int y);
     bool clickOnNext(int x,int y);
     void renderScene();
-    void setBackground();
 };
 
 #endif

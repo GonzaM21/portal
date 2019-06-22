@@ -34,9 +34,9 @@ MapSaver::MapSaver(std::string file_name) : file(file_name) {
 }
 
 void getPosition(std::string &pos_x,std::string &pos_y) {
-    std::cout << "Posicion en x: ";
+    //std::cout << "Posicion en x: ";
     std::cin >> pos_x;
-    std::cout << "Posicion en y: ";
+    //std::cout << "Posicion en y: ";
     std::cin >> pos_y;
 }
 
@@ -135,12 +135,12 @@ void MapSaver::writeFile() {
 }
 
 void MapSaver::addObject(std::string object) {
-    std::cout << object.c_str() << std::endl;
+    //std::cout << object.c_str() << std::endl;
     std::vector<std::string> arguments;
     splitMessage(object,arguments);
-    std::cout << arguments[0].c_str() << std::endl;
+    //std::cout << arguments[0].c_str() << std::endl;
     int code = codes[arguments[0]];
-    std::cout << code << std::endl;
+    //std::cout << code << std::endl;
     switch (code)
     {
     case 1:

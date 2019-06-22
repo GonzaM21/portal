@@ -26,8 +26,9 @@ void Sender :: sendMessageTo(const std::string &player,std::string &message) {
     for (std::map<std::string,ColaProtegida*>::iterator 
     it=this->colas.begin(); it!=this->colas.end(); ++it) {
         if (it->first == player) {
+            if (message == "NULL") return;
             it->second->push(message);
-    }
+        }
     }
 }
 

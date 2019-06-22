@@ -250,8 +250,8 @@ void Chell_Player::resetPortal(){
 //respuesta: o (oscuridad)
 void Chell_Player::inmortalChell(){
     inmortal = !inmortal;
-    if(inmortal) std::cout<<"INMORTALIDAD ACTIVADA\n";
-    else std::cout<<"INMORTALIDAD DESACTIVADA\n";
+    //if(inmortal) std::cout<<"INMORTALIDAD ACTIVADA\n";
+    //else std::cout<<"INMORTALIDAD DESACTIVADA\n";
 }
 
 
@@ -260,12 +260,12 @@ void Chell_Player::antiGravity() {
     if(gravity){
         chell->SetGravityScale(1);
         gravity = false;
-        std::cout<<"ANTIGRAVEDAD DESACTIVADA\n";
+        //std::cout<<"ANTIGRAVEDAD DESACTIVADA\n";
     }
     else{
         chell->SetGravityScale(ZERO);
         gravity = true;
-        std::cout<<"ANTIGRAVEDAD ACTIVADA\n";
+        //std::cout<<"ANTIGRAVEDAD ACTIVADA\n";
     }
 }
 

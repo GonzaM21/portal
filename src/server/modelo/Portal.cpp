@@ -45,7 +45,7 @@ bool Portal::Move(float x_pos, float y_pos){
     velocity = b2Vec2(force * cos(angle), force * sin(angle));
 
     portal->SetLinearVelocity(velocity);
-    std::cout<<"Velocity final "<<velocity.x<<" "<<velocity.y<<std::endl;
+    //std::cout<<"Velocity final "<<velocity.x<<" "<<velocity.y<<std::endl;
     return true;
 }
 

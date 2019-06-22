@@ -11,7 +11,7 @@ public:
     /**
      * Ctor standalone
      */
-    Window(int width, int height,const char* backgound);
+    Window(int width, int height);
     ~Window();
     void fill();
     void fill(int r, int g, int b, int alpha);

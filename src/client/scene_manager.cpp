@@ -1,9 +1,10 @@
 #include "scene_manager.h"
-
+#include "../vista/next_level_screen/screen_constants.h"
 SceneManager::SceneManager() :
-    window(800,800,BACKGROUND_FILENAME) ,  
+    window(800,800) ,  
     model_facade(window),
     end_level_screen(window){
+    this->window.setBackground(BACKGROUND_FILENAME);
     this->actual_screen = 0;
 }
 
@@ -32,10 +33,14 @@ void SceneManager::setActualScreen(int screen_num) {
 
 void SceneManager::putNextLevelScene() {
     this->setActualScreen(END_LEVEL_SCREEN);
-    this->end_level_screen.setBackground();
+    this->window.setBackground(BACKGROUND_PATH);
 }
 
 void SceneManager::putGameScene() {
     this->setActualScreen(GAME_SCREEN);
-    this->model_facade.setBackground();
+    this->window.setBackground(BACKGROUND_FILENAME);
+}
+
+EndLevelScreen* SceneManager::getEndLevelScreen() {
+    return &this->end_level_screen;
 }

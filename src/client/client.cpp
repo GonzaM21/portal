@@ -14,7 +14,11 @@ int main(int argc, char *argv[])
 {
     try {
         ClientController controller;
-        if (controller.runInitialWindow(argc,argv) == -1) return 0;
+        int rv = controller.runInitialWindow(argc,argv); 
+        if (rv == 1) {
+            controller.failureExit();
+            return 0;
+        }
         controller.mainLoop();
         controller.endExecution();
     } catch (const std::runtime_error &e) {
