@@ -1,4 +1,11 @@
 /*
+* Image
+*/
+#define BACKGROUND_PATH "resources/img/next_level_screen.png"
+#define BACKGROUND_WIDHT 1920
+#define BACKGROUND_HEIGHT 1080
+
+/*
 * Button next
 */
 #define NEXT_DOWN_LEFT_X 630 

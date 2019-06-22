@@ -1,7 +1,7 @@
 #include "ModelFacade.h"
 #include <stdlib.h>
 
-ModelFacade::ModelFacade()
+ModelFacade::ModelFacade(Window &window) : model(window)
 {
   methods[0] = &ModelFacade::setPlayerId;
   methods[1] = &ModelFacade::setPlayer;
@@ -106,4 +106,8 @@ void ModelFacade::setEnergyBarrier(std::vector<std::string> arguments) {
 
 void ModelFacade::convertToWorld(Rect &worldPostion, const Rect &virtualPostion) {
   model.convertToWorld(worldPostion,virtualPostion);
+}
+
+void ModelFacade::setBackground() {
+  model.setBackground();
 }

@@ -11,7 +11,7 @@ public:
     /**
      * Ctor standalone
      */
-    Window(int width, int height);
+    Window(int width, int height,const char* backgound);
     ~Window();
     void fill();
     void fill(int r, int g, int b, int alpha);
@@ -19,10 +19,11 @@ public:
     SDL_Renderer *getRenderer() const;
     void fullscreen();
     void getSize(int &width, int &height) const;
-    SDL_Texture *background; 
+    void setBackground(const char *background);
 
 private:
     int width;
+    SDL_Texture *background; 
     int height;
     SDL_Window *window;
     SDL_Renderer *renderer;

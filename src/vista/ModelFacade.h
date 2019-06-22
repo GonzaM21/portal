@@ -24,7 +24,7 @@
 class ModelFacade
 {
 public:
-  ModelFacade();
+  ModelFacade(Window &window);
   ~ModelFacade() = default;
   void decodeMessages(std::vector<std::string> arguments);
   void setBlock(std::vector<std::string> arguments);
@@ -43,6 +43,7 @@ public:
   void renderAll();
   Window *getWindow();
   void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);
+  void setBackground();
 
 private:
   Model model;

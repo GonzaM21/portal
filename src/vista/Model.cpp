@@ -1,7 +1,7 @@
 #include "Model.h"
 #include "TextureBase.h"
 
-Model::Model() : window(800, 800), camara(window), ownPlayerId(-1)
+Model::Model(Window &window) : window(window), camara(window), ownPlayerId(-1)
 {
   TextureBase::getInstance(this->window.getRenderer());
 }
@@ -120,7 +120,6 @@ void Model::renderAll()
 {
   if (ownPlayerId == -1)
     return;
-  window.fill();
   camara.setWindow(players[ownPlayerId]->getDestWorld().getX(), players[ownPlayerId]->getDestWorld().getY(), players[ownPlayerId]->getDestWorld().getWidth(), players[ownPlayerId]->getDestWorld().getHeight());
 
   for (Block *block : blocks)
@@ -173,7 +172,6 @@ void Model::renderAll()
   for (auto cake : cakes) {
     cake->render(camara);
   }
-  window.render();
 }
 
 Model::~Model()
@@ -224,4 +222,8 @@ Model::~Model()
 
 Window* Model::getWindow() {
   return &this->window;
+}
+
+void Model::setBackground() {
+  this->window.setBackground(BACKGROUND_FILENAME);
 }

@@ -23,7 +23,7 @@
 class Model
 {
 public:
-  Model();
+  Model(Window &window);
   ~Model();
   void setBlock(Rect &dest, const int &code);
   void setGate(Rect &dest, const int &id, const int &state);
@@ -47,11 +47,14 @@ public:
   {
     window.fullscreen();
   }
+  void setBackground();
   Window *getWindow();
   void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);
+  void resetModel();
 
 private: 
-  Window window;
+  void ereasePowerBalls();
+  Window &window;
   Camara camara;
   std::list<Block *> blocks;
   std::list<Acid *> acids;
