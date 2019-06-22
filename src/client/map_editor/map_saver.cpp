@@ -1,4 +1,5 @@
 #include "map_saver.h"
+#include <sstream>
 #define BLOCK_ID "2"
 #define DOOR_ID "3"
 #define BUTTON_ID "4"
@@ -10,7 +11,27 @@
 //lazyfoo
 //tapar la ventana
 
-MapSaver::MapSaver(std::string &file_name) : file(file_name) {}
+MapSaver::MapSaver(std::string file_name) : file(file_name) {
+    codes["Metal"] = 1;
+    codes["Stone"] = 2;
+    codes["Acid"] = 3;
+    codes["Tria4"] = 4;
+    codes["Tria5"] = 5;
+    codes["Tria6"] = 6;
+    codes["Tria7"] = 7;
+    codes["Rock"] = 8;
+    codes["BarrH"] = 9;
+    codes["BarrV"] = 10;
+    codes["EnerU"] = 11;
+    codes["EnerR"] = 12;
+    codes["EnerD"] = 13;
+    codes["EnerL"] = 14;
+    codes["RecvU"] = 15;
+    codes["RecvR"] = 16;
+    codes["RecvD"] = 17;
+    codes["RecvL"] = 18;
+    codes["Cake"] = 19;
+}
 
 void getPosition(std::string &pos_x,std::string &pos_y) {
     std::cout << "Posicion en x: ";
@@ -19,20 +40,9 @@ void getPosition(std::string &pos_x,std::string &pos_y) {
     std::cin >> pos_y;
 }
 
-void MapSaver::addBlock() {
+void MapSaver::addBlock(std::string type_optional,std::string size,std::string pos_x,std::string pos_y)
+{
     std::map<std::string,std::string> m;
-    std::string type_optional;
-    std::string size;
-    std::string pos_x;
-    std::string pos_y;
-    std::cout << "TIPOS DE BLOQUES: " << std::endl;
-    std::cout << "Metal 1" << std::endl;
-    std::cout << "Piedra 2" << std::endl;
-    std::cout << "Elija tipo: ";
-    std::cin >> type_optional;
-    getPosition(pos_x,pos_y);
-    std::cout << "Tamaño: ";
-    std::cin >> size;
     m["TYPE"] = BLOCK_ID;
     m["TYPE_OPTIONAL"] = type_optional;
     m["WIDTH"] = size;
@@ -41,29 +51,19 @@ void MapSaver::addBlock() {
     this->objects.push_back(new JsonNode(m));
 }
 
-void MapSaver::addEnergyBarrier() {
-    std::string pos_x;
-    std::string pos_y;
-    std::string size;
+void MapSaver::addEnergyBarrier(std::string size, std::string pos_x, std::string pos_y, std::string orientation)
+{
     std::map<std::string,std::string> m;
-    getPosition(pos_x,pos_y);
-    std::cout << "Altura: ";
-    std::cin >> size;
-    m["TYPE"] = ACID_ID;
+    m["TYPE"] = ENERGY_BARRIER_ID;
     m["POS_X"] = pos_x;
     m["POS_Y"] = pos_y;
     m["HEIGHT"] = size;
+    m["ORIENTATION"] = orientation;
     this->objects.push_back(new JsonNode(m));
 }
 
-void MapSaver::addAcid() {
-    std::string pos_x;
-    std::string pos_y;
-    std::string size;
+void MapSaver::addAcid(std::string size, std::string pos_x, std::string pos_y){
     std::map<std::string,std::string> m;
-    getPosition(pos_x,pos_y);
-    std::cout << "Largo: ";
-    std::cin >> size;
     m["TYPE"] = ACID_ID;
     m["POS_X"] = pos_x;
     m["POS_Y"] = pos_y;
@@ -71,29 +71,16 @@ void MapSaver::addAcid() {
     this->objects.push_back(new JsonNode(m));
 }
 
-void MapSaver::addDoor() {
-    std::string pos_x;
-    std::string pos_y;
+void MapSaver::addDoor(std::string pos_x, std::string pos_y){
     std::map<std::string,std::string> m;
-    getPosition(pos_x,pos_y);
     m["TYPE"] = DOOR_ID;
     m["POS_X"] = pos_x;
     m["POS_Y"] = pos_y;
     this->objects.push_back(new JsonNode(m));
 }
 
-void MapSaver::addButton() {
-    std::string pos_x;
-    std::string pos_y;
-    std::string door_number;
-    std::string state;
+void MapSaver::addButton(std::string pos_x, std::string pos_y, std::string door_number, std::string state) {
     std::map<std::string,std::string> m;
-    getPosition(pos_x,pos_y);
-    std::cout << "Puerta asociada: ";
-    std::cin >> door_number;
-    std::cout << "Abajo (0)\nArriba (1)\n";
-    std::cout << "Estado del boton para que abra la puerta: ";
-    std::cin >> state;
     m["TYPE"] = BUTTON_ID;
     m["DOOR_ID"] = door_number;
     m["STATE"] = state;
@@ -102,33 +89,16 @@ void MapSaver::addButton() {
     this->objects.push_back(new JsonNode(m));
 }
 
-void MapSaver::addCake() {
-    std::string pos_x;
-    std::string pos_y;
+void MapSaver::addCake(std::string pos_x, std::string pos_y){
     std::map<std::string,std::string> m;
-    getPosition(pos_x,pos_y);
     m["TYPE"] = CAKE_ID;
     m["POS_X"] = pos_x;
     m["POS_Y"] = pos_y;
     this->objects.push_back(new JsonNode(m));    
 }
 
-void MapSaver::addEmitter() {
-    std::string pos_x;
-    std::string pos_y;
-    std::string size;
-    std::string direction;
-    std::string charged;
+void MapSaver::addEmitter(std::string pos_x,std::string pos_y,std::string size,std::string direction,std::string charged) {
     std::map<std::string,std::string> m;
-    getPosition(pos_x,pos_y);
-    std::cout << "Tamaño: ";
-    std::cin >> size;
-    std::cout << "Derecha (0)\nIzquierda (1)\nArriba (2)\nAbajo (3)\n";
-    std::cout << "Direccion: ";
-    std::cin >> direction;
-    std::cout << "Descargado (0)\nCargado (1)\n";
-    std::cout << "Carga: ";
-    std::cin >> charged; 
     m["TYPE"] = ENERGY_EMITTER_ID;
     m["POS_X"] = pos_x;
     m["POS_Y"] = pos_y;
@@ -138,14 +108,8 @@ void MapSaver::addEmitter() {
     this->objects.push_back(new JsonNode(m));
 }
 
-void MapSaver::addRock() {
-    std::string pos_x;
-    std::string pos_y;
-    std::string size;
+void MapSaver::addRock(std::string pos_x, std::string pos_y, std::string size) {
     std::map<std::string,std::string> m;
-    getPosition(pos_x,pos_y);
-    std::cout << "Tamaño: ";
-    std::cin >> size;
     m["TYPE"] = ROCK_ID;
     m["POS_X"] = pos_x;
     m["POS_Y"] = pos_y;
@@ -170,6 +134,61 @@ void MapSaver::writeFile() {
     this->file << "\n}";
 }
 
+void MapSaver::addObject(std::string object) {
+    std::cout << object.c_str() << std::endl;
+    std::vector<std::string> arguments;
+    splitMessage(object,arguments);
+    std::cout << arguments[0].c_str() << std::endl;
+    int code = codes[arguments[0]];
+    std::cout << code << std::endl;
+    switch (code)
+    {
+    case 1:
+    case 2:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+        addBlock(std::to_string(code), "1", arguments[1], arguments[2]);
+        break;    
+    case 3:
+        addAcid("1",arguments[1], arguments[2]);
+        break;
+    case 8:
+        addRock(arguments[1], arguments[2], "0.5"); 
+        break;
+    case 9:
+    case 10:
+        // addEnergyBarrier(arguments[1], arguments[2], "1 ",std::to_string(code % 9));
+        break;
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+        addEmitter(arguments[1],arguments[2],"1",std::to_string(code%10),"1");
+        break;
+    case 15:
+    case 16:
+    case 17:
+    case 18:
+        addEmitter(arguments[1], arguments[2], "1", std::to_string(code % 14), "0");
+        break;
+    case 19:
+        addCake(arguments[1],arguments[2]);
+        break;
+    default:
+        break;
+    }
+}
+
+void MapSaver::splitMessage(std::string& message, std::vector<std::string>& arguments){
+    std::stringstream ss(message);
+    std::string token;
+    while (getline(ss, token, ','))
+    {
+        arguments.push_back(token);
+    }
+}
 
 MapSaver::~MapSaver() {
     for (auto i = this->objects.begin(); i != this->objects.end();) {

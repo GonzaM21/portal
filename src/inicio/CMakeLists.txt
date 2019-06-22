@@ -35,4 +35,4 @@ add_library(ventanaprincipal
   )
 
 # Use the Widgets module from Qt 5.
-target_link_libraries(ventanaprincipal Qt5::Widgets)
+target_link_libraries(ventanaprincipal clientemodelo Qt5::Widgets)

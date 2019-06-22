@@ -16,7 +16,7 @@
 #include <functional>
 #include <typeinfo>
 
-Player::Player(const Window &window, const int &direction) : dest_world(0, 0, 0, 0), window(window), direction(direction)
+Player::Player(const Window &window, const int &direction) : dest_world(0, 0, 0, 0), direction(direction)
 {
 	this->changeState[0] = &Player::setIdle;
 	this->changeState[1] = &Player::setRestIdle;
@@ -120,7 +120,6 @@ void Player::setFalling()
 void Player::setState(const int &state, const int &direction)
 {
 	(this->*(changeState[state]))();
-	std::cout << strcmp(typeid(*this->sprite).name(), typeid(*this->states[0]).name()) << std::endl;
 	this->sprite->setDirection(direction);
 	this->direction = direction;
 }

@@ -9,6 +9,7 @@
 #ifndef UI_VENTANAPRINCIPAL_H
 #define UI_VENTANAPRINCIPAL_H
 
+#include <QtCore/QLocale>
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
@@ -22,6 +23,7 @@
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -32,6 +34,7 @@ public:
     QStackedWidget *stackedWidget;
     QWidget *inicio;
     QPushButton *comenzarButton;
+    QPushButton *editarMapa;
     QWidget *entrada;
     QPushButton *submit;
     QFrame *horizontalFrame_3;
@@ -49,30 +52,40 @@ public:
     QWidget *eleccionSala;
     QPushButton *crearSalaButton;
     QPushButton *elegirSalaButton;
-    QListWidget *listaSalas;
-    QLabel *label_5;
-    QPushButton *reloadButton;
     QWidget *crearSala;
     QGroupBox *groupBox;
     QLabel *label_4;
     QLineEdit *nombreSala;
-    QPushButton *crearSalaButton_2;
+    QPushButton *continuar;
     QWidget *salaEspera;
     QLabel *integrantesLabel;
     QLabel *sala;
     QPushButton *comenzarJuego;
     QListWidget *integrantesLista;
     QPushButton *reloadButton_2;
-    QWidget *page;
+    QWidget *configMapa;
+    QFrame *horizontalFrame_4;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *label_5;
+    QLineEdit *alto;
+    QFrame *horizontalFrame_5;
+    QHBoxLayout *horizontalLayout_5;
+    QLabel *label_6;
+    QLineEdit *ancho;
+    QPushButton *pushButton;
+    QWidget *editorMapa;
+    QTableWidget *mapa;
+    QListWidget *objetos;
+    QPushButton *guardarMapa;
 
     void setupUi(QWidget *VentanaPrincipal)
     {
         if (VentanaPrincipal->objectName().isEmpty())
             VentanaPrincipal->setObjectName(QStringLiteral("VentanaPrincipal"));
         VentanaPrincipal->setEnabled(true);
-        VentanaPrincipal->resize(776, 711);
+        VentanaPrincipal->resize(1000, 1000);
         QIcon icon;
-        icon.addFile(QStringLiteral("icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral("resources/img/icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         VentanaPrincipal->setWindowIcon(icon);
         VentanaPrincipal->setToolTipDuration(0);
         VentanaPrincipal->setStyleSheet(QLatin1String("QWidget\n"
@@ -80,12 +93,13 @@ public:
 "   border-image: url(:/images/myimage.png) 0 0 0 0 stretch stretch;\n"
 "   border-width: 0px;\n"
 "}"));
+        VentanaPrincipal->setLocale(QLocale(QLocale::C, QLocale::AnyCountry));
         stackedWidget = new QStackedWidget(VentanaPrincipal);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setGeometry(QRect(-10, 0, 791, 731));
+        stackedWidget->setGeometry(QRect(-10, 0, 1000, 1000));
         stackedWidget->setStyleSheet(QLatin1String("QWidget#inicio\n"
 "{\n"
-"   border-image: url(:/img/portada.jpeg) 0 0 0 0 stretch stretch;\n"
+"   border-image: url(portada.jpeg) 0 0 0 0 stretch stretch;\n"
 "}\n"
 "QFrame\n"
 "{\n"
@@ -93,22 +107,32 @@ public:
 "}\n"
 "QPushButton#reloadButton\n"
 "{\n"
-"   border-image: url(:/img/reload.png) 0 0 0 0 stretch stretch;\n"
+"   border-image: url(reload.png) 0 0 0 0 stretch stretch;\n"
 "}"));
         inicio = new QWidget();
         inicio->setObjectName(QStringLiteral("inicio"));
         comenzarButton = new QPushButton(inicio);
         comenzarButton->setObjectName(QStringLiteral("comenzarButton"));
-        comenzarButton->setGeometry(QRect(560, 390, 211, 101));
+        comenzarButton->setGeometry(QRect(730, 430, 211, 101));
         QFont font;
         font.setFamily(QStringLiteral("Century Schoolbook L"));
         font.setPointSize(30);
         comenzarButton->setFont(font);
         comenzarButton->setAutoDefault(false);
         comenzarButton->setFlat(false);
+        editarMapa = new QPushButton(inicio);
+        editarMapa->setObjectName(QStringLiteral("editarMapa"));
+        editarMapa->setGeometry(QRect(730, 550, 211, 101));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Century Schoolbook L"));
+        font1.setPointSize(25);
+        editarMapa->setFont(font1);
+        editarMapa->setAutoDefault(false);
+        editarMapa->setFlat(false);
         stackedWidget->addWidget(inicio);
         entrada = new QWidget();
         entrada->setObjectName(QStringLiteral("entrada"));
+        entrada->setMouseTracking(true);
         submit = new QPushButton(entrada);
         submit->setObjectName(QStringLiteral("submit"));
         submit->setGeometry(QRect(160, 536, 421, 71));
@@ -182,34 +206,21 @@ public:
         eleccionSala->setObjectName(QStringLiteral("eleccionSala"));
         crearSalaButton = new QPushButton(eleccionSala);
         crearSalaButton->setObjectName(QStringLiteral("crearSalaButton"));
-        crearSalaButton->setGeometry(QRect(450, 520, 281, 71));
+        crearSalaButton->setGeometry(QRect(220, 300, 351, 141));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(crearSalaButton->sizePolicy().hasHeightForWidth());
         crearSalaButton->setSizePolicy(sizePolicy);
-        QFont font1;
-        font1.setPointSize(40);
-        crearSalaButton->setFont(font1);
+        QFont font2;
+        font2.setPointSize(40);
+        crearSalaButton->setFont(font2);
         elegirSalaButton = new QPushButton(eleccionSala);
         elegirSalaButton->setObjectName(QStringLiteral("elegirSalaButton"));
-        elegirSalaButton->setGeometry(QRect(450, 440, 281, 71));
+        elegirSalaButton->setGeometry(QRect(220, 150, 351, 141));
         sizePolicy.setHeightForWidth(elegirSalaButton->sizePolicy().hasHeightForWidth());
         elegirSalaButton->setSizePolicy(sizePolicy);
-        elegirSalaButton->setFont(font1);
-        listaSalas = new QListWidget(eleccionSala);
-        listaSalas->setObjectName(QStringLiteral("listaSalas"));
-        listaSalas->setGeometry(QRect(50, 270, 301, 321));
-        label_5 = new QLabel(eleccionSala);
-        label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(50, 220, 301, 51));
-        QFont font2;
-        font2.setPointSize(25);
-        label_5->setFont(font2);
-        label_5->setAlignment(Qt::AlignCenter);
-        reloadButton = new QPushButton(eleccionSala);
-        reloadButton->setObjectName(QStringLiteral("reloadButton"));
-        reloadButton->setGeometry(QRect(320, 260, 31, 27));
+        elegirSalaButton->setFont(font2);
         stackedWidget->addWidget(eleccionSala);
         crearSala = new QWidget();
         crearSala->setObjectName(QStringLiteral("crearSala"));
@@ -226,10 +237,10 @@ public:
         nombreSala = new QLineEdit(groupBox);
         nombreSala->setObjectName(QStringLiteral("nombreSala"));
         nombreSala->setGeometry(QRect(200, 180, 361, 51));
-        crearSalaButton_2 = new QPushButton(groupBox);
-        crearSalaButton_2->setObjectName(QStringLiteral("crearSalaButton_2"));
-        crearSalaButton_2->setGeometry(QRect(200, 250, 361, 91));
-        crearSalaButton_2->setFont(font3);
+        continuar = new QPushButton(groupBox);
+        continuar->setObjectName(QStringLiteral("continuar"));
+        continuar->setGeometry(QRect(200, 250, 361, 91));
+        continuar->setFont(font3);
         stackedWidget->addWidget(crearSala);
         salaEspera = new QWidget();
         salaEspera->setObjectName(QStringLiteral("salaEspera"));
@@ -241,12 +252,14 @@ public:
         sala = new QLabel(salaEspera);
         sala->setObjectName(QStringLiteral("sala"));
         sala->setGeometry(QRect(200, 50, 411, 61));
-        sala->setFont(font1);
+        sala->setFont(font2);
         sala->setAlignment(Qt::AlignCenter);
         comenzarJuego = new QPushButton(salaEspera);
         comenzarJuego->setObjectName(QStringLiteral("comenzarJuego"));
         comenzarJuego->setGeometry(QRect(260, 500, 301, 121));
-        comenzarJuego->setFont(font2);
+        QFont font4;
+        font4.setPointSize(25);
+        comenzarJuego->setFont(font4);
         integrantesLista = new QListWidget(salaEspera);
         integrantesLista->setObjectName(QStringLiteral("integrantesLista"));
         integrantesLista->setGeometry(QRect(200, 200, 411, 271));
@@ -254,14 +267,348 @@ public:
         reloadButton_2->setObjectName(QStringLiteral("reloadButton_2"));
         reloadButton_2->setGeometry(QRect(580, 200, 31, 27));
         stackedWidget->addWidget(salaEspera);
-        page = new QWidget();
-        page->setObjectName(QStringLiteral("page"));
-        stackedWidget->addWidget(page);
+        configMapa = new QWidget();
+        configMapa->setObjectName(QStringLiteral("configMapa"));
+        horizontalFrame_4 = new QFrame(configMapa);
+        horizontalFrame_4->setObjectName(QStringLiteral("horizontalFrame_4"));
+        horizontalFrame_4->setGeometry(QRect(190, 260, 421, 141));
+        horizontalLayout_4 = new QHBoxLayout(horizontalFrame_4);
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        label_5 = new QLabel(horizontalFrame_4);
+        label_5->setObjectName(QStringLiteral("label_5"));
+
+        horizontalLayout_4->addWidget(label_5);
+
+        alto = new QLineEdit(horizontalFrame_4);
+        alto->setObjectName(QStringLiteral("alto"));
+
+        horizontalLayout_4->addWidget(alto);
+
+        horizontalFrame_5 = new QFrame(configMapa);
+        horizontalFrame_5->setObjectName(QStringLiteral("horizontalFrame_5"));
+        horizontalFrame_5->setGeometry(QRect(190, 110, 421, 141));
+        horizontalFrame_5->setStyleSheet(QLatin1String("QFrame \n"
+"{\n"
+"background-color: rgb(255, 255, 255);\n"
+"}"));
+        horizontalLayout_5 = new QHBoxLayout(horizontalFrame_5);
+        horizontalLayout_5->setSpacing(6);
+        horizontalLayout_5->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalLayout_5->setContentsMargins(25, 10, 25, 10);
+        label_6 = new QLabel(horizontalFrame_5);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setStyleSheet(QStringLiteral(""));
+
+        horizontalLayout_5->addWidget(label_6);
+
+        ancho = new QLineEdit(horizontalFrame_5);
+        ancho->setObjectName(QStringLiteral("ancho"));
+
+        horizontalLayout_5->addWidget(ancho);
+
+        pushButton = new QPushButton(configMapa);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(190, 410, 421, 101));
+        QFont font5;
+        font5.setPointSize(36);
+        font5.setItalic(true);
+        pushButton->setFont(font5);
+        stackedWidget->addWidget(configMapa);
+        editorMapa = new QWidget();
+        editorMapa->setObjectName(QStringLiteral("editorMapa"));
+        mapa = new QTableWidget(editorMapa);
+        if (mapa->columnCount() < 37)
+            mapa->setColumnCount(37);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(4, __qtablewidgetitem4);
+        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(5, __qtablewidgetitem5);
+        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(6, __qtablewidgetitem6);
+        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(7, __qtablewidgetitem7);
+        QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(8, __qtablewidgetitem8);
+        QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(9, __qtablewidgetitem9);
+        QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(10, __qtablewidgetitem10);
+        QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(11, __qtablewidgetitem11);
+        QTableWidgetItem *__qtablewidgetitem12 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(12, __qtablewidgetitem12);
+        QTableWidgetItem *__qtablewidgetitem13 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(13, __qtablewidgetitem13);
+        QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(14, __qtablewidgetitem14);
+        QTableWidgetItem *__qtablewidgetitem15 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(15, __qtablewidgetitem15);
+        QTableWidgetItem *__qtablewidgetitem16 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(16, __qtablewidgetitem16);
+        QTableWidgetItem *__qtablewidgetitem17 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(17, __qtablewidgetitem17);
+        QTableWidgetItem *__qtablewidgetitem18 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(18, __qtablewidgetitem18);
+        QTableWidgetItem *__qtablewidgetitem19 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(19, __qtablewidgetitem19);
+        QTableWidgetItem *__qtablewidgetitem20 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(20, __qtablewidgetitem20);
+        QTableWidgetItem *__qtablewidgetitem21 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(21, __qtablewidgetitem21);
+        QTableWidgetItem *__qtablewidgetitem22 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(22, __qtablewidgetitem22);
+        QTableWidgetItem *__qtablewidgetitem23 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(23, __qtablewidgetitem23);
+        QTableWidgetItem *__qtablewidgetitem24 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(24, __qtablewidgetitem24);
+        QTableWidgetItem *__qtablewidgetitem25 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(25, __qtablewidgetitem25);
+        QTableWidgetItem *__qtablewidgetitem26 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(26, __qtablewidgetitem26);
+        QTableWidgetItem *__qtablewidgetitem27 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(27, __qtablewidgetitem27);
+        QTableWidgetItem *__qtablewidgetitem28 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(28, __qtablewidgetitem28);
+        QTableWidgetItem *__qtablewidgetitem29 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(29, __qtablewidgetitem29);
+        QTableWidgetItem *__qtablewidgetitem30 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(30, __qtablewidgetitem30);
+        QTableWidgetItem *__qtablewidgetitem31 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(31, __qtablewidgetitem31);
+        QTableWidgetItem *__qtablewidgetitem32 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(32, __qtablewidgetitem32);
+        QTableWidgetItem *__qtablewidgetitem33 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(33, __qtablewidgetitem33);
+        QTableWidgetItem *__qtablewidgetitem34 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(34, __qtablewidgetitem34);
+        QTableWidgetItem *__qtablewidgetitem35 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(35, __qtablewidgetitem35);
+        QTableWidgetItem *__qtablewidgetitem36 = new QTableWidgetItem();
+        mapa->setHorizontalHeaderItem(36, __qtablewidgetitem36);
+        if (mapa->rowCount() < 37)
+            mapa->setRowCount(37);
+        QTableWidgetItem *__qtablewidgetitem37 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(0, __qtablewidgetitem37);
+        QTableWidgetItem *__qtablewidgetitem38 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(1, __qtablewidgetitem38);
+        QTableWidgetItem *__qtablewidgetitem39 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(2, __qtablewidgetitem39);
+        QTableWidgetItem *__qtablewidgetitem40 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(3, __qtablewidgetitem40);
+        QTableWidgetItem *__qtablewidgetitem41 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(4, __qtablewidgetitem41);
+        QTableWidgetItem *__qtablewidgetitem42 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(5, __qtablewidgetitem42);
+        QTableWidgetItem *__qtablewidgetitem43 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(6, __qtablewidgetitem43);
+        QTableWidgetItem *__qtablewidgetitem44 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(7, __qtablewidgetitem44);
+        QTableWidgetItem *__qtablewidgetitem45 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(8, __qtablewidgetitem45);
+        QTableWidgetItem *__qtablewidgetitem46 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(9, __qtablewidgetitem46);
+        QTableWidgetItem *__qtablewidgetitem47 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(10, __qtablewidgetitem47);
+        QTableWidgetItem *__qtablewidgetitem48 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(11, __qtablewidgetitem48);
+        QTableWidgetItem *__qtablewidgetitem49 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(12, __qtablewidgetitem49);
+        QTableWidgetItem *__qtablewidgetitem50 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(13, __qtablewidgetitem50);
+        QTableWidgetItem *__qtablewidgetitem51 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(14, __qtablewidgetitem51);
+        QTableWidgetItem *__qtablewidgetitem52 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(15, __qtablewidgetitem52);
+        QTableWidgetItem *__qtablewidgetitem53 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(16, __qtablewidgetitem53);
+        QTableWidgetItem *__qtablewidgetitem54 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(17, __qtablewidgetitem54);
+        QTableWidgetItem *__qtablewidgetitem55 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(18, __qtablewidgetitem55);
+        QTableWidgetItem *__qtablewidgetitem56 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(19, __qtablewidgetitem56);
+        QTableWidgetItem *__qtablewidgetitem57 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(20, __qtablewidgetitem57);
+        QTableWidgetItem *__qtablewidgetitem58 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(21, __qtablewidgetitem58);
+        QTableWidgetItem *__qtablewidgetitem59 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(22, __qtablewidgetitem59);
+        QTableWidgetItem *__qtablewidgetitem60 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(23, __qtablewidgetitem60);
+        QTableWidgetItem *__qtablewidgetitem61 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(24, __qtablewidgetitem61);
+        QTableWidgetItem *__qtablewidgetitem62 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(25, __qtablewidgetitem62);
+        QTableWidgetItem *__qtablewidgetitem63 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(26, __qtablewidgetitem63);
+        QTableWidgetItem *__qtablewidgetitem64 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(27, __qtablewidgetitem64);
+        QTableWidgetItem *__qtablewidgetitem65 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(28, __qtablewidgetitem65);
+        QTableWidgetItem *__qtablewidgetitem66 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(29, __qtablewidgetitem66);
+        QTableWidgetItem *__qtablewidgetitem67 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(30, __qtablewidgetitem67);
+        QTableWidgetItem *__qtablewidgetitem68 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(31, __qtablewidgetitem68);
+        QTableWidgetItem *__qtablewidgetitem69 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(32, __qtablewidgetitem69);
+        QTableWidgetItem *__qtablewidgetitem70 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(33, __qtablewidgetitem70);
+        QTableWidgetItem *__qtablewidgetitem71 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(34, __qtablewidgetitem71);
+        QTableWidgetItem *__qtablewidgetitem72 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(35, __qtablewidgetitem72);
+        QTableWidgetItem *__qtablewidgetitem73 = new QTableWidgetItem();
+        mapa->setVerticalHeaderItem(36, __qtablewidgetitem73);
+        mapa->setObjectName(QStringLiteral("mapa"));
+        mapa->setGeometry(QRect(50, 10, 871, 691));
+        mapa->setMouseTracking(true);
+        mapa->setDragEnabled(true);
+        mapa->setDragDropOverwriteMode(true);
+        mapa->setDragDropMode(QAbstractItemView::DragDrop);
+        mapa->setDefaultDropAction(Qt::CopyAction);
+        mapa->setAlternatingRowColors(false);
+        mapa->setIconSize(QSize(50, 50));
+        mapa->setVerticalScrollMode(QAbstractItemView::ScrollPerItem);
+        mapa->setShowGrid(true);
+        mapa->setGridStyle(Qt::DashLine);
+        mapa->setCornerButtonEnabled(true);
+        mapa->setColumnCount(37);
+        mapa->horizontalHeader()->setVisible(false);
+        mapa->horizontalHeader()->setDefaultSectionSize(50);
+        mapa->horizontalHeader()->setHighlightSections(false);
+        mapa->horizontalHeader()->setMinimumSectionSize(50);
+        mapa->verticalHeader()->setVisible(false);
+        mapa->verticalHeader()->setDefaultSectionSize(50);
+        mapa->verticalHeader()->setHighlightSections(false);
+        mapa->verticalHeader()->setMinimumSectionSize(50);
+        objetos = new QListWidget(editorMapa);
+        QIcon icon1;
+        icon1.addFile(QStringLiteral("resources/qt/Acid.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem = new QListWidgetItem(objetos);
+        __qlistwidgetitem->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral("resources/qt/Energy_Emitter_Charged_U.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem1 = new QListWidgetItem(objetos);
+        __qlistwidgetitem1->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral("resources/qt/Energy_Emitter_Charged_D.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem2 = new QListWidgetItem(objetos);
+        __qlistwidgetitem2->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral("resources/qt/Energy_Emitter_Charged_R.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem3 = new QListWidgetItem(objetos);
+        __qlistwidgetitem3->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral("resources/qt/Capa 2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem4 = new QListWidgetItem(objetos);
+        __qlistwidgetitem4->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral("resources/qt/Energy_barrier_h.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem5 = new QListWidgetItem(objetos);
+        __qlistwidgetitem5->setIcon(icon6);
+        QIcon icon7;
+        icon7.addFile(QStringLiteral("resources/qt/Energy_barrier_v.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem6 = new QListWidgetItem(objetos);
+        __qlistwidgetitem6->setIcon(icon7);
+        QIcon icon8;
+        icon8.addFile(QStringLiteral("resources/qt/Energy_Emitter_Charged_L.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem7 = new QListWidgetItem(objetos);
+        __qlistwidgetitem7->setIcon(icon8);
+        QIcon icon9;
+        icon9.addFile(QStringLiteral("resources/qt/Energy_Emitter_U.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem8 = new QListWidgetItem(objetos);
+        __qlistwidgetitem8->setIcon(icon9);
+        QIcon icon10;
+        icon10.addFile(QStringLiteral("resources/qt/Energy_Emitter_L.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem9 = new QListWidgetItem(objetos);
+        __qlistwidgetitem9->setIcon(icon10);
+        QIcon icon11;
+        icon11.addFile(QStringLiteral("resources/qt/Energy_Emitter_R.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem10 = new QListWidgetItem(objetos);
+        __qlistwidgetitem10->setIcon(icon11);
+        QIcon icon12;
+        icon12.addFile(QStringLiteral("resources/qt/Energy_Emitter_D.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem11 = new QListWidgetItem(objetos);
+        __qlistwidgetitem11->setIcon(icon12);
+        QListWidgetItem *__qlistwidgetitem12 = new QListWidgetItem(objetos);
+        __qlistwidgetitem12->setIcon(icon);
+        QIcon icon13;
+        icon13.addFile(QStringLiteral("resources/qt/Metal_block.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem13 = new QListWidgetItem(objetos);
+        __qlistwidgetitem13->setIcon(icon13);
+        QIcon icon14;
+        icon14.addFile(QStringLiteral("resources/qt/Stone_block.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem14 = new QListWidgetItem(objetos);
+        __qlistwidgetitem14->setIcon(icon14);
+        QIcon icon15;
+        icon15.addFile(QStringLiteral("resources/qt/Traingular_Metal_block.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem15 = new QListWidgetItem(objetos);
+        __qlistwidgetitem15->setIcon(icon15);
+        QIcon icon16;
+        icon16.addFile(QStringLiteral("resources/qt/Traingulat_Metal_block_r.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem16 = new QListWidgetItem(objetos);
+        __qlistwidgetitem16->setIcon(icon16);
+        QIcon icon17;
+        icon17.addFile(QStringLiteral("resources/qt/Traingulat_Metal_block_3.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem17 = new QListWidgetItem(objetos);
+        __qlistwidgetitem17->setIcon(icon17);
+        QIcon icon18;
+        icon18.addFile(QStringLiteral("resources/qt/Traingulat_Metal_block_4.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem18 = new QListWidgetItem(objetos);
+        __qlistwidgetitem18->setIcon(icon18);
+        QIcon icon19;
+        icon19.addFile(QStringLiteral("resources/qt/Cake_1.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QListWidgetItem *__qlistwidgetitem19 = new QListWidgetItem(objetos);
+        __qlistwidgetitem19->setIcon(icon19);
+        objetos->setObjectName(QStringLiteral("objetos"));
+        objetos->setGeometry(QRect(50, 710, 871, 271));
+        objetos->viewport()->setProperty("cursor", QVariant(QCursor(Qt::CrossCursor)));
+        objetos->setLayoutDirection(Qt::LeftToRight);
+        objetos->setLocale(QLocale(QLocale::C, QLocale::AnyCountry));
+        objetos->setProperty("showDropIndicator", QVariant(true));
+        objetos->setDragEnabled(true);
+        objetos->setDragDropOverwriteMode(false);
+        objetos->setDragDropMode(QAbstractItemView::DragOnly);
+        objetos->setDefaultDropAction(Qt::IgnoreAction);
+        objetos->setSelectionMode(QAbstractItemView::SingleSelection);
+        objetos->setSelectionBehavior(QAbstractItemView::SelectRows);
+        objetos->setIconSize(QSize(50, 50));
+        objetos->setMovement(QListView::Snap);
+        objetos->setFlow(QListView::LeftToRight);
+        objetos->setResizeMode(QListView::Fixed);
+        objetos->setLayoutMode(QListView::SinglePass);
+        objetos->setSpacing(5);
+        objetos->setGridSize(QSize(75, 150));
+        objetos->setViewMode(QListView::IconMode);
+        objetos->setModelColumn(0);
+        objetos->setUniformItemSizes(false);
+        objetos->setBatchSize(150);
+        objetos->setWordWrap(false);
+        objetos->setSelectionRectVisible(true);
+        guardarMapa = new QPushButton(editorMapa);
+        guardarMapa->setObjectName(QStringLiteral("guardarMapa"));
+        guardarMapa->setGeometry(QRect(930, 710, 71, 271));
+        stackedWidget->addWidget(editorMapa);
 
         retranslateUi(VentanaPrincipal);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(5);
         comenzarButton->setDefault(true);
+        editarMapa->setDefault(true);
+        objetos->setCurrentRow(-1);
 
 
         QMetaObject::connectSlotsByName(VentanaPrincipal);
@@ -271,21 +618,69 @@ public:
     {
         VentanaPrincipal->setWindowTitle(QApplication::translate("VentanaPrincipal", "VentanaPrincipal", 0));
         comenzarButton->setText(QApplication::translate("VentanaPrincipal", "Comenzar", 0));
+        editarMapa->setText(QApplication::translate("VentanaPrincipal", "Editar Mapa", 0));
         submit->setText(QApplication::translate("VentanaPrincipal", "Iniciar Juego", 0));
         label_3->setText(QApplication::translate("VentanaPrincipal", "Ingresar puerto", 0));
         label_2->setText(QApplication::translate("VentanaPrincipal", "Ingresar host", 0));
         label->setText(QApplication::translate("VentanaPrincipal", "Ingresar Nombre", 0));
         crearSalaButton->setText(QApplication::translate("VentanaPrincipal", "Crear Sala", 0));
         elegirSalaButton->setText(QApplication::translate("VentanaPrincipal", "Elegir Sala", 0));
-        label_5->setText(QApplication::translate("VentanaPrincipal", "Salas Disponibles", 0));
-        reloadButton->setText(QString());
         groupBox->setTitle(QString());
         label_4->setText(QApplication::translate("VentanaPrincipal", "Ingrese el nombre de la sala", 0));
-        crearSalaButton_2->setText(QApplication::translate("VentanaPrincipal", "Crear", 0));
+        continuar->setText(QApplication::translate("VentanaPrincipal", "Continuar", 0));
         integrantesLabel->setText(QApplication::translate("VentanaPrincipal", "Integrantes", 0));
         sala->setText(QApplication::translate("VentanaPrincipal", "Sala Nombre", 0));
         comenzarJuego->setText(QApplication::translate("VentanaPrincipal", "Comenzar", 0));
         reloadButton_2->setText(QString());
+        label_5->setText(QApplication::translate("VentanaPrincipal", "Ingresar alto", 0));
+        label_6->setText(QApplication::translate("VentanaPrincipal", "Ingresar Ancho", 0));
+        pushButton->setText(QApplication::translate("VentanaPrincipal", "Crear", 0));
+
+        const bool __sortingEnabled = objetos->isSortingEnabled();
+        objetos->setSortingEnabled(false);
+        QListWidgetItem *___qlistwidgetitem = objetos->item(0);
+        ___qlistwidgetitem->setText(QApplication::translate("VentanaPrincipal", "Acid", 0));
+        QListWidgetItem *___qlistwidgetitem1 = objetos->item(1);
+        ___qlistwidgetitem1->setText(QApplication::translate("VentanaPrincipal", "RecvU", 0));
+        QListWidgetItem *___qlistwidgetitem2 = objetos->item(2);
+        ___qlistwidgetitem2->setText(QApplication::translate("VentanaPrincipal", "RecvD", 0));
+        QListWidgetItem *___qlistwidgetitem3 = objetos->item(3);
+        ___qlistwidgetitem3->setText(QApplication::translate("VentanaPrincipal", "RecvR", 0));
+        QListWidgetItem *___qlistwidgetitem4 = objetos->item(4);
+        ___qlistwidgetitem4->setText(QApplication::translate("VentanaPrincipal", "Rock", 0));
+        QListWidgetItem *___qlistwidgetitem5 = objetos->item(5);
+        ___qlistwidgetitem5->setText(QApplication::translate("VentanaPrincipal", "BarrH", 0));
+        QListWidgetItem *___qlistwidgetitem6 = objetos->item(6);
+        ___qlistwidgetitem6->setText(QApplication::translate("VentanaPrincipal", "BarrV", 0));
+        QListWidgetItem *___qlistwidgetitem7 = objetos->item(7);
+        ___qlistwidgetitem7->setText(QApplication::translate("VentanaPrincipal", "RecvL", 0));
+        QListWidgetItem *___qlistwidgetitem8 = objetos->item(8);
+        ___qlistwidgetitem8->setText(QApplication::translate("VentanaPrincipal", "EnerU", 0));
+        QListWidgetItem *___qlistwidgetitem9 = objetos->item(9);
+        ___qlistwidgetitem9->setText(QApplication::translate("VentanaPrincipal", "EnerL", 0));
+        QListWidgetItem *___qlistwidgetitem10 = objetos->item(10);
+        ___qlistwidgetitem10->setText(QApplication::translate("VentanaPrincipal", "EnerR", 0));
+        QListWidgetItem *___qlistwidgetitem11 = objetos->item(11);
+        ___qlistwidgetitem11->setText(QApplication::translate("VentanaPrincipal", "EnerD", 0));
+        QListWidgetItem *___qlistwidgetitem12 = objetos->item(12);
+        ___qlistwidgetitem12->setText(QApplication::translate("VentanaPrincipal", "Chell", 0));
+        QListWidgetItem *___qlistwidgetitem13 = objetos->item(13);
+        ___qlistwidgetitem13->setText(QApplication::translate("VentanaPrincipal", "Metal", 0));
+        QListWidgetItem *___qlistwidgetitem14 = objetos->item(14);
+        ___qlistwidgetitem14->setText(QApplication::translate("VentanaPrincipal", "Stone", 0));
+        QListWidgetItem *___qlistwidgetitem15 = objetos->item(15);
+        ___qlistwidgetitem15->setText(QApplication::translate("VentanaPrincipal", "Tria4", 0));
+        QListWidgetItem *___qlistwidgetitem16 = objetos->item(16);
+        ___qlistwidgetitem16->setText(QApplication::translate("VentanaPrincipal", "Tria5", 0));
+        QListWidgetItem *___qlistwidgetitem17 = objetos->item(17);
+        ___qlistwidgetitem17->setText(QApplication::translate("VentanaPrincipal", "Tria6", 0));
+        QListWidgetItem *___qlistwidgetitem18 = objetos->item(18);
+        ___qlistwidgetitem18->setText(QApplication::translate("VentanaPrincipal", "Tria7", 0));
+        QListWidgetItem *___qlistwidgetitem19 = objetos->item(19);
+        ___qlistwidgetitem19->setText(QApplication::translate("VentanaPrincipal", "Cake", 0));
+        objetos->setSortingEnabled(__sortingEnabled);
+
+        guardarMapa->setText(QApplication::translate("VentanaPrincipal", "SAVE", 0));
     } // retranslateUi
 
 };

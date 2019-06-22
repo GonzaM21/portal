@@ -12,19 +12,21 @@ class MapSaver {
 private:
     std::ofstream file;
     std::vector<JsonNode*> objects;
-
-public:
-    MapSaver(std::string &file_name);
+    std::map<std::string, int> codes;
+public: 
+    MapSaver(std::string file_name);
     ~MapSaver();
-    void addBlock();
-    void addEnergyBarrier();
-    void addAcid();
-    void addDoor();
-    void addButton();
-    void addEmitter();
-    void addRock();  
-    void addCake();  
+    void addBlock(std::string type_optional, std::string size, std::string pos_x, std::string pos_y);
+    void addEnergyBarrier(std::string size, std::string pos_x, std::string pos_y, std::string orientation);
+    void addAcid(std::string size, std::string pos_x, std::string pos_y);
+    void addDoor(std::string pos_x, std::string pos_y);
+    void addButton(std::string pos_x, std::string pos_y, std::string door_number, std::string state);
+    void addEmitter(std::string pos_x, std::string pos_y, std::string size, std::string direction, std::string charged);
+    void addRock(std::string size, std::string pos_x, std::string pos_y);
+    void addCake(std::string pos_x, std::string pos_y);
     void writeFile();
+    void splitMessage(std::string &message, std::vector<std::string> &args); 
+    void addObject(std::string object);
 }; 
 
 #endif

@@ -40,7 +40,6 @@ public:
 private:
   Rect dest_world;
   Sprite *sprite;
-  Window window;
   bool is_open = false;
   bool is_closed = true;
   int direction;

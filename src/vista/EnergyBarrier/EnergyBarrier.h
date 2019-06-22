@@ -1,10 +1,10 @@
 #ifndef __ENERGYBARRIER_H__
 #define __ENERGYBARRIER_H__
 #include <string>
-#include "../Rect.h"
-#include "../Window.h"
-#include "../Sprite.h"
-#include "../Camara.h"
+#include "vista/Rect.h"
+#include "vista/Window.h"
+#include "vista/Sprite.h"
+#include "vista/Camara.h"
 #include <unordered_map>
 
 class EnergyBarrier

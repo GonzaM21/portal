@@ -33,6 +33,7 @@ MusicBase::~MusicBase() {
 }
 
 void MusicBase::playMusic(const int &id) {
+    std::cout << "LLego aca" << std::endl;
     Mix_Chunk * music = getMusic(id);
     Mix_VolumeMusic(MIX_MAX_VOLUME/20);
     if(music) Mix_PlayChannel(-1,music, 0);

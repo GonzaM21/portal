@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>776</width>
-    <height>711</height>
+    <width>1000</width>
+    <height>1000</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>icon.png</normaloff>icon.png</iconset>
+    <normaloff>resources/img/icon.png</normaloff>resources/img/icon.png</iconset>
   </property>
   <property name="toolTipDuration">
    <number>0</number>
@@ -30,19 +30,22 @@
    border-width: 0px;
 }</string>
   </property>
+  <property name="locale">
+   <locale language="C" country="AnyCountry"/>
+  </property>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
      <x>-10</x>
      <y>0</y>
-     <width>791</width>
-     <height>731</height>
+     <width>1000</width>
+     <height>1000</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QWidget#inicio
 {
-   border-image: url(:/img/portada.jpeg) 0 0 0 0 stretch stretch;
+   border-image: url(portada.jpeg) 0 0 0 0 stretch stretch;
 }
 QFrame
 {
@@ -50,18 +53,18 @@ background-color: rgb(255, 255, 255);
 }
 QPushButton#reloadButton
 {
-   border-image: url(:/img/reload.png) 0 0 0 0 stretch stretch;
+   border-image: url(reload.png) 0 0 0 0 stretch stretch;
 }</string>
    </property>
    <property name="currentIndex">
-    <number>4</number>
+    <number>5</number>
    </property>
    <widget class="QWidget" name="inicio">
     <widget class="QPushButton" name="comenzarButton">
      <property name="geometry">
       <rect>
-       <x>560</x>
-       <y>390</y>
+       <x>730</x>
+       <y>430</y>
        <width>211</width>
        <height>101</height>
       </rect>
@@ -85,8 +88,39 @@ QPushButton#reloadButton
       <bool>false</bool>
      </property>
     </widget>
+    <widget class="QPushButton" name="editarMapa">
+     <property name="geometry">
+      <rect>
+       <x>730</x>
+       <y>550</y>
+       <width>211</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Century Schoolbook L</family>
+       <pointsize>25</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Editar Mapa</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>true</bool>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="entrada">
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
     <widget class="QPushButton" name="submit">
      <property name="geometry">
       <rect>
@@ -200,10 +234,10 @@ background-color: rgb(255, 255, 255);
     <widget class="QPushButton" name="crearSalaButton">
      <property name="geometry">
       <rect>
-       <x>450</x>
-       <y>520</y>
-       <width>281</width>
-       <height>71</height>
+       <x>220</x>
+       <y>300</y>
+       <width>351</width>
+       <height>141</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -224,10 +258,10 @@ background-color: rgb(255, 255, 255);
     <widget class="QPushButton" name="elegirSalaButton">
      <property name="geometry">
       <rect>
-       <x>450</x>
-       <y>440</y>
-       <width>281</width>
-       <height>71</height>
+       <x>220</x>
+       <y>150</y>
+       <width>351</width>
+       <height>141</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -243,50 +277,6 @@ background-color: rgb(255, 255, 255);
      </property>
      <property name="text">
       <string>Elegir Sala</string>
-     </property>
-    </widget>
-    <widget class="QListWidget" name="listaSalas">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>270</y>
-       <width>301</width>
-       <height>321</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_5">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>220</y>
-       <width>301</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>25</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Salas Disponibles</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="reloadButton">
-     <property name="geometry">
-      <rect>
-       <x>320</x>
-       <y>260</y>
-       <width>31</width>
-       <height>27</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
      </property>
     </widget>
    </widget>
@@ -334,7 +324,7 @@ background-color: rgb(255, 255, 255);
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="crearSalaButton_2">
+     <widget class="QPushButton" name="continuar">
       <property name="geometry">
        <rect>
         <x>200</x>
@@ -349,7 +339,7 @@ background-color: rgb(255, 255, 255);
        </font>
       </property>
       <property name="text">
-       <string>Crear</string>
+       <string>Continuar</string>
       </property>
      </widget>
     </widget>
@@ -439,10 +429,823 @@ background-color: rgb(255, 255, 255);
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="page"/>
+   <widget class="QWidget" name="configMapa">
+    <widget class="QFrame" name="horizontalFrame_4">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>260</y>
+       <width>421</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Ingresar alto</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="alto"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QFrame" name="horizontalFrame_5">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>110</y>
+       <width>421</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame 
+{
+background-color: rgb(255, 255, 255);
+}</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <property name="leftMargin">
+       <number>25</number>
+      </property>
+      <property name="topMargin">
+       <number>10</number>
+      </property>
+      <property name="rightMargin">
+       <number>25</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label_6">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Ingresar Ancho</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="ancho"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>410</y>
+       <width>421</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>36</pointsize>
+       <italic>true</italic>
+      </font>
+     </property>
+     <property name="text">
+      <string>Crear</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="editorMapa">
+    <widget class="QTableWidget" name="mapa">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>10</y>
+       <width>871</width>
+       <height>691</height>
+      </rect>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="dragEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropOverwriteMode">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropMode">
+      <enum>QAbstractItemView::DragDrop</enum>
+     </property>
+     <property name="defaultDropAction">
+      <enum>Qt::CopyAction</enum>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>false</bool>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="verticalScrollMode">
+      <enum>QAbstractItemView::ScrollPerItem</enum>
+     </property>
+     <property name="showGrid">
+      <bool>true</bool>
+     </property>
+     <property name="gridStyle">
+      <enum>Qt::DashLine</enum>
+     </property>
+     <property name="cornerButtonEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="columnCount">
+      <number>37</number>
+     </property>
+     <attribute name="horizontalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>50</number>
+     </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>50</number>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>50</number>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderMinimumSectionSize">
+      <number>50</number>
+     </attribute>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+    </widget>
+    <widget class="QListWidget" name="objetos">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>710</y>
+       <width>871</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="locale">
+      <locale language="C" country="AnyCountry"/>
+     </property>
+     <property name="showDropIndicator" stdset="0">
+      <bool>true</bool>
+     </property>
+     <property name="dragEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropOverwriteMode">
+      <bool>false</bool>
+     </property>
+     <property name="dragDropMode">
+      <enum>QAbstractItemView::DragOnly</enum>
+     </property>
+     <property name="defaultDropAction">
+      <enum>Qt::IgnoreAction</enum>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="movement">
+      <enum>QListView::Snap</enum>
+     </property>
+     <property name="flow">
+      <enum>QListView::LeftToRight</enum>
+     </property>
+     <property name="resizeMode">
+      <enum>QListView::Fixed</enum>
+     </property>
+     <property name="layoutMode">
+      <enum>QListView::SinglePass</enum>
+     </property>
+     <property name="spacing">
+      <number>5</number>
+     </property>
+     <property name="gridSize">
+      <size>
+       <width>75</width>
+       <height>150</height>
+      </size>
+     </property>
+     <property name="viewMode">
+      <enum>QListView::IconMode</enum>
+     </property>
+     <property name="modelColumn">
+      <number>0</number>
+     </property>
+     <property name="uniformItemSizes">
+      <bool>false</bool>
+     </property>
+     <property name="batchSize">
+      <number>150</number>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="selectionRectVisible">
+      <bool>true</bool>
+     </property>
+     <property name="currentRow">
+      <number>-1</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>Acid</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Acid.png</normaloff>resources/qt/Acid.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>RecvU</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Energy_Emitter_Charged_U.png</normaloff>resources/qt/Energy_Emitter_Charged_U.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>RecvD</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Energy_Emitter_Charged_D.png</normaloff>resources/qt/Energy_Emitter_Charged_D.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>RecvR</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Energy_Emitter_Charged_R.png</normaloff>resources/qt/Energy_Emitter_Charged_R.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Rock</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Capa 2.png</normaloff>resources/qt/Capa 2.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>BarrH</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Energy_barrier_h.png</normaloff>resources/qt/Energy_barrier_h.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>BarrV</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Energy_barrier_v.png</normaloff>resources/qt/Energy_barrier_v.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>RecvL</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Energy_Emitter_Charged_L.png</normaloff>resources/qt/Energy_Emitter_Charged_L.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>EnerU</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Energy_Emitter_U.png</normaloff>resources/qt/Energy_Emitter_U.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>EnerL</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Energy_Emitter_L.png</normaloff>resources/qt/Energy_Emitter_L.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>EnerR</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Energy_Emitter_R.png</normaloff>resources/qt/Energy_Emitter_R.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>EnerD</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Energy_Emitter_D.png</normaloff>resources/qt/Energy_Emitter_D.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Chell</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/img/icon.png</normaloff>resources/img/icon.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Metal</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Metal_block.png</normaloff>resources/qt/Metal_block.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Stone</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Stone_block.png</normaloff>resources/qt/Stone_block.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Tria4</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Traingular_Metal_block.png</normaloff>resources/qt/Traingular_Metal_block.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Tria5</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Traingulat_Metal_block_r.png</normaloff>resources/qt/Traingulat_Metal_block_r.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Tria6</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Traingulat_Metal_block_3.png</normaloff>resources/qt/Traingulat_Metal_block_3.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Tria7</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Traingulat_Metal_block_4.png</normaloff>resources/qt/Traingulat_Metal_block_4.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Cake</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Cake_1.png</normaloff>resources/qt/Cake_1.png</iconset>
+      </property>
+     </item>
+    </widget>
+    <widget class="QPushButton" name="guardarMapa">
+     <property name="geometry">
+      <rect>
+       <x>930</x>
+       <y>710</y>
+       <width>71</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>SAVE</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

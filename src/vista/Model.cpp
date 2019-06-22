@@ -13,18 +13,16 @@ void Model::setBlock(Rect &dest, const int &code)
 }
 void Model::setPortal(Rect &dest, const int &id, const int &code, const int &direction, const int &state)
 {
-  if (state == 1)
+  if (portals.find(id) == portals.end())
   {
-    //if (id <= portals.size())
-    //  delete this->portals[id];
     this->portals[id] = new Portal(window, code, direction);
-    this->portals[id]->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
   }
+  this->portals[id]->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
 }
 
 void Model::setEnergyEmitter(Rect &dest, const int &id, const int &direction, const int &state)
 {
-  if (id > emitters.size())
+  if (emitters.find(id) == emitters.end())
   {
     this->emitters[id] = new Emitter(window, direction, state);
   }
@@ -34,7 +32,7 @@ void Model::setEnergyEmitter(Rect &dest, const int &id, const int &direction, co
 
 void Model::setGate(Rect &dest, const int &id, const int &state)
 {
-  if (id > gates.size())
+  if (gates.find(id) == gates.end())
   {
     this->gates[id] = new Gate(window, id);
   }
@@ -45,7 +43,7 @@ void Model::setGate(Rect &dest, const int &id, const int &state)
 
 void Model::setButton(Rect &dest, const int &id, const int &state)
 {
-  if (id > buttons.size())
+  if (buttons.find(id) == buttons.end())
   {
     this->buttons[id] = new Button(window, state);
   }
@@ -70,7 +68,7 @@ void Model::setPowerball(Rect &dest, const int &state)
 }
 void Model::setRock(Rect &dest, const int &id)
 {
-  if (id > rocks.size())
+  if (rocks.find(id) == rocks.end())
   {
     this->rocks[id] = new Rock(window);
   }
@@ -78,7 +76,7 @@ void Model::setRock(Rect &dest, const int &id)
 }
 void Model::setPlayer(Rect &dest, const int &id, const int &state, const int &direction)
 {
-  if (id > players.size())
+  if (players.find(id) == players.end())
   {
     this->players[id] = new Player(window, direction);
   }

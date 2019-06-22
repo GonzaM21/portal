@@ -24,7 +24,6 @@ public:
   void setState(const int &state);
 
 private:
-  Window window;
   Rect dest_world;
   Sprite *sprite;
   bool is_open = false;

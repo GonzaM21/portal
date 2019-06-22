@@ -8,16 +8,16 @@
 #include <iostream>
 #include <typeinfo>
 
-PowerBall::PowerBall(const Window &window, const int &state, const int &direction) : window(window),
-																																											 dest_world(0, 0, WIDTH_POWERBALL_FLYING, HEIGHT_POWERBALL_FLYING)
+PowerBall::PowerBall(const Window &window, const int &state, const int &direction) : dest_world(0, 0, WIDTH_POWERBALL_FLYING, HEIGHT_POWERBALL_FLYING)
 {
+	
 	if (state == 0)
 	{
 		this->sprite = new FlyingPowerBall(window, direction);
 	}
 	else if (state == 1)
 	{
-		setHitting();
+		this->sprite = new HittingPowerBall(window);
 	}
 }
 
@@ -36,7 +36,6 @@ void PowerBall::setHitting()
 	if (strncmp(typeid(*this->sprite).name(), "16HittingPowerBall", 18) != 0)
 	{
 		delete this->sprite;
-		this->sprite = new HittingPowerBall(window);
 	}
 }
 

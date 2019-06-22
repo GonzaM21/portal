@@ -7,7 +7,6 @@
 #include "event_handler_thread.h"
 #include "Message_sender.h"
 #include "client_controller.h"
-#include "map_editor/interface.h"
 #include "../common/common_socket_connect.h"
 #include "../common/common_protocol.h"
 

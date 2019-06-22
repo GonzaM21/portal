@@ -96,12 +96,8 @@ Window* ModelFacade::getWindow() {
 }
 
 void ModelFacade::setEnergyBarrier(std::vector<std::string> arguments) {
-  std::cout << arguments.at(0) << std::endl;
-  std::cout << arguments.at(1) << std::endl;
-  std::cout << arguments.at(2) << std::endl;
-  std::cout << arguments.at(3) << std::endl;
-  std::cout << arguments.at(4) << std::endl;
-  std::cout << "Sin terminar las barreras" << std::endl;
+  // Rect dest(atof(arguments[2].c_str()), atof(arguments[3].c_str()), atof(arguments[4].c_str()), atof(arguments[5].c_str()));
+  // model.setEnergyBarrier(dest, atof(arguments[1].c_str()));
 }
 
 void ModelFacade::convertToWorld(Rect &worldPostion, const Rect &virtualPostion) {

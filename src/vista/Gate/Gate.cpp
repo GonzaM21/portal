@@ -8,9 +8,8 @@
 #include <iostream>
 #include <typeinfo>
 
-Gate::Gate(const Window &window, const int &code) : window(window), dest_world(0, 0, 0, 0), code(code)
+Gate::Gate(const Window &window, const int &code) : dest_world(0, 0, 0, 0), code(code)
 {
-	std::cout << code << std::endl;
 	this->states[3] = new OpeningGate(window, code);
 	this->states[2] = new OpenGate(window, code);
 	this->states[1] = new ClosingGate(window, code);
