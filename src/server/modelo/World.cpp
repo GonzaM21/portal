@@ -206,9 +206,9 @@ b2Body* World::addTriangle(float x_pos, float y_pos, float size, int angle ,bool
         vertices[1].Set((-1.0/3) * size, (-1.0/3) * size);
         vertices[2].Set((-1.0/3) * size, (1.8/3) * size);
     } else if(angle == 225){
-        vertices[0].Set((2.0/3) * size, (1.2/3) * size);
-        vertices[1].Set((-1.2/3) * size, (-2.0/3) * size);
-        vertices[2].Set((-1.2/3) * size, (1.2/3) * size);
+        vertices[0].Set((2.0/3) * size, (1.0/3) * size);
+        vertices[1].Set((-1.0/3) * size, (-2.0/3) * size);
+        vertices[2].Set((-1.0/3) * size, (1.0/3) * size);
     } else{
         vertices[0].Set((-1.8/3) * size, (1.0/3) * size);
         vertices[1].Set((1.0/3) * size, (1.0/3) * size);

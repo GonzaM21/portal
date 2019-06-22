@@ -2,8 +2,12 @@
 #include "Energy_Ball.h"
 #include "Macros.h"
 #include "Metal_Block.h"
+#include "Portal.h"
 #define ENERGY_BALL 0.5
 #define ENERGY_BALL_FORCE 15.0
+#define LIFE_STEPS 200
+#define BALL_X_DELTA 0.8
+#define BALL_Y_DELTA 0.8
 
 Energy_Ball::Energy_Ball(World& world, float x_pos, float y_pos): world(world) {
     Filter_Data data(BALL_BITS);
@@ -19,6 +23,10 @@ Energy_Ball::Energy_Ball(World& world, float x_pos, float y_pos): world(world) {
     live = true;
     radius = ENERGY_BALL;
     direction = 0;
+    life_step = 0;
+    teleport = 0;
+    teleport_pos = b2Vec2(0,0);
+    velocity = b2Vec2(0,0);
 }
 
 bool Energy_Ball::Move(char direction){
@@ -71,11 +79,41 @@ float Energy_Ball::getRadius() {
     return radius;
 }
 
-bool Energy_Ball::setTransform(Entity *) {
-    return true;
+bool Energy_Ball::setTransform(Entity * body) {
+    if (body->getEntityName() == "Portal") {
+        if(dynamic_cast<Portal *>(body)->isABall()) return false;
+        if(!dynamic_cast<Portal *>(body)->havePartner()) return false;
+        if(dynamic_cast<Portal *>(body)->getPartnerPortal() == nullptr) return false;
+        if(!dynamic_cast<Portal *>(body)->getPartnerPortal()->lives()) return false;
+
+
+        teleport_pos = dynamic_cast<Portal *>(body)->getPartnerPortal()->getPosition();
+        b2Vec2 normal = dynamic_cast<Portal *>(body)->getPartnerPortal()->getNormal();
+
+        teleport = true;
+        if(normal.x > ZERO){
+            teleport_pos = teleport_pos + b2Vec2(BALL_X_DELTA,ZERO);
+        } else if(normal.x < ZERO){
+            teleport_pos = teleport_pos - b2Vec2(BALL_X_DELTA,ZERO);
+        }
+        if(normal.y > ZERO){
+            teleport_pos = teleport_pos + b2Vec2(ZERO,BALL_Y_DELTA);
+        } else if (normal.y < ZERO){
+            teleport_pos = teleport_pos - b2Vec2(ZERO,BALL_Y_DELTA);
+        }
+
+        velocity = b2Vec2(ENERGY_BALL_FORCE * normal.x,ENERGY_BALL_FORCE * normal.y);
+    }
 }
 
-void Energy_Ball::changePosition() {}
+void Energy_Ball::changePosition() {
+    if(life_step = LIFE_STEPS) live = false;
+    ++life_step;
+    if(!teleport) return;
+    energy_ball->SetTransform(teleport_pos,energy_ball->GetAngle());
+    energy_ball->SetLinearVelocity(velocity);
+    teleport = false;
+}
 
 void Energy_Ball::win(){}
 

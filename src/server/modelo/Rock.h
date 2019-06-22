@@ -11,6 +11,9 @@ class Rock : public Entity {
     bool contact;
     bool live;
     float radius;
+    bool teleport;
+    b2Vec2 teleport_pos;
+    b2Vec2 velocity;
 public:
     //Contructor
     Rock(World & world,float x_pos, float y_pos,float radius);
@@ -24,9 +27,9 @@ public:
     void die() override;
     //retorna si esta viva o no
     bool lives() override;
-    //NO hace nada
-    bool setTransform(Entity *) override;
-    //no hace nada
+    //Obtiene los valores necesarios para teletransportarse
+    bool setTransform(Entity * body) override;
+    //Se teletrasporta si toca un portal
     void changePosition() override;
     //no hace nada
     void win() override;

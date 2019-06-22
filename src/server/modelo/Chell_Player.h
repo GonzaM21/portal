@@ -101,6 +101,8 @@ public:
     // y está al pie de las colinas, llega primero, y se queda; mala risas y acaba vidas.
     void inmortalChell();
 
+    //resetea los portales disparados
+    void resetPortal();
 
     //De la inicial de esta adivinanza, encontrarás como quitar la gravedad: (ignorar los articulos)
     // Canta sin voz, vuela sin alas, sin dientes muerde, sin boca habla.

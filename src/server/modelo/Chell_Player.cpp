@@ -242,6 +242,10 @@ void Chell_Player::dropTheRock() {
     jumper_counter = 0;
 }
 
+void Chell_Player::resetPortal(){
+    portals.resetPortal();
+}
+
 
 //respuesta: o (oscuridad)
 void Chell_Player::inmortalChell(){

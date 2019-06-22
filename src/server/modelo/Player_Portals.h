@@ -21,6 +21,8 @@ public:
     //dispara el portal de salida disparado
     Portal* getPortalOut();
     //destructor, destruye a los portales creados
+    //reseta los portales
+    void resetPortal();
     ~Player_Portals();
 };
 #endif

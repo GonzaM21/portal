@@ -17,6 +17,9 @@ class Energy_Ball : public Entity{
     int direction;
     b2Vec2 velocity;
     b2Vec2 position;
+    int life_step;
+    b2Vec2 teleport_pos;
+    bool teleport;
 public:
     //Contructor de una bola de energia
     Energy_Ball(World& world, float x_pos, float y_pos);
@@ -41,7 +44,7 @@ public:
     //retorna si esta vida o no
     bool lives() override;
     //no hace nada
-    bool setTransform(Entity *) override;
+    bool setTransform(Entity * body) override;
     //No hace nada
     void changePosition() override;
     //no hace nada

@@ -50,3 +50,8 @@ Player_Portals::~Player_Portals() {
     if(portal1_shot) delete portal1;
     if(portal2_shot) delete portal2;
 }
+
+void Player_Portals::resetPortal() {
+    if(portal1_shot) portal1->die();
+    if(portal2_shot) portal2->die();
+}
