@@ -12,7 +12,7 @@ Button::Button(World &world, float x_pos, float y_pos) : world(world) {
     button = world.addPolygon(x_pos,y_pos,BOTTOM_LARGE/2,BOTTOM_HIGH/2,true,data);
     button->SetUserData(this);
     sizes = b2Vec2(BOTTOM_LARGE,BOTTOM_HIGH);
-    contact = false;
+    contact = 0;
     live = true;
     status = false;
     name = "Button";
@@ -31,13 +31,13 @@ void Button::die() {
 }
 
 void Button::startContact(b2Vec2) {
-    contact = true;
+    ++contact;
     status = true;
     printf("Boton activado\n");
 }
 
 void Button::endContact() {
-    contact = false;
+    --contact;
     status = false;
     printf("Boton desactivado\n");
 }
@@ -58,7 +58,7 @@ b2Vec2 Button::getSizes() {
 }
 
 bool Button::getStatus(){
-    return status;
+    return contact > 0;
 }
 
 void Button::win() {}

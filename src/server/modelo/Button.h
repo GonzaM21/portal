@@ -9,7 +9,7 @@ class Button : public Entity{
     std::string name;
     b2Vec2 sizes;
     bool live;
-    bool contact;
+    int contact;
     World& world;
     bool status;
 public:

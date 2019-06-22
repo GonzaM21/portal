@@ -41,6 +41,8 @@ public:
     void setGravity(int gravity);
     //retorna su radio
     float getRadius();
+
+    bool contactBarrier();
     //destructor
     ~Rock() = default;
 };

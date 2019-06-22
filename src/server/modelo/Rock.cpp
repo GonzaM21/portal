@@ -40,7 +40,8 @@ void Rock::endContact() {
 }
 
 void Rock::die() {
-    live = true;
+    live = false;
+    contact = true;
 }
 
 bool Rock::lives() {
@@ -76,6 +77,7 @@ bool Rock::setTransform(Entity * body) {
 
         velocity = b2Vec2(BALL_VELOC * normal.x,BALL_VELOC * normal.y);
     }
+    return true;
 }
 
 void Rock::setGravity(int gravity) {
@@ -93,4 +95,8 @@ void Rock::win(){}
 
 void Rock::changePositionChell(b2Vec2 pos) {
     rock->SetTransform(pos,ZERO);
+}
+
+bool Rock::contactBarrier() {
+    return contact;
 }

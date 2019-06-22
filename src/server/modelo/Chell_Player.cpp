@@ -156,6 +156,10 @@ bool Chell_Player::setTransform(Entity * body) {
 
 void Chell_Player::changePosition() {
     if(taking && rock != nullptr && take){
+        if(!rock->lives()){
+            dropTheRock();
+           return;
+        }
         if(direction_right){
             rock->changePositionChell(chell->GetPosition() + b2Vec2(0.8f,0.1f));
 
