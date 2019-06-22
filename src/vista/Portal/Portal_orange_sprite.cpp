@@ -27,6 +27,10 @@ bool OrangePortal::isDone()
   return done;
 }
 
+void OrangePortal::setDirection(const int& direction) {
+  this->direction = direction;
+}
+
 OrangePortal::~OrangePortal()
 {
 }

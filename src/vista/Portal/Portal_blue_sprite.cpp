@@ -27,6 +27,11 @@ bool BluePortal::isDone()
   return done;
 }
 
+void BluePortal::setDirection(const int &direction)
+{
+  this->direction = direction;
+}
+
 BluePortal::~BluePortal()
 {
 }

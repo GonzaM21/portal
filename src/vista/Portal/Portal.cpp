@@ -35,6 +35,11 @@ void Portal::setDestWorld(float x, float y, float width, float height)
   dest_world.set(x, y, width, height);
 }
 
+void Portal::setState(const int &direction)
+{
+  this->sprite->setDirection(direction);
+}
+
 Portal::~Portal()
 {
   delete this->sprite;

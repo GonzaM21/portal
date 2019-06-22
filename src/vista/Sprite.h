@@ -30,7 +30,7 @@ public:
     virtual void setSrc(Rect &src){this->src.set(src.getX(), src.getY(), src.getWidth(), src.getHeight());};
     virtual Rect getSrc() { return src; };
     virtual void restart(){};
-    virtual void setDirection(const int& direction){this->direction = direction;};
+    virtual void setDirection(const int& direction){};
     void addColor(const int &id, const int &r, const int &g, const int &b);
 
 private:

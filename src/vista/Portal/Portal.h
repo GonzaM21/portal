@@ -13,8 +13,9 @@ public:
   int render(Camara &camara);
   void setDestWorld(float x, float y, float widht, float heigh);
   Rect getDestWorld() { return dest_world; };
+  void setState(const int &direction);
 
-private:
+private: 
   Window window;
   Rect dest_world;
   Sprite *sprite;
