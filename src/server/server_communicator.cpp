@@ -21,7 +21,6 @@ Communicator :: ~Communicator() {
 
 void Communicator :: endExecution() {
     this->continue_running = false;
-    this->is_valid = false;
     this->protocol.closeProtocol();
 }
 
@@ -98,9 +97,9 @@ void Communicator :: run() {
         }
     } catch (const std::runtime_error& e) {
         std::cout << e.what() << std::endl;
-        this->is_valid = false;
         std::string msg(this->player_name+","+"disconnect");
         if (this->room != nullptr) this->room->addMessageToSend(msg);
+        else this->is_valid = false;
     } catch (...) {
         std::cout << "Error: unknown" << std::endl;
     }
