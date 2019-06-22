@@ -52,6 +52,7 @@ void GameLoop :: sendDynamicData() {
     this->encoder.sendPortals();
     this->encoder.sendRocks();
     this->encoder.sendGates(); 
+    this->encoder.sendButtons();   
     this->encoder.sendEmitters();
 }
 
