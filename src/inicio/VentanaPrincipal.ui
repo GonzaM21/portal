@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>1000</height>
+    <width>700</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -36,10 +36,10 @@
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>-10</x>
+     <x>0</x>
      <y>0</y>
-     <width>1000</width>
-     <height>1000</height>
+     <width>700</width>
+     <height>700</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -57,26 +57,26 @@ QPushButton#reloadButton
 }</string>
    </property>
    <property name="currentIndex">
-    <number>5</number>
+    <number>6</number>
    </property>
    <widget class="QWidget" name="inicio">
-    <widget class="QPushButton" name="comenzarButton">
+    <widget class="QPushButton" name="editarMapa">
      <property name="geometry">
       <rect>
-       <x>730</x>
+       <x>480</x>
        <y>430</y>
-       <width>211</width>
-       <height>101</height>
+       <width>203</width>
+       <height>53</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>Century Schoolbook L</family>
-       <pointsize>30</pointsize>
+       <pointsize>25</pointsize>
       </font>
      </property>
      <property name="text">
-      <string>Comenzar</string>
+      <string>Editar Mapa</string>
      </property>
      <property name="autoDefault">
       <bool>false</bool>
@@ -88,23 +88,23 @@ QPushButton#reloadButton
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="editarMapa">
+    <widget class="QPushButton" name="comenzarButton">
      <property name="geometry">
       <rect>
-       <x>730</x>
-       <y>550</y>
-       <width>211</width>
-       <height>101</height>
+       <x>480</x>
+       <y>304</y>
+       <width>203</width>
+       <height>63</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>Century Schoolbook L</family>
-       <pointsize>25</pointsize>
+       <pointsize>30</pointsize>
       </font>
      </property>
      <property name="text">
-      <string>Editar Mapa</string>
+      <string>Comenzar</string>
      </property>
      <property name="autoDefault">
       <bool>false</bool>
@@ -519,10 +519,10 @@ background-color: rgb(255, 255, 255);
     <widget class="QTableWidget" name="mapa">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>9</x>
        <y>10</y>
-       <width>871</width>
-       <height>691</height>
+       <width>681</width>
+       <height>520</height>
       </rect>
      </property>
      <property name="mouseTracking">
@@ -962,10 +962,10 @@ background-color: rgb(255, 255, 255);
     <widget class="QListWidget" name="objetos">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>710</y>
-       <width>871</width>
-       <height>271</height>
+       <x>0</x>
+       <y>530</y>
+       <width>600</width>
+       <height>161</height>
       </rect>
      </property>
      <property name="cursor" stdset="0">
@@ -987,7 +987,7 @@ background-color: rgb(255, 255, 255);
       <bool>false</bool>
      </property>
      <property name="dragDropMode">
-      <enum>QAbstractItemView::DragOnly</enum>
+      <enum>QAbstractItemView::DragDrop</enum>
      </property>
      <property name="defaultDropAction">
       <enum>Qt::IgnoreAction</enum>
@@ -1051,7 +1051,7 @@ background-color: rgb(255, 255, 255);
        <string>Acid</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Acid.png</normaloff>resources/qt/Acid.png</iconset>
       </property>
      </item>
@@ -1060,7 +1060,7 @@ background-color: rgb(255, 255, 255);
        <string>RecvU</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Energy_Emitter_Charged_U.png</normaloff>resources/qt/Energy_Emitter_Charged_U.png</iconset>
       </property>
      </item>
@@ -1069,7 +1069,7 @@ background-color: rgb(255, 255, 255);
        <string>RecvD</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Energy_Emitter_Charged_D.png</normaloff>resources/qt/Energy_Emitter_Charged_D.png</iconset>
       </property>
      </item>
@@ -1078,7 +1078,7 @@ background-color: rgb(255, 255, 255);
        <string>RecvR</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Energy_Emitter_Charged_R.png</normaloff>resources/qt/Energy_Emitter_Charged_R.png</iconset>
       </property>
      </item>
@@ -1087,7 +1087,7 @@ background-color: rgb(255, 255, 255);
        <string>Rock</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Capa 2.png</normaloff>resources/qt/Capa 2.png</iconset>
       </property>
      </item>
@@ -1096,7 +1096,7 @@ background-color: rgb(255, 255, 255);
        <string>BarrH</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Energy_barrier_h.png</normaloff>resources/qt/Energy_barrier_h.png</iconset>
       </property>
      </item>
@@ -1105,7 +1105,7 @@ background-color: rgb(255, 255, 255);
        <string>BarrV</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Energy_barrier_v.png</normaloff>resources/qt/Energy_barrier_v.png</iconset>
       </property>
      </item>
@@ -1114,7 +1114,7 @@ background-color: rgb(255, 255, 255);
        <string>RecvL</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Energy_Emitter_Charged_L.png</normaloff>resources/qt/Energy_Emitter_Charged_L.png</iconset>
       </property>
      </item>
@@ -1123,7 +1123,7 @@ background-color: rgb(255, 255, 255);
        <string>EnerU</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Energy_Emitter_U.png</normaloff>resources/qt/Energy_Emitter_U.png</iconset>
       </property>
      </item>
@@ -1132,7 +1132,7 @@ background-color: rgb(255, 255, 255);
        <string>EnerL</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Energy_Emitter_L.png</normaloff>resources/qt/Energy_Emitter_L.png</iconset>
       </property>
      </item>
@@ -1141,7 +1141,7 @@ background-color: rgb(255, 255, 255);
        <string>EnerR</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Energy_Emitter_R.png</normaloff>resources/qt/Energy_Emitter_R.png</iconset>
       </property>
      </item>
@@ -1150,17 +1150,8 @@ background-color: rgb(255, 255, 255);
        <string>EnerD</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Energy_Emitter_D.png</normaloff>resources/qt/Energy_Emitter_D.png</iconset>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Chell</string>
-      </property>
-      <property name="icon">
-       <iconset resource="resources.qrc">
-        <normaloff>resources/img/icon.png</normaloff>resources/img/icon.png</iconset>
       </property>
      </item>
      <item>
@@ -1168,7 +1159,7 @@ background-color: rgb(255, 255, 255);
        <string>Metal</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Metal_block.png</normaloff>resources/qt/Metal_block.png</iconset>
       </property>
      </item>
@@ -1177,7 +1168,7 @@ background-color: rgb(255, 255, 255);
        <string>Stone</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Stone_block.png</normaloff>resources/qt/Stone_block.png</iconset>
       </property>
      </item>
@@ -1186,7 +1177,7 @@ background-color: rgb(255, 255, 255);
        <string>Tria4</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Traingular_Metal_block.png</normaloff>resources/qt/Traingular_Metal_block.png</iconset>
       </property>
      </item>
@@ -1195,7 +1186,7 @@ background-color: rgb(255, 255, 255);
        <string>Tria5</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Traingulat_Metal_block_r.png</normaloff>resources/qt/Traingulat_Metal_block_r.png</iconset>
       </property>
      </item>
@@ -1204,7 +1195,7 @@ background-color: rgb(255, 255, 255);
        <string>Tria6</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Traingulat_Metal_block_3.png</normaloff>resources/qt/Traingulat_Metal_block_3.png</iconset>
       </property>
      </item>
@@ -1213,7 +1204,7 @@ background-color: rgb(255, 255, 255);
        <string>Tria7</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Traingulat_Metal_block_4.png</normaloff>resources/qt/Traingulat_Metal_block_4.png</iconset>
       </property>
      </item>
@@ -1222,7 +1213,7 @@ background-color: rgb(255, 255, 255);
        <string>Cake</string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>resources/qt/Cake_1.png</normaloff>resources/qt/Cake_1.png</iconset>
       </property>
      </item>
@@ -1230,10 +1221,10 @@ background-color: rgb(255, 255, 255);
     <widget class="QPushButton" name="guardarMapa">
      <property name="geometry">
       <rect>
-       <x>930</x>
-       <y>710</y>
-       <width>71</width>
-       <height>271</height>
+       <x>600</x>
+       <y>530</y>
+       <width>91</width>
+       <height>165</height>
       </rect>
      </property>
      <property name="text">
@@ -1244,8 +1235,6 @@ background-color: rgb(255, 255, 255);
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

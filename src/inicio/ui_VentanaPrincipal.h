@@ -33,8 +33,8 @@ class Ui_VentanaPrincipal
 public:
     QStackedWidget *stackedWidget;
     QWidget *inicio;
-    QPushButton *comenzarButton;
     QPushButton *editarMapa;
+    QPushButton *comenzarButton;
     QWidget *entrada;
     QPushButton *submit;
     QFrame *horizontalFrame_3;
@@ -83,7 +83,7 @@ public:
         if (VentanaPrincipal->objectName().isEmpty())
             VentanaPrincipal->setObjectName(QStringLiteral("VentanaPrincipal"));
         VentanaPrincipal->setEnabled(true);
-        VentanaPrincipal->resize(1000, 1000);
+        VentanaPrincipal->resize(700, 700);
         QIcon icon;
         icon.addFile(QStringLiteral("resources/img/icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         VentanaPrincipal->setWindowIcon(icon);
@@ -96,7 +96,7 @@ public:
         VentanaPrincipal->setLocale(QLocale(QLocale::C, QLocale::AnyCountry));
         stackedWidget = new QStackedWidget(VentanaPrincipal);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setGeometry(QRect(-10, 0, 1000, 1000));
+        stackedWidget->setGeometry(QRect(0, 0, 700, 700));
         stackedWidget->setStyleSheet(QLatin1String("QWidget#inicio\n"
 "{\n"
 "   border-image: url(portada.jpeg) 0 0 0 0 stretch stretch;\n"
@@ -111,24 +111,24 @@ public:
 "}"));
         inicio = new QWidget();
         inicio->setObjectName(QStringLiteral("inicio"));
-        comenzarButton = new QPushButton(inicio);
-        comenzarButton->setObjectName(QStringLiteral("comenzarButton"));
-        comenzarButton->setGeometry(QRect(730, 430, 211, 101));
-        QFont font;
-        font.setFamily(QStringLiteral("Century Schoolbook L"));
-        font.setPointSize(30);
-        comenzarButton->setFont(font);
-        comenzarButton->setAutoDefault(false);
-        comenzarButton->setFlat(false);
         editarMapa = new QPushButton(inicio);
         editarMapa->setObjectName(QStringLiteral("editarMapa"));
-        editarMapa->setGeometry(QRect(730, 550, 211, 101));
-        QFont font1;
-        font1.setFamily(QStringLiteral("Century Schoolbook L"));
-        font1.setPointSize(25);
-        editarMapa->setFont(font1);
+        editarMapa->setGeometry(QRect(480, 430, 203, 53));
+        QFont font;
+        font.setFamily(QStringLiteral("Century Schoolbook L"));
+        font.setPointSize(25);
+        editarMapa->setFont(font);
         editarMapa->setAutoDefault(false);
         editarMapa->setFlat(false);
+        comenzarButton = new QPushButton(inicio);
+        comenzarButton->setObjectName(QStringLiteral("comenzarButton"));
+        comenzarButton->setGeometry(QRect(480, 304, 203, 63));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Century Schoolbook L"));
+        font1.setPointSize(30);
+        comenzarButton->setFont(font1);
+        comenzarButton->setAutoDefault(false);
+        comenzarButton->setFlat(false);
         stackedWidget->addWidget(inicio);
         entrada = new QWidget();
         entrada->setObjectName(QStringLiteral("entrada"));
@@ -473,7 +473,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem73 = new QTableWidgetItem();
         mapa->setVerticalHeaderItem(36, __qtablewidgetitem73);
         mapa->setObjectName(QStringLiteral("mapa"));
-        mapa->setGeometry(QRect(50, 10, 871, 691));
+        mapa->setGeometry(QRect(9, 10, 681, 520));
         mapa->setMouseTracking(true);
         mapa->setDragEnabled(true);
         mapa->setDragDropOverwriteMode(true);
@@ -543,45 +543,43 @@ public:
         icon12.addFile(QStringLiteral("resources/qt/Energy_Emitter_D.png"), QSize(), QIcon::Normal, QIcon::Off);
         QListWidgetItem *__qlistwidgetitem11 = new QListWidgetItem(objetos);
         __qlistwidgetitem11->setIcon(icon12);
-        QListWidgetItem *__qlistwidgetitem12 = new QListWidgetItem(objetos);
-        __qlistwidgetitem12->setIcon(icon);
         QIcon icon13;
         icon13.addFile(QStringLiteral("resources/qt/Metal_block.png"), QSize(), QIcon::Normal, QIcon::Off);
-        QListWidgetItem *__qlistwidgetitem13 = new QListWidgetItem(objetos);
-        __qlistwidgetitem13->setIcon(icon13);
+        QListWidgetItem *__qlistwidgetitem12 = new QListWidgetItem(objetos);
+        __qlistwidgetitem12->setIcon(icon13);
         QIcon icon14;
         icon14.addFile(QStringLiteral("resources/qt/Stone_block.png"), QSize(), QIcon::Normal, QIcon::Off);
-        QListWidgetItem *__qlistwidgetitem14 = new QListWidgetItem(objetos);
-        __qlistwidgetitem14->setIcon(icon14);
+        QListWidgetItem *__qlistwidgetitem13 = new QListWidgetItem(objetos);
+        __qlistwidgetitem13->setIcon(icon14);
         QIcon icon15;
         icon15.addFile(QStringLiteral("resources/qt/Traingular_Metal_block.png"), QSize(), QIcon::Normal, QIcon::Off);
-        QListWidgetItem *__qlistwidgetitem15 = new QListWidgetItem(objetos);
-        __qlistwidgetitem15->setIcon(icon15);
+        QListWidgetItem *__qlistwidgetitem14 = new QListWidgetItem(objetos);
+        __qlistwidgetitem14->setIcon(icon15);
         QIcon icon16;
         icon16.addFile(QStringLiteral("resources/qt/Traingulat_Metal_block_r.png"), QSize(), QIcon::Normal, QIcon::Off);
-        QListWidgetItem *__qlistwidgetitem16 = new QListWidgetItem(objetos);
-        __qlistwidgetitem16->setIcon(icon16);
+        QListWidgetItem *__qlistwidgetitem15 = new QListWidgetItem(objetos);
+        __qlistwidgetitem15->setIcon(icon16);
         QIcon icon17;
         icon17.addFile(QStringLiteral("resources/qt/Traingulat_Metal_block_3.png"), QSize(), QIcon::Normal, QIcon::Off);
-        QListWidgetItem *__qlistwidgetitem17 = new QListWidgetItem(objetos);
-        __qlistwidgetitem17->setIcon(icon17);
+        QListWidgetItem *__qlistwidgetitem16 = new QListWidgetItem(objetos);
+        __qlistwidgetitem16->setIcon(icon17);
         QIcon icon18;
         icon18.addFile(QStringLiteral("resources/qt/Traingulat_Metal_block_4.png"), QSize(), QIcon::Normal, QIcon::Off);
-        QListWidgetItem *__qlistwidgetitem18 = new QListWidgetItem(objetos);
-        __qlistwidgetitem18->setIcon(icon18);
+        QListWidgetItem *__qlistwidgetitem17 = new QListWidgetItem(objetos);
+        __qlistwidgetitem17->setIcon(icon18);
         QIcon icon19;
         icon19.addFile(QStringLiteral("resources/qt/Cake_1.png"), QSize(), QIcon::Normal, QIcon::Off);
-        QListWidgetItem *__qlistwidgetitem19 = new QListWidgetItem(objetos);
-        __qlistwidgetitem19->setIcon(icon19);
+        QListWidgetItem *__qlistwidgetitem18 = new QListWidgetItem(objetos);
+        __qlistwidgetitem18->setIcon(icon19);
         objetos->setObjectName(QStringLiteral("objetos"));
-        objetos->setGeometry(QRect(50, 710, 871, 271));
+        objetos->setGeometry(QRect(0, 530, 600, 161));
         objetos->viewport()->setProperty("cursor", QVariant(QCursor(Qt::CrossCursor)));
         objetos->setLayoutDirection(Qt::LeftToRight);
         objetos->setLocale(QLocale(QLocale::C, QLocale::AnyCountry));
         objetos->setProperty("showDropIndicator", QVariant(true));
         objetos->setDragEnabled(true);
         objetos->setDragDropOverwriteMode(false);
-        objetos->setDragDropMode(QAbstractItemView::DragOnly);
+        objetos->setDragDropMode(QAbstractItemView::DragDrop);
         objetos->setDefaultDropAction(Qt::IgnoreAction);
         objetos->setSelectionMode(QAbstractItemView::SingleSelection);
         objetos->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -600,14 +598,14 @@ public:
         objetos->setSelectionRectVisible(true);
         guardarMapa = new QPushButton(editorMapa);
         guardarMapa->setObjectName(QStringLiteral("guardarMapa"));
-        guardarMapa->setGeometry(QRect(930, 710, 71, 271));
+        guardarMapa->setGeometry(QRect(600, 530, 91, 165));
         stackedWidget->addWidget(editorMapa);
 
         retranslateUi(VentanaPrincipal);
 
-        stackedWidget->setCurrentIndex(5);
-        comenzarButton->setDefault(true);
+        stackedWidget->setCurrentIndex(6);
         editarMapa->setDefault(true);
+        comenzarButton->setDefault(true);
         objetos->setCurrentRow(-1);
 
 
@@ -617,8 +615,8 @@ public:
     void retranslateUi(QWidget *VentanaPrincipal)
     {
         VentanaPrincipal->setWindowTitle(QApplication::translate("VentanaPrincipal", "VentanaPrincipal", 0));
-        comenzarButton->setText(QApplication::translate("VentanaPrincipal", "Comenzar", 0));
         editarMapa->setText(QApplication::translate("VentanaPrincipal", "Editar Mapa", 0));
+        comenzarButton->setText(QApplication::translate("VentanaPrincipal", "Comenzar", 0));
         submit->setText(QApplication::translate("VentanaPrincipal", "Iniciar Juego", 0));
         label_3->setText(QApplication::translate("VentanaPrincipal", "Ingresar puerto", 0));
         label_2->setText(QApplication::translate("VentanaPrincipal", "Ingresar host", 0));
@@ -663,21 +661,19 @@ public:
         QListWidgetItem *___qlistwidgetitem11 = objetos->item(11);
         ___qlistwidgetitem11->setText(QApplication::translate("VentanaPrincipal", "EnerD", 0));
         QListWidgetItem *___qlistwidgetitem12 = objetos->item(12);
-        ___qlistwidgetitem12->setText(QApplication::translate("VentanaPrincipal", "Chell", 0));
+        ___qlistwidgetitem12->setText(QApplication::translate("VentanaPrincipal", "Metal", 0));
         QListWidgetItem *___qlistwidgetitem13 = objetos->item(13);
-        ___qlistwidgetitem13->setText(QApplication::translate("VentanaPrincipal", "Metal", 0));
+        ___qlistwidgetitem13->setText(QApplication::translate("VentanaPrincipal", "Stone", 0));
         QListWidgetItem *___qlistwidgetitem14 = objetos->item(14);
-        ___qlistwidgetitem14->setText(QApplication::translate("VentanaPrincipal", "Stone", 0));
+        ___qlistwidgetitem14->setText(QApplication::translate("VentanaPrincipal", "Tria4", 0));
         QListWidgetItem *___qlistwidgetitem15 = objetos->item(15);
-        ___qlistwidgetitem15->setText(QApplication::translate("VentanaPrincipal", "Tria4", 0));
+        ___qlistwidgetitem15->setText(QApplication::translate("VentanaPrincipal", "Tria5", 0));
         QListWidgetItem *___qlistwidgetitem16 = objetos->item(16);
-        ___qlistwidgetitem16->setText(QApplication::translate("VentanaPrincipal", "Tria5", 0));
+        ___qlistwidgetitem16->setText(QApplication::translate("VentanaPrincipal", "Tria6", 0));
         QListWidgetItem *___qlistwidgetitem17 = objetos->item(17);
-        ___qlistwidgetitem17->setText(QApplication::translate("VentanaPrincipal", "Tria6", 0));
+        ___qlistwidgetitem17->setText(QApplication::translate("VentanaPrincipal", "Tria7", 0));
         QListWidgetItem *___qlistwidgetitem18 = objetos->item(18);
-        ___qlistwidgetitem18->setText(QApplication::translate("VentanaPrincipal", "Tria7", 0));
-        QListWidgetItem *___qlistwidgetitem19 = objetos->item(19);
-        ___qlistwidgetitem19->setText(QApplication::translate("VentanaPrincipal", "Cake", 0));
+        ___qlistwidgetitem18->setText(QApplication::translate("VentanaPrincipal", "Cake", 0));
         objetos->setSortingEnabled(__sortingEnabled);
 
         guardarMapa->setText(QApplication::translate("VentanaPrincipal", "SAVE", 0));

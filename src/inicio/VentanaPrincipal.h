@@ -31,8 +31,10 @@ private slots:
 
     void on_comenzarButton_clicked();
 
-//    void on_reloadButton_clicked();
+    void on_reloadButton_clicked();
 
+    void closeEvent(QCloseEvent *event); 
+    
     void on_comenzarJuego_clicked();
 
     void on_editarMapa_clicked();

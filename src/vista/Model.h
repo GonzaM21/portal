@@ -16,6 +16,7 @@
 #include "Rocks/Rock.h"
 #include "Emitter/Emitter.h"
 #include "Cake/Cake.h"
+#include "EnergyBarrier/EnergyBarrier.h"
 #include <list>
 #include <map>
 #include <unordered_map>
@@ -35,6 +36,7 @@ public:
   void setCake(Rect &dest);
   void setEnergyEmitter(Rect &dest, const int &id, const int &direction, const int &state);
   void setPlayer(Rect &dest, const int &id, const int &state, const int &direction);
+  void setEnergyBarrier(Rect &dest, const int &direction);
   std::list<Block *> getBlocks();
   std::list<Acid *> getAcids();
   std::list<PowerBall *> getpowerballs();
@@ -59,6 +61,7 @@ private:
   std::list<Block *> blocks;
   std::list<Acid *> acids;
   std::list<Cake *> cakes;
+  std::list<EnergyBarrier *> barriers;
   std::map<int, Rock *> rocks;
   std::map<int, Portal *> portals;
   std::list<PowerBall *> powerballs;

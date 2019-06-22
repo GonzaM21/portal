@@ -6,7 +6,5 @@ int QtExecutor::executeWindow(int argc, char *argv[],
     QApplication app(argc, argv);
     VentanaPrincipal ventanaprincipal(&config, joiner, communicator);
     ventanaprincipal.show();
-    app.exec();
-    app.exit();
-    return 0;
+    return app.exec();
 } 

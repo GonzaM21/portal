@@ -40,6 +40,11 @@ void Model::setGate(Rect &dest, const int &id, const int &state)
   this->gates[id]->setState(state);
 }
 
+void Model::setEnergyBarrier(Rect &dest, const int &direction)
+{
+  this->barriers.push_back(new EnergyBarrier(window, direction));
+  this->barriers.back()->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
+}
 
 void Model::setButton(Rect &dest, const int &id, const int &state)
 {

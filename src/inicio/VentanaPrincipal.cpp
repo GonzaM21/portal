@@ -4,7 +4,8 @@
 #include <iostream>
 #include <string>
 #include <list>
-
+#include <QDropEvent>
+#include <QCloseEvent>
 
 VentanaPrincipal::VentanaPrincipal(MatchConfig *match_config, Joiner *joinerParam, ClientCommunicator *communicatorParam, QWidget *parent) : QWidget(parent),
                                                                                                                                              ui(new Ui::VentanaPrincipal),
@@ -38,18 +39,22 @@ void VentanaPrincipal::on_submit_clicked()
     partida->setPlayerName(ui->nombre->text().toStdString());
 }
 
-// void VentanaPrincipal::on_reloadButton_2_clicked()
-// {
-//     ui->integrantesLista->clear();
-//     std::vector<std::string> integrantes = communicator->getMates();
-//     for (size_t i = 0; i < integrantes.size(); i++)
-//     {
-//         QString mate(integrantes[i].c_str());
-//         ui->integrantesLista->addItem(mate);
-//     }
-// }
+void VentanaPrincipal::on_reloadButton_clicked()
+{
+    ui->integrantesLista->clear();
+    std::vector<std::string> integrantes = communicator->getMates();
+    for (size_t i = 0; i < integrantes.size(); i++)
+    {
+        QString mate(integrantes[i].c_str());
+        ui->integrantesLista->addItem(mate);
+    }
+}
 
-void VentanaPrincipal::on_crearSalaButton_clicked()
+void VentanaPrincipal::closeEvent(QCloseEvent *event) {
+    QCoreApplication::exit(EXIT_FAILURE);
+}
+
+    void VentanaPrincipal::on_crearSalaButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
     partida->setMode("new");

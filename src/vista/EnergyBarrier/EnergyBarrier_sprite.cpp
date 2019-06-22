@@ -20,7 +20,7 @@ int EnergyBarrierSprite::render(const Rect &dest)
   {
     response = Sprite::render(src, dest);
   } else {
-    response = Sprite::render(src, dest, SDL_FLIP_HORIZONTAL, 90);
+    response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 90);
   }
   return response; 
 }
