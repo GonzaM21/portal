@@ -22,7 +22,7 @@ public:
     ObjectFactory(Model *model);
     ~ObjectFactory() = default;
     ObjectRock* createObjectRock(float x_pos, float y_pos, float radius);
-    ObjectGate* createObjectGate(float x_pos, float y_pos);
+    ObjectGate *createObjectGate(float x_pos, float y_pos, int id);
     ObjectAcid* createObjectAcid(float x_pos, float y_pos, float large);
     ObjectEnergyBall* createObjectEnergyBall(float x_pos, float y_pos);
     ObjectMetalBlock* createObjectMetalBlock(float x_pos, float y_pos,float size);

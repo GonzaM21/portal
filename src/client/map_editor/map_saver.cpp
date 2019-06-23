@@ -31,17 +31,12 @@ MapSaver::MapSaver(std::string file_name) : file(file_name) {
     codes["RecvD"] = 17;
     codes["RecvL"] = 18;
     codes["Cake"] = 19;
+    codes["Button"] = 20;
+    codes["Gate"] = 21;
+    codes["Ground"] = 22;
 }
 
-void getPosition(std::string &pos_x,std::string &pos_y) {
-    //std::cout << "Posicion en x: ";
-    std::cin >> pos_x;
-    //std::cout << "Posicion en y: ";
-    std::cin >> pos_y;
-}
-
-void MapSaver::addBlock(std::string type_optional,std::string size,std::string pos_x,std::string pos_y)
-{
+void MapSaver::addBlock(std::string type_optional,std::string size,std::string pos_x,std::string pos_y) {
     std::map<std::string,std::string> m;
     m["TYPE"] = BLOCK_ID;
     m["TYPE_OPTIONAL"] = type_optional;
@@ -51,8 +46,7 @@ void MapSaver::addBlock(std::string type_optional,std::string size,std::string p
     this->objects.push_back(new JsonNode(m));
 }
 
-void MapSaver::addEnergyBarrier(std::string size, std::string pos_x, std::string pos_y, std::string orientation)
-{
+void MapSaver::addEnergyBarrier(std::string size, std::string pos_x, std::string pos_y, std::string orientation) {
     std::map<std::string,std::string> m;
     m["TYPE"] = ENERGY_BARRIER_ID;
     m["POS_X"] = pos_x;
@@ -71,11 +65,12 @@ void MapSaver::addAcid(std::string size, std::string pos_x, std::string pos_y){
     this->objects.push_back(new JsonNode(m));
 }
 
-void MapSaver::addDoor(std::string pos_x, std::string pos_y){
+void MapSaver::addDoor(std::string pos_x, std::string pos_y, std::string id) {
     std::map<std::string,std::string> m;
     m["TYPE"] = DOOR_ID;
     m["POS_X"] = pos_x;
     m["POS_Y"] = pos_y;
+    m["ID"] = id;
     this->objects.push_back(new JsonNode(m));
 }
 
@@ -135,12 +130,9 @@ void MapSaver::writeFile() {
 }
 
 void MapSaver::addObject(std::string object) {
-    //std::cout << object.c_str() << std::endl;
     std::vector<std::string> arguments;
     splitMessage(object,arguments);
-    //std::cout << arguments[0].c_str() << std::endl;
     int code = codes[arguments[0]];
-    //std::cout << code << std::endl;
     switch (code)
     {
     case 1:
@@ -159,7 +151,7 @@ void MapSaver::addObject(std::string object) {
         break;
     case 9:
     case 10:
-        // addEnergyBarrier(arguments[1], arguments[2], "1 ",std::to_string(code % 9));
+        addEnergyBarrier(arguments[1], arguments[2], "1 ",std::to_string(code % 9));
         break;
     case 11:
     case 12:
@@ -176,7 +168,16 @@ void MapSaver::addObject(std::string object) {
     case 19:
         addCake(arguments[1],arguments[2]);
         break;
-    default:
+    case 20: 
+        addButton(arguments[1],arguments[2],arguments[3],"0");
+        break;
+    case 21:
+        addDoor(arguments[1], arguments[2], arguments[3]);
+        break; 
+    case 22:
+    // addGround(arguments[0],arguments[1]);
+        break;
+    default: 
         break;
     }
 }

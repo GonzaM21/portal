@@ -20,8 +20,8 @@ ObjectMetalBlock* ObjectFactory :: createObjectMetalBlock(float x_pos, float y_p
     return new ObjectMetalBlock(this->model,x_pos,y_pos,size);
 }
 
-ObjectGate* ObjectFactory :: createObjectGate(float x_pos,float y_pos) {
-    return new ObjectGate(this->model,x_pos,y_pos);
+ObjectGate* ObjectFactory :: createObjectGate(float x_pos,float y_pos, int id) {
+    return new ObjectGate(this->model,x_pos,y_pos,id);
 }
 
 ObjectCake* ObjectFactory :: createObjectCake(float x_pos, float y_pos) {

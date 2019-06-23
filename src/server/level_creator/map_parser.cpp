@@ -8,9 +8,15 @@ MapParser :: MapParser(Model *model) : object_factory(model) {
     this->setBlockMethods();
 }
 
+// void MapParser ::createGround(nlohmann::json &object, std::list<Object *> &obj){
+//     ObjectGate *new_object = this->object_factory.createObjectGate((float)object.at("POS_X"),
+//     (float)object.at("POS_Y"));
+//     obj.push_back(new_object);
+// }
+
 void MapParser :: createGate(nlohmann::json &object,std::list<Object*> &obj){
-    ObjectGate* new_object = this->object_factory.createObjectGate((float)object.at("POS_X"),
-    (float)object.at("POS_Y")); 
+    ObjectGate *new_object = this->object_factory.createObjectGate((float)object.at("POS_X"),
+    (float)object.at("POS_Y"), (int)object.at("ID"));
     obj.push_back(new_object);
 }
 

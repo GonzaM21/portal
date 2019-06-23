@@ -8,9 +8,10 @@ private:
     Model *model;
     float x_pos;
     float y_pos;
+    int id;
 
 public:
-    ObjectGate(Model *model,float x_pos,float y_pos);
+    ObjectGate(Model *model,float x_pos,float y_pos, int id);
     ~ObjectGate() = default;
     void aggregate() override;
 };
