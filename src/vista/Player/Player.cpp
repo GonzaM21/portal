@@ -16,8 +16,7 @@
 #include <functional>
 #include <typeinfo>
 
-Player::Player(const Window &window, const int &direction) : dest_world(0, 0, 0, 0), direction(direction)
-{
+Player::Player(const Window &window, const int &direction) : dest_world(0, 0, 0, 0), direction(direction) {
 	this->changeState[0] = &Player::setIdle;
 	this->changeState[1] = &Player::setRestIdle;
 	this->changeState[2] = &Player::setRunning;
@@ -39,81 +38,62 @@ Player::Player(const Window &window, const int &direction) : dest_world(0, 0, 0,
 	this->sprite = this->states[0];
 }
 
-int Player::render(Camara &camara)
-{
+int Player::render(Camara &camara) {
 	return camara.render(*this->sprite, this->dest_world);
 }
 
-void Player::setIdle()
-{
-	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[0]).name()) != 0)
-	{
+void Player::setIdle() {
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[0]).name()) != 0) {
 		this->sprite = this->states[0];
 	}
 }
 
-void Player::setRestIdle()
-{
-	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[1]).name()) != 0)
-	{
+void Player::setRestIdle() {
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[1]).name()) != 0) {
 		this->sprite = this->states[1];
 	}
 }
 
-void Player::setRunning()
-{
-	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[2]).name()) != 0)
-	{
+void Player::setRunning() {
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[2]).name()) != 0) {
 		this->sprite = this->states[2];
 	}
 }
 
-void Player::setDancing()
-{
-	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[3]).name()) != 0)
-	{
+void Player::setDancing() {
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[3]).name()) != 0) {
 		this->sprite = this->states[3];
 	}
 }
 
-void Player::setDying()
-{
-	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[4]).name()) != 0)
-	{
+void Player::setDying() {
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[4]).name()) != 0) {
 		this->sprite = this->states[4];
 	}
 }
 
 
-void Player::setRunningShooting()
-{
-	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[5]).name()) != 0)
-	{
+void Player::setRunningShooting() {
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[5]).name()) != 0) {
 		this->sprite = this->states[5];
 	}
 	
 }
 
-void Player::setStop()
-{
-	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[6]).name()) != 0)
-	{
+void Player::setStop() {
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[6]).name()) != 0) {
 		this->sprite = this->states[6];
 	}
 }
 
-void Player::setRising()
-{
-	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[7]).name()) != 0)
-	{
+void Player::setRising() {
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[7]).name()) != 0) {
 		this->sprite = this->states[7];
 	}
 }
 
-void Player::setFalling()
-{
-	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[8]).name()) != 0)
-	{
+void Player::setFalling() {
+	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[8]).name()) != 0) {
 		this->sprite = this->states[8];
 	}
 }
@@ -129,10 +109,8 @@ void Player::setDestWorld(float x, float y, float width, float height)
 	dest_world.set(x, y, width, height);
 }
 
-Player::~Player()
-{
-	for (auto sprite : states)
-	{
+Player::~Player() {
+	for (auto sprite : states) {
 		delete sprite.second;
 	}
 }

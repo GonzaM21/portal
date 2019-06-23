@@ -3,6 +3,9 @@
 #include <string>
 #include <iostream>
 #include <SDL2/SDL_image.h>
+#include <list>
+#include <map>
+#include <unordered_map>
 #include "Window.h"
 #include "Camara.h"
 #include "Rect.h"
@@ -17,15 +20,27 @@
 #include "Emitter/Emitter.h"
 #include "Cake/Cake.h"
 #include "EnergyBarrier/EnergyBarrier.h"
-#include <list>
-#include <map>
-#include <unordered_map>
 
-class Model
-{
+/**
+ * Clase Model, la cual posee todos los objetos a ser renderizados en la pantalla
+*/
+class Model {
 public:
+
+  /**
+   * Consructor del modelo, construye la camara
+  */
   Model(Window &window);
+
+  /**
+   * Destructor, libera la memoria de los objetos creados
+   **/
   ~Model();
+
+  /**
+   * Setters de los objetos, estos se crean y se lkes setea los atributos recibidos, 
+   * y tambien donde estan posicionados en el mundo real
+  */
   void setBlock(Rect &dest, const int &code);
   void setGate(Rect &dest, const int &id, const int &state);
   void setButton(Rect &dest, const int &id, const int &state);
@@ -37,22 +52,48 @@ public:
   void setEnergyEmitter(Rect &dest, const int &id, const int &direction, const int &state);
   void setPlayer(Rect &dest, const int &id, const int &state, const int &direction);
   void setEnergyBarrier(Rect &dest, const int &direction);
+  
+  /**
+   * Getters de las estructuras que poseen a los objetos
+  */
   std::list<Block *> getBlocks();
   std::list<Acid *> getAcids();
   std::list<PowerBall *> getpowerballs();
   std::unordered_map<int, Player *> getPlayers();
   std::map<int, Button *> getButtons();
   std::map<int, Gate *> getGates();
+
+  /**
+   * Metodo encargda de renderizar todos los objetos
+  */
   void renderAll();
+
+  /**
+   * Metodo que setea el jugador propio
+  */
   void setPlayerId(int id) { ownPlayerId = id; }
-  void fullscreen()
-  {
+
+  /**
+   * Metodo que setea la pantalla en fullscreen
+  */
+  void fullscreen() {
     window.fullscreen();
   }
+
+  /**
+   * Metodo que setea el background en la pantalla
+  */
   void setBackground();
+
+  /**
+   * Getter del window
+  */
   Window *getWindow();
+
+  /**
+   * Metodo que convierte un Rect que tiene medidas del mundo virtual al real
+  */
   void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);
-  void resetModel();
 
 private: 
   void ereasePowerBalls();

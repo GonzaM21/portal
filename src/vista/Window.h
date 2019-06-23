@@ -5,20 +5,50 @@ class SDL_Window;
 class SDL_Renderer;
 class SDL_Texture;
 
-class Window
-{
+/**
+ * Clase encargada de renderizar todo, al momento de 
+ * que ya se cargo todo en el renderer.
+ */
+class Window {
 public:
     /**
-     * Ctor standalone
+     * Constructor de la ventana
      */
     Window(int width, int height);
+
+    /**
+     * Destructor de la ventana
+     */
     ~Window();
+
+    /**
+     * Rellena la pantala con el fondo de pantalla cargado 
+     */
     void fill();
-    void fill(int r, int g, int b, int alpha);
+
+    /**
+     * rendera el renderer presente
+     */
     void render();
+    
+    /**
+     * getter del renderer
+     */
     SDL_Renderer *getRenderer() const;
+    
+    /**
+     * Setea la pantalla fullscreen o no dependiendo de si estaba en fullscreen o no
+     */ 
     void fullscreen();
+    
+    /**
+     * Getter del size de la ventana 
+     */
     void getSize(int &width, int &height) const;
+
+    /**
+     * Setter del background
+     */
     void setBackground(const char *background);
 
 private:
@@ -27,8 +57,8 @@ private:
     int height;
     SDL_Window *window;
     SDL_Renderer *renderer;
-    MusicBase * musicPlayer;
     bool fullscreened;
+    MusicBase * musicPlayer;
 };
 
 #endif

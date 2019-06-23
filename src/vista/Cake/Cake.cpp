@@ -6,23 +6,18 @@
 #include <iostream>
 #include <typeinfo>
 
-Cake::Cake(const Window &window) : window(window),
-                                   dest_world(0, 0, 0, 0)
-{
+Cake::Cake(const Window &window) : dest_world(0, 0, 0, 0) {
   this->sprite = new CakeSprite(window);
 }
 
-int Cake::render(Camara &camara)
-{
+int Cake::render(Camara &camara) {
   return camara.render(*sprite, dest_world);
 }
 
-void Cake::setDestWorld(float x, float y, float width, float height)
-{
+void Cake::setDestWorld(float x, float y, float width, float height) {
   dest_world.set(x, y, width, height);
 }
 
-Cake::~Cake()
-{
+Cake::~Cake() {
   delete this->sprite;
 }

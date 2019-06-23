@@ -7,24 +7,40 @@
 #include "Rect.h"
 #include "Sprite.h"
 
-class Camara
-{
+/**
+ * Clase camara, es la clase encargada de mantener centrada la camara en el jugador 
+*/
+class Camara {
 public:
-   /**
-     * Crea una camara
-     **/
-   Camara(const Window &window);
-   /**
-     * Libera la memoria reservada por la camara
-     **/
-   ~Camara();
-   /**
-     * Renderiza la textura recibida por parametro
-     **/
-   int render(Sprite &sprite, Rect destWorld);
-   void setWindow(float x, float y, float width, float height);
-   void convertToVirtual(const Rect &worldPostion, Rect &virtualPostion);
-   void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);
+  /**
+   * Crea una camara
+   **/
+  Camara(const Window &window);
+  
+  /**
+   * Libera la memoria reservada por la camara
+   **/
+  ~Camara();
+
+  /**
+   * Renderiza el sprite recibido por parametro
+   **/
+  int render(Sprite &sprite, Rect destWorld);
+
+  /**
+   * Metodo que setea la posicion de la camara
+  */
+  void setCamara(float x, float y);
+
+  /**
+   * Metodo que combierte un area con medidas del mundo real en medidas de mundo virtual
+  */
+  void convertToVirtual(const Rect &worldPostion, Rect &virtualPostion);
+
+  /**
+   * Metodo que combierte un area con medidas del mundo virtual en medidas de mundo real
+  */
+  void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);
 
  private:
    const Window &window;

@@ -21,8 +21,7 @@
 #include <vector>
 #include <string>
 
-class ModelFacade
-{
+class ModelFacade {
 public:
   ModelFacade(Window &window);
   ~ModelFacade() = default;
@@ -39,7 +38,7 @@ public:
   void setEnergyEmitter(std::vector<std::string> arguments);
   void setEnergyBarrier(std::vector<std::string> arguments);
   void setCake(std::vector<std::string> arguments);
-  void setFullscreen() {model.fullscreen();}
+  void setFullscreen() { model.fullscreen(); }
   void renderAll();
   Window *getWindow();
   void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);

@@ -8,12 +8,36 @@
 #include <map>
 #include <unordered_map>
 
-class Player
-{
+/**
+ * Clase Player, la cual es el objeto que posee el sprite 
+ * correspondiente y su posicion en el mundo real y el estado del mismo
+*/
+class Player {
 public:
+  /**
+   * Constructor, crea el sprite y setea el destWorld, 
+   * y recibe la direccion hacia donde se mueve el player
+  */
   Player(const Window &window, const int &direction);
+
+  /**
+   * Destructor
+  */
   ~Player();
+  
+  /**
+  * Metodo encargado de renderizar el sprite correspondiente
+  */
   int render(Camara &camara);
+
+  /**
+   * Metodo que setea el estado del jugador
+  */
+  void setState(const int &state, const int &direction);
+  
+  /**
+   * Setters del estado del jugador
+  */
   void setIdle();
   void setFlying();
   void setGrabbed();
@@ -25,23 +49,32 @@ public:
   void setStop();
   void setRising();
   void setFalling();
-  void open();
-  void close();
-  bool isOpen();
-  bool isClosed();
+
+  /**
+   * Metodo que setea la posicion y el area de 
+   * sprite en la textura correspondiente
+  */
   void setSrc(int x, int y, int widht, int heigh);
+  
+  /**
+  * Metodo encargado de setear el area y la posicion del objeto en el mundo real
+  */
   void setDestWorld(float x, float y, float widht, float heigh);
-  void setDestScreen(int x, int y, int widht, int heigh);
-  Rect getSrc();
-  Rect getDest();
+
+  /**
+  * Getter de la posicion del objeto en el mundo real
+  */
   Rect getDestWorld() { return dest_world; };
-  void setState(const int &state, const int &direction);
+  
+  /**
+  * Getter de la posicion de la posicion y el area del 
+  * sprite en la textura correspiendente. 
+  */
+  Rect getSrc();
 
 private:
   Rect dest_world;
   Sprite *sprite;
-  bool is_open = false;
-  bool is_closed = true;
   int direction;
   typedef void (Player::*player_method_t)();
   std::unordered_map<int, player_method_t> changeState;

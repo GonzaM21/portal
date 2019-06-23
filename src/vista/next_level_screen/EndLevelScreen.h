@@ -5,9 +5,9 @@
 
 class EndLevelScreen {
 private:
+    Window window;
     SDLButton next;
     SDLButton exit;
-    Window window;
 public:
     EndLevelScreen(Window &window);
     ~EndLevelScreen() = default;

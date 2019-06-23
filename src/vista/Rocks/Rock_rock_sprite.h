@@ -5,9 +5,9 @@
 #include "../Sprite.h"
 #include "../Rect.h"
 
-/*Clase abstracta State, 
-es el estado de la puerta, 
-aqui aplicando un patrron state */
+/**
+ * Clase que hereda de sprite, y este es el sprite de las rocas
+*/
 class RockSprite : public Sprite
 {
 public:

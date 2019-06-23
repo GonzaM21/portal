@@ -7,11 +7,8 @@
 #include <iostream>
 #include <typeinfo>
 
-Portal::Portal(const Window &window, const int &code, const int &direction) : window(window),
-                                                                              dest_world(0, 0, WIDTH_PORTAL, HEIGHT_PORTAL)
-{
-  switch (code)
-  {
+Portal::Portal(const Window &window, const int &code, const int &direction) : dest_world(0, 0, WIDTH_PORTAL, HEIGHT_PORTAL) {
+  switch (code) {
   case 1:
     this->sprite = new BluePortal(window, direction);
     break;
@@ -25,22 +22,18 @@ Portal::Portal(const Window &window, const int &code, const int &direction) : wi
   }
 }
 
-int Portal::render(Camara &camara)
-{
+int Portal::render(Camara &camara) {
   return camara.render(*sprite, dest_world);
 }
 
-void Portal::setDestWorld(float x, float y, float width, float height)
-{
+void Portal::setDestWorld(float x, float y, float width, float height) {
   dest_world.set(x, y, width, height);
 }
 
-void Portal::setState(const int &direction)
-{
+void Portal::setDirection(const int &direction) {
   this->sprite->setDirection(direction);
 }
 
-Portal::~Portal()
-{
+Portal::~Portal() {
   delete this->sprite;
 }
