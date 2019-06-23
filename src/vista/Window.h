@@ -27,7 +27,6 @@ private:
     int height;
     SDL_Window *window;
     SDL_Renderer *renderer;
-    MusicBase * musicPlayer;
     bool fullscreened;
 };
 

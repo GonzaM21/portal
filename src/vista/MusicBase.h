@@ -23,7 +23,7 @@ public:
 
     MusicBase(MusicBase const &);
     MusicBase &operator=(MusicBase const &);
-    void playMusic(const int &id);
+    void playMusic(const int &id, const int &lvl);
 };
 
 
