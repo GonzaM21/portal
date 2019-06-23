@@ -18,6 +18,7 @@ public:
   void handleMouseButtonUp(SDL_MouseButtonEvent &mousseEvent);
   void handleMouseButtonUpLocally(SDL_MouseButtonEvent &mousseEvent);
   void setSendDataLocally(bool send_locally);
+  void handleKeyUpLocal(SDL_KeyboardEvent& keyEvent); 
 
 private:
   bool running;

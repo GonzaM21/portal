@@ -58,5 +58,8 @@ Command* Protoc :: deserialize(std::string &message) {
     if (content.at(1) == "o") {
         return commandFactory.createCommandInmortal(content.at(0));
     }
+    if (content.at(1) == "q") {
+        return commandFactory.createCommandEndGame();
+    }
     return nullptr;
 }

@@ -26,7 +26,7 @@ public:
     }
     else if (code >= 4)
     {
-        std::cout<<"code:              "<<code<<std::endl;
+        //std::cout<<"code:              "<<code<<std::endl;
       return new TriangleBlock(window,code%4);
     }
     return nullptr;

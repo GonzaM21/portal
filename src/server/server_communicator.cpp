@@ -28,6 +28,7 @@ void Communicator :: sendMessage() {
     try {
         while (this->continue_running) {
             std::string message = this->room_sender->getMessageFor(this->player_name);
+            if (!this->continue_running) break;
             this->protocol << message;
         }
     } catch (const std::runtime_error& e) {
@@ -43,7 +44,7 @@ void Communicator :: receiveMessage() {
     while (this->continue_running) {
         std::string message;
         this->protocol >> message;
-        if (message == "q") {
+        if (message == "m") {
             this->protocol.closeProtocol();
             this->continue_running = false;
             continue;
@@ -69,6 +70,7 @@ bool Communicator :: setInitialData(std::string &game_room,
 }
 
 bool Communicator :: communicatorValid() {
+    if (this->room != nullptr && !this->room->getRoomIsActive()) return false;
     return this->is_valid;
 }
 

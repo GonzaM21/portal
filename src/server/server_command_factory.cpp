@@ -55,3 +55,7 @@ CommandInmortal* CommandFactory::createCommandInmortal(std::string &player) {
 CommandAntiGravity* CommandFactory::createCommandAntiGravity(std::string &player) {
     return new CommandAntiGravity(this->model, player);
 }
+
+CommandFinishGame* CommandFactory::createCommandEndGame() {
+    return new CommandFinishGame(this->model);
+}

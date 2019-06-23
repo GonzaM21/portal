@@ -58,10 +58,14 @@ void RoomGame :: run() {
         Command* command = protocol.deserialize(new_message);                                                   //std::shared_ptr<Command*> command(protocol.deserialize(new_message)); //recomendo que use share_ptr (?)
         if (command == nullptr) continue;
         command->execute();
+        delete command;
+        if (model.getFinishGame()) break;
         this->roomStillActive();
         model.checkWinState();                                              //esto se deberia hcer en el game_loop, se manda a los jugadores que termino el nivel en caso que quieran volver a jugar mandan cierto comando y aca se ve, mientras tanto si el comando es distitno al que deben mandar para pasar al proximo nivel se ignora. Salvo el comando de ifn de juego, so no quieren jugar mas se los saca de la sala.
     }
     model.endGame();
+    this->room_is_active = false;
+    std::cout << "sale del room game\n";
 }
 
 void RoomGame::roomStillActive() {
@@ -72,6 +76,7 @@ void RoomGame::roomStillActive() {
 }
 
 void RoomGame :: endExecution() {
+    std::unique_lock<std::mutex> lock(m);
     this->continue_running = false;
     this->messages->set_terminar_ejecucion();
     this->sender.endExecution();

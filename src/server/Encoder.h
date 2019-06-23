@@ -16,6 +16,9 @@ private:
 public:
     Encoder(ProtectedDataBase *data_base,Sender *sender);
     ~Encoder() = default;
+
+    //Serializan un mensaje para enviar al cliente la informacion
+    //de los objetos.
     void sendPlayerIds();
     void sendPlayersPositions();
     void sendMetalBlocks();
@@ -36,7 +39,6 @@ public:
     void sendNextLevelStart();
     void sendMapStart();
     void sendPlayersName();
-    //void sendRoomsName();
     void sendTriangularBlocks();
 };
 

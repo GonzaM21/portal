@@ -29,7 +29,7 @@ void MessageSender::sendResetPortals() {
 }
 
 void MessageSender::sendQuitGame() {
-  communicator->addMessageToSend("q");
+  communicator->addMessageToSend("m");
 }
 
 void MessageSender::sendStart(){

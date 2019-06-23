@@ -6,7 +6,7 @@
 
 Emitter::Emitter(const Window &window, const int &code, const int &state) : dest_world(0, 0, 0, 0), sprite(window, code)
 {
-	std::cout << "emitter" << state << std::endl;
+	//std::cout << "emitter" << state << std::endl;
 	if (state == 0)
 	{
 		inactive = new TargetSprite(window, 1);
@@ -29,7 +29,7 @@ void Emitter::setDestWorld(float x, float y, float width, float height)
 }
 
 void Emitter::setState(const int& state) {
-	std::cout << "Inactive " << state << std::endl;
+	//std::cout << "Inactive " << state << std::endl;
 	inactive->setState(std::abs(state-1));
 }
 

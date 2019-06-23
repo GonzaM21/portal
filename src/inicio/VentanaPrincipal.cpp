@@ -86,7 +86,7 @@ void VentanaPrincipal::on_elegirSalaButton_clicked()
 void VentanaPrincipal::on_comenzarJuego_clicked()
 {
     communicator->addMessageToSend("start");
-    QApplication::quit();
+    QCoreApplication::exit(EXIT_SUCCESS);
 }
 
 void VentanaPrincipal::on_editarMapa_clicked()
@@ -100,7 +100,7 @@ void VentanaPrincipal::on_mapa_cellDoubleClicked(int row, int column)
     QTableWidgetItem *item = ui->mapa->item(row,column);
     QString vacio("");
     if (item == 0) return;
-    std::cout << item->text().toStdString().c_str() << std::endl;
+    //std::cout << item->text().toStdString().c_str() << std::endl;
     item->setText(vacio);
     QIcon icon;
     item->setIcon(icon);

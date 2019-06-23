@@ -47,16 +47,33 @@ void ClientController::initializeCommunication() {
     this->communicator->start();    
 }
 
-//bool ClientController::localSceneAction(LocalSceneLogic &local_scene_logic) {
-//    return false;
-//}
+void ClientController::updateClientAction(LocalSceneLogic &local_scene_logic,
+    SceneManager &scene_manager) {
+    while (this->continue_running) {
+        if (local_scene_logic.getNextLevel()) {
+            std::cout << "envio datos para prox level\n";
+            //this->communicator->addMessageToSend()
+            return;
+        } else if (local_scene_logic.getEndGame()) {
+            this->communicator->addMessageToSend("q");
+            for (int i = 0; i<5;i++) {
+                std::cout<< "Exit in: " << 5-i << " seconds." << std::endl;
+                usleep(1000000);
+            }
+            this->continue_running = false;
+            return;
+        }
+        usleep(20000); //Duermo un tiempo el hilo para que el cpu no este al palo
+    }
+}
 
 void ClientController::updateLocalScene(LocalSceneLogic &local_scene_logic,
     SceneManager &scene_manager) {
     if (this->end_game) return;
     if (this->end_level && this->waiting_next_level) {
         this->handler->setSendDataLocally(true);
-        /*if (scene_manager.getActualScreen() == END_LEVEL_SCREEN)*/ scene_manager.putNextLevelScene();
+        scene_manager.putNextLevelScene();
+        this->updateClientAction(local_scene_logic,scene_manager);
         return;
     } else if (!this->end_level && this->waiting_next_level) {
         this->handler->setSendDataLocally(false);
@@ -96,9 +113,8 @@ void ClientController::mainLoop() {
         this->renderer_thread = new Renderable(&scene_manager);
         std::setlocale(LC_NUMERIC,"C"); //Qt nos cambia el comportamiento de algunas funciones como atof y stof
         this->initializeCommunication();
-        while (true) {
+        while (this->continue_running) {
             std::string msg = this->communicator->popMessageReceived();
-            //std::cout << this->end_game << " " << this->continue_running << std::endl;
             if (!this->continue_running || this->end_game) break;
             deserializer.deserialize(msg);
             this->updateControllerVariables(&data_container);

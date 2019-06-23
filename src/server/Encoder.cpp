@@ -6,7 +6,7 @@
 #define END_MAP_CODE "5"
 #define OBJECT_CODE "6"
 #define MATES_CODE "7"
-#define ERROR_CODE "8" //Revisar donde envio los errores
+#define ERROR_CODE "8" 
 #define CHELL_HIGH 1.6
 #define CHELL_WIDTH 0.5
 
@@ -153,15 +153,14 @@ void Encoder :: sendPortals() {
             b2Vec2 pos = portal->getPosition();
             b2Vec2 size = portal->getSizes();
             int orientation = portal->getOrientation();
-            //int state = portal->
+            int state = portal->lives();
             std::string msg("6,"+std::to_string((i+1+portal_num)*4)+","+ std::to_string(pos.x) + ","
             + std::to_string(-pos.y) + "," + std::to_string(size.x*2) + "," +
-            std::to_string(size.y)+","+std::to_string(portal_num)+"," + std::to_string(portal->getOrientation())
-            +",1");
+            std::to_string(size.y)+","+std::to_string(portal_num)+"," + std::to_string(orientation)
+            +","+std::to_string(state));
             this->sender->addMessageToSend(msg);  
         }
     }
-    //Harcodeado la direccion y state
 }
 
 void Encoder :: sendBarriers() {

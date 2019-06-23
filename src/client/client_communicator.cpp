@@ -54,7 +54,7 @@ std::string ClientCommunicator::getMode() {
 void ClientCommunicator ::sendMessage() {
     while (this->continue_running) {
         std::string message(this->sender_queue.pop());
-        if (!this->continue_running || message == "q") break;
+        if (!this->continue_running || message == "m") break;
         this->protocol << message;
     }
     this->endExecution();

@@ -12,10 +12,10 @@ public:
 	void set(float x, float y, float width, float height);
 	void prfloat()
 	{
-		std::cout << "x " << this->x << std::endl;
-		std::cout << "y " << this->y << std::endl;
-		std::cout << "w " << this->width << std::endl;
-		std::cout << "h " << this->height << std::endl;
+		//std::cout << "x " << this->x << std::endl;
+		//std::cout << "y " << this->y << std::endl;
+		//std::cout << "w " << this->width << std::endl;
+		//std::cout << "h " << this->height << std::endl;
 	}
 
 private:

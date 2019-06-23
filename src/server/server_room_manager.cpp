@@ -28,8 +28,9 @@ void RoomManager :: endExecution() {
     this->continue_running = false;
     this->events->set_terminar_ejecucion();
     for (RoomGame* & room : this->rooms) {
-        std::cout << room->getName() << std::endl;
-        room->endExecution();
+        if (room->getRoomIsActive()) {
+            room->endExecution();
+        }
     }        
 }
 
@@ -126,7 +127,8 @@ void RoomManager :: run() { //como hay un solo hilo desencolando eventos y es el
         this->eliminateInactivesRooms();
         if (!this->continue_running) break;
         splitMessage(message,room_name,player_name,mode,player_id);
-
+        if (mode == "None" || room_name == "None" || 
+            player_name == "None" || player_id == "None") continue;
         if (mode == "new") {
             if (!this->createRoom(room_name)) this->ids.insert({player_id,false});
             this->addPlayerToRoom(room_name,player_name);
@@ -137,4 +139,5 @@ void RoomManager :: run() { //como hay un solo hilo desencolando eventos y es el
         }
         this->ids.insert({player_id,true});
     }
+    std::cout << "sake del room mamanger\n";
 }

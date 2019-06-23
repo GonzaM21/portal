@@ -38,14 +38,12 @@ void ClientAcceptor :: run() {
             }
         }
     }
-
     for (auto i = communicators.begin(); i!= communicators.end();) {
         if ((*i)->communicatorValid()) (*i)->endExecution();
         (*i)->join();
-        delete (*i);
+        //delete (*i); //si la ultima sala gano me cuelga el server wtf(?)
         i = communicators.erase(i);
     }                
-
     room_manager->endExecution();
     room_manager->join();
     delete room_manager;

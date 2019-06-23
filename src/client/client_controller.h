@@ -47,6 +47,9 @@ private:
     //pantalla de fin de juego o siguiente nivel y realizo una accion)
     //bool localSceneAction(LocalSceneLogic &local_scene_logic);
 
+    void updateClientAction(LocalSceneLogic &local_scene_logic,
+      SceneManager &scene_manager);
+
 public:
     ClientController();
     ~ClientController() =default;
