@@ -13,7 +13,7 @@
 GameLoop ::GameLoop(World *world, Sender *sender,
     ProtectedDataBase *data_base) : encoder(data_base,sender) {
     this->time = 0;
-    this->continue_running = true;
+    this->continue_running = false;
     this->world = world;
     this->data_base = data_base;
     this->next_scenario = LEVEL_UNFINISH;
@@ -57,6 +57,7 @@ void GameLoop :: sendDynamicData() {
 }
 
 void GameLoop :: run() {
+    this->continue_running = true;
     this->sendInitialData();
     while (this->continue_running) {
         auto t_start = std::chrono::high_resolution_clock::now();
@@ -76,6 +77,7 @@ void GameLoop :: run() {
             this->waitNextAction();
         }
     }
+    std::cout << "sale del ggame loop\n";
 }
 
 void GameLoop ::endGameLoop() {
@@ -110,6 +112,10 @@ bool GameLoop ::gameLoopStarted() {
     return this->time != 0;
 }
 
+bool GameLoop ::continueRunning() {
+    return this->continue_running;
+}
+
 bool GameLoop::checkLevelComplete() {
     std::vector<Chell_Player*> chells = this->data_base->getPlayers();
     for (size_t i = 0; i<chells.size(); i++) {
@@ -127,7 +133,6 @@ void GameLoop::waitNextAction() { //se lo llama una ves que todos los jugadores 
             break;
         } else if (this->next_scenario == FINISH_GAME) {
             this->encoder.sendEndGame();
-            this->endGameLoop();
             break;
         } else {
             std::this_thread::sleep_for(std::chrono::milliseconds(STEP_DURATION));

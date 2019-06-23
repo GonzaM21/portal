@@ -20,6 +20,7 @@ class Communicator : public Thread {
         RoomGame *room; 
         Protocol protocol;
         std::thread thread_s;
+        bool thread_s_runnning;
         bool continue_running;
         bool is_valid;
         bool setInitialData(std::string &game_room,

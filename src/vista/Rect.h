@@ -28,10 +28,10 @@ public:
 		
 	void prfloat()
 	{
-		std::cout << "x " << this->x << std::endl;
-		std::cout << "y " << this->y << std::endl;
-		std::cout << "w " << this->width << std::endl;
-		std::cout << "h " << this->height << std::endl;
+		//std::cout << "x " << this->x << std::endl;
+		//std::cout << "y " << this->y << std::endl;
+		//std::cout << "w " << this->width << std::endl;
+		//std::cout << "h " << this->height << std::endl;
 	}
 
 private:

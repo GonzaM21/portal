@@ -4,6 +4,7 @@
 #include "../common/Constants.h"
 #include "level_creator/map_parser.h"
 #define EMPTY_VOTE ""
+#define FINISH_GAME 2
 
 
 
@@ -12,6 +13,7 @@ Model :: Model(Sender *sender) {
     this->game_loop = game_loop;
     this->ground = new Ground(world, 0.f, -1.f, GROUND_WIDTH,GROUND_HEIGHT);
     this->data_base.setLevel(world);
+    this->finish_game = false;
 }
 
 void Model::checkWinState() {
@@ -20,6 +22,10 @@ void Model::checkWinState() {
 
 Model :: ~Model(){
     delete ground;
+    delete this->game_loop;
+}
+bool Model:: getFinishGame() { 
+    return this->finish_game;
 }
 
 void Model :: startGame() {
@@ -32,11 +38,12 @@ void Model :: startGame() {
 }
 
 void Model :: endGame() {
-    if (this->game_loop->gameLoopStarted()) {
+    if (this->game_loop->continueRunning()) {
         this->game_loop->endGameLoop();
+        this->game_loop->setNextScenario(FINISH_GAME);
         this->game_loop->join();
     }
-    delete this->game_loop;
+    this->finish_game = true;
 }
 
 std::string Model :: getTime() {

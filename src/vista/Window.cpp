@@ -8,7 +8,8 @@
 #include "Constants.h"
 #include <iostream>
 
-Window::Window(int width, int height) : width(width), height(height), fullscreened(false), musicPlayer(new MusicBase()) {
+Window::Window(int width, int height) : width(width), height(height), fullscreened(false)
+{
     int errCode = SDL_Init(SDL_INIT_EVERYTHING);
     if (errCode) {
         throw SdlException("Error en la inicialización", SDL_GetError());
@@ -22,11 +23,7 @@ Window::Window(int width, int height) : width(width), height(height), fullscreen
     }
     SDL_Surface *image = IMG_Load(ICON_FILENAME);
     SDL_SetWindowIcon(window, image);
-    //musicPlayer->playMusic(AMBIENT_MUSIC_ID);
-    //Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-    //Mix_Music *music = Mix_LoadMUS("resources/Music/Ambient.mp3");
-    //Mix_VolumeMusic(MIX_MAX_VOLUME/20);
-    //Mix_PlayMusic(music, -1);
+    MusicBase::getInstance()->playMusic(AMBIENT_MUSIC_ID,30);
 }
 
 void Window::setBackground(const char *background) {

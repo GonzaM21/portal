@@ -6,10 +6,11 @@ LocalSceneLogic::LocalSceneLogic(SceneManager &scene_manager) :
     this->next_level = false;
 }
 
-void LocalSceneLogic::getClickEvent(int x, int y) {
+void LocalSceneLogic::setEvent(std::string &event) {
+    std::unique_lock<std::mutex> lck(m);
     EndLevelScreen *end_level_scene = this->scene_manager.getEndLevelScreen();
-    if (end_level_scene->clickOnExit(x,y)) this->end_game = true;
-    if (end_level_scene->clickOnNext(x,y)) this->next_level = true;
+    if (event == "q") this->end_game = true;
+    else this->next_level = true;
 }
 
 bool LocalSceneLogic::getEndGame() {
@@ -24,3 +25,6 @@ void LocalSceneLogic::resetLocalSceneLogic() {
     this->end_game = false;
     this->next_level = false;
 }
+
+
+//HAY DOS HILOS ACCEDIENDO A ESTA CLASE, PROTEGERRRRRRRRRRRRRRRRRRRRRRRRRRRR

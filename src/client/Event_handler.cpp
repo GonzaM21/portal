@@ -7,22 +7,24 @@ EventHandler::EventHandler(ClientCommunicator *client_communicator,
   PositionConverter &converter,LocalSceneLogic &local_scene_logic)
     : messageSender(client_communicator,converter),
     local_scene_logic(local_scene_logic) {
+      this->send_data_locally = false;
 } 
 
 void EventHandler::handleEvent(SDL_Event &event) {
   switch (event.type) {
-    if (this->send_data_locally) { //estaria bueno sacar esto fue del switch
-      SDL_MouseButtonEvent &mouseEvent = (SDL_MouseButtonEvent &)event;
-      handleMouseButtonUpLocally(mouseEvent); 
-    }
     case SDL_KEYDOWN: {
       SDL_KeyboardEvent &keyEvent = (SDL_KeyboardEvent &)event;
       handleKeyDown(keyEvent);
       break;
     }
     case SDL_KEYUP: {
-      SDL_KeyboardEvent &keyEvent = (SDL_KeyboardEvent &)event;
-      handleKeyUp(keyEvent);
+      if (this->send_data_locally) {
+        SDL_KeyboardEvent &keyEvent = (SDL_KeyboardEvent &)event;
+        handleKeyUpLocal(keyEvent);
+      } else {
+        SDL_KeyboardEvent &keyEvent = (SDL_KeyboardEvent &)event;
+        handleKeyUp(keyEvent);
+      }
       break;
     }
     case SDL_QUIT: {
@@ -51,6 +53,22 @@ void EventHandler::handleKeyDown(SDL_KeyboardEvent& keyEvent){
     }
     case SDLK_DOWN: {
       messageSender.sendStart();
+      break;
+    }
+  }
+}
+
+void EventHandler::handleKeyUpLocal(SDL_KeyboardEvent& keyEvent) {
+  std::string event("c");
+  switch (keyEvent.keysym.sym)
+  {
+    case SDLK_q: {
+      event = "q";
+      this->local_scene_logic.setEvent(event);
+      break;
+    }
+    default: {
+      this->local_scene_logic.setEvent(event);
       break;
     }
   }
@@ -103,7 +121,7 @@ void EventHandler::handleKeyUp(SDL_KeyboardEvent& keyEvent) {
       messageSender.sendSuicide();
       break;
     }
-    case SDLK_q: {
+    case SDLK_m: {
       messageSender.sendQuitGame();
       break;
     }
@@ -132,22 +150,6 @@ void EventHandler::handleMouseButtonUp(SDL_MouseButtonEvent& mouseEvent) {
     case SDL_BUTTON_LEFT:
       messageSender.sendPortal(x, y, 1);
       break;
-  }
-}
-
-void EventHandler::handleMouseButtonUpLocally(SDL_MouseButtonEvent &mousseEvent) {
-  int x,y;
-  SDL_GetMouseState(&x,&y);
-  switch (mousseEvent.button){
-    case SDL_BUTTON_RIGHT: {
-      this->local_scene_logic.getClickEvent(x,y);
-      break;
-    default: break;
-    }
-    case SDL_QUIT: {
-      messageSender.sendQuitGame();
-      break;
-    }
   }
 }
 

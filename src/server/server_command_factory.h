@@ -16,6 +16,7 @@
 #include "server_command_inmortal.h"
 #include "level_creator/map_parser.h"
 #include "server_level_manager.h"
+#include "server_command_finish_game.h"
 #include <map>
 
 class CommandFactory {
@@ -40,6 +41,7 @@ public:
     CommandSuicide* createCommandSuicide(std::string &player);
     CommandInmortal* createCommandInmortal(std::string &player);
     CommandAntiGravity* createCommandAntiGravity(std::string &player);
+    CommandFinishGame* createCommandEndGame();
 };
 
 

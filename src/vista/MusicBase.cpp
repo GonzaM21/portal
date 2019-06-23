@@ -16,7 +16,7 @@ MusicBase::MusicBase() {
 
 void MusicBase::createMusic(const int &id, const std::string filename) {
     if (music.find(id) != music.end()) return;
-    std::cout << "Creado " << id << " file " << filename << std::endl;
+    //std::cout << "Creado " << id << " file " << filename << std::endl;
     music[id] = Mix_LoadWAV(filename.c_str());
 }
 
@@ -32,9 +32,9 @@ MusicBase::~MusicBase() {
     }
 }
 
-void MusicBase::playMusic(const int &id) {
-    std::cout << "LLego aca" << std::endl;
+void MusicBase::playMusic(const int &id,const int &lvl) {
+    //std::cout << "LLego aca" << std::endl;
     Mix_Chunk * music = getMusic(id);
-    Mix_VolumeMusic(MIX_MAX_VOLUME/20);
+    Mix_VolumeMusic(MIX_MAX_VOLUME/lvl);
     if(music) Mix_PlayChannel(-1,music, 0);
 }

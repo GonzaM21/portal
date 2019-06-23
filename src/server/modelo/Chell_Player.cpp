@@ -51,6 +51,7 @@ bool Chell_Player::Jump(){
 }
 
 bool Chell_Player::Move(char &direction) {
+    if (winner) return false;
     b2Vec2 actual_speed = this->chell->GetLinearVelocity();
     if(!live) return false;
     if(direction == 'd'){

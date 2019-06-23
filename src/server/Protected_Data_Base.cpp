@@ -359,6 +359,8 @@ void ProtectedDataBase::resetDataBase() {
     this->resetButtons();
     this->resetEnergyBarriers();
     this->resetEnergyEmitters();
+    this->resetCakes();
+    this->resetTriangularBlocks();
 }
 
 void ProtectedDataBase::resetPlayers() {
@@ -437,6 +439,20 @@ void ProtectedDataBase::resetEnergyEmitters() {
     for (auto it = this->emitters.cbegin(); it != this->emitters.cend();) {
         delete it->second;
         it = this->emitters.erase(it); 
+    } 
+}
+
+void ProtectedDataBase::resetCakes() {
+    for (auto it = this->cakes.cbegin(); it != this->cakes.cend();) {
+        delete it->second;
+        it = this->cakes.erase(it); 
+    } 
+}
+
+void ProtectedDataBase::resetTriangularBlocks() {
+    for (auto it = this->triangular_blocks.cbegin(); it != this->triangular_blocks.cend();) {
+        delete it->second;
+        it = this->triangular_blocks.erase(it); 
     } 
 }
 

@@ -58,6 +58,8 @@ private:
     void resetButtons();
     void resetEnergyBarriers();
     void resetEnergyEmitters();
+    void resetCakes();
+    void resetTriangularBlocks();
 
 public:
     ProtectedDataBase() = default;

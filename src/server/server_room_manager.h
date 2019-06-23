@@ -12,22 +12,14 @@ class RoomManager : public Thread {
     private:
         std::mutex m;
         std::list<RoomGame*> rooms;
-        std::list<std::string> rooms_name;
+        std::list<RoomGame*> inactive_rooms;
         bool continue_running;
         ColaProtegida *events;
         void splitMessage(std::string &message,std::string &first_place,
         std::string &second_place,std::string &third_place,
         std::string &fourth_place);
         std::map<std::string,bool> ids;
-        void eliminateInactivesRooms();
-
-    public:
-        RoomManager(ColaProtegida *events);
-        ~RoomManager();
-
-        //Devuelve un booleano si existe o no una sala
-        //con el nombre recibido por parametro.
-        bool roomExist(std::string &name);
+        void closeInactiveRooms();
 
         //Recibe como parametro un nombre y crea una sala
         bool createRoom(std::string &name);
@@ -37,18 +29,30 @@ class RoomManager : public Thread {
         bool addPlayerToRoom(std::string &room_name,
           std::string &player_name);
 
+        //Devuelve un booleano si existe o no una sala
+        //con el nombre recibido por parametro.
+        bool roomExist(std::string &name);
+
+    public:
+        RoomManager(ColaProtegida *events);
+        ~RoomManager();
+
         //Settea el final de ejecucion de una instancia
         void endExecution();
-
-        void imprimirSalas(); //HAY QUE BORRAR 
 
         RoomGame *getCreatedRoom(std::string &room);
 
         bool idIsValid(const std::string &id);
 
-        std::list<std::string> getRoomsName();
+        void closeRoomsSender();
+
+        void closeRoomSender(std::string &room_name);
 
         virtual void run() override;
+
+        void eliminateInactivesRooms();
+
+        bool roomSenderIsClose(std::string &room_name);
 };
 
 #endif

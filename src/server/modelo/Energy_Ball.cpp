@@ -104,10 +104,11 @@ bool Energy_Ball::setTransform(Entity * body) {
 
         velocity = b2Vec2(ENERGY_BALL_FORCE * normal.x,ENERGY_BALL_FORCE * normal.y);
     }
+    return true;
 }
 
 void Energy_Ball::changePosition() {
-    if(life_step = LIFE_STEPS) live = false;
+    if(life_step == LIFE_STEPS) live = false;
     ++life_step;
     if(!teleport) return;
     energy_ball->SetTransform(teleport_pos,energy_ball->GetAngle());

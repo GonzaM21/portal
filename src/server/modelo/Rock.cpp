@@ -82,6 +82,7 @@ bool Rock::setTransform(Entity * body) {
 
 void Rock::setGravity(int gravity) {
     rock->SetGravityScale(gravity);
+    rock->ApplyForceToCenter(b2Vec2(0,-0.01),true);
 }
 
 void Rock::changePosition() {

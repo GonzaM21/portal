@@ -39,6 +39,7 @@ class GameLoop : public Thread {
         std::string getTime();
         void endGameLoop();
         bool gameLoopStarted();
+        bool continueRunning();
         void run() override;
         void step();
         void sendInitialData();

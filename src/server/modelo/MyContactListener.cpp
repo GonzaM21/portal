@@ -9,8 +9,10 @@ void chell_colitions(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
     std::string nameBodyA = static_cast<Entity *>(userDataA)->getEntityName();
     std::string nameBodyB = static_cast<Entity *>(userDataB)->getEntityName();
 
+    //std::cout<<"Punto de colision(chell): "<<colition_point.x<<"   "<<colition_point.x<<std::endl;
+
     if(nameBodyA == "Chell_Player" && nameBodyB == "Portal") static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
-    if(nameBodyA == "Chell_Player" && nameBodyB == "Rock"){
+    if(nameBodyA == "Chell_Player" && (nameBodyB == "Rock" || nameBodyB == "Gate")){
         if (colition_point.y >= 0.68){
             static_cast<Entity *>(userDataA)->die();
         }
@@ -26,8 +28,8 @@ void chell_colitions(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
     if(nameBodyA == "Chell_Player" && nameBodyB == "Cake") static_cast<Entity *>(userDataA)->win();
 
     if(nameBodyB == "Chell_Player" && nameBodyA == "Portal") static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
-    if(nameBodyB == "Chell_Player" && nameBodyA == "Rock"){
-        if (colition_point.y == 0.68){
+    if(nameBodyB == "Chell_Player" && (nameBodyA == "Rock" || nameBodyA == "Gate")){
+        if (colition_point.y >= 0.68){
             static_cast<Entity *>(userDataB)->die();
         }
         else {
@@ -101,11 +103,11 @@ void portal_colitions(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
         static_cast<Entity *>(userDataB)->die();
     }
 
-    if(nameBodyA == "Portal" && nameBodyB == "Rock"){
+    if(nameBodyA == "Portal" && (nameBodyB == "Rock" || nameBodyB == "Energy_Ball")){
         static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
     }
 
-    if(nameBodyB == "Portal" && nameBodyA == "Rock"){
+    if(nameBodyB == "Portal" && (nameBodyA == "Rock" || nameBodyA == "Energy_Ball")){
         static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
     }
 }
@@ -196,11 +198,8 @@ void MyContactListener::BeginContact(b2Contact * contact){
     void* bodyUserDataA = contact->GetFixtureA()->GetBody()->GetUserData();
     void* bodyUserDataB = contact->GetFixtureB()->GetBody()->GetUserData();
 
-    b2Vec2 colition_point = contact->GetManifold()->localPoint;
-
     if(contact->GetFixtureA()->GetUserData()){
         void * foot_sensor = contact->GetFixtureA()->GetUserData();
-        std::cout<<static_cast<Entity *>(foot_sensor)->getEntityName()<<std::endl;
         if(static_cast<Entity *>(foot_sensor)->getEntityName() == "Foot_Sensor"){
             foot_sensor_colitions(static_cast<Entity *>(foot_sensor),contact->GetFixtureB()->GetBody());
         }
@@ -208,13 +207,14 @@ void MyContactListener::BeginContact(b2Contact * contact){
 
     if(contact->GetFixtureB()->GetUserData()){
         void * foot_sensor = contact->GetFixtureB()->GetUserData();
-        std::cout<<static_cast<Entity *>(foot_sensor)->getEntityName()<<std::endl;
         if(static_cast<Entity *>(foot_sensor)->getEntityName() == "Foot_Sensor") {
             foot_sensor_colitions(static_cast<Entity *>(foot_sensor), contact->GetFixtureA()->GetBody());
         }
     }
 
     if (!bodyUserDataA || !bodyUserDataB) return;
+    b2Vec2 colition_point = b2Vec2(0,0);
+    if (contact->GetManifold()) colition_point = contact->GetManifold()->localPoint;
     chell_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody(),colition_point);
     portal_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody(),colition_point);
     button_colitions(contact->GetFixtureA()->GetBody(),contact->GetFixtureB()->GetBody());
@@ -226,8 +226,6 @@ void MyContactListener::BeginContact(b2Contact * contact){
 void chell_endContact(void * userDataA, void * userDataB){
     std::string nameBodyA = static_cast<Entity *>(userDataA)->getEntityName();
     std::string nameBodyB = static_cast<Entity *>(userDataB)->getEntityName();
-
-    std::cout<<"Se separo "<<nameBodyA<<" de "<<nameBodyB<<std::endl;
 
     if(nameBodyA != "Chell_Player" && nameBodyB != "Chell_Player") return;
 
@@ -244,7 +242,6 @@ void chell_endContact(void * userDataA, void * userDataB){
         static_cast<Entity *>(userDataB)->endContact();
         return;
     }
-    printf("y aca2\n");
     if(nameBodyB == "Chell_Player" && nameBodyA == "Stone_Block") static_cast<Entity *>(userDataB)->endContact();
     if(nameBodyB == "Chell_Player" && nameBodyA == "Button") static_cast<Entity *>(userDataB)->endContact();
 }
@@ -265,8 +262,6 @@ void foot_sensor_end_contact(Entity * foot_sensor, b2Body * body){
 
     std::string nameBody =  static_cast<Entity *>(body->GetUserData())->getEntityName();
 
-    std::cout<<"name: "<<nameBody<<std::endl;
-
     if(nameBody == "Ground" || nameBody == "Button" || nameBody == "Rock" || nameBody == "Gate"){
         foot_sensor->endContact();
     }
@@ -284,7 +279,6 @@ void MyContactListener::EndContact(b2Contact* contact){
     if(contact->GetFixtureA()->GetUserData()){
         void * foot_sensor = contact->GetFixtureA()->GetUserData();
         if(static_cast<Entity *>(foot_sensor)->getEntityName() == "Foot_Sensor"){
-            std::cout<<"FOOT SENSOR END\n";
             foot_sensor_end_contact(static_cast<Entity *>(foot_sensor),contact->GetFixtureB()->GetBody());
         }
     }
@@ -292,7 +286,6 @@ void MyContactListener::EndContact(b2Contact* contact){
     if(contact->GetFixtureB()->GetUserData()){
         void * foot_sensor = contact->GetFixtureB()->GetUserData();
         if(static_cast<Entity *>(foot_sensor)->getEntityName() == "Foot_Sensor") {
-            std::cout<<"FOOT SENSOR END\n";
             foot_sensor_end_contact(static_cast<Entity *>(foot_sensor), contact->GetFixtureA()->GetBody());
         }
     }

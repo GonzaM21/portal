@@ -7,6 +7,7 @@
 #define PI 3.14159265359
 #define PORTAL_HIGH 1.0
 #define PORTAL_WIDTH 0.3
+#define PORTAL_WORLD_WIDTH 0.01
 #define BALL 0.5
 
 Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
@@ -69,6 +70,7 @@ void Portal::changePosition() {
             if(body_pos.x < position.x) normal = b2Vec2(1.f,0.f);
             if(body_pos.x > position.x) normal = b2Vec2(-1.f,0.f);
         }else if(abs(body_pos.x - position.x) != 0 && abs(body_pos.y - position.y) != 0 && angle != 90 ) {
+            std::cout<<"angulo antes: "<<angle<<std::endl;
 
             if (angle == 45) {
                 orientation = 3;
@@ -77,10 +79,10 @@ void Portal::changePosition() {
                 orientation = 1;
                 normal = b2Vec2(1.f, 1.f);
             } else if (angle == 225) {
-                orientation = 1;
-                normal = b2Vec2(1.f, 1.f);
-            } else if (angle == 315) {
                 orientation = 3;
+                normal = b2Vec2(1.f, -1.f);
+            } else if (angle == 315) {
+                orientation = 1;
                 normal = b2Vec2(-1.f, -1.f);
             }
         }
@@ -90,20 +92,24 @@ void Portal::changePosition() {
         data.addMaskBits(OTHER_BITS);
         data.addMaskBits(CHELL_BITS);
         data.addMaskBits(ROCK_PORTAL_BITS);
+        data.addMaskBits(BALL_BITS);
         if(orientation == 2){
-            float delta = - PORTAL_WIDTH/2;
-            if(x_subtraction > 0) delta = PORTAL_WIDTH/2;
+            //float delta = - PORTAL_WIDTH/2;
+            //if(x_subtraction > 0) delta = PORTAL_WIDTH/2;
             world.eraseBody(portal);
-            portal = world.addPolygon(position.x - DELTA_POSITION + delta,position.y - DELTA_POSITION,PORTAL_WIDTH/2.f ,PORTAL_HIGH/2.f,true,data);
+            portal = world.addPolygon(position.x,position.y,PORTAL_WORLD_WIDTH ,PORTAL_HIGH/2.f,true,data);
         }else if (orientation == 0) {
-            float delta = - PORTAL_WIDTH/2;
-            if(y_subtraction > 0) delta = PORTAL_WIDTH/2;
+            //float delta = - PORTAL_WIDTH/2;
+            //if(y_subtraction > 0) delta = PORTAL_WIDTH/2;
             world.eraseBody(portal);
-            portal = world.addPolygon(position.x - DELTA_POSITION,position.y + DELTA_POSITION + delta ,PORTAL_HIGH/2.f,PORTAL_WIDTH/2.f,true,data);
+            portal = world.addPolygon(position.x,position.y,PORTAL_HIGH/2.f,PORTAL_WORLD_WIDTH,true,data);
         } else{
             world.eraseBody(portal);
-            portal = world.addPolygon(position.x - DELTA_POSITION + delta.x,position.y - DELTA_POSITION + delta.y,PORTAL_HIGH/2.f,PORTAL_WIDTH/2.f,true,data);
+            std::cout<<"angulo al crear: "<<angle<<std::endl;
+            portal = world.addPolygon(position.x - DELTA_POSITION + delta.x,position.y - DELTA_POSITION + delta.y,PORTAL_HIGH/2.f,PORTAL_WORLD_WIDTH,true,data);
+            std::cout<<"Angulo del cuerpo:  "<<portal->GetAngle()<<std::endl;
             portal->SetTransform(portal->GetPosition(),angle * (PI/180));
+            std::cout<<"Angulo del cuerpo dps:  "<<portal->GetAngle()<<std::endl;
         }
         portal->SetUserData(this);
         contact = false;

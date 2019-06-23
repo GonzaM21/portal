@@ -1,11 +1,12 @@
 #include <iostream>
-#include "server_command_mates.h"
+#include "server_command_finish_game.h"
+#define END_GAME 2
 
 
-CommandMates :: CommandMates(Model *model) {
+CommandFinishGame :: CommandFinishGame(Model *model) {
     this->model = model;
 }
 
-void CommandMates :: execute() {
-    this->model->sendInfoPlayers();
+void CommandFinishGame :: execute() {
+    this->model->endGame();
 }

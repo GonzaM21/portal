@@ -7,13 +7,6 @@ ClientDeserializer::ClientDeserializer(DataContainer *data_container
         this->data_container = data_container;
 }
 
-void printVector(std::vector<std::string> &args) {
-    for (auto elem : args) {
-        std::cout << elem;
-    }
-    std::cout << std::endl;
-}
-
 void ClientDeserializer::deserialize(std::string &message) {
     std::vector<std::string> arguments;
     this->splitMessage(message,arguments);
@@ -43,7 +36,6 @@ void ClientDeserializer::deserialize(std::string &message) {
         this->data_container->setGameFinish();
         return;
     } else { 
-        //printVector(arguments);
         this->scene_manager->decodeObjectMessage(arguments);
     }
 }
