@@ -10,7 +10,7 @@ void chell_colitions(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
     std::string nameBodyB = static_cast<Entity *>(userDataB)->getEntityName();
 
     if(nameBodyA == "Chell_Player" && nameBodyB == "Portal") static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
-    if(nameBodyA == "Chell_Player" && nameBodyB == "Rock"){
+    if(nameBodyA == "Chell_Player" && (nameBodyB == "Rock" || nameBodyB == "Gate")){
         if (colition_point.y >= 0.68){
             static_cast<Entity *>(userDataA)->die();
         }
@@ -26,8 +26,8 @@ void chell_colitions(b2Body * bodyA,b2Body * bodyB,b2Vec2 colition_point){
     if(nameBodyA == "Chell_Player" && nameBodyB == "Cake") static_cast<Entity *>(userDataA)->win();
 
     if(nameBodyB == "Chell_Player" && nameBodyA == "Portal") static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
-    if(nameBodyB == "Chell_Player" && nameBodyA == "Rock"){
-        if (colition_point.y == 0.68){
+    if(nameBodyB == "Chell_Player" && (nameBodyA == "Rock" || nameBodyA == "Gate")){
+        if (colition_point.y >= 0.68){
             static_cast<Entity *>(userDataB)->die();
         }
         else {
