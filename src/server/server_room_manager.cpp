@@ -45,15 +45,10 @@ bool RoomManager :: roomExist(std::string &room_name) {
 
 bool RoomManager :: createRoom(std::string &name) {
     if (this->roomExist(name)) return false;
-    this->rooms_name.push_back(name);
     RoomGame *room = new RoomGame(name,MAX_PLAYERS);
     this->rooms.push_back(room);
     this->rooms.back()->start();
     return true;
-}
-
-std::list<std::string> RoomManager::getRoomsName() {
-    return this->rooms_name;
 }
 
 bool RoomManager :: addPlayerToRoom(std::string &room_name,std::string &player_name){
@@ -67,7 +62,6 @@ bool RoomManager :: addPlayerToRoom(std::string &room_name,std::string &player_n
 
 RoomManager :: ~RoomManager() {
     for (RoomGame* & room : this->rooms) {
-        std::cout << room->getName() << std::endl;
         room->endExecution();
         room->join(); 
         delete room;
@@ -104,12 +98,23 @@ void RoomManager :: splitMessage(std::string &message,std::string &first_place,
 }
 
 void RoomManager::eliminateInactivesRooms() {
+    std::unique_lock<std::mutex> lock(m);
+    std::list<RoomGame*>::iterator it = this->inactive_rooms.begin();
+    while (it != this->inactive_rooms.end()) {
+        (*it)->endExecution();
+        (*it)->join(); 
+        delete (*it);
+        it = this->inactive_rooms.erase(it);
+    }
+}
+
+void RoomManager::closeInactiveRooms() {
+    std::unique_lock<std::mutex> lock(m);
     std::list<RoomGame*>::iterator it = this->rooms.begin();
     while (it != this->rooms.end()) {
         if (!((*it)->getRoomIsActive())) {
-            (*it)->endExecution();
-            (*it)->join(); 
-            delete (*it);
+            (*it)->closeSender();
+            this->inactive_rooms.push_back((*it));
             it = this->rooms.erase(it);
         } else {
             it++;
@@ -117,14 +122,14 @@ void RoomManager::eliminateInactivesRooms() {
     }
 }
 
-void RoomManager :: run() { //como hay un solo hilo desencolando eventos y es el que crea la salas no hace falta mutear aca
+void RoomManager :: run() { 
     while (this->continue_running) {
         std::string mode("None");
         std::string room_name("None");
         std::string player_name("None");
         std::string player_id("None");
         std::string message = this->events->pop();
-        this->eliminateInactivesRooms();
+        this->closeInactiveRooms();
         if (!this->continue_running) break;
         splitMessage(message,room_name,player_name,mode,player_id);
         if (mode == "None" || room_name == "None" || 
@@ -139,5 +144,17 @@ void RoomManager :: run() { //como hay un solo hilo desencolando eventos y es el
         }
         this->ids.insert({player_id,true});
     }
-    std::cout << "sake del room mamanger\n";
+}
+
+void RoomManager ::closeRoomsSender() {
+    for (RoomGame* & room : this->rooms) {
+        room->closeSender();
+    }     
+}
+
+bool RoomManager ::roomSenderIsClose(std::string &room_name) {
+    for (RoomGame* & room : this->rooms) {
+        if (room->getName() == room_name) return true;
+    }
+    return false;     
 }

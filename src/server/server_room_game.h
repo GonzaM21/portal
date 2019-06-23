@@ -54,6 +54,8 @@ class RoomGame : public Thread {
 
         virtual void run() override;
 
+        void closeSender(); 
+
         //Getters
         std::string getName();
         Sender* getSender();

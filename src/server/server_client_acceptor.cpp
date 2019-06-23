@@ -37,13 +37,17 @@ void ClientAcceptor :: run() {
                 i = communicators.erase(i);
             }
         }
+        room_manager->eliminateInactivesRooms();
     }
+    room_manager->closeRoomsSender();
+
     for (auto i = communicators.begin(); i!= communicators.end();) {
-        if ((*i)->communicatorValid()) (*i)->endExecution();
+        (*i)->endExecution();
         (*i)->join();
-        //delete (*i); //si la ultima sala gano me cuelga el server wtf(?)
+        delete (*i);
         i = communicators.erase(i);
-    }                
+    }
+    room_manager->eliminateInactivesRooms();                
     room_manager->endExecution();
     room_manager->join();
     delete room_manager;
