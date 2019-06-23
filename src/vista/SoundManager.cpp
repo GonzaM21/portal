@@ -15,7 +15,7 @@ SoundManager::SoundManager() {
 
 
 void SoundManager::addSoundtoPlay(int soundid) {
-    if(!soundsdid.find(soundid)) return;
+    if(soundslvl.find(soundid) == soundslvl.end()) return;
     soundsid.push(soundid);
 }
 

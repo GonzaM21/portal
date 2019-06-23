@@ -6,7 +6,7 @@
 
 class SoundManager {
     std::queue<int> soundsid;
-    std::map<int,int> soundslevel;
+    std::map<int,int> soundslvl;
 public:
     SoundManager();
     void addSoundtoPlay(int soundid);
