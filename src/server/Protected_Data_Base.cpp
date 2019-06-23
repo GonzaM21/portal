@@ -87,10 +87,10 @@ void ProtectedDataBase :: addStoneBlock(World &world,float x_pos, float y_pos,fl
     this->stone_blocks.insert({stone_block_id,new Stone_Block(world,x_pos,y_pos,size)});      
 }
 
-void ProtectedDataBase :: addGate(World &world, float x_pos, float y_pos) {//empieza de 0
+void ProtectedDataBase :: addGate(World &world, float x_pos, float y_pos, int id) {//empieza de 0
     std::unique_lock<std::mutex> lck(m);
-    size_t gate_id = this->gates.size();
-    this->gates.insert({gate_id,new Gate(world,x_pos,y_pos)});      
+    // size_t gate_id = this->gates.size();
+    this->gates.insert({id,new Gate(world,x_pos,y_pos)});      
 }
 
 void ProtectedDataBase ::addCake(World &world, float x_pos, float y_pos) {

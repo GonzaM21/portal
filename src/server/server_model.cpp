@@ -112,8 +112,8 @@ void Model :: addButton(float x_pos, float y_pos,int door_id,int state_to_open_d
     this->data_base.addButton(this->world,x_pos,y_pos,door_id,state_to_open_door);
 }
 
-void Model :: addGate(float x_pos, float y_pos) {
-    this->data_base.addGate(this->world,x_pos,y_pos);
+void Model :: addGate(float x_pos, float y_pos, int id) {
+    this->data_base.addGate(this->world,x_pos,y_pos, id);
 }
 
 void Model::addEmitter(float x_pos, float y_pos, float size,int direction, bool charged) {
