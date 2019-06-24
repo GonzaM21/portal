@@ -12,26 +12,22 @@ VentanaPrincipal::VentanaPrincipal(MatchConfig *match_config, Joiner *joinerPara
                                                                                                                                              partida(match_config),
                                                                                                                                              joiner(joinerParam),
                                                                                                                                              communicator(communicatorParam),
-                                                                                                                                             id_gate(0)
-{
+                                                                                                                                             id_gate(0) {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
     ui->entrada->setStyleSheet("QWidget#entrada{border-image: url(resources/img/icon.png) 0 0 0 0 stretch stretch;}");
     ui->inicio->setStyleSheet("QWidget#inicio{border-image: url(resources/img/portada.jpeg) 0 0 0 0 stretch stretch;}QFrame{background-color: rgb(255, 255, 255);}QPushButton#reloadButton_2{border-image: url(resources/img/reload.png) 0 0 0 0 stretch stretch;}");
 }
 
-VentanaPrincipal::~VentanaPrincipal()
-{
+VentanaPrincipal::~VentanaPrincipal() {
     delete ui;
 }
 
-void VentanaPrincipal::on_comenzarButton_clicked()
-{
+void VentanaPrincipal::on_comenzarButton_clicked() {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-void VentanaPrincipal::on_submit_clicked()
-{
+void VentanaPrincipal::on_submit_clicked() {
     QString vacio("");
     if (ui->host->text() == vacio || ui->port->text() == vacio || ui->nombre->text() == vacio)
         return;
@@ -40,12 +36,10 @@ void VentanaPrincipal::on_submit_clicked()
     partida->setPlayerName(ui->nombre->text().toStdString());
 }
 
-void VentanaPrincipal::on_reloadButton_clicked()
-{
+void VentanaPrincipal::on_reloadButton_clicked() {
     ui->integrantesLista->clear();
     std::vector<std::string> integrantes = communicator->getMates();
-    for (size_t i = 0; i < integrantes.size(); i++)
-    {
+    for (size_t i = 0; i < integrantes.size(); i++) {
         QString mate(integrantes[i].c_str());
         ui->integrantesLista->addItem(mate);
     }
@@ -55,14 +49,12 @@ void VentanaPrincipal::closeEvent(QCloseEvent *event) {
     QCoreApplication::exit(EXIT_FAILURE);
 }
 
-void VentanaPrincipal::on_crearSalaButton_clicked()
-{
+void VentanaPrincipal::on_crearSalaButton_clicked() {
     ui->stackedWidget->setCurrentIndex(3);
     partida->setMode("new");
 }
 
-void VentanaPrincipal::on_continuar_clicked()
-{
+void VentanaPrincipal::on_continuar_clicked() {
     QString vacio("");
     if (ui->nombreSala->text() == vacio)
         return;
@@ -78,20 +70,17 @@ void VentanaPrincipal::on_continuar_clicked()
     ui->stackedWidget->setCurrentIndex(4);
 }
 
-void VentanaPrincipal::on_elegirSalaButton_clicked()
-{
+void VentanaPrincipal::on_elegirSalaButton_clicked() {
     partida->setMode("join");
     ui->stackedWidget->setCurrentIndex(3);
 }
 
-void VentanaPrincipal::on_comenzarJuego_clicked()
-{
+void VentanaPrincipal::on_comenzarJuego_clicked() {
     communicator->addMessageToSend("start");
     QCoreApplication::exit(EXIT_SUCCESS);
 }
 
-void VentanaPrincipal::on_editarMapa_clicked()
-{
+void VentanaPrincipal::on_editarMapa_clicked() {
     ui->stackedWidget->setCurrentIndex(5);
     ui->asociarPop->hide();
     ui->mapa->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -99,19 +88,17 @@ void VentanaPrincipal::on_editarMapa_clicked()
 
 void VentanaPrincipal::removeGate(QTableWidgetItem* item) {
     int id = -1;
-    for (auto gate  : gates)
-    {
-        if (gate.second == item)
-        {
+    for (auto gate  : gates) {
+        if (gate.second == item) {
             id = gate.first;
             break; // to stop searching
         }
     }
-    if (id == -1)
-    {
+    if (id == -1) {
         return;
     }
     gates.erase(id);
+    gatesPos.erase(id);
     QString vacio("");
     QIcon icon;
     ui->mapa->item(item->row() + 1, item->column())->setText(vacio);
@@ -121,11 +108,9 @@ void VentanaPrincipal::removeGate(QTableWidgetItem* item) {
     removeButtons(id);
 }
 
-void VentanaPrincipal::removeButtons(int &id)
-{
+void VentanaPrincipal::removeButtons(int &id) {
     std::vector<QTableWidgetItem*> buttonsDel = buttons.at(id);
-    for (auto button  : buttonsDel)
-    {
+    for (auto button  : buttonsDel) {
         QString vacio("");
         button->setText(vacio);
         QIcon icon;
@@ -134,20 +119,20 @@ void VentanaPrincipal::removeButtons(int &id)
     buttons.erase(id);
 }
 
-void VentanaPrincipal::removeButton(QTableWidgetItem *item)
-{
-    for (auto& buttonsIt : buttons)
-    {
+void VentanaPrincipal::removeButton(QTableWidgetItem *item) {
+    for (auto& buttonsIt : buttons) {
         std::vector<QTableWidgetItem*>::iterator position = std::find(buttonsIt.second.begin(), buttonsIt.second.end(), item);
         if (position != buttonsIt.second.end()) {
             buttonsIt.second.erase(position);
-            break; // to stop searching
+            int index = std::distance(buttonsIt.second.begin(), position);
+            std::vector<std::vector<int>> &buttonsPosAct = buttonsPos.at(buttonsIt.first);
+            buttonsPosAct.erase(buttonsPosAct.begin() + index);
+            break;
         }
     }
 }
 
-void VentanaPrincipal::on_mapa_cellDoubleClicked(int row, int column)
-{
+void VentanaPrincipal::on_mapa_cellDoubleClicked(int row, int column) {
     QTableWidgetItem *item = ui->mapa->item(row,column);
     if ((item == 0) || (row == 0) || (row == ui->mapa->rowCount() - 1) || (column == 0) || (column == ui->mapa->columnCount() - 1))
         return;
@@ -160,8 +145,7 @@ void VentanaPrincipal::on_mapa_cellDoubleClicked(int row, int column)
     setGround();
 }
 
-void VentanaPrincipal::on_mapa_cellChanged(int row, int column)
-{
+void VentanaPrincipal::on_mapa_cellChanged(int row, int column) {
     QTableWidgetItem *item = ui->mapa->item(row, column);
     QTableWidgetItem *itemRowAnt = ui->mapa->item(row -1 , column);
     QTableWidgetItem *itemRow = ui->mapa->item(row + 1, column);
@@ -171,6 +155,8 @@ void VentanaPrincipal::on_mapa_cellChanged(int row, int column)
     if (item->text().toStdString() == "Button") {
         ui->asociarPop->show();
         last_button = item;
+        std::vector<int> vector{row, column};
+        last_button_pos = vector;
         setGround();
         return;
     }
@@ -178,12 +164,13 @@ void VentanaPrincipal::on_mapa_cellChanged(int row, int column)
         setGround();
         return;
     }
-    if (itemRowAnt != 0 && itemRowAnt->text().toStdString() == "Gate")
-    {
+    if (itemRowAnt != 0 && itemRowAnt->text().toStdString() == "Gate") {
         setGround();
         return;
     }
     if ((itemRow == 0 || (itemRow != 0 && itemRow->text() == vacio)) && item->text().toStdString() == "Gate"){
+        std::vector<int> vector{row,column};
+        gatesPos[id_gate] = vector;
         gates[id_gate] = item;
         id_gate++;
         ui->mapa->setItem(row+1,column,new QTableWidgetItem(*item));
@@ -199,33 +186,28 @@ void VentanaPrincipal::on_mapa_cellChanged(int row, int column)
 void VentanaPrincipal::on_guardarMapa_released() {
     QTableWidget *mapa = ui->mapa;
     MapSaver mapSaver("json_prueba12");
-    for (int i=0;i<mapa->columnCount();i++) {
-        for (int j=0;j<mapa->rowCount();j++) {
-            QTableWidgetItem *item = mapa->item(i,j);
-            if (item == 0) continue;
+    for (int i = 0; i < mapa->columnCount(); i++) {
+        for (int j = 0; j < mapa->rowCount(); j++) {
+            QTableWidgetItem *item = mapa->item(i, j);
+            if (item == 0)
+                continue;
             QString vacio("");
             QString button("Button");
             QString gate("Gate");
             if (item->text() == vacio || item->text() == button || item->text() == gate)
                 continue;
-
-            std::cout << item->text().toStdString() << "," << std::to_string(j + 1 - (ui->mapa->columnCount()/2)) << "," << std::to_string(-i - 1 + ui->mapa->rowCount()) << std::endl; 
-            mapSaver.addObject(item->text().toStdString() + "," + std::to_string(j + 1 - (ui->mapa->columnCount()/2)) + "," + std::to_string(-i - 1 + ui->mapa->rowCount()));
+            mapSaver.addObject(item->text().toStdString() + "," + std::to_string(j + 1 - (ui->mapa->columnCount() / 2)) + "," + std::to_string(-i - 1 + (ui->mapa->rowCount())));
         }
     }
     std::map<int, std::vector<QTableWidgetItem *>>::iterator button_it;
-    for (button_it = buttons.begin(); button_it != buttons.end(); button_it++)
-    {
-        for (size_t j = 0; j < button_it->second.size(); j++)
-        {
-            std::cout << "guardo bpoton";
-            mapSaver.addObject("Button," + std::to_string(button_it->second.at(j)->column() + 1 - (ui->mapa->columnCount()/2)) + "," + std::to_string(-button_it->second.at(j)->row() - 1 + ui->mapa->rowCount()) + "," + std::to_string(button_it->first));
+    for (button_it = buttons.begin(); button_it != buttons.end(); button_it++) {
+        for (size_t j = 0; j < button_it->second.size(); j++) {
+            mapSaver.addObject("Button," + std::to_string(buttonsPos.at(button_it->first)[j][1] + 1 - (ui->mapa->columnCount() / 2)) + "," + std::to_string(-buttonsPos.at(button_it->first)[j][0] - 1 + ui->mapa->rowCount()) + "," + std::to_string(button_it->first));
         }
     }
-    std::map<int, QTableWidgetItem *>::iterator gate_it;
-    for (gate_it = gates.begin(); gate_it != gates.end(); gate_it++)
-    {
-        mapSaver.addObject("Gate," + std::to_string(gate_it->second->column() + 1 - (ui->mapa->columnCount()/2)) + "," + std::to_string(-gate_it->second->row() - 1 + ui->mapa->rowCount()) + "," + std::to_string(gate_it->first));
+    std::map<int, QTableWidgetItem*>::iterator gate_it;
+    for (gate_it = gates.begin(); gate_it != gates.end(); gate_it++) {
+        mapSaver.addObject("Gate," + std::to_string(gatesPos.at(gate_it->first)[1] + 1 - (ui->mapa->columnCount() / 2)) + "," + std::to_string(-gatesPos.at(gate_it->first)[0] - 1 + (ui->mapa->rowCount())) + "," + std::to_string(gate_it->first));
     }
     mapSaver.writeFile();
     ui->mapa->clear();
@@ -235,16 +217,21 @@ void VentanaPrincipal::on_guardarMapa_released() {
 void VentanaPrincipal::on_asociar_clicked() {
     ui->asociarPop->hide();
     std::vector<QTableWidgetItem *> vectores{last_button};
-    if (buttons.find(ui->numPuerta->text().toInt()) == buttons.end())
-    {
+    std::vector<int> vectorpos{last_button_pos[0], last_button_pos[1]};
+    std::vector<std::vector<int>> vectorespos{vectorpos};
+    if (buttonsPos.find(ui->numPuerta->text().toInt()) == buttonsPos.end()) {
+        buttonsPos[ui->numPuerta->text().toInt()] = vectorespos;
+    } else {
+        buttonsPos[ui->numPuerta->text().toInt()].push_back(vectorpos);
+    }
+    if (buttons.find(ui->numPuerta->text().toInt()) == buttons.end()) {
         buttons[ui->numPuerta->text().toInt()] = vectores; 
     } else {
         buttons[ui->numPuerta->text().toInt()].push_back(last_button);
     }
     return;
 }
-void VentanaPrincipal::on_pushButton_clicked()
-{
+void VentanaPrincipal::on_pushButton_clicked() {
     QString vacio("");
     if (ui->alto->text() == vacio || ui->ancho->text() == vacio)
         return;

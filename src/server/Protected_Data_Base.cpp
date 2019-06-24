@@ -349,6 +349,7 @@ ProtectedDataBase::~ProtectedDataBase() {
 }
 
 void ProtectedDataBase::resetDataBase() {
+    std::unique_lock<std::mutex> lck(m);
     this->resetPlayers();
     this->resetAcids();
     this->resetRocks();

@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_VentanaPrincipal_t {
-    QByteArrayData data[21];
-    char stringdata0[371];
+    QByteArrayData data[28];
+    char stringdata0[440];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -49,7 +49,14 @@ QT_MOC_LITERAL(16, 288, 6), // "column"
 QT_MOC_LITERAL(17, 295, 23), // "on_guardarMapa_released"
 QT_MOC_LITERAL(18, 319, 21), // "on_pushButton_clicked"
 QT_MOC_LITERAL(19, 341, 19), // "on_mapa_cellChanged"
-QT_MOC_LITERAL(20, 361, 9) // "setGround"
+QT_MOC_LITERAL(20, 361, 9), // "setGround"
+QT_MOC_LITERAL(21, 371, 13), // "removeButtons"
+QT_MOC_LITERAL(22, 385, 4), // "int&"
+QT_MOC_LITERAL(23, 390, 2), // "id"
+QT_MOC_LITERAL(24, 393, 10), // "removeGate"
+QT_MOC_LITERAL(25, 404, 17), // "QTableWidgetItem*"
+QT_MOC_LITERAL(26, 422, 4), // "item"
+QT_MOC_LITERAL(27, 427, 12) // "removeButton"
 
     },
     "VentanaPrincipal\0on_submit_clicked\0\0"
@@ -61,7 +68,9 @@ QT_MOC_LITERAL(20, 361, 9) // "setGround"
     "on_editarMapa_clicked\0on_mapa_cellDoubleClicked\0"
     "row\0column\0on_guardarMapa_released\0"
     "on_pushButton_clicked\0on_mapa_cellChanged\0"
-    "setGround"
+    "setGround\0removeButtons\0int&\0id\0"
+    "removeGate\0QTableWidgetItem*\0item\0"
+    "removeButton"
 };
 #undef QT_MOC_LITERAL
 
@@ -71,7 +80,7 @@ static const uint qt_meta_data_VentanaPrincipal[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      18,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -79,21 +88,24 @@ static const uint qt_meta_data_VentanaPrincipal[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   89,    2, 0x08 /* Private */,
-       3,    0,   90,    2, 0x08 /* Private */,
-       4,    0,   91,    2, 0x08 /* Private */,
-       5,    0,   92,    2, 0x08 /* Private */,
-       6,    0,   93,    2, 0x08 /* Private */,
-       7,    0,   94,    2, 0x08 /* Private */,
-       8,    0,   95,    2, 0x08 /* Private */,
-       9,    1,   96,    2, 0x08 /* Private */,
-      12,    0,   99,    2, 0x08 /* Private */,
-      13,    0,  100,    2, 0x08 /* Private */,
-      14,    2,  101,    2, 0x08 /* Private */,
-      17,    0,  106,    2, 0x08 /* Private */,
-      18,    0,  107,    2, 0x08 /* Private */,
-      19,    2,  108,    2, 0x08 /* Private */,
-      20,    0,  113,    2, 0x08 /* Private */,
+       1,    0,  104,    2, 0x08 /* Private */,
+       3,    0,  105,    2, 0x08 /* Private */,
+       4,    0,  106,    2, 0x08 /* Private */,
+       5,    0,  107,    2, 0x08 /* Private */,
+       6,    0,  108,    2, 0x08 /* Private */,
+       7,    0,  109,    2, 0x08 /* Private */,
+       8,    0,  110,    2, 0x08 /* Private */,
+       9,    1,  111,    2, 0x08 /* Private */,
+      12,    0,  114,    2, 0x08 /* Private */,
+      13,    0,  115,    2, 0x08 /* Private */,
+      14,    2,  116,    2, 0x08 /* Private */,
+      17,    0,  121,    2, 0x08 /* Private */,
+      18,    0,  122,    2, 0x08 /* Private */,
+      19,    2,  123,    2, 0x08 /* Private */,
+      20,    0,  128,    2, 0x08 /* Private */,
+      21,    1,  129,    2, 0x08 /* Private */,
+      24,    1,  132,    2, 0x08 /* Private */,
+      27,    1,  135,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -111,6 +123,9 @@ static const uint qt_meta_data_VentanaPrincipal[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,   15,   16,
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 22,   23,
+    QMetaType::Void, 0x80000000 | 25,   26,
+    QMetaType::Void, 0x80000000 | 25,   26,
 
        0        // eod
 };
@@ -136,6 +151,9 @@ void VentanaPrincipal::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 12: _t->on_pushButton_clicked(); break;
         case 13: _t->on_mapa_cellChanged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 14: _t->setGround(); break;
+        case 15: _t->removeButtons((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 16: _t->removeGate((*reinterpret_cast< QTableWidgetItem*(*)>(_a[1]))); break;
+        case 17: _t->removeButton((*reinterpret_cast< QTableWidgetItem*(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -166,13 +184,13 @@ int VentanaPrincipal::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 18)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 18;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 18)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 15;
+        _id -= 18;
     }
     return _id;
 }

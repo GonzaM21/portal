@@ -2,6 +2,7 @@
 #define VENTANAPRINCIPAL_H
 
 #include <QWidget>
+#include <QTableWidget>
 #include <QTableWidgetItem>
 #include <vector>
 #include "../client/MatchConfig.h"
@@ -63,9 +64,12 @@ private:
     MatchConfig *partida;
     Joiner *joiner;
     ClientCommunicator *communicator;
+    std::map<int, std::vector<int>> gatesPos;
     std::map<int, QTableWidgetItem *> gates;
+    std::map<int, std::vector<std::vector<int>>> buttonsPos;
     std::map<int, std::vector<QTableWidgetItem *>> buttons;
     QTableWidgetItem *last_button;
+    std::vector<int> last_button_pos;
     int id_gate;
 };
 
