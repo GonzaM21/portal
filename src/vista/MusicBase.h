@@ -1,15 +1,15 @@
-#ifndef PORTAL_MUSICBASE_H
-#define PORTAL_MUSICBASE_H
+#ifndef __MUSICBASE_H__
+#define __MUSICBASE_H__
 
-#include <SDL2/SDL_mixer.h>
 #include "Constants.h"
+#include <SDL2/SDL_mixer.h>
 #include <map>
 
 class MusicBase {
     std::map<int, Mix_Chunk*> music;
     static MusicBase *instance;
 public:
-    static MusicBase *getInstance(){
+    static MusicBase *getInstance() {
         if (instance == NULL)
             instance = new MusicBase();
         return instance;

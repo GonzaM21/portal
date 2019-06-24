@@ -53,7 +53,7 @@ class Model {
         void addMetalBlock(float x_pos, float y_pos,float size);
         void addStoneBlock(float x_pos, float y_pos,float size);
         void addButton( float x_pos, float y_pos,int door_id,int state_to_open_door);
-        void addGate( float x_pos, float y_pos);
+        void addGate(float x_pos, float y_pos, int id);
         void addEmitter(float x_pos, float y_pos, float size,int direction, bool charged);
         void addEnergyBarrier(float x_pos, float y_pos, float large, int orientation);
         void addCake(float x_pos, float y_pos);

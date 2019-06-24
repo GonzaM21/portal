@@ -19,7 +19,7 @@ public:
     void addBlock(std::string type_optional, std::string size, std::string pos_x, std::string pos_y);
     void addEnergyBarrier(std::string size, std::string pos_x, std::string pos_y, std::string orientation);
     void addAcid(std::string size, std::string pos_x, std::string pos_y);
-    void addDoor(std::string pos_x, std::string pos_y);
+    void addDoor(std::string pos_x, std::string pos_y, std::string id);
     void addButton(std::string pos_x, std::string pos_y, std::string door_number, std::string state);
     void addEmitter(std::string pos_x, std::string pos_y, std::string size, std::string direction, std::string charged);
     void addRock(std::string size, std::string pos_x, std::string pos_y);

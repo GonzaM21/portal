@@ -7,24 +7,45 @@
 #include "../Camara.h"
 #include <unordered_map>
 
-class Button
-{
+/**
+ * Clase Button, la cual es el objeto que posee el sprite correspondiente y su posicion en el mundo real
+*/
+class Button {
 public:
+  /**
+   * Constructor setea la posicion del button en el mundo y 
+   * el mapa de estados del mismo.
+  */
   Button(const Window &window, const int &state);
+
+  /**
+   * Destructor
+  */
   ~Button();
+  
+  /**
+  * Metodo encargado de renderizar el sprite correspondiente
+  */
   int render(Camara &camara);
-  void setPressed();
-  void setUnpressed();
+
+  /**
+  * Metodo encargado de setear el area y la posicion del objeto en el mundo real
+  */
   void setDestWorld(float x, float y, float widht, float heigh);
+
+  /**
+  * Getter de la posicion del objeto en el mundo real
+  */
   Rect getDestWorld() { return dest_world; };
-  void setState(const int state);
+
+  /*
+  * Metodo encargado de setaer el estado del objeto recibido por parametro con un id
+  */
+  void setState(const int& state);
 
 private:
   Rect dest_world;
   Sprite *sprite;
-  Window window;
-  typedef void (Button::*button_method_t)();
-  std::unordered_map<int, button_method_t> changeState;
   std::unordered_map<int, Sprite *> states;
 };
 

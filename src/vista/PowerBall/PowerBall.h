@@ -6,20 +6,41 @@
 // #include "../Sprite.h"
 #include "../Camara.h"
 
-class PowerBall
-{
+/**
+ * Clase Powerball, la cual es el objeto que posee el sprite correspondiente y su posicion en el mundo real
+*/
+class PowerBall {
 public:
+  /**
+   * Constructor que recibe la window, y un state que 
+   * define si la powerball esta volando o golpeando y tambien recibe la direccion de la misma
+  */
   PowerBall(const Window &window, const int &state, const int& direction);
+
+  /**
+   * Destructor
+  */
   ~PowerBall();
+  
+  /**
+  * Metodo encargado de renderizar el sprite correspondiente
+  */
   int render(Camara &camara);
-  void setFlying();
-  void setHitting();
-  void setPaw();
-  bool hitted();
-  bool isDone();
+  /**
+  * Metodo encargado de setear el area y la posicion del objeto en el mundo real
+  */
   void setDestWorld(float x, float y, float widht, float heigh);
+
+  /**
+  * Getter de la posicion del objeto en el mundo real
+  */
   Rect getDestWorld() { return dest_world; };
 
+  void setFlying();
+  void setHitting();
+  bool hitted();
+  bool isDone();
+  
 private:
   Rect dest_world;
   Sprite *sprite;

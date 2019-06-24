@@ -415,7 +415,7 @@ background-color: rgb(255, 255, 255);
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="reloadButton_2">
+    <widget class="QPushButton" name="reloadButton">
      <property name="geometry">
       <rect>
        <x>580</x>
@@ -1051,8 +1051,26 @@ background-color: rgb(255, 255, 255);
        <string>Acid</string>
       </property>
       <property name="icon">
-       <iconset>
-        <normaloff>resources/qt/Acid.png</normaloff>resources/qt/Acid.png</iconset>
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Acid.png</normaloff>:/img/Juli/Fiuba/TallerDeProgramacion/tp4/portal/resources/qt/Acid.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Button</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Button_off.png</normaloff>:/img/Juli/Fiuba/TallerDeProgramacion/tp4/portal/resources/qt/Button_off.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Gate</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>resources/qt/Capa 1.png</normaloff>resources/qt/Capa 1.png</iconset>
       </property>
      </item>
      <item>
@@ -1230,6 +1248,58 @@ background-color: rgb(255, 255, 255);
      <property name="text">
       <string>SAVE</string>
      </property>
+    </widget>
+    <widget class="QGroupBox" name="asociarPop">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>220</y>
+       <width>201</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(170, 255, 255);</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>6</x>
+        <y>26</y>
+        <width>191</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ingrese la puerta a asociar</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="numPuerta">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>181</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="asociar">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>140</y>
+        <width>99</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>asociar</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

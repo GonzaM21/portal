@@ -11,6 +11,10 @@ public:
   ~EmitterSprite();
   virtual int render(const Rect &dest);
   virtual void setSrc(Rect &src) override;
+
+  /*
+  * Metodo encargado de setaer el estado del sprite recibido por parametro con un id
+  */
   void setState(const int& state);
 
 private:

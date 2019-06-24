@@ -6,23 +6,18 @@
 #include <iostream>
 #include <typeinfo>
 
-Rock::Rock(const Window &window) : window(window),
-                                   dest_world(0, 0, 0, 0)
-{
+Rock::Rock(const Window &window) : dest_world(0, 0, 0, 0) {
   this->sprite = new RockSprite(window);
 }
 
-int Rock::render(Camara &camara)
-{
+int Rock::render(Camara &camara) {
   return camara.render(*sprite, dest_world);
 }
 
-void Rock::setDestWorld(float x, float y, float width, float height)
-{
+void Rock::setDestWorld(float x, float y, float width, float height) {
   dest_world.set(x, y, width, height);
 }
 
-Rock::~Rock()
-{
+Rock::~Rock() {
   delete this->sprite;
 }

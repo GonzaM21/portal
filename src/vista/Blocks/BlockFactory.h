@@ -7,26 +7,22 @@
 #include "Shoot_block.h"
 #include "Triangle_block.h"
 
-class BlockFactory
-{
+/**
+ * Clase BLockFactory, es un factory que crea los distintos tipos de bloques
+*/
+class BlockFactory {
 public:
-  static Block *createBlock(const Window &window, const int &code)
-  {
-    if (code == 1)
-    {
+  /**
+   * Metodo de clase que crea el bloque correspondiente al id recibido por parametro
+  */
+  static Block *createBlock(const Window &window, const int &code) {
+    if (code == 1) {
       return new MetalBlock(window);
-    }
-    else if (code == 2)
-    {
+    } else if (code == 2) {
       return new StoneBlock(window);
-    }
-    else if (code == 3)
-    {
+    } else if (code == 3) {
       return new ShootBlock(window);
-    }
-    else if (code >= 4)
-    {
-        //std::cout<<"code:              "<<code<<std::endl;
+    } else if (code >= 4) {
       return new TriangleBlock(window,code%4);
     }
     return nullptr;

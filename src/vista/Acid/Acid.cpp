@@ -7,31 +7,17 @@
 #include <iostream>
 #include <typeinfo>
 
-Acid::Acid(const Window &window) : window(window),
-																	 dest_world(0, 0, 0, 0)
-{
-	this->sprite = new IdleAcid(this->window);
+Acid::Acid(const Window &window) : dest_world(0, 0, 0, 0) {
+	this->sprite = new IdleAcid(window);
 }
 
-int Acid::render(Camara &camara)
-{
+int Acid::render(Camara &camara) {
 	return camara.render(*this->sprite, dest_world);
 }
 
-void Acid::setDestWorld(float x, float y, float width, float height)
-{
+void Acid::setDestWorld(float x, float y, float width, float height) {
 	dest_world.set(x, y, width, height);
 }
 
-void Acid::setIdle()
-{
-	if (strncmp(typeid(*this->sprite).name(), "8IdleAcid", 9) != 0)
-	{
-		delete this->sprite;
-		this->sprite = new IdleAcid(window);
-	}
-}
-
-Acid::~Acid()
-{
+Acid::~Acid() {
 }

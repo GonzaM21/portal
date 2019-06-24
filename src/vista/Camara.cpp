@@ -3,13 +3,11 @@
 #define FACTORX 0.12
 #define FACTORY 0.25
 
-Camara::Camara(const Window &window) : window(window), vision(0, 0, this->window_width, this->window_width)
-{
-  setWindow(0, 0, 0, 0);
+Camara::Camara(const Window &window) : window(window), vision(0, 0, this->window_width, this->window_width) {
+  setCamara(0, 0);
 }
 
-void Camara::setWindow(float x, float y, float width, float height)
-{
+void Camara::setCamara(float x, float y) {
   window.getSize(window_width, window_height);
   vision.set(x, y, window_width * FACTORX, window_height * FACTORX);
 }
@@ -17,8 +15,10 @@ void Camara::setWindow(float x, float y, float width, float height)
 int Camara::render(Sprite &sprite, Rect destWorld) {
   Rect dest_virtual(0, 0, 0, 0);
   convertToVirtual(destWorld, dest_virtual);
-  if ((dest_virtual.getX() <= this->window_width + 100 && dest_virtual.getX() >= -100) && (dest_virtual.getY() <= this->window_height + 100  && dest_virtual.getY() >= -100))
-  {
+  if ((dest_virtual.getX() <= this->window_width + 100 
+      && dest_virtual.getX() >= -100) && 
+      (dest_virtual.getY() <= this->window_height + 100  
+      && dest_virtual.getY() >= -100)) {
     return sprite.render(dest_virtual);
   }
   return -1;
@@ -40,6 +40,5 @@ void Camara::convertToWorld(Rect &worldPostion, const Rect &virtualPostion) {
   worldPostion.set(xWorld, yWorld, widthWorld, heightWorld);
 }
 
-Camara::~Camara()
-{
+Camara::~Camara() {
 }

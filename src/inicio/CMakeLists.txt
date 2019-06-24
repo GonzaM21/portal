@@ -31,6 +31,7 @@ message("Headers generados: ${UIS_HEADERS}")
 
 add_library(ventanaprincipal
   VentanaPrincipal.cpp
+  Application.cpp
   ${UIS_HEADERS}
   )
 
