@@ -13,7 +13,7 @@ private:
 
 public:
     CommandNextLevel(Model *model,LevelManager *level_manager,
-      std::string &player, int vote);
+      std::string &player);
     ~CommandNextLevel() = default;
     void execute() override;
 };

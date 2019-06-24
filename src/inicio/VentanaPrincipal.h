@@ -51,13 +51,20 @@ private slots:
     void on_mapa_cellChanged(int row, int column);
 
     void setGround();
-private:
+
+    void removeButtons(int &id);
+
+    void removeGate(QTableWidgetItem *item);
+
+    void removeButton(QTableWidgetItem *item);
+
+private: 
     Ui::VentanaPrincipal *ui;
     MatchConfig *partida;
     Joiner *joiner;
     ClientCommunicator *communicator;
-    std::map<int, std::vector<int>> gates;
-    std::map<int, std::vector<std::vector<int>>> buttons;
+    std::map<int, QTableWidgetItem *> gates;
+    std::map<int, std::vector<QTableWidgetItem *>> buttons;
     QTableWidgetItem *last_button;
     int id_gate;
 };

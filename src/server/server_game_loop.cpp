@@ -33,7 +33,7 @@ void GameLoop :: sendInitialData() {
     this->encoder.sendMapStart();
     this->encoder.sendPlayersPositions();
     this->encoder.sendPlayerIds();
-    this->encoder.sendWorldSizes();
+    //this->encoder.sendWorldSizes();
     this->encoder.sendMetalBlocks();
     this->encoder.sendButtons();    
     this->encoder.sendEnergyBalls();

@@ -14,6 +14,7 @@
 #include "server_command_suicide.h"
 #include "server_command_anti_gravity.h"
 #include "server_command_inmortal.h"
+#include "server_command_next_level.h"
 #include "level_creator/map_parser.h"
 #include "server_level_manager.h"
 #include "server_command_finish_game.h"
@@ -42,6 +43,7 @@ public:
     CommandInmortal* createCommandInmortal(std::string &player);
     CommandAntiGravity* createCommandAntiGravity(std::string &player);
     CommandFinishGame* createCommandEndGame();
+    CommandNextLevel* createCommandNextLevel(std::string &player);
 };
 
 

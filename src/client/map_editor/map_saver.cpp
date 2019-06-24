@@ -33,7 +33,6 @@ MapSaver::MapSaver(std::string file_name) : file(file_name) {
     codes["Cake"] = 19;
     codes["Button"] = 20;
     codes["Gate"] = 21;
-    codes["Ground"] = 22;
 }
 
 void MapSaver::addBlock(std::string type_optional,std::string size,std::string pos_x,std::string pos_y) {
@@ -60,7 +59,7 @@ void MapSaver::addAcid(std::string size, std::string pos_x, std::string pos_y){
     std::map<std::string,std::string> m;
     m["TYPE"] = ACID_ID;
     m["POS_X"] = pos_x;
-    m["POS_Y"] = pos_y;
+    m["POS_Y"] = std::to_string(stof(pos_y) - 0.3);
     m["WIDTH"] = size;
     this->objects.push_back(new JsonNode(m));
 }
@@ -69,7 +68,7 @@ void MapSaver::addDoor(std::string pos_x, std::string pos_y, std::string id) {
     std::map<std::string,std::string> m;
     m["TYPE"] = DOOR_ID;
     m["POS_X"] = pos_x;
-    m["POS_Y"] = pos_y;
+    m["POS_Y"] = std::to_string(stof(pos_y) - 0.5);
     m["ID"] = id;
     this->objects.push_back(new JsonNode(m));
 }
@@ -80,7 +79,7 @@ void MapSaver::addButton(std::string pos_x, std::string pos_y, std::string door_
     m["DOOR_ID"] = door_number;
     m["STATE"] = state;
     m["POS_X"] = pos_x;
-    m["POS_Y"] = pos_y;
+    m["POS_Y"] = std::to_string(stof(pos_y) - 0.3);
     this->objects.push_back(new JsonNode(m));
 }
 
@@ -157,13 +156,13 @@ void MapSaver::addObject(std::string object) {
     case 12:
     case 13:
     case 14:
-        addEmitter(arguments[1],arguments[2],"1",std::to_string(code%10),"1");
+        addEmitter(arguments[1],arguments[2],"1",std::to_string(code%11),"1");
         break;
     case 15:
     case 16:
     case 17:
     case 18:
-        addEmitter(arguments[1], arguments[2], "1", std::to_string(code % 14), "0");
+        addEmitter(arguments[1], arguments[2], "1", std::to_string(code % 15), "0");
         break;
     case 19:
         addCake(arguments[1],arguments[2]);

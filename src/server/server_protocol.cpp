@@ -61,5 +61,9 @@ Command* Protoc :: deserialize(std::string &message) {
     if (content.at(1) == "q") {
         return commandFactory.createCommandEndGame();
     }
+    if (content.at(1) == "c") {
+        return commandFactory.createCommandNextLevel(content.at(0));
+        std::cout << "Llego el voto positivo" << std::endl;
+    }
     return nullptr;
 }

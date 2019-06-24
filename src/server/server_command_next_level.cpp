@@ -3,15 +3,14 @@
 
 
 CommandNextLevel :: CommandNextLevel(Model *model,
-   LevelManager *level_manager,std::string &player,int vote) {
+   LevelManager *level_manager,std::string &player) {
     this->model = model;
     this->level_manager = level_manager;
     this->player = player;
-    this->vote = vote;
 }
 
 void CommandNextLevel :: execute() {
-    this->level_manager->managePlayerVote(this->player,this->vote);
+    this->level_manager->managePlayerVote(this->player,1);
     if (this->level_manager->playersAcceptNextLevel()) {
         this->level_manager->loadNextLevel();
     }

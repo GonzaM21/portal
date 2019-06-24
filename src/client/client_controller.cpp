@@ -52,7 +52,7 @@ void ClientController::updateClientAction(LocalSceneLogic &local_scene_logic,
     while (this->continue_running) {
         if (local_scene_logic.getNextLevel()) {
             std::cout << "envio datos para prox level\n";
-            //this->communicator->addMessageToSend()
+            this->communicator->addMessageToSend("c");
             return;
         } else if (local_scene_logic.getEndGame()) {
             this->communicator->addMessageToSend("q");

@@ -59,3 +59,7 @@ CommandAntiGravity* CommandFactory::createCommandAntiGravity(std::string &player
 CommandFinishGame* CommandFactory::createCommandEndGame() {
     return new CommandFinishGame(this->model);
 }
+
+CommandNextLevel* CommandFactory::createCommandNextLevel(std::string &player) {
+    return new CommandNextLevel(this->model,this->level_manager,player);
+}
