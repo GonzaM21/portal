@@ -40,6 +40,11 @@ bool RoomManager :: roomExist(std::string &room_name) {
             return true;
         }
     }
+    for (RoomGame* & room : this->inactive_rooms) {
+        if (room->getName() == room_name) {
+            return true;
+        }
+    }
     return false;
 }
 
