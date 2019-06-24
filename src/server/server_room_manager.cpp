@@ -65,7 +65,12 @@ RoomManager :: ~RoomManager() {
         room->endExecution();
         room->join(); 
         delete room;
-    }        
+    }
+    for (RoomGame* & room : this->inactive_rooms) {
+        room->endExecution();
+        room->join(); 
+        delete room;
+    }                    
 }
 
 RoomGame* RoomManager :: getCreatedRoom(std::string &room_name) {
@@ -123,26 +128,33 @@ void RoomManager::closeInactiveRooms() {
 }
 
 void RoomManager :: run() { 
-    while (this->continue_running) {
-        std::string mode("None");
-        std::string room_name("None");
-        std::string player_name("None");
-        std::string player_id("None");
-        std::string message = this->events->pop();
-        this->closeInactiveRooms();
-        if (!this->continue_running) break;
-        splitMessage(message,room_name,player_name,mode,player_id);
-        if (mode == "None" || room_name == "None" || 
-            player_name == "None" || player_id == "None") continue;
-        if (mode == "new") {
-            if (!this->createRoom(room_name)) this->ids.insert({player_id,false});
-            this->addPlayerToRoom(room_name,player_name);
-        }
+    try {
+        while (this->continue_running) {
+            std::string mode("None");
+            std::string room_name("None");
+            std::string player_name("None");
+            std::string player_id("None");
+            std::string message = this->events->pop();
+            this->closeInactiveRooms();
+            if (!this->continue_running) break;
+            splitMessage(message,room_name,player_name,mode,player_id);
+            if (mode == "None" || room_name == "None" || 
+                player_name == "None" || player_id == "None") continue;
+            if (mode == "new") {
+                if (!this->createRoom(room_name)) this->ids.insert({player_id,false});
+                this->addPlayerToRoom(room_name,player_name);
+            }
 
-        if (mode == "join") {
-            if(!this->addPlayerToRoom(room_name,player_name)) this->ids.insert({player_id,false});
+            if (mode == "join") {
+                if(!this->addPlayerToRoom(room_name,player_name)) this->ids.insert({player_id,false});
+            }
+            this->ids.insert({player_id,true});
         }
-        this->ids.insert({player_id,true});
+    } catch (const std::runtime_error& e) {
+        std::cout << e.what() << std::endl;
+        std::cout << "room manager exp\n";
+    } catch (...) {
+        std::cout << "Error: unknown" << std::endl;
     }
 }
 

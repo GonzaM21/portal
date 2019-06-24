@@ -57,27 +57,34 @@ void GameLoop :: sendDynamicData() {
 }
 
 void GameLoop :: run() {
-    this->continue_running = true;
-    this->sendInitialData();
-    while (this->continue_running) {
-        auto t_start = std::chrono::high_resolution_clock::now();
-        world->Step(0.04);//no harcodear esto pasar a constantes
-        this->sendDynamicData();
-        auto t_end = std::chrono::high_resolution_clock::now();
-        int delta_time = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        int wait_time = STEP_DURATION-delta_time;
-        if (wait_time <= 0) {
-            std::cout << "ALERTA: Servidor no llega a procesar todos los eventos." << std::endl;
-            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    try {
+        this->continue_running = true;
+        this->sendInitialData();
+        while (this->continue_running) {
+            auto t_start = std::chrono::high_resolution_clock::now();
+            world->Step(0.04);//no harcodear esto pasar a constantes
+            this->sendDynamicData();
+            auto t_end = std::chrono::high_resolution_clock::now();
+            int delta_time = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+            int wait_time = STEP_DURATION-delta_time;
+            if (wait_time <= 0) {
+                std::cout << "ALERTA: Servidor no llega a procesar todos los eventos." << std::endl;
+                std::this_thread::sleep_for(std::chrono::milliseconds(1));
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(wait_time));
+            this->time += STEP_DURATION;
+            if (this->checkLevelComplete()) {
+                this->encoder.sendEndLevel();
+                this->waitNextAction();
+            }
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(wait_time));
-        this->time += STEP_DURATION;
-        if (this->checkLevelComplete()) {
-            this->encoder.sendEndLevel();
-            this->waitNextAction();
-        }
+        std::cout << "sale del ggame loop\n";
+    } catch (const std::runtime_error& e) {
+        std::cout << e.what() << std::endl;
+        std::cout << "game loop exp\n";
+    } catch (...) {
+        std::cout << "Error: unknown" << std::endl;
     }
-    std::cout << "sale del ggame loop\n";
 }
 
 void GameLoop ::endGameLoop() {

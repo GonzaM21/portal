@@ -15,6 +15,7 @@ RoomGame :: RoomGame(std::string &name, size_t size) : sender() {
     this->name = name;
     this->size = size;
     this->continue_running = true;
+    std::cout << "Se construye una room\n";
     this->messages = new ColaProtegida();
     this->room_is_active = true;
 }
@@ -32,6 +33,7 @@ std::string RoomGame :: getName() {
 }
 
 RoomGame :: ~RoomGame() {
+    std::cout << "Se destruye una room\n";
     delete this->messages;
 }
 
@@ -47,24 +49,31 @@ void RoomGame :: addMessageToSend(std::string &message) {
 }
 
 void RoomGame :: run() {
-    Model model(&sender);
-    LevelManager level_manager(&model,&this->players);
-    CommandFactory commandFactory(&model,&level_manager,&this->players);                                                                       //los parametros que necesite algun comando se lo debo pasar aca
-    Protoc protocol(commandFactory);
-    level_manager.loadFirstLevel();
-    while (this->continue_running) {
-        std::string new_message = this->messages->pop();
-        if (new_message == "NULL") continue;
-        Command* command = protocol.deserialize(new_message);                                                   //std::shared_ptr<Command*> command(protocol.deserialize(new_message)); //recomendo que use share_ptr (?)
-        if (command == nullptr) continue;
-        command->execute();
-        delete command;
-        if (model.getFinishGame()) break;
-        this->roomStillActive();
-        model.checkWinState();                                              
+    try {
+        Model model(&sender);
+        LevelManager level_manager(&model,&this->players);
+        CommandFactory commandFactory(&model,&level_manager,&this->players);                                                                       //los parametros que necesite algun comando se lo debo pasar aca
+        Protoc protocol(commandFactory);
+        level_manager.loadFirstLevel();
+        while (this->continue_running) {
+            std::string new_message = this->messages->pop();
+            if (new_message == "NULL") continue;
+            Command* command = protocol.deserialize(new_message);                                          
+            if (command == nullptr) continue;
+            command->execute();
+            delete command;
+            if (model.getFinishGame()) break;
+            this->roomStillActive();
+            model.checkWinState();                                              
+        }
+        model.endGame();
+        this->room_is_active = false;
+    } catch (const std::runtime_error& e) {
+        std::cout << e.what() << std::endl;
+        std::cout << "room game exp\n";
+    } catch (...) {
+        std::cout << "Error: unknown" << std::endl;
     }
-    model.endGame();
-    this->room_is_active = false;
 }
 
 void RoomGame::roomStillActive() {

@@ -33,6 +33,7 @@ int main(int argc, char *argv[]) {
         delete acceptor;
     } catch (const std::runtime_error& e) {
         std::cout << e.what() << std::endl;
+        std::cout << "server exp\n";
     } catch (...) {
         std::cout << "Error: unknown" << std::endl;
     }

@@ -5,6 +5,7 @@ Sender :: ~Sender() {
     for (std::map<std::string,ColaProtegida*>::iterator 
     it=this->colas.begin(); it!=this->colas.end(); ++it) {
         delete it->second;
+        std::cout << "Se destruye la cola sender\n";
     }     
 }
 
@@ -44,6 +45,7 @@ std::string Sender :: getMessageFor(const std::string &name) {
 }
 
 void Sender :: addPlayer(const std::string &name) {
+    std::cout << "Se construye un cola\n";
     ColaProtegida* cola = new ColaProtegida();
-    this->colas.insert({name,std::move(cola)});
+    this->colas.insert({name,cola});
 }
