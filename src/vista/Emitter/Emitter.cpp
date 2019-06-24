@@ -3,6 +3,7 @@
 #include "../Constants.h"
 #include <string>
 #include <iostream>
+#include <cstdlib>
 
 Emitter::Emitter(const Window &window, const int &code, const int &state) : dest_world(0, 0, 0, 0), sprite(window, code) {
 	if (state == 0) {

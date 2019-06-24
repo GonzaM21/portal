@@ -149,17 +149,17 @@ void VentanaPrincipal::on_mapa_cellChanged(int row, int column)
 void VentanaPrincipal::on_guardarMapa_released() {
     QTableWidget *mapa = ui->mapa;
     MapSaver mapSaver("json_prueba12");
-    for (int i=0;i<mapa->columnCount()-1;i++) {
-        for (int j=0;j<mapa->rowCount()-1;j++) {
+    for (int i=0;i<mapa->columnCount();i++) {
+        for (int j=0;j<mapa->rowCount();j++) {
             QTableWidgetItem *item = mapa->item(i,j);
-            if (item == 0 || i == 0 || j == 0) continue;
+            if (item == 0) continue;
             QString vacio("");
             QString button("Button");
             QString gate("Gate");
             if (item->text() == vacio || item->text() == button || item->text() == gate)
                 continue;
-            std::cout << item->text().toStdString() << "," << std::to_string(j + 1 - (ui->mapa->columnCount())) << "," << std::to_string(-1 * (i + 1 - (ui->mapa->rowCount()))) << std::endl; 
-            mapSaver.addObject(item->text().toStdString() + "," + std::to_string(j + 1 - (ui->mapa->columnCount())) + "," + std::to_string(-1 * (i + 1 - (ui->mapa->rowCount()))));
+            std::cout << item->text().toStdString() << "," << std::to_string(j - (ui->mapa->columnCount()/2)) << "," << std::to_string(-i - 1 + (ui->mapa->rowCount())) << std::endl;
+            mapSaver.addObject(item->text().toStdString() + "," + std::to_string(j - (ui->mapa->columnCount()/2)) + "," + std::to_string(-i - 1 + ui->mapa->rowCount()));
         }
     }
     std::map<int, std::vector<std::vector<int>>>::iterator button_it;
@@ -167,14 +167,14 @@ void VentanaPrincipal::on_guardarMapa_released() {
     {
         for (size_t j = 0; j < button_it->second.size(); j++)
         {
-            std::cout << "Button," << std::to_string(button_it->second.at(j).at(1) + 1 - (ui->mapa->columnCount())) << "," << std::to_string(-1 * (button_it->second.at(j).at(0) - ui->mapa->rowCount())) << "," << std::to_string(button_it->first) << std::endl; 
-            mapSaver.addObject("Button," + std::to_string(button_it->second.at(j).at(1) + 1 - (ui->mapa->columnCount())) + "," + std::to_string(-1 * (button_it->second.at(j).at(0) - ui->mapa->rowCount())) + "," + std::to_string(button_it->first));
+            std::cout << "Button," << std::to_string(button_it->second.at(j).at(1) - (ui->mapa->columnCount()/2)) << "," << std::to_string(-button_it->second.at(j).at(0) - 1 + ui->mapa->rowCount()) << "," << std::to_string(button_it->first) << std::endl;
+            mapSaver.addObject("Button," + std::to_string(button_it->second.at(j).at(1) - (ui->mapa->columnCount()/2)) + "," + std::to_string(-button_it->second.at(j).at(0) - 1 + ui->mapa->rowCount()) + "," + std::to_string(button_it->first));
         }
     }
     std::map<int, std::vector<int>>::iterator gate_it;
     for (gate_it = gates.begin(); gate_it != gates.end(); gate_it++)
     {
-        mapSaver.addObject("Gate," + std::to_string(gate_it->second.at(1) + 1 - (ui->mapa->columnCount())) + "," + std::to_string(-1 * (gate_it->second.at(0) + 1 - (ui->mapa->rowCount()))) + "," + std::to_string(gate_it->first));
+        mapSaver.addObject("Gate," + std::to_string(gate_it->second.at(1) - (ui->mapa->columnCount()/2)) + "," + std::to_string(-gate_it->second.at(0) - 1 + (ui->mapa->rowCount())) + "," + std::to_string(gate_it->first));
     }
     mapSaver.writeFile();
     ui->mapa->clear();

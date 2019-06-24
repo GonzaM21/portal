@@ -46,7 +46,7 @@ public:
   void setButton(Rect &dest, const int &id, const int &state);
   void setAcid(Rect &dest);
   void setPortal(Rect &dest, const int &id, const int &code, const int &direction, const int &state);
-  void setPowerball(Rect &dest, const int &state);
+  void setPowerball(Rect &dest, const int &state, const int &direction);
   void setRock(Rect &dest, const int &id);
   void setCake(Rect &dest);
   void setEnergyEmitter(Rect &dest, const int &id, const int &direction, const int &state);
@@ -63,10 +63,12 @@ public:
   std::map<int, Button *> getButtons();
   std::map<int, Gate *> getGates();
 
+  void destroyPowerBalls();
+  
   /**
    * Metodo encargda de renderizar todos los objetos
   */
-  void renderAll();
+      void renderAll();
 
   /**
    * Metodo que setea el jugador propio

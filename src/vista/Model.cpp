@@ -56,8 +56,8 @@ void Model::setCake(Rect &dest) {
   this->cakes.back()->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());  
 }
 
-void Model::setPowerball(Rect &dest, const int &state) {
-  this->powerballs.push_back(new PowerBall(window, state, 0));
+void Model::setPowerball(Rect &dest, const int &state, const int &direction){
+  this->powerballs.push_back(new PowerBall(window, state, direction));
   this->powerballs.back()->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
 }
 void Model::setRock(Rect &dest, const int &id) {
@@ -73,6 +73,12 @@ void Model::setPlayer(Rect &dest, const int &id, const int &state, const int &di
   }
   this->players[id]->setState(state, direction);
   this->players[id]->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
+}
+
+void Model::destroyPowerBalls() {
+  for (PowerBall* ball:powerballs){
+    delete ball;
+  }
 }
 
 std::list<Block *> Model::getBlocks() {
@@ -125,6 +131,7 @@ void Model::renderAll() {
 
   for (PowerBall *powerball : powerballs) {
     powerball->render(camara);
+    delete powerball;
   }
 
   std::map<int, Portal *>::iterator portal_it;

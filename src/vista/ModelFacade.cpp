@@ -47,6 +47,7 @@ void ModelFacade::setBlock(std::vector<std::string> arguments)
 void ModelFacade::setGate(std::vector<std::string> arguments)
 {
   Rect dest(stof(arguments[2]), stof(arguments[3]), stof(arguments[4]), stof(arguments[5]));
+  dest.prfloat();
   model.setGate(dest, atoi(arguments[1].c_str()), atoi(arguments[6].c_str()));
 }
 
@@ -82,7 +83,7 @@ void ModelFacade::setEnergyEmitter(std::vector<std::string> arguments)
 void ModelFacade::setPowerball(std::vector<std::string> arguments)
 {
   Rect dest(stof(arguments[1]), stof(arguments[2]), stof(arguments[3]), stof(arguments[4]));
-  model.setPowerball(dest, atoi(arguments[5].c_str()));
+  model.setPowerball(dest, atoi(arguments[5].c_str()), atoi(arguments[6].c_str()));
 }
 
 void ModelFacade::setRock(std::vector<std::string> arguments)

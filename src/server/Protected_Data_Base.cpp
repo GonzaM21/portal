@@ -137,7 +137,7 @@ void ProtectedDataBase :: addButtonToDoor() {
 void ProtectedDataBase :: addPlayer(World &world,std::string &player) {
     std::unique_lock<std::mutex> lck(m);
     float pos = this->players.size();
-    this->players.insert({player,new Chell_Player(world,0.f,0.2f)});
+    this->players.insert({player,new Chell_Player(world,0.f,0.8f)});
     this->player_ids.insert({player,this->players.size()});
     this->vote_to_kill.insert({player,EMPTY_VOTE});
     this->player_reach_cake.insert({player,false});

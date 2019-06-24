@@ -60,7 +60,7 @@ void MapSaver::addAcid(std::string size, std::string pos_x, std::string pos_y){
     std::map<std::string,std::string> m;
     m["TYPE"] = ACID_ID;
     m["POS_X"] = pos_x;
-    m["POS_Y"] = pos_y;
+    m["POS_Y"] = std::to_string(stof(pos_y) - 0.3);
     m["WIDTH"] = size;
     this->objects.push_back(new JsonNode(m));
 }
@@ -69,7 +69,7 @@ void MapSaver::addDoor(std::string pos_x, std::string pos_y, std::string id) {
     std::map<std::string,std::string> m;
     m["TYPE"] = DOOR_ID;
     m["POS_X"] = pos_x;
-    m["POS_Y"] = pos_y;
+    m["POS_Y"] = std::to_string(stoi(pos_y) - 0.5);
     m["ID"] = id;
     this->objects.push_back(new JsonNode(m));
 }
@@ -80,7 +80,7 @@ void MapSaver::addButton(std::string pos_x, std::string pos_y, std::string door_
     m["DOOR_ID"] = door_number;
     m["STATE"] = state;
     m["POS_X"] = pos_x;
-    m["POS_Y"] = pos_y;
+    m["POS_Y"] = std::to_string(stof(pos_y) - 0.3);
     this->objects.push_back(new JsonNode(m));
 }
 
@@ -94,6 +94,7 @@ void MapSaver::addCake(std::string pos_x, std::string pos_y){
 
 void MapSaver::addEmitter(std::string pos_x,std::string pos_y,std::string size,std::string direction,std::string charged) {
     std::map<std::string,std::string> m;
+    std::cout << pos_x << " " << pos_y << " " << size << " " << direction << " " << charged << " " << std::endl; 
     m["TYPE"] = ENERGY_EMITTER_ID;
     m["POS_X"] = pos_x;
     m["POS_Y"] = pos_y;
@@ -111,7 +112,6 @@ void MapSaver::addRock(std::string pos_x, std::string pos_y, std::string size) {
     m["WIDTH"] = size;
     this->objects.push_back(new JsonNode(m));
 }   
-
 
 void MapSaver::writeFile() {
     this->file << "{\n";
@@ -133,8 +133,7 @@ void MapSaver::addObject(std::string object) {
     std::vector<std::string> arguments;
     splitMessage(object,arguments);
     int code = codes[arguments[0]];
-    switch (code)
-    {
+    switch (code) {
     case 1:
     case 2:
     case 4:
@@ -157,13 +156,13 @@ void MapSaver::addObject(std::string object) {
     case 12:
     case 13:
     case 14:
-        addEmitter(arguments[1],arguments[2],"1",std::to_string(code%10),"1");
+        addEmitter(arguments[1],arguments[2],"1",std::to_string(code%11),"1");
         break;
     case 15:
     case 16:
     case 17:
     case 18:
-        addEmitter(arguments[1], arguments[2], "1", std::to_string(code % 14), "0");
+        addEmitter(arguments[1], arguments[2], "1", std::to_string(code % 15), "0");
         break;
     case 19:
         addCake(arguments[1],arguments[2]);

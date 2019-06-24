@@ -1,5 +1,5 @@
 #include "server_level_manager.h"
-#define LEVEL_1 "json_file"
+#define LEVEL_1 "json_prueba12"
 
 void LevelManager::setVotes() {
     for (auto player : *this->players_online) {
