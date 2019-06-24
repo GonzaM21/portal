@@ -1,6 +1,9 @@
 #include "server_level_manager.h"
 #define LEVEL_1 "json_prueba12"
 
+#define LEVEL_2 "json_file2"
+
+
 void LevelManager::setVotes() {
     for (auto player : *this->players_online) {
         if (!player.second) this->player_votes.insert({player.first,VOTE_NO});
@@ -13,6 +16,7 @@ LevelManager::LevelManager(Model *model,std::map<std::string,bool>*
     this->model = model;
     this->actual_level = 0;
     this->json_files.push_back(LEVEL_1);
+    this->json_files.push_back(LEVEL_2);
     this->players_online = players_online;
 }
 

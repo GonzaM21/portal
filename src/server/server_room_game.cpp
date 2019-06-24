@@ -71,9 +71,7 @@ void RoomGame :: run() {
     } catch (const std::runtime_error& e) {
         std::cout << e.what() << std::endl;
         std::cout << "room game exp\n";
-    } catch (...) {
-        std::cout << "Error: unknown" << std::endl;
-    }
+    } 
 }
 
 void RoomGame::roomStillActive() {
@@ -85,8 +83,8 @@ void RoomGame::roomStillActive() {
 
 void RoomGame :: endExecution() {
     this->continue_running = false;
-    this->messages->set_terminar_ejecucion();
     this->sender.endExecution();
+    this->messages->set_terminar_ejecucion();
 }
 
 Sender* RoomGame :: getSender() {

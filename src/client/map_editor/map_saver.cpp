@@ -33,7 +33,6 @@ MapSaver::MapSaver(std::string file_name) : file(file_name) {
     codes["Cake"] = 19;
     codes["Button"] = 20;
     codes["Gate"] = 21;
-    codes["Ground"] = 22;
 }
 
 void MapSaver::addBlock(std::string type_optional,std::string size,std::string pos_x,std::string pos_y) {
@@ -69,7 +68,7 @@ void MapSaver::addDoor(std::string pos_x, std::string pos_y, std::string id) {
     std::map<std::string,std::string> m;
     m["TYPE"] = DOOR_ID;
     m["POS_X"] = pos_x;
-    m["POS_Y"] = std::to_string(stoi(pos_y) - 0.5);
+    m["POS_Y"] = std::to_string(stof(pos_y) - 0.5);
     m["ID"] = id;
     this->objects.push_back(new JsonNode(m));
 }

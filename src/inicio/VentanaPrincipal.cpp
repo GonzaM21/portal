@@ -97,11 +97,62 @@ void VentanaPrincipal::on_editarMapa_clicked()
     ui->mapa->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
+void VentanaPrincipal::removeGate(QTableWidgetItem* item) {
+    int id = -1;
+    for (auto gate  : gates)
+    {
+        if (gate.second == item)
+        {
+            id = gate.first;
+            break; // to stop searching
+        }
+    }
+    if (id == -1)
+    {
+        return;
+    }
+    gates.erase(id);
+    QString vacio("");
+    QIcon icon;
+    ui->mapa->item(item->row() + 1, item->column())->setText(vacio);
+    ui->mapa->item(item->row() + 1, item->column())->setIcon(icon);
+    item->setText(vacio);
+    item->setIcon(icon);
+    removeButtons(id);
+}
+
+void VentanaPrincipal::removeButtons(int &id)
+{
+    std::vector<QTableWidgetItem*> buttonsDel = buttons.at(id);
+    for (auto button  : buttonsDel)
+    {
+        QString vacio("");
+        button->setText(vacio);
+        QIcon icon;
+        button->setIcon(icon);
+    }
+    buttons.erase(id);
+}
+
+void VentanaPrincipal::removeButton(QTableWidgetItem *item)
+{
+    for (auto& buttonsIt : buttons)
+    {
+        std::vector<QTableWidgetItem*>::iterator position = std::find(buttonsIt.second.begin(), buttonsIt.second.end(), item);
+        if (position != buttonsIt.second.end()) {
+            buttonsIt.second.erase(position);
+            break; // to stop searching
+        }
+    }
+}
+
 void VentanaPrincipal::on_mapa_cellDoubleClicked(int row, int column)
 {
     QTableWidgetItem *item = ui->mapa->item(row,column);
-    if ((row == 0) || (row == ui->mapa->rowCount()-1) || (column == 0) || (column == ui->mapa->columnCount()-1)) return;
-    if (item == 0) return;
+    if ((item == 0) || (row == 0) || (row == ui->mapa->rowCount() - 1) || (column == 0) || (column == ui->mapa->columnCount() - 1))
+        return;
+    if (item->text().toStdString() == "Gate") {removeGate(item); return;}
+    if (item->text().toStdString() == "Button") {removeButton(item);}
     QString vacio("");
     item->setText(vacio);
     QIcon icon;
@@ -133,8 +184,7 @@ void VentanaPrincipal::on_mapa_cellChanged(int row, int column)
         return;
     }
     if ((itemRow == 0 || (itemRow != 0 && itemRow->text() == vacio)) && item->text().toStdString() == "Gate"){
-        std::vector<int> vector{row,column};
-        gates[id_gate] = vector;
+        gates[id_gate] = item;
         id_gate++;
         ui->mapa->setItem(row+1,column,new QTableWidgetItem(*item));
     } else {
@@ -158,23 +208,24 @@ void VentanaPrincipal::on_guardarMapa_released() {
             QString gate("Gate");
             if (item->text() == vacio || item->text() == button || item->text() == gate)
                 continue;
-            std::cout << item->text().toStdString() << "," << std::to_string(j - (ui->mapa->columnCount()/2)) << "," << std::to_string(-i - 1 + (ui->mapa->rowCount())) << std::endl;
-            mapSaver.addObject(item->text().toStdString() + "," + std::to_string(j - (ui->mapa->columnCount()/2)) + "," + std::to_string(-i - 1 + ui->mapa->rowCount()));
+
+            std::cout << item->text().toStdString() << "," << std::to_string(j + 1 - (ui->mapa->columnCount()/2)) << "," << std::to_string(-i - 1 + ui->mapa->rowCount()) << std::endl; 
+            mapSaver.addObject(item->text().toStdString() + "," + std::to_string(j + 1 - (ui->mapa->columnCount()/2)) + "," + std::to_string(-i - 1 + ui->mapa->rowCount()));
         }
     }
-    std::map<int, std::vector<std::vector<int>>>::iterator button_it;
+    std::map<int, std::vector<QTableWidgetItem *>>::iterator button_it;
     for (button_it = buttons.begin(); button_it != buttons.end(); button_it++)
     {
         for (size_t j = 0; j < button_it->second.size(); j++)
         {
-            std::cout << "Button," << std::to_string(button_it->second.at(j).at(1) - (ui->mapa->columnCount()/2)) << "," << std::to_string(-button_it->second.at(j).at(0) - 1 + ui->mapa->rowCount()) << "," << std::to_string(button_it->first) << std::endl;
-            mapSaver.addObject("Button," + std::to_string(button_it->second.at(j).at(1) - (ui->mapa->columnCount()/2)) + "," + std::to_string(-button_it->second.at(j).at(0) - 1 + ui->mapa->rowCount()) + "," + std::to_string(button_it->first));
+            std::cout << "guardo bpoton";
+            mapSaver.addObject("Button," + std::to_string(button_it->second.at(j)->column() + 1 - (ui->mapa->columnCount()/2)) + "," + std::to_string(-button_it->second.at(j)->row() - 1 + ui->mapa->rowCount()) + "," + std::to_string(button_it->first));
         }
     }
-    std::map<int, std::vector<int>>::iterator gate_it;
+    std::map<int, QTableWidgetItem *>::iterator gate_it;
     for (gate_it = gates.begin(); gate_it != gates.end(); gate_it++)
     {
-        mapSaver.addObject("Gate," + std::to_string(gate_it->second.at(1) - (ui->mapa->columnCount()/2)) + "," + std::to_string(-gate_it->second.at(0) - 1 + (ui->mapa->rowCount())) + "," + std::to_string(gate_it->first));
+        mapSaver.addObject("Gate," + std::to_string(gate_it->second->column() + 1 - (ui->mapa->columnCount()/2)) + "," + std::to_string(-gate_it->second->row() - 1 + ui->mapa->rowCount()) + "," + std::to_string(gate_it->first));
     }
     mapSaver.writeFile();
     ui->mapa->clear();
@@ -183,13 +234,12 @@ void VentanaPrincipal::on_guardarMapa_released() {
 
 void VentanaPrincipal::on_asociar_clicked() {
     ui->asociarPop->hide();
-    std::vector<int> vector{last_button->row(), last_button->column()};
-    std::vector<std::vector<int>> vectores{vector};
+    std::vector<QTableWidgetItem *> vectores{last_button};
     if (buttons.find(ui->numPuerta->text().toInt()) == buttons.end())
     {
         buttons[ui->numPuerta->text().toInt()] = vectores; 
     } else {
-        buttons[ui->numPuerta->text().toInt()].push_back(vector);
+        buttons[ui->numPuerta->text().toInt()].push_back(last_button);
     }
     return;
 }
