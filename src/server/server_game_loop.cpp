@@ -78,10 +78,8 @@ void GameLoop :: run() {
                 this->waitNextAction();
             }
         }
-        std::cout << "sale del ggame loop\n";
     } catch (const std::runtime_error& e) {
         std::cout << e.what() << std::endl;
-        std::cout << "game loop exp\n";
     } catch (...) {
         std::cout << "Error: unknown" << std::endl;
     }
