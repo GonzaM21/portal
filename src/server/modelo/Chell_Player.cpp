@@ -184,9 +184,6 @@ void Chell_Player::startContact(b2Vec2) {
 }
 
 void Chell_Player::endContact() {
-    if(chell->GetLinearVelocity().y != 0){
-        jumper_counter = 1;
-    }
     --contact;
 }
 

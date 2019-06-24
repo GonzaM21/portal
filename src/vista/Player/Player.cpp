@@ -11,6 +11,7 @@
 #include "JumpRise_player.h"
 #include "../Constants.h"
 #include "../Camara.h"
+#include "../MusicBase.h"
 #include <string>
 #include <iostream>
 #include <functional>
@@ -57,6 +58,7 @@ void Player::setRestIdle() {
 void Player::setRunning() {
 	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[2]).name()) != 0) {
 		this->sprite = this->states[2];
+		MusicBase::getInstance()->playMusic(CHELL_STEP_FX_ID,15);
 	}
 }
 
@@ -69,6 +71,7 @@ void Player::setDancing() {
 void Player::setDying() {
 	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[4]).name()) != 0) {
 		this->sprite = this->states[4];
+		MusicBase::getInstance()->playMusic(CHELL_SCREAM_ID,15);
 	}
 }
 
@@ -89,6 +92,7 @@ void Player::setStop() {
 void Player::setRising() {
 	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[7]).name()) != 0) {
 		this->sprite = this->states[7];
+		MusicBase::getInstance()->playMusic(CHELL_JUMP_FX_ID,15);
 	}
 }
 

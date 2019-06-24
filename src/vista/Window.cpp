@@ -23,7 +23,7 @@ Window::Window(int width, int height) : width(width), height(height), fullscreen
     }
     SDL_Surface *image = IMG_Load(ICON_FILENAME);
     SDL_SetWindowIcon(window, image);
-    MusicBase::getInstance()->playMusic(AMBIENT_MUSIC_ID,30);
+    MusicBase::getInstance()->playMusic(AMBIENT_MUSIC_ID,10);
 }
 
 void Window::setBackground(const char *background) {

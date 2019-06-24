@@ -134,21 +134,14 @@ void EventHandler::handleMouseButtonUp(SDL_MouseButtonEvent& mouseEvent) {
   int x;
   int y;
   SDL_GetMouseState(&x,&y);
-  //std::cout << "clicked"
-  //          << "x " << x << "y " << y << std::endl;
-  // Window *window = this->->getWindow();
-  // int width, height;
-  // window->getSize(width, height);
-  // std::string x_world = std::to_string((x - (width / 2)) / (width * 0.12));
-  // std::string y_world = std::to_string((y - (height / 2)) / (height * 0.12));
-  // std::cout << "x: " << x_world << "y: " << y_world << std::endl;
-  // std::string msg = "p," + x_world + "," + y_world;
   switch (mouseEvent.button){
     case SDL_BUTTON_RIGHT:
       messageSender.sendPortal(x, y, 2);
+      MusicBase::getInstance()->playMusic(PORTAL_SHOT_FX_ID,20);
       break;
     case SDL_BUTTON_LEFT:
       messageSender.sendPortal(x, y, 1);
+          MusicBase::getInstance()->playMusic(PORTAL_SHOT_FX_ID,20);
       break;
   }
 }

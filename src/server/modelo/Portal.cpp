@@ -6,7 +6,7 @@
 
 #define PI 3.14159265359
 #define PORTAL_HIGH 1.0
-#define PORTAL_WIDTH 0.3
+#define PORTAL_WIDTH 0.4
 #define PORTAL_WORLD_WIDTH 0.01
 #define BALL 0.5
 
@@ -26,7 +26,7 @@ Portal::Portal(World& world, float x_pos, float y_pos): world(world) {
     send_it = false;
     position = portal->GetPosition();
     radius = BALL;
-    sizes = b2Vec2(PORTAL_WIDTH,PORTAL_HIGH);
+    sizes = b2Vec2(PORTAL_WIDTH,PORTAL_HIGH + 0.2);
     orientation = 0;
     normal = b2Vec2(0,0);
 
@@ -126,8 +126,8 @@ b2Vec2 Portal::getPosition(){
 }
 
 bool Portal::isValid() {
-    bool result = !ball && !send_it;
-    send_it = true;
+    bool result = !ball;// && !send_it;
+    //send_it = true;
     return result;
 }
 

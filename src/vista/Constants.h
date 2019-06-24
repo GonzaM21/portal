@@ -237,7 +237,7 @@
 /*Portal azul*/
 #define Y_POSITION_PORTAL 1542
 #define WIDTH_PORTAL 300
-#define HEIGHT_PORTAL 300
+#define HEIGHT_PORTAL 110
 
 /*Rock*/
 #define Y_POSITION_ROCK 4513

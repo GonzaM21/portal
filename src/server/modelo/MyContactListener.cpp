@@ -202,6 +202,7 @@ void MyContactListener::BeginContact(b2Contact * contact){
         void * foot_sensor = contact->GetFixtureA()->GetUserData();
         if(static_cast<Entity *>(foot_sensor)->getEntityName() == "Foot_Sensor"){
             foot_sensor_colitions(static_cast<Entity *>(foot_sensor),contact->GetFixtureB()->GetBody());
+            return;
         }
     }
 
@@ -209,6 +210,7 @@ void MyContactListener::BeginContact(b2Contact * contact){
         void * foot_sensor = contact->GetFixtureB()->GetUserData();
         if(static_cast<Entity *>(foot_sensor)->getEntityName() == "Foot_Sensor") {
             foot_sensor_colitions(static_cast<Entity *>(foot_sensor), contact->GetFixtureA()->GetBody());
+            return;
         }
     }
 
