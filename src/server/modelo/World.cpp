@@ -282,8 +282,8 @@ b2Vec2 World::getHigh() {
     return y_lim;
 }
 
-void World::eraseAllBodies() {
-    for(size_t i = 5; i < Bodies.size(); ++i) {
+void World::eraseAllBodies(int start) {
+    for(size_t i = start; i < Bodies.size(); ++i) {
         world->DestroyBody(Bodies[i]);
         Bodies.erase(Bodies.begin() + i);
     }

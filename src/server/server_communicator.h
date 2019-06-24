@@ -35,8 +35,6 @@ class Communicator : public Thread {
         void receiveMessage();
         void endExecution();
         bool communicatorValid();
-        //void sendRooms();
-        //void selectRoom(std::string &room);
 };
 
 

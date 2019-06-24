@@ -15,9 +15,8 @@ ColaProtegida :: ~ColaProtegida() {
     /*No hace nada*/
 }
 
-void ColaProtegida :: push(std::string message) {
+void ColaProtegida :: push(std::string &message) {
     std::unique_lock<std::mutex> lock(m);
-    //std::cout << "Se pusheo: " << message << "\n";
     cola.push(message);
     cond_var.notify_one();
 }

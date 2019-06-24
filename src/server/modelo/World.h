@@ -54,7 +54,7 @@ public:
 
     b2Vec2 getHigh();
 
-    void eraseAllBodies();
+    void eraseAllBodies(int start = 5);
 
     void eraseBody(b2Body * body);
 

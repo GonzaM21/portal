@@ -8,7 +8,7 @@
 
 
 
-Model :: Model(Sender *sender) { 
+Model :: Model(Sender *sender) : world() { 
     GameLoop *game_loop = new GameLoop(&this->world,sender,&this->data_base);
     this->game_loop = game_loop;
     this->ground = new Ground(world, 0.f, -1.f, GROUND_WIDTH,GROUND_HEIGHT);
@@ -23,6 +23,7 @@ void Model::checkWinState() {
 Model :: ~Model(){
     delete ground;
     delete this->game_loop;
+    //this->world.eraseAllBodies(0);
 }
 bool Model:: getFinishGame() { 
     return this->finish_game;

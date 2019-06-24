@@ -21,7 +21,7 @@ class ColaProtegida {
 
         //Recive por parametro un puntero a un string.
         //Inserta un nuevo elemento a la cola.
-        void push(std::string message);
+        void push(std::string &message);
 
         //En caso que la cola no este vacia devuelve string
         //si la misma esta vacia devuelve un puntero a null.
