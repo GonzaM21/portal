@@ -8,12 +8,6 @@ MapParser :: MapParser(Model *model) : object_factory(model) {
     this->setBlockMethods();
 }
 
-// void MapParser ::createGround(nlohmann::json &object, std::list<Object *> &obj){
-//     ObjectGate *new_object = this->object_factory.createObjectGate((float)object.at("POS_X"),
-//     (float)object.at("POS_Y"));
-//     obj.push_back(new_object);
-// }
-
 void MapParser :: createGate(nlohmann::json &object,std::list<Object*> &obj){
     ObjectGate *new_object = this->object_factory.createObjectGate((float)object.at("POS_X"),
     (float)object.at("POS_Y"), (int)object.at("ID"));
@@ -89,7 +83,7 @@ void MapParser :: createEmitter(nlohmann::json &object,std::list<Object*> &obj) 
 void MapParser :: setBlockMethods() {
     this->block_methods[METAL_BLOCK] = &MapParser::createMetalBlock;
     this->block_methods[STONE_BLOCK] = &MapParser::createStoneBlock;
-    this->block_methods[4] = &MapParser::createTriangularBlock;//PONER CODIGOS
+    this->block_methods[4] = &MapParser::createTriangularBlock;
     this->block_methods[5] = &MapParser::createTriangularBlock;
     this->block_methods[6] = &MapParser::createTriangularBlock;
     this->block_methods[7] = &MapParser::createTriangularBlock;
@@ -111,14 +105,14 @@ std::list<Object*> MapParser :: addObjectsToModel(std::string &json_file) {
     std::list<Object*> obj;
     std::ifstream file(json_file);
     if (!file.is_open()) {
-        std::cout << "Error: File not found" << std::endl; //podria lanzar excepcion
+        std::cout << "Error: File not found" << std::endl; 
         return obj;
     }
     nlohmann::json j;
     file >> j;
     for (auto& element : j) {
         std::cout << element << std::endl;
-        (this->*(methods[element.at("TYPE")]))(element,obj); //deberia usar lambda
+        (this->*(methods[element.at("TYPE")]))(element,obj);
     }
     return obj;
 }

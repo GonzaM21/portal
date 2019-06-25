@@ -7,6 +7,5 @@ CommandMove :: CommandMove(Model *model,std::string &player,char &direction) {
 }
 
 void CommandMove :: execute() {
-    //std::cout << "El player es: " << this->player << "con dir: " << this->direction << std::endl;
     this->model->makePlayerMove(this->player,this->direction);
 }

@@ -52,7 +52,7 @@ void RoomGame :: run() {
         Model model(&sender);
         LevelManager level_manager(&model,&this->players);
         model.setNumberOfLevels(level_manager.getNumberOfLevels());
-        CommandFactory commandFactory(&model,&level_manager,&this->players);                                                                       //los parametros que necesite algun comando se lo debo pasar aca
+        CommandFactory commandFactory(&model,&level_manager,&this->players);                                                                       
         Protoc protocol(commandFactory);
         level_manager.loadFirstLevel();
         while (this->continue_running) {

@@ -32,10 +32,7 @@ void ClientDeserializer::deserialize(std::string &message) {
         this->data_container->setWaitingNextLevel(false);
         this->data_container->setReceivedMap(true);
         return;
-    } else if (arguments.at(0) == MATES_CODE && arguments.size() == 1) {
-        //algo
     } else if (arguments.at(0) == "NULL"){
-        std::cout << "Invalid message" << std::endl;
         this->data_container->setGameFinish();
         return;
     } else { 

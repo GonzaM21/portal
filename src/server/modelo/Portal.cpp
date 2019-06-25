@@ -89,13 +89,9 @@ void Portal::changePosition() {
         data.addMaskBits(ROCK_PORTAL_BITS);
         data.addMaskBits(BALL_BITS);
         if(orientation == 2){
-            //float delta = - PORTAL_WIDTH/2;
-            //if(x_subtraction > 0) delta = PORTAL_WIDTH/2;
             world.eraseBody(portal);
             portal = world.addPolygon(position.x,position.y,PORTAL_WORLD_WIDTH ,PORTAL_HIGH/2.f,true,data);
         }else if (orientation == 0) {
-            //float delta = - PORTAL_WIDTH/2;
-            //if(y_subtraction > 0) delta = PORTAL_WIDTH/2;
             world.eraseBody(portal);
             portal = world.addPolygon(position.x,position.y,PORTAL_HIGH/2.f,PORTAL_WORLD_WIDTH,true,data);
         } else{
@@ -114,12 +110,11 @@ void Portal::changePosition() {
 
 b2Vec2 Portal::getPosition(){
     if(!live) return b2Vec2(0,0);
-    return portal->GetPosition();// + b2Vec2(0.2,0);
+    return portal->GetPosition();
 }
 
 bool Portal::isValid() {
-    bool result = !ball;// && !send_it;
-    //send_it = true;
+    bool result = !ball;
     return result;
 }
 

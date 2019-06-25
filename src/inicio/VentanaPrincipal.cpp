@@ -17,7 +17,6 @@ VentanaPrincipal::VentanaPrincipal(MatchConfig *match_config, Joiner *joinerPara
     ui->stackedWidget->setCurrentIndex(0);
     ui->entrada->setStyleSheet("QWidget#entrada{border-image: url(resources/img/icon.png) 0 0 0 0 stretch stretch;}");
     ui->inicio->setStyleSheet("QWidget#inicio{border-image: url(resources/img/portada.jpeg) 0 0 0 0 stretch stretch;}QFrame{background-color: rgb(255, 255, 255);}");
-    ui->reloadButton->setStyleSheet("QPushButton#reloadButton{border-image: url(resources/img/reload.png) 0 0 0 0 stretch stretch;}");
 }
 
 VentanaPrincipal::~VentanaPrincipal() {
@@ -37,21 +36,8 @@ void VentanaPrincipal::on_submit_clicked() {
     partida->setPlayerName(ui->nombre->text().toStdString());
 }
 
-void VentanaPrincipal::on_reloadButton_clicked() {
-    setMates();
-}
-
 void VentanaPrincipal::closeEvent(QCloseEvent *event) {
     QCoreApplication::exit(EXIT_FAILURE);
-}
-
-void VentanaPrincipal::setMates() {
-    ui->integrantesLista->clear();
-    std::vector<std::string> integrantes = communicator->getMates();
-    for (size_t i = 0; i < integrantes.size(); i++) {
-        QString mate(integrantes[i].c_str());
-        ui->integrantesLista->addItem(mate);
-    }
 }
 
 void VentanaPrincipal::on_crearSalaButton_clicked() {
@@ -66,7 +52,6 @@ void VentanaPrincipal::on_continuar_clicked() {
     ui->sala->setText(ui->nombreSala->text());
     partida->setSalaName(ui->nombreSala->text().toStdString());
     communicator->set(std::move(joiner->setSocket()), partida->getMode(), partida->getSalaName(), partida->getPlayerName());
-    setMates();
     ui->stackedWidget->setCurrentIndex(4);
 }
 
@@ -91,7 +76,7 @@ void VentanaPrincipal::removeGate(QTableWidgetItem* item) {
     for (auto gate  : gates) {
         if (gate.second == item) {
             id = gate.first;
-            break; // to stop searching
+            break;  
         }
     }
     if (id == -1) {
@@ -136,7 +121,7 @@ void VentanaPrincipal::on_mapa_cellDoubleClicked(int row, int column) {
     QTableWidgetItem *item = ui->mapa->item(row,column);
     if ((item == 0) || (row == 0) || (row == ui->mapa->rowCount() - 1) ||
         (column == 0) || (column == ui->mapa->columnCount() - 1) ||
-        (row == ui->mapa->rowCount() - 2 && column == ui->mapa->columnCount() / 2 - 1))
+        ((row == ui->mapa->rowCount() - 2 || row == ui->mapa->rowCount() - 3) && column == ui->mapa->columnCount() / 2 - 1))
         return;
     if (item->text().toStdString() == "Gate") {removeGate(item); return;}
     if (item->text().toStdString() == "Button") {removeButton(item);}
@@ -251,6 +236,7 @@ void VentanaPrincipal::setGround() {
     QIcon iconChell("resources/qt/Chell.png");
     QString chell("Chell");
     ui->mapa->setItem(ui->mapa->rowCount() - 2, ui->mapa->columnCount() / 2 - 1, new QTableWidgetItem(iconChell, chell));
+    ui->mapa->setItem(ui->mapa->rowCount() - 3, ui->mapa->columnCount() / 2 - 1, new QTableWidgetItem(iconChell, chell));
     QIcon icon("resources/qt/Metal_block.png");
     QString metal("Metal");
     for (int i = 0; i < ui->mapa->rowCount(); i++) {

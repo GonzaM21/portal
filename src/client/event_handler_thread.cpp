@@ -11,7 +11,7 @@ EventHandlerThread :: EventHandlerThread(ClientCommunicator *client_communicator
     this->continue_running = true;
 }
 
-void EventHandlerThread :: run() { //habria que validar que el unico evento valido al principio sea start sino te deja ya moverte y poner portales
+void EventHandlerThread :: run() { 
     while (this->continue_running)  {
         SDL_Event event;
         while (SDL_PollEvent(&event) != 0)

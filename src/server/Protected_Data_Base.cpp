@@ -34,7 +34,7 @@ void ProtectedDataBase :: makePlayerJump(std::string &player) {
     this->players[player]->Jump();
 }
 
-void ProtectedDataBase ::voteToKill(std::string &voter) {//ACA TENIA QUE BUSCARLO CON LA FUNCION QUE ESTA ABAJO, DEBO ACOMODAR ESTO EN MODEL,FACTORY_COMMAND,COMANDO_KILLL/VER SUICIDAR, Y PROTOCOLO
+void ProtectedDataBase ::voteToKill(std::string &voter) {
     std::unique_lock<std::mutex> lck(m);
     std::string player_to_kill = "";
     if (!this->win_state) return;
@@ -87,9 +87,8 @@ void ProtectedDataBase :: addStoneBlock(World &world,float x_pos, float y_pos,fl
     this->stone_blocks.insert({stone_block_id,new Stone_Block(world,x_pos,y_pos,size)});      
 }
 
-void ProtectedDataBase :: addGate(World &world, float x_pos, float y_pos, int id) {//empieza de 0
+void ProtectedDataBase :: addGate(World &world, float x_pos, float y_pos, int id) {
     std::unique_lock<std::mutex> lck(m);
-    // size_t gate_id = this->gates.size();
     this->gates.insert({id,new Gate(world,x_pos,y_pos)});      
 }
 
@@ -113,7 +112,7 @@ void ProtectedDataBase::addTriangularBlock(World &world, float x_pos,
 }
 
 
-void ProtectedDataBase :: addButton(World &world, float x_pos, float y_pos,int door_id,int state_to_open_door) { //tendra la puerta a la que se asignara el boton
+void ProtectedDataBase :: addButton(World &world, float x_pos, float y_pos,int door_id,int state_to_open_door) { 
     std::unique_lock<std::mutex> lck(m);
     size_t button_id = this->buttons.size();
     Button *button = new Button(world,x_pos,y_pos);
@@ -304,12 +303,12 @@ void ProtectedDataBase::setWinState() {
     if (counter==this->player_reach_cake.size()-1) this->win_state=true;
 }
 
-void ProtectedDataBase::setVotes(std::map<std::string, size_t> &votes) {//PRIVADO
+void ProtectedDataBase::setVotes(std::map<std::string, size_t> &votes) {
     for (auto player : this->players)
       votes.insert({player.first,0});
 }
 
-void ProtectedDataBase::checkPlayerToKill(std::string &player_to_kill) {//PRIVADO
+void ProtectedDataBase::checkPlayerToKill(std::string &player_to_kill) {
     size_t counter = 0;
     for (auto player: this->vote_to_kill) {
       if (player.first == player_to_kill) continue;
@@ -317,12 +316,6 @@ void ProtectedDataBase::checkPlayerToKill(std::string &player_to_kill) {//PRIVAD
     }
     if (counter == this->players.size()-1) this->killPlayer(player_to_kill);
 }
-
-/*std::string ProtectedDataBase::getPlayerToKill() {//PRIVADO
-    for (auto player : this->player_reach_cake) 
-      if (!player.second) return player.first;
-      return "";
-}*/
 
 void ProtectedDataBase::killPlayer(std::string &player_name) {
     if (!this->win_state) return;
@@ -463,5 +456,3 @@ void ProtectedDataBase::resetButtonsToAdd() {
         it = this->pending_buttons.erase(it);
     }
 }
-
-//NOTA: REVISAR CUANDO ESTE EL CAKE SI DEBO MUTEAR ALGO MAS

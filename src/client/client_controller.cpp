@@ -59,7 +59,7 @@ void ClientController::updateClientAction(LocalSceneLogic &local_scene_logic,
             this->continue_running = false;
             return;
         }
-        usleep(20000); //Duermo un tiempo el hilo para que el cpu no este al palo
+        usleep(20000); 
     }
 }
 

@@ -309,11 +309,9 @@ void button_endContact(void *userDataA, void *userDataB)
     if (nameBodyA != "Button" && nameBodyB != "Button")
         return;
 
-    //if(nameBodyA == "Button" && nameBodyB == "Chell_Player") static_cast<Entity *>(userDataA)->endContact();
     if (nameBodyA == "Button" && nameBodyB == "Rock")
         static_cast<Entity *>(userDataA)->endContact();
 
-    //if(nameBodyB == "Button" && nameBodyA == "Chell_Player") static_cast<Entity *>(userDataB)->endContact();
     if (nameBodyB == "Button" && nameBodyA == "Rock")
         static_cast<Entity *>(userDataB)->endContact();
 }

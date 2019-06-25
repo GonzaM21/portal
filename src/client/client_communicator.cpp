@@ -43,12 +43,6 @@ void ClientCommunicator::receiveMessage() {
     }
 }
 
-std::vector<std::string> ClientCommunicator::getMates() {
-    std::vector<std::string> vect;
-    vect.push_back("loading(?");
-    return std::move(vect);
-}
-
 void ClientCommunicator ::sendMessage() {
     try {
         while (this->continue_running) {

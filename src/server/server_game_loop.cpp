@@ -1,7 +1,7 @@
 #define HOUR 3600000
 #define MINUTE 60000
 #define SECOND 1000
-#define STEP_DURATION 40 //tiene que coincidir con el step del world 
+#define STEP_DURATION 40  
 #define LEVEL_UNFINISH -1
 #define WAIT_ANSWER 0
 #define NEXT_LEVEL 1
@@ -25,7 +25,7 @@ void GameLoop::setNumberOfLevels(int n) {
 }
 
 void GameLoop :: sendInfoPlayers() {
-    //if (!this->gameLoopStarted())
+    if (!this->gameLoopStarted())
         this->encoder.sendPlayersName();
 }
 
@@ -62,7 +62,7 @@ void GameLoop :: run() {
         this->sendInitialData();
         while (this->continue_running) {
             auto t_start = std::chrono::high_resolution_clock::now();
-            world->Step(0.04);//no harcodear esto pasar a constantes
+            world->Step(0.04);
             this->sendDynamicData();
             auto t_end = std::chrono::high_resolution_clock::now();
             int delta_time = std::chrono::duration<double, std::milli>(t_end-t_start).count();
@@ -138,25 +138,20 @@ void GameLoop::waitNextAction(int level_number) {
     this->encoder.sendEndLevel();
     while (true) {
         if (this->next_scenario == NEXT_LEVEL) {
-                std::cout << "entra a next level\n" << std::endl;
             this->encoder.sendNextLevelStart();
             this->sendInitialData();
             this->resetGameLoop();
             break;
         } else if (this->next_scenario == FINISH_GAME) {
-            std::cout << "entra a finish game\n" << std::endl;
             this->encoder.sendEndGame();
             break;
         } else {
             std::this_thread::sleep_for(std::chrono::milliseconds(STEP_DURATION));
         }
     }
-    std::cout << "se va waitnextlevel\n" << std::endl;
 }
 
 void GameLoop::setNextScenario(int action,World* world) {
-    //if (!this->checkLevelComplete()) return;
-    std::cout << "entro a next scenario" << std::endl;
     this->next_scenario = action;
     if (world != nullptr) this->world = world;
 }
