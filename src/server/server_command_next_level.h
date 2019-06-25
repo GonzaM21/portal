@@ -4,6 +4,12 @@
 #include "server_command.h"
 #include "server_level_manager.h"
 
+/* 
+* Clase para que un jugador acepte pasar al
+* proximo nivel
+*/
+
+
 class CommandNextLevel : public Command {
 private:
     Model *model;

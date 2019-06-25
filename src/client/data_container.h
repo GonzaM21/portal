@@ -21,6 +21,7 @@ public:
     void setWaitingNextLevel(bool waiting_next_level);
     void setEndLevel(bool end_level);
     void setGameFinish();
+    void setErrorMessage();
 
     //Getters
     bool getReceivedMap();

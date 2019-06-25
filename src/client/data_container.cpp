@@ -17,6 +17,10 @@ void DataContainer::setReceiveError(std::string &error_message) {
     this->error = error_message;
 }
 
+void DataContainer::setErrorMessage() {
+    this->error_message = true;
+}
+
 void DataContainer::setWaitingNextLevel(bool waiting_next_level) {
     this->waiting_next_level = waiting_next_level;
 }

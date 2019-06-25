@@ -3,6 +3,11 @@
 #include <string>
 #include "server_command.h"
 
+/* 
+* Clase para que un jugador se suicide
+*/
+
+
 class CommandSuicide : public Command {
 private:
     Model *model;

@@ -135,7 +135,11 @@ void Model::renderAll() {
 }
 
 Model::~Model() {
-  this->resetModel(); 
+  this->resetModel();
+  for (auto it = this->players.cbegin(); it != this->players.cend();) {
+      delete it->second;
+      it = this->players.erase(it); 
+  } 
 }
 
 Window* Model::getWindow() {
@@ -179,8 +183,4 @@ void Model::resetModel() {
       delete it->second;
       it = this->buttons.erase(it); 
   }
-  //for (auto it = this->players.cbegin(); it != this->players.cend();) {
-  //    delete it->second;
-  //    it = this->players.erase(it); 
-  //}
 }

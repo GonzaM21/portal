@@ -3,6 +3,11 @@
 #include <string>
 #include "server_command.h"
 
+/* 
+* Clase para que un jugador se mueva
+*/
+
+
 class CommandMove : public Command {
 private:
     Model *model;

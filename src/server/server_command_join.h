@@ -3,6 +3,11 @@
 #include <string>
 #include "server_command.h"
 
+/* 
+* Comando para unir un jugador a la partida
+*/
+
+
 class CommandJoin : public Command {
 private:
     Model *model;

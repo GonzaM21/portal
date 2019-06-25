@@ -19,7 +19,7 @@ class ColaProtegida {
         ColaProtegida();
         ~ColaProtegida();
 
-        //Recive por parametro un puntero a un string.
+        //Recibe por parametro un puntero a un string.
         //Inserta un nuevo elemento a la cola.
         void push(std::string &message);
 
@@ -30,11 +30,6 @@ class ColaProtegida {
         //Modifica el atributo terminar_ejecucion de la cola, 
         //su valor pasa a ser true.
         void set_terminar_ejecucion();
-
-        //ColaProtegida& operator=(const ColaProtegida&) = delete;
-        //ColaProtegida(ColaProtegida&& other);
-        //ColaProtegida& operator=(ColaProtegida&& other);
-        //ColaProtegida(ColaProtegida&) = delete;
 };
 
 

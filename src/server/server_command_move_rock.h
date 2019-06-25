@@ -3,6 +3,12 @@
 #include <string>
 #include "server_command.h"
 
+/* 
+* Clase para que un jugador realize la accion de levantar
+* o dejar una roca. 
+*/
+
+
 class CommandMoveRock : public Command {
 private:
     Model *model;

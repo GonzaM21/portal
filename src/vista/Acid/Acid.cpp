@@ -20,5 +20,5 @@ void Acid::setDestWorld(float x, float y, float width, float height) {
 }
 
 Acid::~Acid() {
-	delete this->sprite
+	delete this->sprite;
 }

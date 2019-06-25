@@ -23,6 +23,7 @@ ModelFacade::ModelFacade(Window &window) : model1(window), model2(window)
 
 void ModelFacade::decodeMessages(std::vector<std::string> arguments)//esto habria que hacerlo en deserializer (interprete)
 {
+  std::unique_lock<std::mutex> lck(m);
   if (arguments.at(0) == "9" && arguments.size() == 1) {
     swap(); 
     return;
@@ -62,6 +63,7 @@ void ModelFacade::setPlayerId(std::vector<std::string> arguments)
 
 void ModelFacade::renderAll()
 {
+  std::unique_lock<std::mutex> lck(m);
   setteable->renderAll();
 }
 
