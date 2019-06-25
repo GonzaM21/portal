@@ -129,10 +129,10 @@ void ModelFacade::setEnergyEmitter(std::vector<std::string> arguments)
 
 void ModelFacade::setPowerball(std::vector<std::string> arguments)
 {
-  Rect dest(stof(arguments[1]), stof(arguments[2]), stof(arguments[3]), stof(arguments[4]));
-  setteable->setPowerball(dest, atoi(arguments[5].c_str()));
+  Rect dest(stof(arguments[2]), stof(arguments[3]), stof(arguments[4]), stof(arguments[5]));
+  setteable->setPowerball(dest, atoi(arguments[1].c_str()),atoi(arguments[6].c_str()),atoi(arguments[7].c_str()));
   if (!receivedInitialData) {
-    renderable->setPowerball(dest, atoi(arguments[6].c_str()));
+    renderable->setPowerball(dest, atoi(arguments[1].c_str()),atoi(arguments[6].c_str()),atoi(arguments[7].c_str()));
   }
 }
 

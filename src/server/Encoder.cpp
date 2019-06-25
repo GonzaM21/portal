@@ -188,7 +188,7 @@ void Encoder :: sendEmitters() { //ARREGLAR
         msg = "10,"+ std::to_string(i+1)+ "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
         "," + std::to_string(size.x) + "," + std::to_string(size.y)+","+std::to_string(direction)+","+std::to_string(charged);
         this->sender->addMessageToSend(msg);
-        this->sendEnergyBall(emitters[i]);
+        this->sendEnergyBall(emitters[i],i);
     }
 }
 
@@ -212,15 +212,16 @@ void Encoder:: sendTriangularBlocks() {
     }
 }
 
-void Encoder::sendEnergyBall(Energy_Emitters* emitter) {
+void Encoder::sendEnergyBall(Energy_Emitters* emitter, const int& id) {
     Energy_Ball* ball = emitter->getEnergyBallShoted();
     if (ball == nullptr) return;
     b2Vec2 pos = ball->getPosition();
     float size = ball->getRadius();
-    int direction = ball->getDirection(); //ANDA MAL ESTO
+    int direction = ball->getDirection(); 
+    int state = ball->lives();
     std::string msg;
-    msg = "7," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
-    "," + std::to_string(2*size) + "," + std::to_string(size) +"," + std::to_string(direction);
+    msg = "7," + std::to_string(id) + "," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
+          "," + std::to_string(2 * size) + "," + std::to_string(size) + "," + std::to_string(direction) + "," + std::to_string(state);
     this->sender->addMessageToSend(msg);
 }
 

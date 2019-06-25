@@ -3,7 +3,8 @@
 #include <string>
 #include "../Rect.h"
 #include "../Window.h"
-// #include "../Sprite.h"
+#include "Flying_powerball.h"
+#include "Hitting_powerball.h"
 #include "../Camara.h"
 
 /**
@@ -40,10 +41,11 @@ public:
   void setHitting();
   bool hitted();
   bool isDone();
-  
+  void setState(const int &state, const int &direction);
+
 private:
   Rect dest_world;
-  Sprite *sprite;
+  FlyingPowerBall *sprite;
 };
 
 #endif

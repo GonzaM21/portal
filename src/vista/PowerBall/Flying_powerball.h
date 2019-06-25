@@ -17,12 +17,13 @@ public:
     virtual int render(const Rect &dest);
     virtual void setSrc(Rect &src) override;
     virtual bool isDone() override;
+    void setState(const int &state, const int &direction);
 
 private:
     Rect src;
     bool done = false;
-    const int direction;
-    // PawPowerBall paw;
+    int direction;
+    int state;
 };
 
 #endif

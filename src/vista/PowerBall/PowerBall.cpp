@@ -1,7 +1,5 @@
 #include "PowerBall.h"
 #include "../Window.h"
-#include "Flying_powerball.h"
-#include "Hitting_powerball.h"
 #include "Paw_powerball.h"
 #include "../Constants.h"
 #include <string>
@@ -22,6 +20,10 @@ void PowerBall::setDestWorld(float x, float y, float width, float height) {
 
 bool PowerBall::isDone() {
 	return this->sprite->isDone();
+}
+
+void PowerBall::setState(const int& state, const int& direction) {
+	this->sprite->setState(state,direction);
 }
 
 PowerBall::~PowerBall(){

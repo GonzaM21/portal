@@ -56,10 +56,15 @@ void Model::setCake(Rect &dest) {
   this->cakes.back()->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());  
 }
 
-void Model::setPowerball(Rect &dest, const int &direction){
-  this->powerballs.push_back(new PowerBall(window, direction));
-  this->powerballs.back()->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
+void Model::setPowerball(Rect &dest, const int &id, const int &direction, const int &state) {
+  if (powerballs.find(id) == powerballs.end())
+  {
+    this->powerballs[id] = new PowerBall(window, direction);
+  }
+  this->powerballs[id]->setState(state, direction);
+  this->powerballs[id]->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
 }
+
 void Model::setRock(Rect &dest, const int &id) {
   if (rocks.find(id) == rocks.end()) {
     this->rocks[id] = new Rock(window);
@@ -73,36 +78,6 @@ void Model::setPlayer(Rect &dest, const int &id, const int &state, const int &di
   }
   this->players[id]->setState(state, direction);
   this->players[id]->setDestWorld(dest.getX(), dest.getY(), dest.getWidth(), dest.getHeight());
-}
-
-void Model::destroyPowerBalls() {
-  for (PowerBall* ball:powerballs){
-    delete ball;
-  }
-}
-
-std::list<Block *> Model::getBlocks() {
-  return blocks;
-}
-
-std::list<Acid *> Model::getAcids() {
-  return acids;
-}
-
-std::list<PowerBall *> Model::getpowerballs() {
-  return powerballs;
-}
-
-std::unordered_map<int, Player *> Model::getPlayers() {
-  return players;
-}
-
-std::map<int, Button *> Model::getButtons() {
-  return buttons;
-}
-
-std::map<int, Gate *> Model::getGates() {
-  return gates;
 }
 
 void Model::convertToWorld(Rect &worldPostion, const Rect &virtualPostion) {
@@ -122,40 +97,39 @@ void Model::renderAll() {
     acid->render(camara);
   }
   
-  for (auto barrier : barriers) barrier->render(camara);
-
-  std::map<int, Rock *>::iterator rock_it;
-  for (rock_it = rocks.begin(); rock_it != rocks.end(); rock_it++) {
-    rock_it->second->render(camara);
+  for (EnergyBarrier* barrier : barriers) {
+    barrier->render(camara);
   }
 
-  for (PowerBall *powerball : powerballs) {
-    powerball->render(camara);
+  for (auto &rock : rocks) {
+    rock.second->render(camara);
   }
 
-  std::map<int, Portal *>::iterator portal_it;
-  for (portal_it = portals.begin(); portal_it != portals.end(); portal_it++) {
-    portal_it->second->render(camara);
+  for (auto& powerball : powerballs) {
+    powerball.second->render(camara);
   }
 
-  for (auto &gate : gates) {
+  for (auto& gate : gates) {
     gate.second->render(camara);
   }
 
-  for (auto &emitter : emitters) {
+  for (auto& emitter : emitters) {
     emitter.second->render(camara);
   }
 
-  std::map<int, Button *>::iterator button_it;
-  for (button_it = buttons.begin(); button_it != buttons.end(); button_it++) {
-    button_it->second->render(camara);
+  for (auto& button : buttons) {
+    button.second->render(camara);
+  }
+
+  for (auto &portal : portals) {
+    portal.second->render(camara);
   }
 
   for (auto &player : players) {
     player.second->render(camara);
   }
 
-  for (auto cake : cakes) {
+  for (Cake* cake : cakes) {
     cake->render(camara);
   }
 }
@@ -186,7 +160,7 @@ void Model::resetModel() {
       it = this->acids.erase(it); 
   }    
   for (auto it = this->powerballs.cbegin(); it != this->powerballs.cend();) {
-      delete (*it);
+      delete it->second;
       it = this->powerballs.erase(it); 
   } 
   for (auto it = this->rocks.cbegin(); it != this->rocks.cend();) {

@@ -4,7 +4,7 @@
 #include "Metal_Block.h"
 #include "Portal.h"
 #define ENERGY_BALL 0.5
-#define ENERGY_BALL_FORCE 15.0
+#define ENERGY_BALL_FORCE 3.0
 #define LIFE_STEPS 200
 #define BALL_X_DELTA 0.8
 #define BALL_Y_DELTA 0.8

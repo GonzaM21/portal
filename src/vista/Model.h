@@ -46,25 +46,13 @@ public:
   void setButton(Rect &dest, const int &id, const int &state);
   void setAcid(Rect &dest);
   void setPortal(Rect &dest, const int &id, const int &code, const int &direction, const int &state);
-  void setPowerball(Rect &dest, const int &direction);
+  void setPowerball(Rect &dest, const int &id, const int &direction, const int &state);
   void setRock(Rect &dest, const int &id);
   void setCake(Rect &dest);
   void setEnergyEmitter(Rect &dest, const int &id, const int &direction, const int &state);
   void setPlayer(Rect &dest, const int &id, const int &state, const int &direction);
   void setEnergyBarrier(Rect &dest, const int &direction);
-  
-  /**
-   * Getters de las estructuras que poseen a los objetos
-  */
-  std::list<Block *> getBlocks();
-  std::list<Acid *> getAcids();
-  std::list<PowerBall *> getpowerballs();
-  std::unordered_map<int, Player *> getPlayers();
-  std::map<int, Button *> getButtons();
-  std::map<int, Gate *> getGates();
-
-  void destroyPowerBalls();
-  
+    
   /**
    * Metodo encargda de renderizar todos los objetos
   */
@@ -97,6 +85,9 @@ public:
   */
   void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);
 
+  /**
+   * Metodo que reinicia el modelo, borrando todo menos los jugadores
+  */
   void resetModel();
 
 private: 
@@ -109,7 +100,7 @@ private:
   std::list<EnergyBarrier *> barriers;
   std::map<int, Rock *> rocks;
   std::map<int, Portal *> portals;
-  std::list<PowerBall *> powerballs;
+  std::unordered_map<int, PowerBall *> powerballs;
   std::unordered_map<int, Player *> players;
   std::unordered_map<int, Emitter *> emitters;
   std::map<int, Button *> buttons;
