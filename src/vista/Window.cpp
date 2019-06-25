@@ -23,7 +23,7 @@ Window::Window(int width, int height) : width(width), height(height), fullscreen
     }
     SDL_Surface *image = IMG_Load(ICON_FILENAME);
     if(!image) {
-        std::cout << "Icon load: " << IMG_GetError() << std::endl);
+        std::cout << "Icon load: " << IMG_GetError() << std::endl;
     } else {
         SDL_SetWindowIcon(window, image);
     }
