@@ -220,7 +220,7 @@ b2Body* World::addTriangle(float x_pos, float y_pos, float size, int angle ,bool
     shape_triangle.Set(vertices,3);
     triangleFixtureDef.shape = &shape_triangle;
     triangleFixtureDef.density = DENSITY;
-    triangleFixtureDef.friction = FRICTION * 10;
+    triangleFixtureDef.friction = 10000;
     triangleFixtureDef.restitution = ZERO;
     triangleFixtureDef.filter.categoryBits = data.getCategoryBits();
     triangleFixtureDef.filter.maskBits = data.getMaskBits();
