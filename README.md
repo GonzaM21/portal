@@ -28,10 +28,9 @@ Si no ocurrio ningun error, ya se puede correr el juego, para esto primero se de
 
 Seguido de este, en otra ventana de una terminal, se debe ingresar el siguiente comanado:
 
-		./Client <host> <puerto> new/join nombre_sala nombre_usuario
+		./Client 
 
-El comando new se utiliza para crear una nueva partida con el nombre_sala que se le asigna, en caso que querer unirse a una partida se debe utilizar el comando join con el nombre * de la sala previamente creada.
-Una vez ejecutado este comando se debería abrir una ventana de color negro, para comenzar el juego se tocar la tecla con la flecha para abajo. Y luego de unos segundos el juego comienza.
+Aqui se abrira el cliente, y alli se podra configurar todo lo que respecta a la partida.
 
 ### ¿Como jugar?
 Para mover el usuario se deben utilizar las teclas “d” y “a” que mueven al personaje a la derecha o la izquierda. Con el botón “w” se puede saltar.
