@@ -1,6 +1,5 @@
 #include "PowerBall.h"
 #include "../Window.h"
-#include "Paw_powerball.h"
 #include "../Constants.h"
 #include <string>
 #include <iostream>

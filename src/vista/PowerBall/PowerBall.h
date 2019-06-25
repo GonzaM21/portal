@@ -4,7 +4,6 @@
 #include "../Rect.h"
 #include "../Window.h"
 #include "Flying_powerball.h"
-#include "Hitting_powerball.h"
 #include "../Camara.h"
 
 /**

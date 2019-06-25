@@ -4,7 +4,6 @@
 #include <SDL2/SDL_image.h>
 #include "../Sprite.h"
 #include "../Rect.h"
-#include "Paw_powerball.h"
 
 
 class FlyingPowerBall : public Sprite
