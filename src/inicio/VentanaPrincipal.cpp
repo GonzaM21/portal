@@ -39,7 +39,7 @@ void VentanaPrincipal::on_submit_clicked() {
 void VentanaPrincipal::on_reloadButton_clicked() {
     ui->integrantesLista->clear();
     std::vector<std::string> integrantes = communicator->getMates();
-    for (size_t i = 0; i < integrantes.size(); i++) {
+    for (int i = 0; i < integrantes.size(); i++) {
         QString mate(integrantes[i].c_str());
         ui->integrantesLista->addItem(mate);
     }
@@ -62,7 +62,7 @@ void VentanaPrincipal::on_continuar_clicked() {
     partida->setSalaName(ui->nombreSala->text().toStdString());
     communicator->set(std::move(joiner->setSocket()), partida->getMode(), partida->getSalaName(), partida->getPlayerName());
     std::vector<std::string> integrantes = communicator->getMates();
-    for (size_t i = 0; i < integrantes.size(); i++)
+    for (int i = 0; i < integrantes.size(); i++)
     {
         QString mate(integrantes[i].c_str());
         ui->integrantesLista->addItem(mate);
@@ -207,7 +207,7 @@ void VentanaPrincipal::on_guardarMapa_released() {
     }
     std::map<int, std::vector<QTableWidgetItem *>>::iterator button_it;
     for (button_it = buttons.begin(); button_it != buttons.end(); button_it++) {
-        for (size_t j = 0; j < button_it->second.size(); j++) {
+        for (int j = 0; j < button_it->second.size(); j++) {
             mapSaver.addObject("Button," + std::to_string(buttonsPos.at(button_it->first)[j][1] + 1 - (ui->mapa->columnCount() / 2)) + "," + std::to_string(-buttonsPos.at(button_it->first)[j][0] - 1 + ui->mapa->rowCount()) + "," + std::to_string(button_it->first));
         }
     }
@@ -253,7 +253,7 @@ void VentanaPrincipal::setGround() {
     ui->mapa->setItem(ui->mapa->rowCount() - 2, ui->mapa->columnCount() / 2 - 1, new QTableWidgetItem(iconChell, chell));
     QIcon icon("resources/qt/Metal_block.png");
     QString metal("Metal");
-    for (size_t i = 0; i < ui->mapa->rowCount(); i++) {
+    for (int i = 0; i < ui->mapa->rowCount(); i++) {
         if (ui->mapa->item(i, 0) == 0 || ui->mapa->item(i, 0)->text() != metal) {
             ui->mapa->setItem(i, 0, new QTableWidgetItem(icon, metal));
             ui->mapa->item(i, 0)->setFlags(ui->mapa->item(i, 0)->flags() & ~Qt::ItemIsEditable);
@@ -263,7 +263,7 @@ void VentanaPrincipal::setGround() {
             ui->mapa->item(i, ui->mapa->columnCount() - 1)->setFlags(ui->mapa->item(i, ui->mapa->columnCount() - 1)->flags() & ~Qt::ItemIsEditable);
         }
     }
-    for (size_t i = 0; i < ui->mapa->columnCount(); i++) {
+    for (int i = 0; i < ui->mapa->columnCount(); i++) {
         if (ui->mapa->item(0,i) == 0 || ui->mapa->item(0, i)->text() != metal) {
             ui->mapa->setItem(0, i, new QTableWidgetItem(icon, metal));
             ui->mapa->item(0, i)->setFlags(ui->mapa->item(0, i)->flags() & ~Qt::ItemIsEditable);
