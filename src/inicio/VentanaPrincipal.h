@@ -59,6 +59,8 @@ private slots:
 
     void removeButton(QTableWidgetItem *item);
 
+    void setMates();
+
 private: 
     Ui::VentanaPrincipal *ui;
     MatchConfig *partida;

@@ -38,16 +38,20 @@ void VentanaPrincipal::on_submit_clicked() {
 }
 
 void VentanaPrincipal::on_reloadButton_clicked() {
+    setMates();
+}
+
+void VentanaPrincipal::closeEvent(QCloseEvent *event) {
+    QCoreApplication::exit(EXIT_FAILURE);
+}
+
+void VentanaPrincipal::setMates() {
     ui->integrantesLista->clear();
     std::vector<std::string> integrantes = communicator->getMates();
     for (size_t i = 0; i < integrantes.size(); i++) {
         QString mate(integrantes[i].c_str());
         ui->integrantesLista->addItem(mate);
     }
-}
-
-void VentanaPrincipal::closeEvent(QCloseEvent *event) {
-    QCoreApplication::exit(EXIT_FAILURE);
 }
 
 void VentanaPrincipal::on_crearSalaButton_clicked() {
@@ -62,12 +66,7 @@ void VentanaPrincipal::on_continuar_clicked() {
     ui->sala->setText(ui->nombreSala->text());
     partida->setSalaName(ui->nombreSala->text().toStdString());
     communicator->set(std::move(joiner->setSocket()), partida->getMode(), partida->getSalaName(), partida->getPlayerName());
-    std::vector<std::string> integrantes = communicator->getMates();
-    for (size_t i = 0; i < integrantes.size(); i++)
-    {
-        QString mate(integrantes[i].c_str());
-        ui->integrantesLista->addItem(mate);
-    }
+    setMates();
     ui->stackedWidget->setCurrentIndex(4);
 }
 
