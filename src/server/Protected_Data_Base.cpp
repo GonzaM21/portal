@@ -49,6 +49,7 @@ void ProtectedDataBase :: makePlayerMove(std::string &player,char &direction) {
 
 void ProtectedDataBase :: shootPortal(std::string &player,float x_destiny,
   float y_destiny,int portal_num) {
+    std::unique_lock<std::mutex> lck(m);
     Chell_Player *chell_player = this->players[player];
     if (portal_num == 1) {
       chell_player->shotPortalIn(x_destiny,y_destiny);
@@ -124,6 +125,7 @@ void ProtectedDataBase :: addButton(World &world, float x_pos, float y_pos,int d
 }
 
 void ProtectedDataBase :: addButtonToDoor() {
+    std::unique_lock<std::mutex> lck(m);
     for (auto button : this->pending_buttons) {
       size_t door_id = button.second[0];
       if (door_id >= this->gates.size()) continue;
