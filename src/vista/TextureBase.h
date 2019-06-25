@@ -20,7 +20,7 @@ public:
     if (instance == NULL)
       try {
         instance = new TextureBase(renderer);
-      } catch (SdlException e) {
+      } catch (SdlException& e) {
         std::cout << e.what();
       }
     return instance;
