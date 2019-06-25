@@ -39,20 +39,15 @@ public:
   void setEnergyEmitter(std::vector<std::string> arguments);
   void setEnergyBarrier(std::vector<std::string> arguments);
   void setCake(std::vector<std::string> arguments);
-  void setFullscreen() { model1.fullscreen(); model2.fullscreen(); }
+  void setFullscreen() { model.fullscreen();}
   void renderAll();
   Window *getWindow();
   void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);
   void setBackground();
-  void endInitialData();
-  void swap();
   void resetModel();
 
 private:
-  Model model1;
-  Model model2;
-  Model *renderable;
-  Model *setteable;
+  Model model;
   std::mutex m;
   bool receivedInitialData;
   typedef void (ModelFacade::*model_method_t)(std::vector<std::string>);

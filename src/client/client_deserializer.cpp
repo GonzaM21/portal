@@ -32,7 +32,6 @@ void ClientDeserializer::deserialize(std::string &message) {
         this->data_container->setEndLevel(false);
         this->data_container->setWaitingNextLevel(false);
         this->data_container->setReceivedMap(true);
-        this->scene_manager->decodeObjectMessage(arguments);
         return;
     } else if (arguments.at(0) == MATES_CODE && arguments.size() == 1) {
         //algo

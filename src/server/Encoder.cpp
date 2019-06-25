@@ -273,8 +273,3 @@ void Encoder::sendMapStart() {
     std::string msg = START_MAP_CODE;
     this->sender->addMessageToSend(msg);
 }
-
-void Encoder::sendSwap() {
-    std::string msg = SWAP_CODE;
-    this->sender->addMessageToSend(msg);
-}
