@@ -107,7 +107,7 @@ void ClientController::mainLoop() {
         DataContainer data_container;
         LocalSceneLogic local_scene_logic(scene_manager);
         ClientDeserializer deserializer(&data_container,&scene_manager);
-        PositionConverter converter(scene_manager.getModelFacade());
+        PositionConverter converter(scene_manager.getModelController());
         this->handler = new EventHandlerThread(this->communicator,converter,local_scene_logic);
         this->renderer_thread = new Renderable(&scene_manager);
         std::setlocale(LC_NUMERIC,"C"); //Qt nos cambia el comportamiento de algunas funciones como atof y stof

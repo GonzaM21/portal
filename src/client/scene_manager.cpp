@@ -4,7 +4,7 @@
 
 SceneManager::SceneManager() :
     window(800,800) ,  
-    model_facade(window),
+    model_controller(window),
     end_level_scene(window),
     end_game_scene(window),
     ffmpeg() {
@@ -21,7 +21,7 @@ void SceneManager::renderAll() {
         if (this->level_change) {
             this->level_change = false;
         }
-        this->model_facade.renderAll();
+        this->model_controller.renderAll();
     }
     if (this->actual_screen == 1) {
         this->level_change = true;
@@ -32,11 +32,11 @@ void SceneManager::renderAll() {
 }
 
 void SceneManager::decodeObjectMessage(std::vector<std::string> &arguments) {
-    this->model_facade.decodeMessages(arguments);
+    this->model_controller.decodeMessages(arguments);
 }
 
-ModelFacade* SceneManager::getModelFacade() {
-    return &this->model_facade;
+ModelController* SceneManager::getModelController() {
+    return &this->model_controller;
 }
 
 int SceneManager::getActualScreen() {
@@ -64,7 +64,7 @@ void SceneManager::putGameScene() {
 
 
 void SceneManager::resetLevelStage() {
-    model_facade.resetModel();
+    model_controller.resetModel();
 }
 
 void SceneManager::setFullScreen() {

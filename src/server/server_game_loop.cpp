@@ -25,7 +25,7 @@ void GameLoop::setNumberOfLevels(int n) {
 }
 
 void GameLoop :: sendInfoPlayers() {
-    if (!this->gameLoopStarted())
+    //if (!this->gameLoopStarted())
         this->encoder.sendPlayersName();
 }
 

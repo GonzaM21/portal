@@ -1,13 +1,13 @@
 #ifndef POSITION_CONVERTER_H
 #define POSITION_CONVERTER_H
-#include "../vista/ModelFacade.h"
+#include "../vista/ModelController.h"
 #include <vector>
 
 class PositionConverter {
 private:
-    ModelFacade *model_facade;
+    ModelController *model_controller;
 public:
-    PositionConverter(ModelFacade *model_facade);
+    PositionConverter(ModelController *model_controller);
     ~PositionConverter() = default;
     //std::vector<int> convertToVirtual(int x, int y);
 
