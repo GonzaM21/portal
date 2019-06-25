@@ -20,6 +20,7 @@ private:
     ClientCommunicator* communicator;
     EventHandlerThread* handler;
     Renderable* renderer_thread;
+    DataContainer data_container;
     bool continue_running;
     bool map_received;
     bool end_game;

@@ -101,6 +101,7 @@ int SocketConnect :: sendMessage(char *buf,int size) {
 }
 
 void SocketConnect :: closeConnection() {
+	if (this->skt < 0) return;
 	shutdown(skt, SHUT_RDWR);
 	this->skt = -1;
 	this->s = -1;
