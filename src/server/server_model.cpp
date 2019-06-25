@@ -43,7 +43,7 @@ void Model :: startGame() {
     }
 }
 
-void Model::setNextScene(int n) {
+void Model::setNextScene() {
     this->game_loop->setNextScenario(FINISH_GAME);
 }
 
@@ -75,7 +75,7 @@ void Model :: makePlayerMove(std::string &player,char &direction) {
 }
 
 void Model :: shootPortal(std::string &player,float x_destiny, float y_destiny,int portal_num) {
-    this->data_base.shootPortal(*this->world,player,x_destiny,y_destiny,portal_num);
+    this->data_base.shootPortal(player,x_destiny,y_destiny,portal_num);
 }
 
 void Model :: makePlayerMoveRock(std::string &player) {
