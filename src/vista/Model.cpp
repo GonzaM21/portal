@@ -170,7 +170,11 @@ void Model::resetModel() {
   for (auto it = this->powerballs.cbegin(); it != this->powerballs.cend();) {
       delete it->second;
       it = this->powerballs.erase(it); 
-  } 
+  }
+  for (auto it = this->barriers.cbegin(); it != this->barriers.cend();) {
+    delete it->second;
+    it = this->barriers.erase(it);
+  }
   for (auto it = this->rocks.cbegin(); it != this->rocks.cend();) {
       delete it->second;
       it = this->rocks.erase(it); 
