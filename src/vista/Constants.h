@@ -300,6 +300,7 @@
 #define PORTAL_SHOT_FX_ID 5
 #define ROCK_DEAD_FX_ID 6
 #define CHELL_SCREAM_ID 7
+#define CHELL_WIN_ID 8
 
 /*
  * Music Files
@@ -312,6 +313,7 @@
 #define PORTAL_SHOT_FX "resources/Music/portal_sound.mp3"
 #define ROCK_DEAD_FX "resources/Music/Rock_dead.mp3"
 #define CHELL_SCREAM "resources/Music/scream.mp3"
+#define CHELL_WIN "resources/Music/win.mp3"
 
 /* AGREGAR BLOQUE */
 

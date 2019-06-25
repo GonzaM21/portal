@@ -33,13 +33,11 @@ void Button::die() {
 void Button::startContact(b2Vec2) {
     ++contact;
     status = true;
-    printf("Boton activado\n");
 }
 
 void Button::endContact() {
     --contact;
     status = false;
-    printf("Boton desactivado\n");
 }
 
 bool Button::setTransform(Entity *) {
@@ -58,7 +56,6 @@ b2Vec2 Button::getSizes() {
 }
 
 bool Button::getStatus(){
-    std::cout<<"button contact "<<contact<<std::endl;
     return contact > 0;
 }
 

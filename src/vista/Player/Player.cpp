@@ -58,13 +58,14 @@ void Player::setRestIdle() {
 void Player::setRunning() {
 	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[2]).name()) != 0) {
 		this->sprite = this->states[2];
-		MusicBase::getInstance()->playMusic(CHELL_STEP_FX_ID,15);
+		//MusicBase::getInstance()->playMusic(CHELL_STEP_FX_ID,15);
 	}
 }
 
 void Player::setDancing() {
 	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[3]).name()) != 0) {
 		this->sprite = this->states[3];
+        MusicBase::getInstance()->playMusic(CHELL_WIN_ID,15);
 	}
 }
 
@@ -92,7 +93,7 @@ void Player::setStop() {
 void Player::setRising() {
 	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[7]).name()) != 0) {
 		this->sprite = this->states[7];
-		MusicBase::getInstance()->playMusic(CHELL_JUMP_FX_ID,15);
+		MusicBase::getInstance()->playMusic(CHELL_JUMP_FX_ID,10);
 	}
 }
 

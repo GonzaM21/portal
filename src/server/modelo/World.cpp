@@ -7,7 +7,7 @@
 
 #define DELTA_WALLS 1.0
 #define DENSITY 1.0
-#define FRICTION 0.3
+#define FRICTION 0.0
 #define CHELL_WHEELS_RADIUS 0.05
 #define ENERGY_BALL_RESITUTION 1.0
 #define FOOT_SENSOR_SIZE 0.15

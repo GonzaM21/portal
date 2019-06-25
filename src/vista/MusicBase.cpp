@@ -12,6 +12,7 @@ MusicBase::MusicBase() {
     createMusic(PORTAL_SHOT_FX_ID,PORTAL_SHOT_FX);
     createMusic(ROCK_DEAD_FX_ID,ROCK_DEAD_FX);
     createMusic(CHELL_SCREAM_ID,CHELL_SCREAM);
+    createMusic(CHELL_WIN_ID,CHELL_WIN);
 }
 
 void MusicBase::createMusic(const int &id, const std::string filename) {
