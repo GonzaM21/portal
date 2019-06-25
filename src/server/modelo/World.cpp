@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "World.h"
 #include "Box2D/Box2D.h"
 #include "InvalidPosition.h"
@@ -216,12 +217,6 @@ b2Body* World::addTriangle(float x_pos, float y_pos, float size, int angle ,bool
         vertices[2].Set((1.0/3) * size, (-1.8/3) * size);
     }
 
-    printf("lado del triangulo ");
-    for(size_t i = 0;i < 3;++i){
-        std::cout<<vertices[i].x<<" "<<vertices[i].y<<" ";
-    }
-    std::cout<<std::endl;
-
     shape_triangle.Set(vertices,3);
     triangleFixtureDef.shape = &shape_triangle;
     triangleFixtureDef.density = DENSITY;
@@ -235,7 +230,6 @@ b2Body* World::addTriangle(float x_pos, float y_pos, float size, int angle ,bool
 }
 
 void World::Step(float time, int velocity, int position){
-    if (this->erase) return;
     deleteBodies();
     moveBodies();
     world->Step(time, velocity, position);
@@ -283,26 +277,6 @@ b2Vec2 World::getWidth() {
 b2Vec2 World::getHigh() {
     return y_lim;
 }
-
-void World::eraseAllBodies() {
-    this->erase = true;
-    delete ContactListener;
-    for(size_t i = 5; i < Bodies.size(); ++i) {
-        Bodies[i]->SetActive(false);
-    }
-    std::vector<b2Body*>::iterator it = Bodies.begin();
-    //for(size_t i = 5; i < Bodies.size(); ++i) {
-    //    world->DestroyBody(Bodies[i]);
-    //    Bodies.erase(Bodies.begin() + i);
-    //} 
-    while(it != Bodies.end()) {
-        world->DestroyBody((*it));
-        it = Bodies.erase(it);
-    }
-    ContactListener = new MyContactListener;
-    world->SetContactListener(ContactListener);
-}
-
 
 float World::getGravity() {
     std::

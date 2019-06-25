@@ -362,6 +362,7 @@ void ProtectedDataBase::resetDataBase() {
     this->resetEnergyEmitters();
     this->resetCakes();
     this->resetTriangularBlocks();
+    this->resetButtonsToAdd();
 }
 
 void ProtectedDataBase::resetPlayers() {
@@ -457,5 +458,10 @@ void ProtectedDataBase::resetTriangularBlocks() {
     } 
 }
 
+void ProtectedDataBase::resetButtonsToAdd() {
+    for (auto it = this->pending_buttons.cbegin(); it != this->pending_buttons.cend();) {
+        it = this->pending_buttons.erase(it);
+    }
+}
 
 //NOTA: REVISAR CUANDO ESTE EL CAKE SI DEBO MUTEAR ALGO MAS
