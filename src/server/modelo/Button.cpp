@@ -27,7 +27,7 @@ bool Button::lives() {
 }
 
 void Button::die() {
-    live = false;
+    live = true;
 }
 
 void Button::startContact(b2Vec2) {
@@ -58,6 +58,7 @@ b2Vec2 Button::getSizes() {
 }
 
 bool Button::getStatus(){
+    std::cout<<"button contact "<<contact<<std::endl;
     return contact > 0;
 }
 

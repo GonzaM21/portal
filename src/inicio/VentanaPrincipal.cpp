@@ -186,8 +186,8 @@ void VentanaPrincipal::on_mapa_cellChanged(int row, int column) {
 void VentanaPrincipal::on_guardarMapa_released() {
     QTableWidget *mapa = ui->mapa;
     MapSaver mapSaver("json_prueba12");
-    for (int i = 0; i < mapa->columnCount(); i++) {
-        for (int j = 0; j < mapa->rowCount(); j++) {
+    for (int i = 0; i < mapa->rowCount(); i++) {
+        for (int j = 0; j < mapa->columnCount(); j++) {
             QTableWidgetItem *item = mapa->item(i, j);
             if (item == 0)
                 continue;

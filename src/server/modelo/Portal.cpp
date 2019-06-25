@@ -41,7 +41,7 @@ bool Portal::Move(float x_pos, float y_pos){
 
     std::cout<<"angle: "<<angle<<std::endl;
 
-    float force =  5.f;
+    float force =  15.f;
 
     velocity = b2Vec2(force * cos(angle), force * sin(angle));
 
