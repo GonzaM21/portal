@@ -1,6 +1,6 @@
 #ifndef SCENE_MANAGER_H
 #define SCENE_MANAGER_H
-#include "../vista/ModelFacade.h"
+#include "../vista/ModelController.h"
 #include "../vista/next_level_screen/EndLevelScreen.h"
 #include "../vista/end_game_scene/end_game_scene.h"
 #include "ffmpeg/ffmpeg.h"
@@ -14,7 +14,7 @@
 class SceneManager {
 private: 
     Window window;
-    ModelFacade model_facade;
+    ModelController model_controller;
     EndLevelScreen end_level_scene;
     EndGameScene end_game_scene;
     Ffmpeg ffmpeg;
@@ -28,7 +28,7 @@ public:
     ~SceneManager() = default;
     void renderAll();
     void decodeObjectMessage(std::vector<std::string> &arguments);
-    ModelFacade *getModelFacade();
+    ModelController *getModelController();
     void putNextLevelScene(); 
     void putGameScene();
     void putEndGameScene();
