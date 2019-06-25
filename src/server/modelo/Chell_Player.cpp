@@ -250,11 +250,6 @@ void Chell_Player::resetPortal(){
 
 void Chell_Player::inmortalChell(){
     inmortal = !inmortal;
-<<<<<<< HEAD
-=======
-    if(inmortal) std::cout<<"INMORTALIDAD ACTIVADA\n";
-    else std::cout<<"INMORTALIDAD DESACTIVADA\n";
->>>>>>> f14e43b6b3bfe3997b52dc07fe1805d8993a3e1a
 }
 
 
@@ -262,18 +257,10 @@ void Chell_Player::antiGravity() {
     if(gravity){
         chell->SetGravityScale(1);
         gravity = false;
-<<<<<<< HEAD
-=======
-        std::cout<<"ANTIGRAVEDAD DESACTIVADA\n";
->>>>>>> f14e43b6b3bfe3997b52dc07fe1805d8993a3e1a
     }
     else{
         chell->SetGravityScale(ZERO);
         gravity = true;
-<<<<<<< HEAD
-=======
-        std::cout<<"ANTIGRAVEDAD ACTIVADA\n";
->>>>>>> f14e43b6b3bfe3997b52dc07fe1805d8993a3e1a
     }
 }
 

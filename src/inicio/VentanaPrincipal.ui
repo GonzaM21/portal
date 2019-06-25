@@ -345,33 +345,12 @@ background-color: rgb(255, 255, 255);
     </widget>
    </widget>
    <widget class="QWidget" name="salaEspera">
-    <widget class="QLabel" name="integrantesLabel">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>130</y>
-       <width>411</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>30</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Integrantes</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
     <widget class="QLabel" name="sala">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>160</x>
        <y>50</y>
-       <width>411</width>
+       <width>401</width>
        <height>61</height>
       </rect>
      </property>
@@ -390,10 +369,10 @@ background-color: rgb(255, 255, 255);
     <widget class="QPushButton" name="comenzarJuego">
      <property name="geometry">
       <rect>
-       <x>260</x>
-       <y>500</y>
-       <width>301</width>
-       <height>121</height>
+       <x>160</x>
+       <y>300</y>
+       <width>401</width>
+       <height>221</height>
       </rect>
      </property>
      <property name="font">
@@ -402,30 +381,7 @@ background-color: rgb(255, 255, 255);
       </font>
      </property>
      <property name="text">
-      <string>Comenzar</string>
-     </property>
-    </widget>
-    <widget class="QListWidget" name="integrantesLista">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>200</y>
-       <width>411</width>
-       <height>271</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="reloadButton">
-     <property name="geometry">
-      <rect>
-       <x>580</x>
-       <y>200</y>
-       <width>31</width>
-       <height>27</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
+      <string>Comenzar a jugar</string>
      </property>
     </widget>
    </widget>
