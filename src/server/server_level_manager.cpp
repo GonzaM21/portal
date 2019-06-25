@@ -1,14 +1,7 @@
 #include "server_level_manager.h"
-<<<<<<< Updated upstream
-#define LEVEL_1 "json_prueba12"
-
-#define LEVEL_2 "json_file2"
-
-=======
 #define LEVEL_1 "json_file"
 #define LEVEL_2 "json_file2"
 #define FINISH_GAME 2
->>>>>>> Stashed changes
 
 void LevelManager::setVotes() {
     for (auto it = this->player_votes.cbegin(); it != this->player_votes.cend();) {

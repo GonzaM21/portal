@@ -40,6 +40,7 @@ public:
     void sendMapStart();
     void sendPlayersName();
     void sendTriangularBlocks();
+    void sendSwap();
 };
 
 #endif

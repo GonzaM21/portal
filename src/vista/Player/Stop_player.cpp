@@ -6,10 +6,10 @@
 #include <string>
 #include <iostream>
 
-StopPlayer::StopPlayer(const Window &window, const int &direction) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(PLAYER_SPRITE_ID), window),
+StopPlayer::StopPlayer(const Window &window, const int &direction, const int& id) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(PLAYER_SPRITE_ID), window),
                                                                      src(X_START_POSITION, Y_POSITION_PLAYER_STOP, WIDTH_PLAYER_STOP, HEIGHT_PLAYER_STOP),
                                                                      done(false),
-                                                                     direction(direction)
+                                                                     direction(direction), id(id)
 {
 }
 
@@ -18,11 +18,11 @@ int StopPlayer::render(const Rect &dest)
   int response;
   if (direction == 1)
   {
-    response = Sprite::render(src, dest);
+    response = Sprite::render(src, dest,SDL_FLIP_NONE,0,id);
   }
   else
   {
-    response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 180);
+    response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 180,id);
   }
   int x_src = src.getX();
   int y_src = src.getY();

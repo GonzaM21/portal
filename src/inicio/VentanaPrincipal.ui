@@ -31,7 +31,7 @@
 }</string>
   </property>
   <property name="locale">
-   <locale language="C" country="AnyCountry"/>
+   <locale language="English" country="UnitedStates"/>
   </property>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
@@ -975,7 +975,7 @@ background-color: rgb(255, 255, 255);
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="locale">
-      <locale language="C" country="AnyCountry"/>
+      <locale language="English" country="UnitedStates"/>
      </property>
      <property name="showDropIndicator" stdset="0">
       <bool>true</bool>

@@ -6,9 +6,9 @@
 #include <string>
 #include <iostream>
 
-FallingPlayer::FallingPlayer(const Window &window, const int &direction) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(PLAYER_SPRITE_ID), window),
+FallingPlayer::FallingPlayer(const Window &window, const int &direction, const int& id) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(PLAYER_SPRITE_ID), window),
                                                                            src(X_START_POSITION, Y_POSITION_PLAYER_FALLING, WIDTH_PLAYER_FALLING, HEIGHT_PLAYER_FALLING),
-                                                                           direction(direction)
+                                                                           direction(direction), id(id)
 {
 }
 
@@ -17,11 +17,11 @@ int FallingPlayer::render(const Rect &dest)
   int response;
   if (direction == 1)
   {
-    response = Sprite::render(src, dest);
+    response = Sprite::render(src, dest,SDL_FLIP_NONE,0,id);
   }
   else
   {
-    response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 180);
+    response = Sprite::render(src, dest, SDL_FLIP_VERTICAL, 180,id);
   }
   int x_src = src.getX();
   x_src = (x_src + WIDTH_PLAYER_FALLING + 1) % MAX_WIDTH_PLAYER_FALLING;

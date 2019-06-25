@@ -4,6 +4,7 @@
 #include "../Sprite.h"
 #include "../Rect.h"
 #include "TextureBase.h"
+#include "MusicBase.h"
 #include <string>
 #include <iostream>
 #define X_POSITION 1
@@ -15,8 +16,7 @@ OpeningGate::OpeningGate(const Window &window, const int &code) : Sprite(Texture
                                                                   src(X_START_POSITION, Y_POSITION_GATE_OPENING, WIDTH_GATE, HEIGHT_GATE)
 {
   y_position = 0;
-  switch (code)
-  {
+  switch (code) {
   case 1:
     y_position = Y_POSITION_GATE_OPENING_1;
     break;

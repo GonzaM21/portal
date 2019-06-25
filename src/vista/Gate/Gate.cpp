@@ -24,7 +24,7 @@ void Gate::setOpen() {
 	this->sprite->restart();
 	is_open = true;
 	is_closed = false;
-	this->sprite = this->states[1];
+	this->sprite = this->states[2];
 }
 
 bool Gate::isOpen() {
@@ -38,7 +38,7 @@ void Gate::setClosed() {
 	this->sprite->restart();
 	is_closed = true;
 	is_open = false;
-	this->sprite = this->states[3];
+	this->sprite = this->states[0];
 }
 
 bool Gate::isClosed() {
@@ -52,7 +52,7 @@ void Gate::setOpening() {
 	if (strncmp(typeid(*this->sprite).name(), "8OpenGate", 9) != 0) {
 		Rect src = this->sprite->getSrc();
 		this->sprite->restart();
-		this->sprite = this->states[0];
+		this->sprite = this->states[3];
 		this->sprite->setSrc(src);
 	} else if (this->sprite->isDone() && strncmp(typeid(*this->sprite).name(), "11OpeningGate", 13) == 0) {
 		this->sprite->restart();
@@ -64,7 +64,7 @@ void Gate::setClosing() {
 	if (strncmp(typeid(*this->sprite).name(), "10ClosedGate", 12) != 0) {
 		Rect src = this->sprite->getSrc();
 		this->sprite->restart();
-		this->sprite = this->states[2];
+		this->sprite = this->states[1];
 		this->sprite->setSrc(src);
 	} else if (this->sprite->isDone() && strncmp(typeid(*this->sprite).name(), "11ClosingGate", 13) == 0) {
 		this->sprite->restart();

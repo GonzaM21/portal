@@ -52,10 +52,6 @@ void ClientController::updateClientAction(LocalSceneLogic &local_scene_logic,
     SceneManager &scene_manager) {
     while (this->continue_running) {
         if (local_scene_logic.getNextLevel()) {
-<<<<<<< Updated upstream
-            std::cout << "envio datos para prox level\n";
-=======
->>>>>>> Stashed changes
             this->communicator->addMessageToSend("c");
             return;
         } else if (local_scene_logic.getEndGame()) {

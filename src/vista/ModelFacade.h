@@ -38,15 +38,21 @@ public:
   void setEnergyEmitter(std::vector<std::string> arguments);
   void setEnergyBarrier(std::vector<std::string> arguments);
   void setCake(std::vector<std::string> arguments);
-  void setFullscreen() { model.fullscreen(); }
+  void setFullscreen() { model1.fullscreen(); model2.fullscreen(); }
   void renderAll();
   Window *getWindow();
   void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);
   void setBackground();
+  void endInitialData();
+  void swap();
   void resetModel();
 
 private:
-  Model model;
+  Model model1;
+  Model model2;
+  Model *renderable;
+  Model *setteable;
+  bool receivedInitialData;
   typedef void (ModelFacade::*model_method_t)(std::vector<std::string>);
   std::unordered_map<int, model_method_t> methods;
 };

@@ -92,8 +92,7 @@ void MapSaver::addCake(std::string pos_x, std::string pos_y){
 }
 
 void MapSaver::addEmitter(std::string pos_x,std::string pos_y,std::string size,std::string direction,std::string charged) {
-    std::map<std::string,std::string> m;
-    std::cout << pos_x << " " << pos_y << " " << size << " " << direction << " " << charged << " " << std::endl; 
+    std::map<std::string,std::string> m; 
     m["TYPE"] = ENERGY_EMITTER_ID;
     m["POS_X"] = pos_x;
     m["POS_Y"] = pos_y;

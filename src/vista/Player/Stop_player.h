@@ -10,7 +10,7 @@
 class StopPlayer : public Sprite
 {
 public:
-    StopPlayer(const Window &window, const int &direction);
+    StopPlayer(const Window &window, const int &direction, const int& id);
     virtual ~StopPlayer();
     virtual int render(const Rect &dest);
     virtual void setSrc(Rect &src) override;
@@ -21,6 +21,7 @@ private:
     Rect src;
     bool done;
     int direction;
+    int id;
 };
 
 #endif

@@ -12,7 +12,7 @@ aqui aplicando un patrron state */
 class RunningPlayer : public Sprite
 {
 public:
-    RunningPlayer(const Window &window, const int &direction);
+    RunningPlayer(const Window &window, const int &direction, const int& id);
     ~RunningPlayer();
     virtual int render(const Rect &dest);
     virtual void setSrc(Rect &src) override;
@@ -21,6 +21,7 @@ public:
 private:
     Rect src;
     int direction;
+    int id;
 };
 
 #endif

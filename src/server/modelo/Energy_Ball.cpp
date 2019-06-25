@@ -122,10 +122,10 @@ int Energy_Ball::getDirection(){
     if(!live) return 0;
     b2Vec2 actualVelocity = energy_ball->GetLinearVelocity();
     if(abs(actualVelocity.x) > abs(actualVelocity.y)){
-        if(actualVelocity.x > 0) direction = 0;
-        if(actualVelocity.x < 0) direction = 1;
+        if(actualVelocity.x > 0) direction = 2;
+        if(actualVelocity.x < 0) direction = 4;
     } else {
-        if(actualVelocity.y > 0) direction = 2;
+        if(actualVelocity.y > 0) direction = 1;
         if(actualVelocity.y < 0) direction = 3;
     }
     return direction;

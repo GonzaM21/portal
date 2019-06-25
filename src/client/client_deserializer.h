@@ -8,6 +8,7 @@
 #define OBJECT_CODE "6"
 #define MATES_CODE "7"
 #define ERROR_CODE "8"
+#define SWAP_CODE "9"
 #include <vector>
 #include <string>
 #include "data_container.h"

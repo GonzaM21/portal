@@ -14,7 +14,7 @@ aqui aplicando un patrron state */
 class IdlePlayer : public Sprite
 {
 public:
-    IdlePlayer(const Window &window, const int &direction);
+    IdlePlayer(const Window &window, const int &direction, const int& id);
     ~IdlePlayer();
     virtual int render(const Rect &dest);
     virtual void setSrc(Rect &src) override;
@@ -23,6 +23,7 @@ public:
 private:
     Rect src;
     int direction;
+    int id;
 };
 
 #endif

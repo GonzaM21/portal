@@ -15,7 +15,7 @@ public:
    * Constructor que recibe la window, y un state que 
    * define si la powerball esta volando o golpeando y tambien recibe la direccion de la misma
   */
-  PowerBall(const Window &window, const int &state, const int& direction);
+  PowerBall(const Window &window, const int& direction);
 
   /**
    * Destructor

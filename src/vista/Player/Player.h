@@ -18,7 +18,7 @@ public:
    * Constructor, crea el sprite y setea el destWorld, 
    * y recibe la direccion hacia donde se mueve el player
   */
-  Player(const Window &window, const int &direction);
+  Player(const Window &window, const int &direction, const int& id);
 
   /**
    * Destructor
@@ -76,6 +76,7 @@ private:
   Rect dest_world;
   Sprite *sprite;
   int direction;
+  int id;
   typedef void (Player::*player_method_t)();
   std::unordered_map<int, player_method_t> changeState;
   std::unordered_map<int, Sprite *> states;

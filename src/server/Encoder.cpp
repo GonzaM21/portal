@@ -7,6 +7,7 @@
 #define OBJECT_CODE "6"
 #define MATES_CODE "7"
 #define ERROR_CODE "8" 
+#define SWAP_CODE "9"
 #define CHELL_HIGH 1.6
 #define CHELL_WIDTH 0.5
 
@@ -219,7 +220,7 @@ void Encoder::sendEnergyBall(Energy_Emitters* emitter) {
     int direction = ball->getDirection(); //ANDA MAL ESTO
     std::string msg;
     msg = "7," + std::to_string(pos.x) + "," + std::to_string(-pos.y) +
-    "," + std::to_string(2*size) + "," + std::to_string(size) +",0";
+    "," + std::to_string(2*size) + "," + std::to_string(size) +"," + std::to_string(direction);
     this->sender->addMessageToSend(msg);
 }
 
@@ -269,5 +270,10 @@ void Encoder::sendPlayersName() {
 
 void Encoder::sendMapStart() {
     std::string msg = START_MAP_CODE;
+    this->sender->addMessageToSend(msg);
+}
+
+void Encoder::sendSwap() {
+    std::string msg = SWAP_CODE;
     this->sender->addMessageToSend(msg);
 }

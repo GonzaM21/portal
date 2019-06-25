@@ -11,7 +11,7 @@
 class DyingPlayer : public Sprite
 {
 public:
-    DyingPlayer(const Window &window, const int &direction);
+    DyingPlayer(const Window &window, const int &direction, const int& id);
     ~DyingPlayer();
     virtual int render(const Rect &dest);
     virtual void setSrc(Rect &src) override;
@@ -22,6 +22,7 @@ private:
     Rect src;
     bool done;
     int direction;
+    int id;
 };
 
 #endif

@@ -10,7 +10,7 @@
 class FirePlayer : public Sprite
 {
 public:
-    FirePlayer(const Window &window, const int &direction);
+    FirePlayer(const Window &window, const int &direction, const int& id);
     ~FirePlayer();
     virtual int render(const Rect &dest);
     virtual void setSrc(Rect &src) override;
@@ -21,6 +21,7 @@ private:
     Rect src;
     bool done;
     int direction;
+    int id;
 };
 
 #endif

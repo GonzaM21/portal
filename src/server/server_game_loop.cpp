@@ -56,6 +56,7 @@ void GameLoop :: sendDynamicData() {
     this->encoder.sendGates(); 
     this->encoder.sendButtons();   
     this->encoder.sendEmitters();
+    this->encoder.sendSwap();
 }
 
 void GameLoop :: run() {

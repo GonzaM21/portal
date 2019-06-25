@@ -17,7 +17,7 @@
 #include <functional>
 #include <typeinfo>
 
-Player::Player(const Window &window, const int &direction) : dest_world(0, 0, 0, 0), direction(direction) {
+Player::Player(const Window &window, const int &direction, const int &id) : dest_world(0, 0, 0, 0), direction(direction), id(id){
 	this->changeState[0] = &Player::setIdle;
 	this->changeState[1] = &Player::setRestIdle;
 	this->changeState[2] = &Player::setRunning;
@@ -27,15 +27,15 @@ Player::Player(const Window &window, const int &direction) : dest_world(0, 0, 0,
 	this->changeState[6] = &Player::setStop;
 	this->changeState[7] = &Player::setRising;
 	this->changeState[8] = &Player::setFalling;
-	this->states[0] = new IdlePlayer(window, direction);
-	this->states[1] = new RestingIdlePlayer(window, direction);
-	this->states[2] = new RunningPlayer(window, direction);
-	this->states[3] = new DancingPlayer(window, direction);
-	this->states[4] = new DyingPlayer(window, direction);
-	this->states[5] = new RunningShootPlayer(window, direction);
-	this->states[6] = new StopPlayer(window, direction);
-	this->states[7] = new RisingPlayer(window, direction);
-	this->states[8] = new FallingPlayer(window, direction);
+	this->states[0] = new IdlePlayer(window, direction, id);
+	this->states[1] = new RestingIdlePlayer(window, direction, id);
+	this->states[2] = new RunningPlayer(window, direction, id);
+	this->states[3] = new DancingPlayer(window, direction, id);
+	this->states[4] = new DyingPlayer(window, direction, id);
+	this->states[5] = new RunningShootPlayer(window, direction, id);
+	this->states[6] = new StopPlayer(window, direction, id);
+	this->states[7] = new RisingPlayer(window, direction, id);
+	this->states[8] = new FallingPlayer(window, direction, id);
 	this->sprite = this->states[0];
 }
 

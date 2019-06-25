@@ -11,7 +11,7 @@
 class DancingPlayer : public Sprite
 {
 public:
-    DancingPlayer(const Window &window, const int &direction);
+    DancingPlayer(const Window &window, const int &direction, const int& id);
     ~DancingPlayer();
     virtual int render(const Rect &dest);
     virtual void setSrc(Rect &src) override;
@@ -20,6 +20,7 @@ public:
 private:
     Rect src;
     int direction;
+    int id;
 };
 
 #endif
