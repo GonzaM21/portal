@@ -51,7 +51,7 @@ private:
     bool win_state = false;
 
     void setVotes(std::map<std::string, size_t> &votes);
-    std::string getPlayerToKill();
+    //std::string getPlayerToKill();
     void checkPlayerToKill(std::string &player_to_kill);
 
     //Funciones para eliminar todos los elementos del juego.
@@ -88,7 +88,7 @@ public:
 
     //Toma como parametro un string (nombre de un jugador)
     //y le indica al modelo que debe disparar un portal
-    void shootPortal(World &world,std::string &player,float x_destiny, float y_destiny,int portal_num);
+    void shootPortal(std::string &player,float x_destiny, float y_destiny,int portal_num);
     
     //Toma como parametro un string (nombre de un jugador)
     //y se setea que votamatar a otro jugador

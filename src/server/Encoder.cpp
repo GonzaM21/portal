@@ -226,8 +226,7 @@ void Encoder::sendEnergyBall(Energy_Emitters* emitter, const int& id) {
 }
 
 
-void Encoder ::sendWorldSizes() {  
-    int width = (int)this->data_base->getWidth();
+void Encoder ::sendWorldSizes() {
     for (int i = -GROUND_WIDTH/2.f; i<GROUND_WIDTH/2.f; i++ ) {
         std::string msg;
         msg = "2,1," + std::to_string(i) + ",1,1,1";

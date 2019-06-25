@@ -7,6 +7,7 @@ class CommandKill : public Command {
 private:
     Model *model;
     std::string player;
+    std::string voter;
     
 public:
     explicit CommandKill(Model *model,std::string &voter);

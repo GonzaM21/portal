@@ -18,12 +18,12 @@ LevelManager::LevelManager(Model *model,std::map<std::string,bool>*
     this->players_online = players_online;
 }
 
-void LevelManager::managePlayerVote(std::string &player,int vote) {
+void LevelManager::managePlayerVote(int vote) {
     if (vote == VOTE_YES) {
         this->player_votes.push_back(VOTE_YES);
         return;
     }
-    this->model->setNextScene(FINISH_GAME);
+    this->model->setNextScene();
 }
 
 void LevelManager::restartModel() {

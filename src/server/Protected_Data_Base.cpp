@@ -36,7 +36,7 @@ void ProtectedDataBase :: makePlayerJump(std::string &player) {
 
 void ProtectedDataBase ::voteToKill(std::string &voter) {//ACA TENIA QUE BUSCARLO CON LA FUNCION QUE ESTA ABAJO, DEBO ACOMODAR ESTO EN MODEL,FACTORY_COMMAND,COMANDO_KILLL/VER SUICIDAR, Y PROTOCOLO
     std::unique_lock<std::mutex> lck(m);
-    std::string player_to_kill = getPlayerToKill();
+    std::string player_to_kill = "";
     if (!this->win_state) return;
     this->vote_to_kill[voter] = player_to_kill;
     this->checkPlayerToKill(player_to_kill); 
@@ -47,7 +47,7 @@ void ProtectedDataBase :: makePlayerMove(std::string &player,char &direction) {
     this->players[player]->Move(direction);
 }
 
-void ProtectedDataBase :: shootPortal(World &world,std::string &player,float x_destiny,
+void ProtectedDataBase :: shootPortal(std::string &player,float x_destiny,
   float y_destiny,int portal_num) {
     Chell_Player *chell_player = this->players[player];
     if (portal_num == 1) {
@@ -126,7 +126,7 @@ void ProtectedDataBase :: addButton(World &world, float x_pos, float y_pos,int d
 
 void ProtectedDataBase :: addButtonToDoor() {
     for (auto button : this->pending_buttons) {
-      int door_id = button.second[0]; 
+      size_t door_id = button.second[0];
       if (door_id >= this->gates.size()) continue;
       Gate* gate = this->gates[door_id];
       int state_to_open_door = button.second[1];
@@ -136,7 +136,6 @@ void ProtectedDataBase :: addButtonToDoor() {
 
 void ProtectedDataBase :: addPlayer(World &world,std::string &player) {
     std::unique_lock<std::mutex> lck(m);
-    float pos = this->players.size();
     this->players.insert({player,new Chell_Player(world,0.f,0.8f)});
     this->player_ids.insert({player,this->players.size()});
     this->vote_to_kill.insert({player,EMPTY_VOTE});
@@ -296,7 +295,7 @@ std::map<std::string,std::string> ProtectedDataBase::getVoteToKill() {
 void ProtectedDataBase::setWinState() {
     std::unique_lock<std::mutex> lck(m);
     if (this->win_state) return;
-    int counter = 0;
+    size_t counter = 0;
     for (auto player : this->player_reach_cake) {
         Chell_Player* chell = this->players[player.first];
         player.second = chell->getStatus()==3;
@@ -319,10 +318,11 @@ void ProtectedDataBase::checkPlayerToKill(std::string &player_to_kill) {//PRIVAD
     if (counter == this->players.size()-1) this->killPlayer(player_to_kill);
 }
 
-std::string ProtectedDataBase::getPlayerToKill() {//PRIVADO
+/*std::string ProtectedDataBase::getPlayerToKill() {//PRIVADO
     for (auto player : this->player_reach_cake) 
       if (!player.second) return player.first;
-}
+      return "";
+}*/
 
 void ProtectedDataBase::killPlayer(std::string &player_name) {
     if (!this->win_state) return;
