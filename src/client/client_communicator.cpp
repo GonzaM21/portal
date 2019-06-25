@@ -52,12 +52,18 @@ std::string ClientCommunicator::getMode() {
 }
 
 void ClientCommunicator ::sendMessage() {
-    while (this->continue_running) {
-        std::string message(this->sender_queue.pop());
-        if (!this->continue_running || message == "m") break;
-        this->protocol << message;
+    try {
+        while (this->continue_running) {
+            std::string message(this->sender_queue.pop());
+            if (!this->continue_running || message == "m") break;
+            this->protocol << message;
+        }
+        this->endExecution();
+    } catch (const std::runtime_error &e) {
+        std::cout << e.what() << std::endl;
+    } catch (...) {
+        std::cout << "Error inesperado" << std::endl;
     }
-    this->endExecution();
 }
 
 void ClientCommunicator ::run() {

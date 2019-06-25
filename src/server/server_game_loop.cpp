@@ -128,7 +128,7 @@ bool GameLoop ::continueRunning() {
 bool GameLoop::checkLevelComplete() {
     std::vector<Chell_Player*> chells = this->data_base->getPlayers();
     for (size_t i = 0; i<chells.size(); i++) {
-        if (chells[i]->getStatus() != 3) return false;
+        if (chells[i]->getStatus() != 3 && chells[i]->lives()) return false;
     }
     return true;
 }
