@@ -54,7 +54,6 @@ class GameLoop : public Thread {
         void sendDynamicData();
         void resetGameLoop();
         void sendInfoPlayers();
-        void sendInfoRooms();
         void setNextScenario(int action,World* world=nullptr);
 };
 

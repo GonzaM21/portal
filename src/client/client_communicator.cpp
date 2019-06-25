@@ -2,7 +2,8 @@
 #include <vector>
 #include "client_communicator.h"
 
-ClientCommunicator ::ClientCommunicator() {
+ClientCommunicator ::ClientCommunicator(DataContainer &data_container) :
+    data_container(data_container) {
     this->continue_running = true;
 }
 
@@ -34,6 +35,7 @@ void ClientCommunicator::receiveMessage() {
             this->protocol >> message;
             this->receiver_queue.push(message);
         }
+        this->endExecution();
     } catch (const std::runtime_error &e) {
         std::cout << e.what() << std::endl;
     } catch (...) {
@@ -43,12 +45,8 @@ void ClientCommunicator::receiveMessage() {
 
 std::vector<std::string> ClientCommunicator::getMates() {
     std::vector<std::string> vect;
-    vect.push_back("la re concha de la lora");
+    vect.push_back("loading(?");
     return std::move(vect);
-}
-
-std::string ClientCommunicator::getMode() {
-    return "la re concha de la lora";
 }
 
 void ClientCommunicator ::sendMessage() {
@@ -69,6 +67,8 @@ void ClientCommunicator ::sendMessage() {
 void ClientCommunicator ::run() {
     this->sender = std::thread(&ClientCommunicator::sendMessage, this);
     this->receiveMessage();
+    this->endExecution();
+    this->data_container.setGameFinish();
 }
 
 void ClientCommunicator ::endExecution() {

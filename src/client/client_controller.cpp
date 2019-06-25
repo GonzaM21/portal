@@ -1,7 +1,7 @@
 #include "client_controller.h"
 
 ClientController::ClientController() {
-    this->communicator = new ClientCommunicator();
+    this->communicator = new ClientCommunicator(this->data_container);
     this->continue_running = true;
     this->end_game =false;
     this->end_level =false;
@@ -104,7 +104,6 @@ void ClientController::updateControllerVariables(DataContainer *data_container) 
 void ClientController::mainLoop() {
     try {
         SceneManager scene_manager;
-        DataContainer data_container;
         LocalSceneLogic local_scene_logic(scene_manager);
         ClientDeserializer deserializer(&data_container,&scene_manager);
         PositionConverter converter(scene_manager.getModelFacade());

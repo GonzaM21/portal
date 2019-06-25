@@ -30,11 +30,9 @@ void GameLoop :: sendInfoPlayers() {
 }
 
 void GameLoop :: sendInitialData() {
-    std::cout << "Se manda datos iniciales\n";
     this->encoder.sendMapStart();
     this->encoder.sendPlayersPositions();
     this->encoder.sendPlayerIds();
-    //this->encoder.sendWorldSizes();
     this->encoder.sendMetalBlocks();
     this->encoder.sendButtons();    
     this->encoder.sendEnergyBalls();
@@ -46,7 +44,6 @@ void GameLoop :: sendInitialData() {
     this->encoder.sendCake();
     this->encoder.sendTriangularBlocks();
     this->encoder.sendEndMap();
-    std::cout << "Termina de mandar datos\n";
 }
 
 void GameLoop :: sendDynamicData() { 
