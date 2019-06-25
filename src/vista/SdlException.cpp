@@ -2,7 +2,7 @@
 #include <string>
 #include <SDL2/SDL_image.h>
 
-SdlException::SdlException(const char* description, const char* sdlError)
+SdlException::SdlException(std::string description, const char* sdlError)
     : std::exception(), description(description) {
     this->description.append("\n SDL_ERROR: ").append(sdlError);
 }

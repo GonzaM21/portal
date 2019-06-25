@@ -12,17 +12,21 @@ Window::Window(int width, int height) : width(width), height(height), fullscreen
 {
     int errCode = SDL_Init(SDL_INIT_EVERYTHING);
     if (errCode) {
-        throw SdlException("Error en la inicialización", SDL_GetError());
+        throw SdlException("Error en la inicialización de sdl", SDL_GetError());
     }
     uint32_t flags = SDL_WINDOW_RESIZABLE  | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED;
     errCode = SDL_CreateWindowAndRenderer(
         width, height, flags,
         &this->window, &this->renderer);
     if (errCode) {
-        throw SdlException("Error al crear ventana", SDL_GetError());
+        throw SdlException("Error creando la window", SDL_GetError());
     }
     SDL_Surface *image = IMG_Load(ICON_FILENAME);
-    SDL_SetWindowIcon(window, image);
+    if(!image) {
+        std:cout << "Icon load: " << IMG_GetError() << std::endl);
+    } else {
+        SDL_SetWindowIcon(window, image);
+    }
     MusicBase::getInstance()->playMusic(AMBIENT_MUSIC_ID,10);
 }
 

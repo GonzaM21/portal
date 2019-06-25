@@ -3,6 +3,7 @@
 #include <iostream>
 #include <map>
 #include "Sprite.h"
+#include "SdlException.h"
 
 /**
  * Clase que posee todas las texturas a utilizar en el juego,
@@ -17,7 +18,11 @@ public:
    **/
   static TextureBase *getInstance(SDL_Renderer* renderer) {
     if (instance == NULL)
-      instance = new TextureBase(renderer);
+      try {
+        instance = new TextureBase(renderer);
+      } catch (SdlException e) {
+        std::cout << e.what();
+      }
     return instance;
   }
 
@@ -39,7 +44,7 @@ protected:
   virtual ~TextureBase();
 
   /**
-   * Fucnion que genera una textura y la guarda en el mapa
+   * Metodo que genera una textura y la guarda en el mapa
    **/
   void createTexture(const int &id, const std::string filename);
 

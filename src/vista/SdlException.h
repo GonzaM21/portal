@@ -3,9 +3,12 @@
 #include <string>
 #include <exception>
 
+/**
+* Clase exception SDL, que hereda de exception
+*/
 class SdlException : public std::exception {
 public:
-    SdlException(const char* description, const char* sdlError);
+    SdlException(std::string description, const char* sdlError);
     const char* what() const noexcept;
 private:
     std::string description;
