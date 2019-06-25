@@ -20,7 +20,7 @@ public:
   /**
    * Destructor
   */
-  ~Block(){};
+  virtual ~Block(){};
 
   /**
    * Metodo abstracto que heredan las clases hijas, que renderiza el sprite crespondiente
@@ -36,6 +36,7 @@ public:
    * Metodo abstracto que heredan las clases hijas, getter de la posicion del objeto en mundo real
   */
   virtual Rect getDestWorld() = 0;
+
 };
 
 #endif

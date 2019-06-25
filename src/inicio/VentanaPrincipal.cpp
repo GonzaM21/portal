@@ -39,7 +39,7 @@ void VentanaPrincipal::on_submit_clicked() {
 void VentanaPrincipal::on_reloadButton_clicked() {
     ui->integrantesLista->clear();
     std::vector<std::string> integrantes = communicator->getMates();
-    for (int i = 0; i < integrantes.size(); i++) {
+    for (size_t i = 0; i < integrantes.size(); i++) {
         QString mate(integrantes[i].c_str());
         ui->integrantesLista->addItem(mate);
     }
@@ -62,7 +62,7 @@ void VentanaPrincipal::on_continuar_clicked() {
     partida->setSalaName(ui->nombreSala->text().toStdString());
     communicator->set(std::move(joiner->setSocket()), partida->getMode(), partida->getSalaName(), partida->getPlayerName());
     std::vector<std::string> integrantes = communicator->getMates();
-    for (int i = 0; i < integrantes.size(); i++)
+    for (size_t i = 0; i < integrantes.size(); i++)
     {
         QString mate(integrantes[i].c_str());
         ui->integrantesLista->addItem(mate);
@@ -207,7 +207,7 @@ void VentanaPrincipal::on_guardarMapa_released() {
     }
     std::map<int, std::vector<QTableWidgetItem *>>::iterator button_it;
     for (button_it = buttons.begin(); button_it != buttons.end(); button_it++) {
-        for (int j = 0; j < button_it->second.size(); j++) {
+        for (size_t j = 0; j < button_it->second.size(); j++) {
             mapSaver.addObject("Button," + std::to_string(buttonsPos.at(button_it->first)[j][1] + 1 - (ui->mapa->columnCount() / 2)) + "," + std::to_string(-buttonsPos.at(button_it->first)[j][0] - 1 + ui->mapa->rowCount()) + "," + std::to_string(button_it->first));
         }
     }

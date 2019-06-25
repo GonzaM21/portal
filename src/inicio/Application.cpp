@@ -8,6 +8,7 @@ bool Application::notify(QObject *receiver, QEvent *e) {
   } catch (...) {
     std::cout << e->type();
   }
+  return true; 
 }
 Application::~Application() {
 }

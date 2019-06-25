@@ -21,6 +21,7 @@ int FlyingPowerBall::render(const Rect &dest)
     src.set(x_src, Y_POSITION_POWERBALL_FLYING, WIDTH_POWERBALL_FLYING, HEIGHT_POWERBALL_FLYING);
     return response;
   }
+  return 0;
 }
 
 void FlyingPowerBall::setSrc(Rect &src)
