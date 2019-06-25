@@ -6,14 +6,10 @@
 #include <cstdio>
 #include "ffmpeg.h"
 
-std::string getNUmberFile(){
-}
-
 std::string getinfo(){
     std::ifstream resolution_arch("resolution.txt");
     std::string text;
     std::string info("0");
-    size_t i = 0;
     while (std::getline(resolution_arch,text)){
         if(text.length() !=  0) info = text;
     }
