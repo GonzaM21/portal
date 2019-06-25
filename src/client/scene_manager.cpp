@@ -19,7 +19,6 @@ void SceneManager::renderAll() {
     window.fill();
     if (this->actual_screen == 0) {
         if (this->level_change) {
-            std::cout << "resetea el modelo\n";
             this->level_change = false;
         }
         this->model_facade.renderAll();

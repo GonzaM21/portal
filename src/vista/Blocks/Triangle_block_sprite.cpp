@@ -13,7 +13,6 @@ TriangleBlockSprite::TriangleBlockSprite(const Window &window,const int& code) :
 
 int TriangleBlockSprite::render(const Rect &dest)
 {
-  //std::cout << code;
   int response = 0;
   switch (code)
   {

@@ -8,7 +8,6 @@ ClientDeserializer::ClientDeserializer(DataContainer *data_container
 }
 
 void ClientDeserializer::deserialize(std::string &message) {
-    if (message.size()< 10) std::cout << message << std::endl;
     std::vector<std::string> arguments;
     this->splitMessage(message,arguments);
     if (arguments.at(0) == ERROR_CODE && arguments.size() == 2) {

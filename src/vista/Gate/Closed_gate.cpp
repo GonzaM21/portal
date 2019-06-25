@@ -10,7 +10,6 @@
 ClosedGate::ClosedGate(const Window &window, const int &code) : Sprite(TextureBase::getInstance(window.getRenderer())->getTexture(GATE_SPRITE_ID), window),
                                                                 src(X_START_POSITION, Y_POSITION_GATE_CLOSED_1, WIDTH_GATE, HEIGHT_GATE)
 {
-  std::cout << code << std::endl;
   y_position = 0;
   switch (code)
   {
