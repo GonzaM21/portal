@@ -282,7 +282,6 @@
 #define PORTAL_45GRADES 3
 #define PORTAL_135GRADES 4
 
-
 /*
  * Cake
 */
@@ -293,7 +292,6 @@
 /*
  * Music ID
  */
-
 #define AMBIENT_MUSIC_ID 0
 #define CHELL_STEP_FX_ID 1
 #define CHELL_JUMP_FX_ID 2
@@ -306,7 +304,6 @@
 /*
  * Music Files
  */
-
 #define AMBIENT_MUSIC "resources/Music/Ambient.mp3"
 #define CHELL_STEP_FX "resources/Music/chell_step2.wav"
 #define CHELL_JUMP_FX "resources/Music/Chell_jump.wav"
@@ -354,14 +351,3 @@
 // STATE
 // 0 RECEPTOR
 // 1 EMISOR
-//#define SET_ID_CODE 0
-//#define PLAYER_CODE 1
-//#define BLOCK_CODE 2
-//#define GATE_CODE 3
-//#define BUTTON_CODE 4
-//#define ACID_CODE 5
-//#define PORTAL_CODE 6
-//#define POWERBALL_CODE 7
-//#define ROCK_CODE 8
-//#define ENERGY_BARRIER_CODE 9
-//#define EMITTER_CODE 10

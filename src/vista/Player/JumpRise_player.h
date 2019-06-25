@@ -7,9 +7,7 @@
 
 #include "Player.h"
 
-/*Clase abstracta State, 
-es el estado de la puerta, 
-aqui aplicando un patrron state */
+
 class RisingPlayer : public Sprite
 {
 public:

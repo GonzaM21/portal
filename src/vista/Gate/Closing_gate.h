@@ -8,9 +8,7 @@
 
 #include "Gate.h"
 
-/*Clase abstracta State, 
-es el estado de la puerta, 
-aqui aplicando un patrron state */
+
 class ClosingGate : public Sprite
 {
 public:

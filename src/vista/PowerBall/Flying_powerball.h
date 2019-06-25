@@ -6,9 +6,7 @@
 #include "../Rect.h"
 #include "Paw_powerball.h"
 
-/*Clase abstracta State, 
-es el estado de la puerta, 
-aqui aplicando un patrron state */
+
 class FlyingPowerBall : public Sprite
 {
 public:

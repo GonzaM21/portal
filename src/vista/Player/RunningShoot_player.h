@@ -6,9 +6,7 @@
 #include "../Rect.h"
 #include "Player.h"
 
-/*Clase abstracta State, 
-es el estado de la puerta, 
-aqui aplicando un patrron state */
+
 class RunningShootPlayer : public Sprite
 {
 public:
