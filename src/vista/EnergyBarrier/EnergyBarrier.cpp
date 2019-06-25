@@ -13,7 +13,7 @@ int EnergyBarrier::render(Camara &camara) {
 }
 
 void EnergyBarrier::setDestWorld(float x, float y, float width, float height) {
-  dest_world.set(x, y, width, 0.5);
+  dest_world.set(x, y, width, height);
 }
 
 EnergyBarrier::~EnergyBarrier() {
