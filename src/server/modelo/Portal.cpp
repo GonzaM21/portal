@@ -39,14 +39,11 @@ bool Portal::Move(float x_pos, float y_pos){
 
     float angle = atan2((-y_pos) - position.y, x_pos - position.x);
 
-    std::cout<<"angle: "<<angle<<std::endl;
-
     float force =  15.f;
 
     velocity = b2Vec2(force * cos(angle), force * sin(angle));
 
     portal->SetLinearVelocity(velocity);
-    //std::cout<<"Velocity final "<<velocity.x<<" "<<velocity.y<<std::endl;
     return true;
 }
 
@@ -70,7 +67,6 @@ void Portal::changePosition() {
             if(body_pos.x < position.x) normal = b2Vec2(1.f,0.f);
             if(body_pos.x > position.x) normal = b2Vec2(-1.f,0.f);
         }else if(abs(body_pos.x - position.x) != 0 && abs(body_pos.y - position.y) != 0 && angle != 90 ) {
-            std::cout<<"angulo antes: "<<angle<<std::endl;
 
             if (angle == 45) {
                 orientation = 3;
@@ -86,7 +82,6 @@ void Portal::changePosition() {
                 normal = b2Vec2(-1.f, -1.f);
             }
         }
-        std::cout << "Normal portal: "<< normal.x<<"    "<<normal.y<<std::endl;
 
         Filter_Data data(ROCK_PORTAL_BITS);
         data.addMaskBits(OTHER_BITS);
@@ -105,11 +100,8 @@ void Portal::changePosition() {
             portal = world.addPolygon(position.x,position.y,PORTAL_HIGH/2.f,PORTAL_WORLD_WIDTH,true,data);
         } else{
             world.eraseBody(portal);
-            std::cout<<"angulo al crear: "<<angle<<std::endl;
             portal = world.addPolygon(position.x - DELTA_POSITION + delta.x,position.y - DELTA_POSITION + delta.y,PORTAL_HIGH/2.f,PORTAL_WORLD_WIDTH,true,data);
-            std::cout<<"Angulo del cuerpo:  "<<portal->GetAngle()<<std::endl;
             portal->SetTransform(portal->GetPosition(),angle * (PI/180));
-            std::cout<<"Angulo del cuerpo dps:  "<<portal->GetAngle()<<std::endl;
         }
         portal->SetUserData(this);
         contact = false;

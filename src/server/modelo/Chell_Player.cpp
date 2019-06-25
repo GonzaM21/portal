@@ -38,7 +38,6 @@ Chell_Player::Chell_Player(World &world, float x_pos, float y_pos): world(world)
 
 bool Chell_Player::Jump(){
     if(!live) return false;
-    std::cout<<"contact"<<contact<<" jumper_counter "<<jumper_counter<<std::endl;
     if (gravity){
         chell->SetLinearVelocity(b2Vec2(ZERO,CHELL_MOVE_FORCE/2.f));
         return true;
@@ -252,8 +251,8 @@ void Chell_Player::resetPortal(){
 //respuesta: o (oscuridad)
 void Chell_Player::inmortalChell(){
     inmortal = !inmortal;
-    //if(inmortal) std::cout<<"INMORTALIDAD ACTIVADA\n";
-    //else std::cout<<"INMORTALIDAD DESACTIVADA\n";
+    if(inmortal) std::cout<<"INMORTALIDAD ACTIVADA\n";
+    else std::cout<<"INMORTALIDAD DESACTIVADA\n";
 }
 
 
@@ -262,12 +261,12 @@ void Chell_Player::antiGravity() {
     if(gravity){
         chell->SetGravityScale(1);
         gravity = false;
-        //std::cout<<"ANTIGRAVEDAD DESACTIVADA\n";
+        std::cout<<"ANTIGRAVEDAD DESACTIVADA\n";
     }
     else{
         chell->SetGravityScale(ZERO);
         gravity = true;
-        //std::cout<<"ANTIGRAVEDAD ACTIVADA\n";
+        std::cout<<"ANTIGRAVEDAD ACTIVADA\n";
     }
 }
 

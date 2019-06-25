@@ -50,7 +50,6 @@ void Gate::changePosition() {
       if (button.first->getStatus() != button.second) state = false;
     }
     door_is_open = state;
-    //std::cout<<"Puerta activada"<<door_is_open<<" true "<<true<<std::endl;
     gate->SetActive(!door_is_open);
 }
 
@@ -64,7 +63,6 @@ b2Vec2 Gate::getSizes() {
 }
 
 void Gate::addButton(Button *button, int pos) {
-    std::cout<<"boton agregado "<<std::endl;
     if (pos == UP) buttons.insert({button,true});
     if (pos == DOWN) buttons.insert({button,false});
 }
