@@ -50,17 +50,17 @@ public:
     //Metodo para validar posiciones, y los objetos no se creen fuera de los limites o se superpongan
     bool validPosition(float x_pos, float y_pos);
 
+    //Retorna el ancho del mundo
     b2Vec2 getWidth();
 
+    //retorna el alto del muno
     b2Vec2 getHigh();
 
+    //borra y quita del vector al body pasdo por paremtro
     void eraseBody(b2Body * body);
 
+    //devuelve el valor de la gravedad
     float getGravity();
-
-    void eraseAllBodies();
-
-    void isErasing();
 
     //Destructor
     ~World();

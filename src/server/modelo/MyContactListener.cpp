@@ -90,38 +90,29 @@ void portal_colitions(b2Body *bodyA, b2Body *bodyB, b2Vec2 colition_point)
     if (nameBodyA != "Portal" && nameBodyB != "Portal")
         return;
 
-    if (nameBodyA == "Portal" && nameBodyB == "Metal_Block")
-    {
-        std::cout << "Metal Block: x: " << bodyB->GetPosition().x << " y:" << bodyB->GetPosition().y << std::endl;
+    if (nameBodyA == "Portal" && nameBodyB == "Metal_Block"){
         static_cast<Entity *>(userDataA)->startContact(bodyB->GetPosition() + colition_point);
-        std::cout << "Metal Block + delta: x: " << bodyB->GetPosition().x + colition_point.x << " y:" << bodyB->GetPosition().y + colition_point.y << std::endl;
         static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
     }
 
-    if (nameBodyA == "Portal" && nameBodyB == "Ground")
-    {
+    if (nameBodyA == "Portal" && nameBodyB == "Ground"){
         b2Vec2 pos = b2Vec2(bodyA->GetPosition().x, bodyB->GetPosition().y);
         static_cast<Entity *>(userDataA)->startContact(pos + colition_point);
         static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
     }
 
-    if (nameBodyB == "Portal" && nameBodyA == "Metal_Block")
-    {
-        std::cout << "Metal Block: x: " << bodyA->GetPosition().x << " y:" << bodyA->GetPosition().y << std::endl;
+    if (nameBodyB == "Portal" && nameBodyA == "Metal_Block"){
         static_cast<Entity *>(userDataB)->startContact(bodyA->GetPosition() + colition_point);
-        std::cout << "Metal Block + delta: x: " << bodyA->GetPosition().x + colition_point.x << " y:" << bodyA->GetPosition().y + colition_point.y << std::endl;
         static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
     }
 
-    if (nameBodyB == "Portal" && nameBodyA == "Ground")
-    {
+    if (nameBodyB == "Portal" && nameBodyA == "Ground"){
         b2Vec2 pos = b2Vec2(bodyB->GetPosition().x, bodyA->GetPosition().y);
         static_cast<Entity *>(userDataB)->startContact(pos + colition_point);
         static_cast<Entity *>(userDataB)->setTransform(static_cast<Entity *>(userDataA));
     }
 
-    if (nameBodyA == "Portal" && (nameBodyB == "Gate" || nameBodyB == "Stone_Block"))
-    {
+    if (nameBodyA == "Portal" && (nameBodyB == "Gate" || nameBodyB == "Stone_Block")){
         static_cast<Entity *>(userDataB)->startContact(b2Vec2(0, 0));
         static_cast<Entity *>(userDataA)->die();
     }

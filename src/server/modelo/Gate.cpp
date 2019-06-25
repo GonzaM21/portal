@@ -63,7 +63,6 @@ b2Vec2 Gate::getSizes() {
 }
 
 void Gate::addButton(Button *button, int pos) {
-    std::cout<<"boton agregado "<<std::endl;
     if (pos == UP) buttons.insert({button,true});
     if (pos == DOWN) buttons.insert({button,false});
 }

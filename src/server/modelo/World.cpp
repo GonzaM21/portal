@@ -279,7 +279,5 @@ b2Vec2 World::getHigh() {
 }
 
 float World::getGravity() {
-    std::
-    cout<<world->GetGravity().x<<"  "<<world->GetGravity().y<<std::endl;
     return gravity.y;
 }
