@@ -20,6 +20,7 @@
 #include <unordered_map>
 #include <vector>
 #include <string>
+#include <mutex>
 
 class ModelFacade {
 public:
@@ -52,6 +53,7 @@ private:
   Model model2;
   Model *renderable;
   Model *setteable;
+  std::mutex m;
   bool receivedInitialData;
   typedef void (ModelFacade::*model_method_t)(std::vector<std::string>);
   std::unordered_map<int, model_method_t> methods;

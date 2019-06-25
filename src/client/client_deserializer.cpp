@@ -13,6 +13,7 @@ void ClientDeserializer::deserialize(std::string &message) {
     this->splitMessage(message,arguments);
     if (arguments.at(0) == ERROR_CODE && arguments.size() == 2) {
         this->data_container->setReceiveError(arguments.at(1));
+        this->data_container->setErrorMessage();
         this->data_container->setGameFinish();
         return;
     } else if (arguments.at(0) == END_LEVEL_CODE && arguments.size() == 1) {

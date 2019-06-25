@@ -4,6 +4,11 @@
 #include "server_command.h"
 #include "level_creator/map_parser.h"
 
+/* 
+* Clase para comenzar la partida
+*/
+
+
 class CommandStart : public Command {
 private:
     Model *model;

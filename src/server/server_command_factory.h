@@ -34,6 +34,8 @@ public:
     CommandFactory(Model *model,LevelManager *level_manager,
       std::map<std::string,bool>* players_connection);
     ~CommandFactory() = default;
+
+    //Metodos para crear nuevos comandos
     CommandMates* createCommandMates();
     CommandJoin* createCommandJoin(std::string &player);
     CommandStart* createCommandStart();

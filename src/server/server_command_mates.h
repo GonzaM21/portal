@@ -11,10 +11,6 @@ public:
     explicit CommandMates(Model *model);
     ~CommandMates() = default;
     void execute() override;
-    //CommandMates(const CommandMates&) = delete;
-    //CommandMates& operator=(const CommandMates&) = delete;
-    //CommandMates(CommandMates&& other);
-    //CommandMates& operator=(CommandMates&& other);
 };
 
 #endif

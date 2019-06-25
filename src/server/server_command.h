@@ -2,6 +2,11 @@
 #define COMMAND_H
 #include "server_model.h"
 
+/* 
+* Clase abstracta utilizada para crear comandos
+*/
+
+
 class Command {
 public:
     Command() = default;

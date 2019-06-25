@@ -3,6 +3,13 @@
 #include <string>
 #include "server_command.h"
 
+
+/* 
+* Clase para llamar a la accion de salto
+* para un jugador
+*/
+
+
 class CommandJump : public Command {
 private:
     Model *model;

@@ -31,7 +31,13 @@ class GameLoop : public Thread {
         ProtectedDataBase *data_base;
         int next_scenario;
         int number_of_levels;
+
+        //Devuelve un booleano indicando si el nivel
+        //fue completado
         bool checkLevelComplete();
+
+        //Espera la proxima accion del cliente para luego
+        //indicar como debe continuar el gameloop
         void waitNextAction(int level_number);
 
     public:

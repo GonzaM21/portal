@@ -4,6 +4,11 @@
 #include "server_command.h"
 #include "level_creator/map_parser.h"
 
+/* 
+* Clase para que un jugador dispare un portal
+*/
+
+
 class CommandShoot : public Command {
 private:
     Model *model;

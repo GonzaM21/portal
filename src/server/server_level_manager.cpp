@@ -1,5 +1,5 @@
 #include "server_level_manager.h"
-#define LEVEL_1 "json_prueba12"
+#define LEVEL_1 "json_file"
 #define LEVEL_2 "json_file2"
 #define FINISH_GAME 2
 
@@ -14,7 +14,7 @@ LevelManager::LevelManager(Model *model,std::map<std::string,bool>*
     this->model = model;
     this->actual_level = 0;
     this->json_files.push_back(LEVEL_1);
-    //this->json_files.push_back(LEVEL_2);
+    this->json_files.push_back(LEVEL_2);
     this->players_online = players_online;
 }
 

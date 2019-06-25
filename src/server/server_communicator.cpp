@@ -40,7 +40,6 @@ void Communicator :: sendMessage() {
         }
     } catch (const std::runtime_error& e) {
         std::cout << e.what() << std::endl;
-        std::cout << "server communicator exp\n";
     }  catch (...) {
         std::cout << "Error inesperado(?)" << std::endl;
     }
@@ -104,9 +103,6 @@ void Communicator :: run() {
         }
     } catch (const std::runtime_error& e) {
         std::cout << e.what() << std::endl;
-        std::cout << "server communicator exp\n";
-        //std::string msg(this->player_name+","+"disconnect");
-        //if (this->room != nullptr) this->room->addMessageToSend(msg);
         this->is_valid = false;
     } catch (...) {
         std::cout << "Error: unknown" << std::endl;
