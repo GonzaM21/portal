@@ -16,7 +16,8 @@ VentanaPrincipal::VentanaPrincipal(MatchConfig *match_config, Joiner *joinerPara
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
     ui->entrada->setStyleSheet("QWidget#entrada{border-image: url(resources/img/icon.png) 0 0 0 0 stretch stretch;}");
-    ui->inicio->setStyleSheet("QWidget#inicio{border-image: url(resources/img/portada.jpeg) 0 0 0 0 stretch stretch;}QFrame{background-color: rgb(255, 255, 255);}QPushButton#reloadButton_2{border-image: url(resources/img/reload.png) 0 0 0 0 stretch stretch;}");
+    ui->inicio->setStyleSheet("QWidget#inicio{border-image: url(resources/img/portada.jpeg) 0 0 0 0 stretch stretch;}QFrame{background-color: rgb(255, 255, 255);}");
+    ui->reloadButton->setStyleSheet("QPushButton#reloadButton{border-image: url(resources/img/reload.png) 0 0 0 0 stretch stretch;}");
 }
 
 VentanaPrincipal::~VentanaPrincipal() {
