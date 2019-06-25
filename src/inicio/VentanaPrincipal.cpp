@@ -134,7 +134,9 @@ void VentanaPrincipal::removeButton(QTableWidgetItem *item) {
 
 void VentanaPrincipal::on_mapa_cellDoubleClicked(int row, int column) {
     QTableWidgetItem *item = ui->mapa->item(row,column);
-    if ((item == 0) || (row == 0) || (row == ui->mapa->rowCount() - 1) || (column == 0) || (column == ui->mapa->columnCount() - 1))
+    if ((item == 0) || (row == 0) || (row == ui->mapa->rowCount() - 1) ||
+        (column == 0) || (column == ui->mapa->columnCount() - 1) ||
+        (row == ui->mapa->rowCount() - 2 && column == ui->mapa->columnCount() / 2 - 1))
         return;
     if (item->text().toStdString() == "Gate") {removeGate(item); return;}
     if (item->text().toStdString() == "Button") {removeButton(item);}
@@ -160,6 +162,9 @@ void VentanaPrincipal::on_mapa_cellChanged(int row, int column) {
         setGround();
         return;
     }
+    if (item->text().toStdString() == "Chell") {
+        return;
+    }    
     if (item->text().toStdString() != "Gate") {
         setGround();
         return;
@@ -194,7 +199,8 @@ void VentanaPrincipal::on_guardarMapa_released() {
             QString vacio("");
             QString button("Button");
             QString gate("Gate");
-            if (item->text() == vacio || item->text() == button || item->text() == gate)
+            QString chell("Chell");
+            if (item->text() == vacio || item->text() == button || item->text() == gate || item->text() == chell)
                 continue;
             mapSaver.addObject(item->text().toStdString() + "," + std::to_string(j + 1 - (ui->mapa->columnCount() / 2)) + "," + std::to_string(-i - 1 + (ui->mapa->rowCount())));
         }
@@ -242,6 +248,9 @@ void VentanaPrincipal::on_pushButton_clicked() {
 }
 
 void VentanaPrincipal::setGround() {
+    QIcon iconChell("resources/qt/Chell.png");
+    QString chell("Chell");
+    ui->mapa->setItem(ui->mapa->rowCount() - 2, ui->mapa->columnCount() / 2 - 1, new QTableWidgetItem(iconChell, chell));
     QIcon icon("resources/qt/Metal_block.png");
     QString metal("Metal");
     for (size_t i = 0; i < ui->mapa->rowCount(); i++) {
