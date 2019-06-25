@@ -18,7 +18,7 @@ ModelController::ModelController(Window &window) : model(window)
   methods[11] = &ModelController::setCake;
 }
 
-void ModelController::decodeMessages(std::vector<std::string> arguments)//esto habria que hacerlo en deserializer (interprete)
+void ModelController::decodeMessages(std::vector<std::string> arguments)
 {
   std::unique_lock<std::mutex> lck(m);
   (this->*(methods[atoi(arguments[0].c_str())]))(arguments);

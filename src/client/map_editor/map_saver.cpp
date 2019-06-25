@@ -8,8 +8,6 @@
 #define ENERGY_BARRIER_ID "9"
 #define ENERGY_EMITTER_ID "10"
 #define CAKE_ID "11"
-//lazyfoo
-//tapar la ventana
 
 MapSaver::MapSaver(std::string file_name) : file(file_name) {
     codes["Metal"] = 1;

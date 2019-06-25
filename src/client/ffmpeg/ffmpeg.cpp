@@ -39,6 +39,5 @@ void Ffmpeg::recordScreen() {
 }
 
 void Ffmpeg::stopRecording() {
-    //kill(ffmpeg_process_id,SIGKILL);
     system("kill -2 $(pgrep ffmpeg)");
 }

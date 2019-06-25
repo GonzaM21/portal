@@ -4,6 +4,6 @@ ObjectPortal :: ObjectPortal(Model *model) {
     this->model = model;
 }
 
-void ObjectPortal :: aggregate() {//BORRAR ESTA CLASE
+void ObjectPortal :: aggregate() {
     std::cout << "Agrega el objecto portal\n";
 }

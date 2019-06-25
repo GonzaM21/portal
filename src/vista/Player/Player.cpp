@@ -58,7 +58,6 @@ void Player::setRestIdle() {
 void Player::setRunning() {
 	if (strcmp(typeid(*this->sprite).name(), typeid(*this->states[2]).name()) != 0) {
 		this->sprite = this->states[2];
-		//MusicBase::getInstance()->playMusic(CHELL_STEP_FX_ID,15);
 	}
 }
 

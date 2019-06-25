@@ -9,7 +9,6 @@ private:
 public:
     PositionConverter(ModelController *model_controller);
     ~PositionConverter() = default;
-    //std::vector<int> convertToVirtual(int x, int y);
 
     //Toma como parametro un x e y en el sistema de referencia
     //de la camara y lo transforma en un x e y del sistema

@@ -31,8 +31,8 @@ public:
 
     //Setea el voto de un jugador para jugador o 
     //no el proximo nivel
-    void managePlayerVote(int vote); //VOY A TENER QUE VOTAR QUE NO CUANDO UN JUGADOR SE DESCONECTA, LO QYUE PUEDO HACER ES QUE EL CLIENTE YA MANDE UN VOTO NO CUANDO SE DESCONECTA
-
+    void managePlayerVote(int vote); 
+    
     //Carga el siguiente nivel en el modelo, tomando
     //nombre de archivo el string que halla en la lista
     void loadNextLevel();

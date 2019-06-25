@@ -9,7 +9,6 @@ void chell_colitions(b2Body *bodyA, b2Body *bodyB, b2Vec2 colition_point)
     std::string nameBodyA = static_cast<Entity *>(userDataA)->getEntityName();
     std::string nameBodyB = static_cast<Entity *>(userDataB)->getEntityName();
 
-    //std::cout<<"Punto de colision(chell): "<<colition_point.x<<"   "<<colition_point.x<<std::endl;
 
     if (nameBodyA == "Chell_Player" && nameBodyB == "Portal")
         static_cast<Entity *>(userDataA)->setTransform(static_cast<Entity *>(userDataB));
@@ -319,11 +318,9 @@ void button_endContact(void *userDataA, void *userDataB)
     if (nameBodyA != "Button" && nameBodyB != "Button")
         return;
 
-    //if(nameBodyA == "Button" && nameBodyB == "Chell_Player") static_cast<Entity *>(userDataA)->endContact();
     if (nameBodyA == "Button" && nameBodyB == "Rock")
         static_cast<Entity *>(userDataA)->endContact();
 
-    //if(nameBodyB == "Button" && nameBodyA == "Chell_Player") static_cast<Entity *>(userDataB)->endContact();
     if (nameBodyB == "Button" && nameBodyA == "Rock")
         static_cast<Entity *>(userDataB)->endContact();
 }

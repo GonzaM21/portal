@@ -27,9 +27,7 @@ void ColaProtegida :: set_terminar_ejecucion() {
 }
 
 std::string ColaProtegida :: pop() { 
-    //std::cout << "Se entro al pop\n";
     std::unique_lock<std::mutex> lock(m);
-    //std::cout << cola.size() << std::endl;
     while (cola.empty() && !terminar_ejecucion) {
         cond_var.wait(lock);
     }
@@ -40,20 +38,5 @@ std::string ColaProtegida :: pop() {
     }
     std::string message = cola.front();
     cola.pop();
-    //std::cout << cola.size() << std::endl;
-    //std::cout << "Se popeo: " << message << "\n";
     return message;
 }
-
-//ColaProtegida :: ColaProtegida(ColaProtegida&& other) {
-//    this->cola = std::move(other.cola);
-//    this->notificar = std::move(other.notificar);
-//    this->terminar_ejecucion = std::move(other.terminar_ejecucion);
-//}
-//
-//ColaProtegida& ColaProtegida :: operator=(ColaProtegida&& other) {
-//    this->cola = std::move(other.cola);
-//    this->notificar = std::move(other.notificar);
-//    this->terminar_ejecucion = std::move(other.terminar_ejecucion);
-//    return *this;
-//}

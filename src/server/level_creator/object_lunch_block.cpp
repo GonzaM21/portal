@@ -4,6 +4,6 @@ ObjectLunchBlock :: ObjectLunchBlock(Model *model) {
     this->model = model;
 }
 
-void ObjectLunchBlock :: aggregate() {//BORRAR ESTA CLASE
+void ObjectLunchBlock :: aggregate() {
     std::cout << "Agrega el objecto lunck block\n";
 }

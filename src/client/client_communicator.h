@@ -30,7 +30,6 @@ public:
     void addMessageToSend(std::string message);
     void parseMatesForInitialWindow(std::string &message);
     std::string popMessageReceived();
-    std::vector<std::string> getMates(); //BORRRAR ESTA MIERDA
     std::string getMode();
 };
 
