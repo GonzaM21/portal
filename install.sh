@@ -40,6 +40,7 @@ sudo mv img resources
 echo "Descompresing box2d..."
 unzip Box2D.zip
 sudo mv Box2D src/server/modelo/3rdparty/Box2D-cmake
+sudo mv src/server/modelo/3rdparty/CMakeLists.txt src/server/modelo/3rdparty/Box2D-cmake 
 sudo rm -rf Box2D.zip
 echo "Building executers..."
 cmake CMakeLists.txt
