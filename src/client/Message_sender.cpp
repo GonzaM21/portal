@@ -42,10 +42,6 @@ void MessageSender::sendStop() {
   communicator->addMessageToSend("z");
 }
 
-void MessageSender::sendFullscreen() {
-//   modelFacade->setFullscreen();
-}
-
 void MessageSender::sendKillPlayer() {
   communicator->addMessageToSend("1");
 }

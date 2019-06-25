@@ -15,7 +15,9 @@ public:
     void setEvent(std::string &event);
     bool getEndGame();
     bool getNextLevel();
-    void resetLocalSceneLogic();    
+    void resetLocalSceneLogic();
+    void setFullScreen();
+    void record();    
 };
 
 #endif

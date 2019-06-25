@@ -121,9 +121,9 @@ void ClientController::mainLoop() {
         }
         scene_manager.putEndGameScene();
         for (int i = 0; i<5;i++) {
-            std::cout<< "Exit in: " << 5-i << " seconds." << std::endl;
             usleep(1000000);
         }
+        scene_manager.stopRocording();
     } catch (const std::runtime_error &e) {
         std::cout << e.what() << std::endl;
     } catch (...) {

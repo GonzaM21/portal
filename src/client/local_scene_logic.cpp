@@ -29,5 +29,10 @@ void LocalSceneLogic::resetLocalSceneLogic() {
     this->next_level = false;
 }
 
+void LocalSceneLogic::setFullScreen() {
+    this->scene_manager.setFullScreen();
+}
 
-//HAY DOS HILOS ACCEDIENDO A ESTA CLASE, PROTEGERRRRRRRRRRRRRRRRRRRRRRRRRRRR
+void LocalSceneLogic::record() {
+    this->scene_manager.record();
+}

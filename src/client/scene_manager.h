@@ -3,6 +3,7 @@
 #include "../vista/ModelFacade.h"
 #include "../vista/next_level_screen/EndLevelScreen.h"
 #include "../vista/end_game_scene/end_game_scene.h"
+#include "ffmpeg/ffmpeg.h"
 #include <string>
 #include <vector>
 #define GAME_SCREEN 0
@@ -16,8 +17,11 @@ private:
     ModelFacade model_facade;
     EndLevelScreen end_level_scene;
     EndGameScene end_game_scene;
+    Ffmpeg ffmpeg;
     int actual_screen;
     bool level_change;
+    bool recording;
+    bool full_screen;
     void setActualScreen(int screen_num);
 public:
     SceneManager();
@@ -30,6 +34,9 @@ public:
     void putEndGameScene();
     int getActualScreen();
     void resetLevelStage();
+    void setFullScreen();
+    void record();  
+    void stopRocording();
 };
 
 #endif

@@ -78,7 +78,7 @@ void EventHandler::handleKeyUp(SDL_KeyboardEvent& keyEvent) {
   switch (keyEvent.keysym.sym)
   {
     case SDLK_F11: {
-      messageSender.sendFullscreen();
+      local_scene_logic.setFullScreen();
       break;
     }
     case SDLK_d:{
@@ -124,6 +124,9 @@ void EventHandler::handleKeyUp(SDL_KeyboardEvent& keyEvent) {
     case SDLK_m: {
       messageSender.sendQuitGame();
       break;
+    }
+    case SDLK_c: {
+      local_scene_logic.record();
     }
     default:
       break;

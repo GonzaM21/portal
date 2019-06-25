@@ -18,7 +18,6 @@ public:
   void sendQuitGame();
   void sendStart();
   void sendStop();
-  void sendFullscreen();
   void sendKillPlayer();
   void sendSuicide();
   void sendMoveRock();
