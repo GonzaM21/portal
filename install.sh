@@ -24,7 +24,7 @@ echo "Installing qt5..."
 sudo apt-get install qt5-default
 echo "Installing ffmpeg..."
 sudo apt-get install ffmpeg
-echo "Decompressing images and sounds..."
+echo "Decompressing pictures and sounds..."
 sudo rm -rf resources
 mkdir resources
 unzip resources.zip
@@ -37,6 +37,10 @@ sudo rm -rf img.zip
 sudo mv qt resources
 sudo mv Music resources
 sudo mv img resources 
+echo "Descompresing box2d..."
+unzip Box2D.zip
+sudo mv Box2D src/server/modelo/3rdparty/Box2D-cmake
+sudo rm -rf Box2D.zip
 echo "Building executers..."
 cmake CMakeLists.txt
 make -j128
