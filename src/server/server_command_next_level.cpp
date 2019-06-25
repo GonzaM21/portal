@@ -10,7 +10,7 @@ CommandNextLevel :: CommandNextLevel(Model *model,
 }
 
 void CommandNextLevel :: execute() {
-    this->level_manager->managePlayerVote(this->player,1);
+    this->level_manager->managePlayerVote(1);
     if (this->level_manager->playersAcceptNextLevel() == 1) {
         this->level_manager->loadNextLevel();
         std::cout << "Empieza el proximo nivel" << std::endl;
