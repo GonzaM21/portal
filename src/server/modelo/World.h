@@ -4,7 +4,6 @@
 #include <vector>
 #include "Box2D/Box2D.h"
 #include "MyContactListener.h"
-//#include "Macros.h"
 #include "Filter_Data.h"
 
 #define GRAVITY 8.0
@@ -60,6 +59,8 @@ public:
     float getGravity();
 
     void eraseAllBodies();
+
+    void isErasing();
 
     //Destructor
     ~World();
