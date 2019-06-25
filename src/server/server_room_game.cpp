@@ -15,7 +15,6 @@ RoomGame :: RoomGame(std::string &name, size_t size) : sender() {
     this->name = name;
     this->size = size;
     this->continue_running = true;
-    std::cout << "Se construye una room\n";
     this->messages = new ColaProtegida();
     this->room_is_active = true;
 }
@@ -24,7 +23,7 @@ bool RoomGame :: addPlayer(std::string &name) {
     std::unique_lock<std::mutex> lock(m);
     if (this->playerInRoom(name)) return false;
     this->sender.addPlayer(name);
-    this->players[name] = true;
+    this->players.insert({name,true});
     return true;
 }
 
@@ -52,6 +51,7 @@ void RoomGame :: run() {
     try {
         Model model(&sender);
         LevelManager level_manager(&model,&this->players);
+        model.setNumberOfLevels(level_manager.getNumberOfLevels());
         CommandFactory commandFactory(&model,&level_manager,&this->players);                                                                       //los parametros que necesite algun comando se lo debo pasar aca
         Protoc protocol(commandFactory);
         level_manager.loadFirstLevel();

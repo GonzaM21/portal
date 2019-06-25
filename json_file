@@ -360,7 +360,7 @@
     "POS_Y": 4,
     "TYPE": 2,
     "TYPE_OPTIONAL": 4,
-    "SIZE": 1
+    "WIDTH": 1
 },
 "OBJECTID52" : {
     "POS_X": 20,

@@ -6,7 +6,7 @@
 #include "server_room_game.h"
 #include "server_room_manager.h"
 #include "../common/common_socket_connect.h"
-#define MAX_PLAYERS 4 //deberia preguntar cunado se crea la sala?
+#define MAX_PLAYERS 4
 
 RoomManager :: RoomManager(ColaProtegida *events) {
     this->continue_running = true;
@@ -157,7 +157,6 @@ void RoomManager :: run() {
         }
     } catch (const std::runtime_error& e) {
         std::cout << e.what() << std::endl;
-        std::cout << "room manager exp\n";
     } catch (...) {
         std::cout << "Error: unknown" << std::endl;
     }

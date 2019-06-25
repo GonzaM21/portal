@@ -5,6 +5,10 @@
 #include "server_communicator.h"
 #include "../common/Thread.h"
 
+/* Esta clase se encarga de aceptar nuevos clientes
+*  al servidor.
+*/
+
 class ClientAcceptor : public Thread {
     private:
         SocketAccept *socket;

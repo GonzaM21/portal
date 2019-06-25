@@ -11,7 +11,12 @@ CommandNextLevel :: CommandNextLevel(Model *model,
 
 void CommandNextLevel :: execute() {
     this->level_manager->managePlayerVote(this->player,1);
+<<<<<<< Updated upstream
     if (this->level_manager->playersAcceptNextLevel()) {
+=======
+    if (this->level_manager->playersAcceptNextLevel() == 1) {
+>>>>>>> Stashed changes
         this->level_manager->loadNextLevel();
+        std::cout << "Empieza el proximo nivel" << std::endl;
     }
 }

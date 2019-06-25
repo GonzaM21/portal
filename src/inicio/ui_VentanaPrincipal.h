@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'VentanaPrincipal.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -639,76 +639,76 @@ public:
 
     void retranslateUi(QWidget *VentanaPrincipal)
     {
-        VentanaPrincipal->setWindowTitle(QApplication::translate("VentanaPrincipal", "VentanaPrincipal", 0));
-        editarMapa->setText(QApplication::translate("VentanaPrincipal", "Editar Mapa", 0));
-        comenzarButton->setText(QApplication::translate("VentanaPrincipal", "Comenzar", 0));
-        submit->setText(QApplication::translate("VentanaPrincipal", "Iniciar Juego", 0));
-        label_3->setText(QApplication::translate("VentanaPrincipal", "Ingresar puerto", 0));
-        label_2->setText(QApplication::translate("VentanaPrincipal", "Ingresar host", 0));
-        label->setText(QApplication::translate("VentanaPrincipal", "Ingresar Nombre", 0));
-        crearSalaButton->setText(QApplication::translate("VentanaPrincipal", "Crear Sala", 0));
-        elegirSalaButton->setText(QApplication::translate("VentanaPrincipal", "Elegir Sala", 0));
+        VentanaPrincipal->setWindowTitle(QApplication::translate("VentanaPrincipal", "VentanaPrincipal", Q_NULLPTR));
+        editarMapa->setText(QApplication::translate("VentanaPrincipal", "Editar Mapa", Q_NULLPTR));
+        comenzarButton->setText(QApplication::translate("VentanaPrincipal", "Comenzar", Q_NULLPTR));
+        submit->setText(QApplication::translate("VentanaPrincipal", "Iniciar Juego", Q_NULLPTR));
+        label_3->setText(QApplication::translate("VentanaPrincipal", "Ingresar puerto", Q_NULLPTR));
+        label_2->setText(QApplication::translate("VentanaPrincipal", "Ingresar host", Q_NULLPTR));
+        label->setText(QApplication::translate("VentanaPrincipal", "Ingresar Nombre", Q_NULLPTR));
+        crearSalaButton->setText(QApplication::translate("VentanaPrincipal", "Crear Sala", Q_NULLPTR));
+        elegirSalaButton->setText(QApplication::translate("VentanaPrincipal", "Elegir Sala", Q_NULLPTR));
         groupBox->setTitle(QString());
-        label_4->setText(QApplication::translate("VentanaPrincipal", "Ingrese el nombre de la sala", 0));
-        continuar->setText(QApplication::translate("VentanaPrincipal", "Continuar", 0));
-        integrantesLabel->setText(QApplication::translate("VentanaPrincipal", "Integrantes", 0));
-        sala->setText(QApplication::translate("VentanaPrincipal", "Sala Nombre", 0));
-        comenzarJuego->setText(QApplication::translate("VentanaPrincipal", "Comenzar", 0));
+        label_4->setText(QApplication::translate("VentanaPrincipal", "Ingrese el nombre de la sala", Q_NULLPTR));
+        continuar->setText(QApplication::translate("VentanaPrincipal", "Continuar", Q_NULLPTR));
+        integrantesLabel->setText(QApplication::translate("VentanaPrincipal", "Integrantes", Q_NULLPTR));
+        sala->setText(QApplication::translate("VentanaPrincipal", "Sala Nombre", Q_NULLPTR));
+        comenzarJuego->setText(QApplication::translate("VentanaPrincipal", "Comenzar", Q_NULLPTR));
         reloadButton->setText(QString());
-        label_5->setText(QApplication::translate("VentanaPrincipal", "Ingresar alto", 0));
-        label_6->setText(QApplication::translate("VentanaPrincipal", "Ingresar Ancho", 0));
-        pushButton->setText(QApplication::translate("VentanaPrincipal", "Crear", 0));
+        label_5->setText(QApplication::translate("VentanaPrincipal", "Ingresar alto", Q_NULLPTR));
+        label_6->setText(QApplication::translate("VentanaPrincipal", "Ingresar Ancho", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("VentanaPrincipal", "Crear", Q_NULLPTR));
 
         const bool __sortingEnabled = objetos->isSortingEnabled();
         objetos->setSortingEnabled(false);
         QListWidgetItem *___qlistwidgetitem = objetos->item(0);
-        ___qlistwidgetitem->setText(QApplication::translate("VentanaPrincipal", "Acid", 0));
+        ___qlistwidgetitem->setText(QApplication::translate("VentanaPrincipal", "Acid", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem1 = objetos->item(1);
-        ___qlistwidgetitem1->setText(QApplication::translate("VentanaPrincipal", "Button", 0));
+        ___qlistwidgetitem1->setText(QApplication::translate("VentanaPrincipal", "Button", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem2 = objetos->item(2);
-        ___qlistwidgetitem2->setText(QApplication::translate("VentanaPrincipal", "Gate", 0));
+        ___qlistwidgetitem2->setText(QApplication::translate("VentanaPrincipal", "Gate", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem3 = objetos->item(3);
-        ___qlistwidgetitem3->setText(QApplication::translate("VentanaPrincipal", "RecvU", 0));
+        ___qlistwidgetitem3->setText(QApplication::translate("VentanaPrincipal", "RecvU", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem4 = objetos->item(4);
-        ___qlistwidgetitem4->setText(QApplication::translate("VentanaPrincipal", "RecvD", 0));
+        ___qlistwidgetitem4->setText(QApplication::translate("VentanaPrincipal", "RecvD", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem5 = objetos->item(5);
-        ___qlistwidgetitem5->setText(QApplication::translate("VentanaPrincipal", "RecvR", 0));
+        ___qlistwidgetitem5->setText(QApplication::translate("VentanaPrincipal", "RecvR", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem6 = objetos->item(6);
-        ___qlistwidgetitem6->setText(QApplication::translate("VentanaPrincipal", "Rock", 0));
+        ___qlistwidgetitem6->setText(QApplication::translate("VentanaPrincipal", "Rock", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem7 = objetos->item(7);
-        ___qlistwidgetitem7->setText(QApplication::translate("VentanaPrincipal", "BarrH", 0));
+        ___qlistwidgetitem7->setText(QApplication::translate("VentanaPrincipal", "BarrH", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem8 = objetos->item(8);
-        ___qlistwidgetitem8->setText(QApplication::translate("VentanaPrincipal", "BarrV", 0));
+        ___qlistwidgetitem8->setText(QApplication::translate("VentanaPrincipal", "BarrV", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem9 = objetos->item(9);
-        ___qlistwidgetitem9->setText(QApplication::translate("VentanaPrincipal", "RecvL", 0));
+        ___qlistwidgetitem9->setText(QApplication::translate("VentanaPrincipal", "RecvL", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem10 = objetos->item(10);
-        ___qlistwidgetitem10->setText(QApplication::translate("VentanaPrincipal", "EnerU", 0));
+        ___qlistwidgetitem10->setText(QApplication::translate("VentanaPrincipal", "EnerU", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem11 = objetos->item(11);
-        ___qlistwidgetitem11->setText(QApplication::translate("VentanaPrincipal", "EnerL", 0));
+        ___qlistwidgetitem11->setText(QApplication::translate("VentanaPrincipal", "EnerL", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem12 = objetos->item(12);
-        ___qlistwidgetitem12->setText(QApplication::translate("VentanaPrincipal", "EnerR", 0));
+        ___qlistwidgetitem12->setText(QApplication::translate("VentanaPrincipal", "EnerR", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem13 = objetos->item(13);
-        ___qlistwidgetitem13->setText(QApplication::translate("VentanaPrincipal", "EnerD", 0));
+        ___qlistwidgetitem13->setText(QApplication::translate("VentanaPrincipal", "EnerD", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem14 = objetos->item(14);
-        ___qlistwidgetitem14->setText(QApplication::translate("VentanaPrincipal", "Metal", 0));
+        ___qlistwidgetitem14->setText(QApplication::translate("VentanaPrincipal", "Metal", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem15 = objetos->item(15);
-        ___qlistwidgetitem15->setText(QApplication::translate("VentanaPrincipal", "Stone", 0));
+        ___qlistwidgetitem15->setText(QApplication::translate("VentanaPrincipal", "Stone", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem16 = objetos->item(16);
-        ___qlistwidgetitem16->setText(QApplication::translate("VentanaPrincipal", "Tria4", 0));
+        ___qlistwidgetitem16->setText(QApplication::translate("VentanaPrincipal", "Tria4", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem17 = objetos->item(17);
-        ___qlistwidgetitem17->setText(QApplication::translate("VentanaPrincipal", "Tria5", 0));
+        ___qlistwidgetitem17->setText(QApplication::translate("VentanaPrincipal", "Tria5", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem18 = objetos->item(18);
-        ___qlistwidgetitem18->setText(QApplication::translate("VentanaPrincipal", "Tria6", 0));
+        ___qlistwidgetitem18->setText(QApplication::translate("VentanaPrincipal", "Tria6", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem19 = objetos->item(19);
-        ___qlistwidgetitem19->setText(QApplication::translate("VentanaPrincipal", "Tria7", 0));
+        ___qlistwidgetitem19->setText(QApplication::translate("VentanaPrincipal", "Tria7", Q_NULLPTR));
         QListWidgetItem *___qlistwidgetitem20 = objetos->item(20);
-        ___qlistwidgetitem20->setText(QApplication::translate("VentanaPrincipal", "Cake", 0));
+        ___qlistwidgetitem20->setText(QApplication::translate("VentanaPrincipal", "Cake", Q_NULLPTR));
         objetos->setSortingEnabled(__sortingEnabled);
 
-        guardarMapa->setText(QApplication::translate("VentanaPrincipal", "SAVE", 0));
+        guardarMapa->setText(QApplication::translate("VentanaPrincipal", "SAVE", Q_NULLPTR));
         asociarPop->setTitle(QString());
-        label_7->setText(QApplication::translate("VentanaPrincipal", "Ingrese la puerta a asociar", 0));
-        asociar->setText(QApplication::translate("VentanaPrincipal", "asociar", 0));
+        label_7->setText(QApplication::translate("VentanaPrincipal", "Ingrese la puerta a asociar", Q_NULLPTR));
+        asociar->setText(QApplication::translate("VentanaPrincipal", "asociar", Q_NULLPTR));
     } // retranslateUi
 
 };

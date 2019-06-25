@@ -1,17 +1,31 @@
 #include "scene_manager.h"
 #include "../vista/next_level_screen/screen_constants.h"
+#include "../vista/end_game_scene/end_game_constants.h"
+
 SceneManager::SceneManager() :
     window(800,800) ,  
     model_facade(window),
-    end_level_screen(window){
+    end_level_scene(window),
+    end_game_scene(window) {
     this->window.setBackground(BACKGROUND_FILENAME);
     this->actual_screen = 0;
+    this->level_change = false;
 }
 
 void SceneManager::renderAll() {
     window.fill();
-    if (this->actual_screen == 0) this->model_facade.renderAll();
-    if (this->actual_screen == 1) this->end_level_screen.renderScene();
+    if (this->actual_screen == 0) {
+        if (this->level_change) {
+            std::cout << "resetea el modelo\n";
+            this->level_change = false;
+        }
+        this->model_facade.renderAll();
+    }
+    if (this->actual_screen == 1) {
+        this->level_change = true;
+        this->end_level_scene.renderScene();
+    }
+    if (this->actual_screen == 2) this->end_game_scene.renderScene();
     window.render();
 }
 
@@ -36,11 +50,17 @@ void SceneManager::putNextLevelScene() {
     this->window.setBackground(BACKGROUND_PATH);
 }
 
+void SceneManager::putEndGameScene() {
+    this->setActualScreen(EXIT_GAME_SCREEN);
+    this->window.setBackground(END_GAME_BACKGROUND_PATH);
+}
+
 void SceneManager::putGameScene() {
     this->setActualScreen(GAME_SCREEN);
     this->window.setBackground(BACKGROUND_FILENAME);
 }
 
-EndLevelScreen* SceneManager::getEndLevelScreen() {
-    return &this->end_level_screen;
+
+void SceneManager::resetLevelStage() {
+    model_facade.resetModel();
 }

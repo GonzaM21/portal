@@ -23,6 +23,10 @@
 #include "modelo/Energy_Emitters.h"
 #include "modelo/Cake.h"
 
+/* Esta clase es un monitor de modelo, que contiene
+*  todos los datos de la partida y estan protegidos
+*/
+
 class ProtectedDataBase {
 private:
     std::mutex m;
@@ -45,9 +49,12 @@ private:
     int width;
     int height;
     bool win_state = false;
+
     void setVotes(std::map<std::string, size_t> &votes);
     std::string getPlayerToKill();
     void checkPlayerToKill(std::string &player_to_kill);
+
+    //Funciones para eliminar todos los elementos del juego.
     void resetPlayers();
     void resetAcids();
     void resetRocks();
@@ -64,37 +71,96 @@ private:
 public:
     ProtectedDataBase() = default;
     ~ProtectedDataBase();
-
     void setLevel(World &world);
 
+    //Toma como parametro un string (nombre de un jugador)
+    //y le indica al modelo que debe saltar 
     void makePlayerJump(std::string &player);
-    void makePlayerMove(std::string &player,char &direction);
-    void makePlayerMoveRock(std::string &player);
-    void shootPortal(World &world,std::string &player,float x_destiny, float y_destiny,int portal_num);
-    void voteToKill(std::string &voter);
-    void killPlayer(std::string &player_name);
-    void setWinState();
-    void makePlayerInmortal(std::string &player);
-    void makePlayerAntiGravity(std::string &player);
 
+    //Toma como parametro un string (nombre de un jugador)
+    //y le indica al modelo que debe moverse
+    void makePlayerMove(std::string &player,char &direction);
+
+    //Toma como parametro un string (nombre de un jugador)
+    //y le indica al modelo que debe levantar/dejar una roca    
+    void makePlayerMoveRock(std::string &player);
+
+    //Toma como parametro un string (nombre de un jugador)
+    //y le indica al modelo que debe disparar un portal
+    void shootPortal(World &world,std::string &player,float x_destiny, float y_destiny,int portal_num);
+    
+    //Toma como parametro un string (nombre de un jugador)
+    //y se setea que votamatar a otro jugador
+    void voteToKill(std::string &voter);
+
+    //Toma como parametro un jugador y le indica al modelo 
+    //que debe morir
+    void killPlayer(std::string &player_name);
+
+    //Setea al juego en estado de ganar. Todos los jugadores
+    //llegaron al pastel menos uno.
+    void setWinState();
+
+    //Toma como parametro un string (nombre de un jugador)
+    //y le indica al modelo que debe ser inmortal
+    void makePlayerInmortal(std::string &player);
+
+    //Toma como parametro un string (nombre de un jugador)
+    //y le indica al modelo que no lo debe afectar la gravedad
+    void makePlayerAntiGravity(std::string &player);
 
     //Asocia todos los botones a su respectiva puerta
     void addButtonToDoor();
 
-
+    //Agrega al mapa players un jugador y le indica al mundo que lo
+    //debe agregar
     void addPlayer(World &world,std::string &player);
+
+    //Agrega al mapa rocks una roca y le indica al mundo que lo
+    //debe agregar
     void addRock(World &world,float x_pos, float y_pos, float radius);
+
+    //Agrega al mapa acids un acido y le indica al mundo que lo
+    //debe agregar
     void addAcid(World &world,float x_pos, float y_pos, float large);
+
+    //Agrega al mapa energy_balls una bola de energia y le indica al mundo que lo
+    //debe agregar
     void addEnergyBall(World &world,float x_pos, float y_pos);
+
+    //Agrega al mapa metal_blocks un bloque de metal y 
+    //le indica al mundo que lo debe agregar
     void addMetalBlock(World &world,float x_pos, float y_pos,float size);
+
+    //Agrega al mapa stone_blocks un bloque de piedra y 
+    //le indica al mundo que lo debe agregar
     void addStoneBlock(World &world,float x_pos, float y_pos,float size);
+
+    //Agrega al mapa buttons un boton y 
+    //le indica al mundo que lo debe agregar
     void addButton(World &world, float x_pos, float y_pos,int door_id,int state_to_open_door);
+
+    //Agrega al mapa gates una puerta y 
+    //le indica al mundo que lo debe agregar
     void addGate(World &world, float x_pos, float y_pos, int id);
+
+    //Agrega al mapa emitters un emisor y 
+    //le indica al mundo que lo debe agregar
     void addEmitter(World &world,float x_pos, float y_pos, float size,
       int direction, bool charged);
+
+    //Agrega al mapa barriers una barrera de energia y 
+    //le indica al mundo que lo debe agregar
     void addEnergyBarrier(World &world,float x_pos, float y_pos, float large, int orientation);
+
+    //Agrega al mapa cakes una cake y 
+    //le indica al mundo que lo debe agregar
     void addCake(World &world, float x_pos, float y_pos);
+
+    //Agrega al mapa triangular_blocks un bloque triangular y 
+    //le indica al mundo que lo debe agregar
     void addTriangularBlock(World &world, float x_pos, float y_pos, float size, int type);
+
     //Getters
     std::vector<std::string> getIds();
     std::vector<Chell_Player*> getPlayers();
@@ -116,6 +182,7 @@ public:
     bool getWinState();
     std::map<std::string,std::string> getVoteToKill();  
 
+    //Borra todos los datos de la base de datos protegida
     void resetDataBase();
 };
 

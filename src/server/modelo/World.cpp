@@ -20,6 +20,7 @@ World::World(b2Vec2 gravity,b2Vec2 x_lim, b2Vec2 y_lim): gravity(gravity){
     this->x_lim = x_lim + b2Vec2(1,-1);
     this->y_lim = y_lim + b2Vec2(1,-1);
     addGroundWallsRoof();
+    this->erase = false;
 }
 
 void World::addGroundWallsRoof() {
@@ -234,6 +235,7 @@ b2Body* World::addTriangle(float x_pos, float y_pos, float size, int angle ,bool
 }
 
 void World::Step(float time, int velocity, int position){
+    if (this->erase) return;
     deleteBodies();
     moveBodies();
     world->Step(time, velocity, position);
@@ -282,12 +284,25 @@ b2Vec2 World::getHigh() {
     return y_lim;
 }
 
-void World::eraseAllBodies(int start) {
-    for(size_t i = start; i < Bodies.size(); ++i) {
-        world->DestroyBody(Bodies[i]);
-        Bodies.erase(Bodies.begin() + i);
+void World::eraseAllBodies() {
+    this->erase = true;
+    delete ContactListener;
+    for(size_t i = 5; i < Bodies.size(); ++i) {
+        Bodies[i]->SetActive(false);
     }
+    std::vector<b2Body*>::iterator it = Bodies.begin();
+    //for(size_t i = 5; i < Bodies.size(); ++i) {
+    //    world->DestroyBody(Bodies[i]);
+    //    Bodies.erase(Bodies.begin() + i);
+    //} 
+    while(it != Bodies.end()) {
+        world->DestroyBody((*it));
+        it = Bodies.erase(it);
+    }
+    ContactListener = new MyContactListener;
+    world->SetContactListener(ContactListener);
 }
+
 
 float World::getGravity() {
     std::

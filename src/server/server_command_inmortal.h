@@ -3,6 +3,11 @@
 #include <string>
 #include "server_command.h"
 
+/* 
+* Clase para ejecutar el comando inmortal para un 
+* jugador en el modelo
+*/
+
 class CommandInmortal : public Command {
 private:
     Model *model;

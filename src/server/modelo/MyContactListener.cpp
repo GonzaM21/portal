@@ -282,13 +282,15 @@ void MyContactListener::EndContact(b2Contact* contact){
         void * foot_sensor = contact->GetFixtureA()->GetUserData();
         if(static_cast<Entity *>(foot_sensor)->getEntityName() == "Foot_Sensor"){
             foot_sensor_end_contact(static_cast<Entity *>(foot_sensor),contact->GetFixtureB()->GetBody());
-        }
+            return;
+        }    
     }
 
     if(contact->GetFixtureB()->GetUserData()){
         void * foot_sensor = contact->GetFixtureB()->GetUserData();
         if(static_cast<Entity *>(foot_sensor)->getEntityName() == "Foot_Sensor") {
             foot_sensor_end_contact(static_cast<Entity *>(foot_sensor), contact->GetFixtureA()->GetBody());
+            return;  
         }
     }
 

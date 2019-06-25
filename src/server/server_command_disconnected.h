@@ -3,6 +3,11 @@
 #include <string>
 #include "server_command.h"
 
+/* 
+* Clase para ejecutar el comando desconexion para un 
+* jugador en el modelo
+*/
+
 class CommandDisconnected : public Command {
 private:
     std::map<std::string,bool>* players_connection;

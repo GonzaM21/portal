@@ -3,6 +3,10 @@
 #include <string>
 #include "server_command.h"
 
+/* 
+* Clase para terminar el juego
+*/
+
 class CommandFinishGame : public Command {
 private:
     Model *model;

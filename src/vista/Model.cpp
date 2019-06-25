@@ -162,40 +162,7 @@ void Model::renderAll() {
 }
 
 Model::~Model() {
-  for (Block *block : blocks) {
-    delete block;
-  }
-
-  for (Acid *acid : acids) {
-    delete acid;
-  }
-
-  for (PowerBall *powerball : powerballs) {
-    delete powerball;
-  }
-
-  for (auto rock : rocks) {
-    delete rock.second;
-  }
-
-  std::map<int, Portal *>::iterator portal_it;
-  for (portal_it = portals.begin(); portal_it != portals.end(); portal_it++) {
-    delete portal_it->second;
-  }
-
-  std::map<int, Gate *>::iterator gate_it;
-  for (gate_it = gates.begin(); gate_it != gates.end(); gate_it++) {
-    delete gate_it->second;
-  }
-
-  std::map<int, Button *>::iterator button_it;
-  for (button_it = buttons.begin(); button_it != buttons.end(); button_it++) {
-    delete button_it->second;
-  }
-
-  for (auto player : players) {
-    delete player.second;
-  }
+  this->resetModel(); 
 }
 
 Window* Model::getWindow() {
@@ -204,4 +171,43 @@ Window* Model::getWindow() {
 
 void Model::setBackground() {
   this->window.setBackground(BACKGROUND_FILENAME);
+}
+
+void Model::resetModel() {
+  for (auto it = this->blocks.cbegin(); it != this->blocks.cend();) {
+      delete (*it);
+      it = this->blocks.erase(it); 
+  }
+  for (auto it = this->cakes.cbegin(); it != this->cakes.cend();) {
+      delete (*it);
+      it = this->cakes.erase(it); 
+  }
+  for (auto it = this->acids.cbegin(); it != this->acids.cend();) {
+      delete (*it);
+      it = this->acids.erase(it); 
+  }    
+  for (auto it = this->powerballs.cbegin(); it != this->powerballs.cend();) {
+      delete (*it);
+      it = this->powerballs.erase(it); 
+  } 
+  for (auto it = this->rocks.cbegin(); it != this->rocks.cend();) {
+      delete it->second;
+      it = this->rocks.erase(it); 
+  }
+  for (auto it = this->portals.cbegin(); it != this->portals.cend();) {
+      delete it->second;
+      it = this->portals.erase(it); 
+  }
+  for (auto it = this->gates.cbegin(); it != this->gates.cend();) {
+      delete it->second;
+      it = this->gates.erase(it); 
+  }
+  for (auto it = this->buttons.cbegin(); it != this->buttons.cend();) {
+      delete it->second;
+      it = this->buttons.erase(it); 
+  }
+  //for (auto it = this->players.cbegin(); it != this->players.cend();) {
+  //    delete it->second;
+  //    it = this->players.erase(it); 
+  //}
 }

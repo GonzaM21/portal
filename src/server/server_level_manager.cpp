@@ -1,13 +1,18 @@
 #include "server_level_manager.h"
+<<<<<<< Updated upstream
 #define LEVEL_1 "json_prueba12"
 
 #define LEVEL_2 "json_file2"
 
+=======
+#define LEVEL_1 "json_file"
+#define LEVEL_2 "json_file2"
+#define FINISH_GAME 2
+>>>>>>> Stashed changes
 
 void LevelManager::setVotes() {
-    for (auto player : *this->players_online) {
-        if (!player.second) this->player_votes.insert({player.first,VOTE_NO});
-        else this->player_votes.insert({player.first,NO_VOTE_YET});
+    for (auto it = this->player_votes.cbegin(); it != this->player_votes.cend();) {
+      it = this->player_votes.erase(it); 
     }
 }
 
@@ -21,8 +26,11 @@ LevelManager::LevelManager(Model *model,std::map<std::string,bool>*
 }
 
 void LevelManager::managePlayerVote(std::string &player,int vote) {
-    if (vote == VOTE_NO) this->player_votes[player] = VOTE_NO;
-    if (vote == VOTE_YES) this->player_votes[player] = VOTE_YES;
+    if (vote == VOTE_YES) {
+        this->player_votes.push_back(VOTE_YES);
+        return;
+    }
+    this->model->setNextScene(FINISH_GAME);
 }
 
 void LevelManager::restartModel() {
@@ -43,26 +51,27 @@ void LevelManager::loadLevel() {
         i = objects.erase(i);
     }
     this->model->addButtonsToDoors();
+    this->setVotes();
+}
+
+void LevelManager::addPlayersToNewLevel() {
+    for (auto player : *this->players_online) {
+        std::string player_name = player.first;
+        this->model->addPlayer(player_name);
+    }
 }
 
 void LevelManager::loadNextLevel() {
     if (this->allLevelPlayed()) return;
-    this->restartModel();
+    this->model->resetModel();
+    this->addPlayersToNewLevel();
     this->loadLevel();
     this->setVotes();
     this->restartGameLoop();
 }
 
 int LevelManager::playersAcceptNextLevel() {
-    for (auto player : this->player_votes) {
-        if (!player.second) return WAITING;
-        if (player.second == VOTE_NO) return NO_PLAY_NEXT_LEVEL;
-    }
-    return PLAY_NEXT_LEVEL;
-}
-
-void LevelManager::getCustomLevel() {
-
+    return (this->player_votes.size()==(*this->players_online).size());
 }
 
 void LevelManager::loadFirstLevel() {
@@ -71,4 +80,8 @@ void LevelManager::loadFirstLevel() {
 
 bool LevelManager::allLevelPlayed() {
     return (this->actual_level == this->json_files.size());
+}
+
+int LevelManager::getNumberOfLevels() {
+    return this->json_files.size();
 }

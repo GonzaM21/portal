@@ -3,6 +3,11 @@
 #include <string>
 #include "server_command.h"
 
+/* 
+* Clase para ejecutar el comando antigravedad para un 
+* jugador en el modelo
+*/
+
 class CommandAntiGravity : public Command {
 private:
     Model *model;

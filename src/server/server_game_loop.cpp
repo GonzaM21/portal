@@ -17,6 +17,11 @@ GameLoop ::GameLoop(World *world, Sender *sender,
     this->world = world;
     this->data_base = data_base;
     this->next_scenario = LEVEL_UNFINISH;
+    this->number_of_levels = -1;
+}
+
+void GameLoop::setNumberOfLevels(int n) {
+    this->number_of_levels = n;
 }
 
 void GameLoop :: sendInfoPlayers() {
@@ -24,12 +29,8 @@ void GameLoop :: sendInfoPlayers() {
         this->encoder.sendPlayersName();
 }
 
-void GameLoop :: sendInfoRooms() {
-    //if (!this->gameLoopStarted())
-        //this->encoder.sendRoomsName(); no esta implementado todavia
-}
-
 void GameLoop :: sendInitialData() {
+    std::cout << "Se manda datos iniciales\n";
     this->encoder.sendMapStart();
     this->encoder.sendPlayersPositions();
     this->encoder.sendPlayerIds();
@@ -45,6 +46,7 @@ void GameLoop :: sendInitialData() {
     this->encoder.sendCake();
     this->encoder.sendTriangularBlocks();
     this->encoder.sendEndMap();
+    std::cout << "Termina de mandar datos\n";
 }
 
 void GameLoop :: sendDynamicData() { 
@@ -59,6 +61,7 @@ void GameLoop :: sendDynamicData() {
 void GameLoop :: run() {
     try {
         this->continue_running = true;
+        int level_number = 0;
         this->sendInitialData();
         while (this->continue_running) {
             auto t_start = std::chrono::high_resolution_clock::now();
@@ -74,8 +77,8 @@ void GameLoop :: run() {
             std::this_thread::sleep_for(std::chrono::milliseconds(wait_time));
             this->time += STEP_DURATION;
             if (this->checkLevelComplete()) {
-                this->encoder.sendEndLevel();
-                this->waitNextAction();
+                level_number++;
+                this->waitNextAction(level_number);
             }
         }
     } catch (const std::runtime_error& e) {
@@ -129,23 +132,34 @@ bool GameLoop::checkLevelComplete() {
     return true;
 }
 
-void GameLoop::waitNextAction() { //se lo llama una ves que todos los jugadores votaron que hacer
+void GameLoop::waitNextAction(int level_number) {
+    if (level_number == this->number_of_levels) {
+        this->next_scenario = FINISH_GAME;
+        this->encoder.sendEndGame();
+        return;
+    }
+    this->encoder.sendEndLevel();
     while (true) {
         if (this->next_scenario == NEXT_LEVEL) {
+                std::cout << "entra a next level\n" << std::endl;
             this->encoder.sendNextLevelStart();
             this->sendInitialData();
             this->resetGameLoop();
             break;
         } else if (this->next_scenario == FINISH_GAME) {
+            std::cout << "entra a finish game\n" << std::endl;
             this->encoder.sendEndGame();
             break;
         } else {
             std::this_thread::sleep_for(std::chrono::milliseconds(STEP_DURATION));
         }
     }
+    std::cout << "se va waitnextlevel\n" << std::endl;
 }
 
-void GameLoop::setNextScenario(int action) {
-    if (!this->checkLevelComplete()) return;
+void GameLoop::setNextScenario(int action,World* world) {
+    //if (!this->checkLevelComplete()) return;
+    std::cout << "entro a next scenario" << std::endl;
     this->next_scenario = action;
+    if (world != nullptr) this->world = world;
 }

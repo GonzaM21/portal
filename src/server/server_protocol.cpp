@@ -36,7 +36,7 @@ Command* Protoc :: deserialize(std::string &message) {
     if (content.at(1) == "w") {
         return commandFactory.createCommandJump(content.at(0));
     }
-    if (content.at(1) == "p")  {//sender,p,x_dest,y_dest,port_num
+    if (content.at(1) == "p")  {
         return commandFactory.createCommandShoot(content.at(0),content.at(2),
           content.at(3),content.at(4));
     }
@@ -63,7 +63,10 @@ Command* Protoc :: deserialize(std::string &message) {
     }
     if (content.at(1) == "c") {
         return commandFactory.createCommandNextLevel(content.at(0));
+<<<<<<< Updated upstream
         std::cout << "Llego el voto positivo" << std::endl;
+=======
+>>>>>>> Stashed changes
     }
     return nullptr;
 }

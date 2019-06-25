@@ -97,6 +97,8 @@ public:
   */
   void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);
 
+  void resetModel();
+
 private: 
   void ereasePowerBalls();
   Window &window;

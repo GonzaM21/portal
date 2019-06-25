@@ -17,7 +17,7 @@ class LevelManager {
 private:
     std::vector<std::string> json_files;
     size_t actual_level;
-    std::map<std::string,int> player_votes;
+    std::list<int> player_votes;
     std::map<std::string,bool>* players_online;
     MapParser map_parser;
     Model *model;
@@ -45,9 +45,11 @@ public:
     //los niveles para jugar
     bool allLevelPlayed();
 
-    void getCustomLevel();//deberia pensar todavia esto
-
     void loadFirstLevel();
+
+    void addPlayersToNewLevel();
+
+    int getNumberOfLevels();
 };
 
 #endif

@@ -8,6 +8,7 @@ ClientController::ClientController() {
     this->map_received =false;
     this->receive_error =false;
     this->waiting_next_level = false;
+    this->change_level = false;
 }
 
 void ClientController::failureExit() {
@@ -51,15 +52,14 @@ void ClientController::updateClientAction(LocalSceneLogic &local_scene_logic,
     SceneManager &scene_manager) {
     while (this->continue_running) {
         if (local_scene_logic.getNextLevel()) {
+<<<<<<< Updated upstream
             std::cout << "envio datos para prox level\n";
+=======
+>>>>>>> Stashed changes
             this->communicator->addMessageToSend("c");
             return;
         } else if (local_scene_logic.getEndGame()) {
             this->communicator->addMessageToSend("q");
-            for (int i = 0; i<5;i++) {
-                std::cout<< "Exit in: " << 5-i << " seconds." << std::endl;
-                usleep(1000000);
-            }
             this->continue_running = false;
             return;
         }
@@ -73,11 +73,14 @@ void ClientController::updateLocalScene(LocalSceneLogic &local_scene_logic,
     if (this->end_level && this->waiting_next_level) {
         this->handler->setSendDataLocally(true);
         scene_manager.putNextLevelScene();
+        scene_manager.resetLevelStage();
+        this->change_level = true;
         this->updateClientAction(local_scene_logic,scene_manager);
         return;
-    } else if (!this->end_level && this->waiting_next_level) {
+    } else if (!this->end_level && !this->waiting_next_level && this->change_level) {
         this->handler->setSendDataLocally(false);
-        /*if (scene_manager.getActualScreen()!= GAME_SCREEN)*/ scene_manager.putGameScene();
+        scene_manager.putGameScene();
+        this->change_level = false;
         return;
     }
 }
@@ -119,6 +122,11 @@ void ClientController::mainLoop() {
             deserializer.deserialize(msg);
             this->updateControllerVariables(&data_container);
             this->evaluateLocalVariables(local_scene_logic,scene_manager);
+        }
+        scene_manager.putEndGameScene();
+        for (int i = 0; i<5;i++) {
+            std::cout<< "Exit in: " << 5-i << " seconds." << std::endl;
+            usleep(1000000);
         }
     } catch (const std::runtime_error &e) {
         std::cout << e.what() << std::endl;

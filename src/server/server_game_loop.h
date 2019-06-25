@@ -30,8 +30,9 @@ class GameLoop : public Thread {
         Encoder encoder;
         ProtectedDataBase *data_base;
         int next_scenario;
+        int number_of_levels;
         bool checkLevelComplete();
-        void waitNextAction();
+        void waitNextAction(int level_number);
 
     public:
         GameLoop(World* world,Sender *sender,ProtectedDataBase *data_base);
@@ -40,6 +41,7 @@ class GameLoop : public Thread {
         void endGameLoop();
         bool gameLoopStarted();
         bool continueRunning();
+        void setNumberOfLevels(int n);
         void run() override;
         void step();
         void sendInitialData();
@@ -47,7 +49,7 @@ class GameLoop : public Thread {
         void resetGameLoop();
         void sendInfoPlayers();
         void sendInfoRooms();
-        void setNextScenario(int action);
+        void setNextScenario(int action,World* world=nullptr);
 };
 
 #endif

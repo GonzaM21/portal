@@ -8,11 +8,16 @@ ClientDeserializer::ClientDeserializer(DataContainer *data_container
 }
 
 void ClientDeserializer::deserialize(std::string &message) {
+    if (message.size()< 10) std::cout << message << std::endl;
     std::vector<std::string> arguments;
     std::cout << message << std::endl;
     this->splitMessage(message,arguments);
     if (arguments.at(0) == ERROR_CODE && arguments.size() == 2) {
         this->data_container->setReceiveError(arguments.at(1));
+<<<<<<< Updated upstream
+=======
+        std::cout << arguments.at(1) << std::endl;
+>>>>>>> Stashed changes
         this->data_container->setGameFinish();
         return;
     } else if (arguments.at(0) == END_LEVEL_CODE && arguments.size() == 1) {
@@ -28,6 +33,8 @@ void ClientDeserializer::deserialize(std::string &message) {
     } else if (arguments.at(0) == START_MAP_CODE && arguments.size() == 1) {
          this->data_container->setEndLevel(false);
     } else if (arguments.at(0) == END_MAP_CODE && arguments.size() == 1) {
+        this->data_container->setEndLevel(false);
+        this->data_container->setWaitingNextLevel(false);
         this->data_container->setReceivedMap(true);
         return;
     } else if (arguments.at(0) == MATES_CODE && arguments.size() == 1) {

@@ -108,3 +108,7 @@ void ModelFacade::convertToWorld(Rect &worldPostion, const Rect &virtualPostion)
 void ModelFacade::setBackground() {
   model.setBackground();
 }
+
+void ModelFacade::resetModel() {
+  model.resetModel();
+}

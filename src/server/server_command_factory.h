@@ -20,6 +20,11 @@
 #include "server_command_finish_game.h"
 #include <map>
 
+/* 
+* Clase para crear nuevos comandos a ejecutar sobre el 
+* modelo
+*/
+
 class CommandFactory {
 private:
     Model *model;

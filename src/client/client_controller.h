@@ -26,6 +26,7 @@ private:
     bool waiting_next_level;
     bool end_level;
     bool receive_error;
+    bool change_level;
 
     //Inicializa los hilos necesarios para comunicacion 
     //con el servidor.

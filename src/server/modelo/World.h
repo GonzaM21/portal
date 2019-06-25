@@ -13,6 +13,7 @@
 
 
 class World {
+    bool erase;
     b2World* world;
     MyContactListener * ContactListener;
     std::vector<b2Body*> Bodies;
@@ -54,11 +55,11 @@ public:
 
     b2Vec2 getHigh();
 
-    void eraseAllBodies(int start = 5);
-
     void eraseBody(b2Body * body);
 
     float getGravity();
+
+    void eraseAllBodies();
 
     //Destructor
     ~World();

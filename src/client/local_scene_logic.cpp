@@ -8,9 +8,12 @@ LocalSceneLogic::LocalSceneLogic(SceneManager &scene_manager) :
 
 void LocalSceneLogic::setEvent(std::string &event) {
     std::unique_lock<std::mutex> lck(m);
-    EndLevelScreen *end_level_scene = this->scene_manager.getEndLevelScreen();
-    if (event == "q") this->end_game = true;
-    else this->next_level = true;
+    if (event == "q") {
+        this->end_game = true;
+        this->scene_manager.putEndGameScene();
+    } else {
+        this->next_level = true;
+    }
 }
 
 bool LocalSceneLogic::getEndGame() {

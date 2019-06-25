@@ -16,8 +16,8 @@ class Model {
     private:
         GameLoop *game_loop;
         ProtectedDataBase data_base;
-        World world;
-        Ground * ground;
+        World* world;
+        Ground* ground;
         bool finish_game;
         bool levelComplete();
 
@@ -43,7 +43,9 @@ class Model {
         void killPlayer(std::string &player_name);
         void voteToKill(std::string &voter);
         void resetModel();
+        void setNextScene(int n);
         bool getFinishGame();
+        void setNumberOfLevels(int n);
         void resetGameLoop(); //lo tengo en funciones aparte porque entre que reseteo el modelo y el gameloop tengo que agregar todos los objectos al world en levelManager 
 
         //Funciones para agregar elementos al mapa

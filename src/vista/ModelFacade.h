@@ -43,6 +43,7 @@ public:
   Window *getWindow();
   void convertToWorld(Rect &worldPostion, const Rect &virtualPostion);
   void setBackground();
+  void resetModel();
 
 private:
   Model model;
