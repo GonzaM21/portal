@@ -17,5 +17,5 @@ void EnergyBarrier::setDestWorld(float x, float y, float width, float height) {
 }
 
 EnergyBarrier::~EnergyBarrier() {
-  delete sprite;
+  delete this->sprite;
 }

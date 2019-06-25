@@ -27,4 +27,5 @@ void Emitter::setState(const int& state) {
 }
 
 Emitter::~Emitter() {
+	delete inactive;
 }

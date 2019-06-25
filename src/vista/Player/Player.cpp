@@ -114,7 +114,8 @@ void Player::setDestWorld(float x, float y, float width, float height)
 }
 
 Player::~Player() {
-	for (auto sprite : states) {
-		delete sprite.second;
+	for (auto it = this->states.cbegin(); it != this->states.cend();) {
+		delete it->second;
+		it = this->states.erase(it);
 	}
 }
