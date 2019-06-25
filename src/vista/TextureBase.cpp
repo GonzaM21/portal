@@ -24,9 +24,9 @@ void TextureBase::createTexture(const int& id, const std::string filename) {
   if (imgs.find(id) != imgs.end()) return;
   imgs[id] = IMG_Load(filename.c_str());
   textures[id] = SDL_CreateTextureFromSurface(this->renderer, imgs[id]);
-  if (textures[id] == NULL || imgs[id] == NULL) {
+  /*if (textures[id] == NULL || imgs[id] == NULL) {
     throw SdlException("No se pudo cargar la imagen con ID " + std::to_string(id),SDL_GetError());
-  }
+  }*/
 }
 
 TextureBase::~TextureBase()
