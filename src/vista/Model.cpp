@@ -162,7 +162,11 @@ void Model::resetModel() {
   for (auto it = this->acids.cbegin(); it != this->acids.cend();) {
       delete (*it);
       it = this->acids.erase(it); 
-  }    
+  }
+  for (auto it = this->emitters.cbegin(); it != this->emitters.cend();) {
+    delete (*it);
+    it = this->emitters.erase(it);
+  }
   for (auto it = this->powerballs.cbegin(); it != this->powerballs.cend();) {
       delete it->second;
       it = this->powerballs.erase(it); 
