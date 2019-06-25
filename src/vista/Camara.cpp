@@ -3,7 +3,7 @@
 #define FACTORX 0.12
 #define FACTORY 0.25
 
-Camara::Camara(const Window &window) : window(window), vision(0, 0, this->window_width, this->window_width) {
+Camara::Camara(const Window &window) : window(window), vision(0, 0, 0, 0) {
   setCamara(0, 0);
 }
 
