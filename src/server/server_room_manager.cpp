@@ -15,12 +15,9 @@ RoomManager :: RoomManager(ColaProtegida *events) {
 
 bool RoomManager :: idIsValid(const std::string &id) {
     while (true) {
-        for (std::map<std::string,bool>::iterator 
-        it=this->ids.begin(); it!=this->ids.end(); ++it) {
-            if (id == it->first) {
-                return it->second;
-            }
-        }
+        auto it = this->ids.find(id);
+        if (it == this->ids.end()) continue;
+        else return it->second;           
     }
 }
 
