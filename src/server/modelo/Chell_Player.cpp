@@ -84,16 +84,8 @@ bool Chell_Player::Move(char &direction) {
 }
 
 void Chell_Player::Brake(){
-    if(chell->GetLinearVelocity().y == 0){
-        chell->SetLinearVelocity(b2Vec2(0,0));
-    } else{
-        if(chell->GetLinearVelocity().x < 0){
-            chell->ApplyForceToCenter(b2Vec2(CHELL_MOVE_FORCE,0),true);
-        }
-        if(chell->GetLinearVelocity().x > 0){
-            chell->ApplyForceToCenter(b2Vec2(-CHELL_MOVE_FORCE,0),true);
-        }
-    }
+    b2Vec2 actual = chell->GetLinearVelocity();
+    chell->SetLinearVelocity(b2Vec2(0,actual.y));
 }
 
 int Chell_Player::getStatus(){
