@@ -53,6 +53,8 @@ void Portal::changePosition() {
         float x_subtraction = abs(body_pos.x) - abs(position.x);
         float y_subtraction = abs(body_pos.y) - abs(position.y);
 
+        std::cout << "Resta: "<<x_subtraction<<"  "<<y_subtraction<<std::endl;
+
         b2Vec2 delta = b2Vec2(0,0);
         if(x_subtraction == 0 && angle == 90){
 
@@ -66,20 +68,51 @@ void Portal::changePosition() {
 
             if(body_pos.x < position.x) normal = b2Vec2(1.f,0.f);
             if(body_pos.x > position.x) normal = b2Vec2(-1.f,0.f);
-        }else if(abs(body_pos.x - position.x) != 0 && abs(body_pos.y - position.y) != 0 && angle != 90 ) {
-
+        }else{
             if (angle == 45) {
-                orientation = 3;
-                normal = b2Vec2(-1.f, 1.f);
+                if (x_subtraction == 0 && y_subtraction == 0){
+                    orientation = 3;
+                    normal = b2Vec2(-1.f, 1.f);
+                } else if (x_subtraction != 0 && y_subtraction == 0){
+                    orientation = 2;
+                    normal = b2Vec2(1.f,0.f);
+                } else if (x_subtraction == 0 && y_subtraction != 0) {
+                    orientation = 0;
+                    normal = b2Vec2(0.f, -1.f);
+                }
             } else if (angle == 135) {
-                orientation = 1;
-                normal = b2Vec2(1.f, 1.f);
+                if (x_subtraction == 0 && y_subtraction == 0){
+                    orientation = 1;
+                    normal = b2Vec2(1.f, 1.f);
+                } else if (x_subtraction != 0 && y_subtraction == 0){
+                    orientation = 2;
+                    normal = b2Vec2(-1.f,0.f);
+                } else if (x_subtraction == 0 && y_subtraction != 0){
+                    orientation = 0;
+                    normal = b2Vec2(0.f,-1.f);
+                }
             } else if (angle == 225) {
-                orientation = 3;
-                normal = b2Vec2(1.f, -1.f);
+                if (x_subtraction == 0 && y_subtraction == 0){
+                    orientation = 3;
+                    normal = b2Vec2(1.f, -1.f);
+                } else if (x_subtraction != 0 && y_subtraction == 0){
+                    orientation = 2;
+                    normal = b2Vec2(-1.f,0.f);
+                } else if (x_subtraction == 0 && y_subtraction != 0){
+                    orientation = 0;
+                    normal = b2Vec2(0.f,1.f);
+                }
             } else if (angle == 315) {
-                orientation = 1;
-                normal = b2Vec2(-1.f, -1.f);
+                if (x_subtraction == 0 && y_subtraction == 0){
+                    orientation = 1;
+                    normal = b2Vec2(-1.f, -1.f);
+                } else if (x_subtraction != 0 && y_subtraction == 0){
+                    orientation = 2;
+                    normal = b2Vec2(1.f,0.f);
+                } else if (x_subtraction == 0 && y_subtraction != 0){
+                    orientation = 0;
+                    normal = b2Vec2(0.f,-1.f);
+                }
             }
         }
 
