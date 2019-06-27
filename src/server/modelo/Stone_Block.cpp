@@ -12,6 +12,7 @@ Stone_Block::Stone_Block(World &world,float x_pos, float y_pos,float size){
     block->SetUserData(this);
     angle = 90;
     name = "Stone_Block";
+    position = block->GetPosition();
     sizes = b2Vec2(size,size);
 }
 
@@ -21,7 +22,8 @@ Stone_Block::Stone_Block(World &world,float x_pos, float y_pos,float size,int an
     data.addMaskBits(BARRIER_BITS);
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(BALL_BITS);
-    block = world.addTriangle(x_pos,y_pos,size/2,angle,true,data);
+    block = world.addTriangle(x_pos,y_pos,size,angle,true,data);
+    position = b2Vec2(x_pos + DELTA_POSITION, y_pos + DELTA_POSITION);
     block->SetUserData(this);
     this->angle = angle;
     name = "Stone_Block";
@@ -29,7 +31,7 @@ Stone_Block::Stone_Block(World &world,float x_pos, float y_pos,float size,int an
 }
 
 b2Vec2 Stone_Block::getPosition() {
-    return block->GetPosition();
+    return position;
 }
 
 int Stone_Block::getAngle() {

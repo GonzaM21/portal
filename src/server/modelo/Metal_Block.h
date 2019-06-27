@@ -10,6 +10,7 @@ class Metal_Block : public Entity{
     std::string name;
     bool live;
     bool contact;
+    b2Vec2 position;
 public:
     //Contructor de un bloque de metal cuadrado. hay que pasarle la mital de lado
     Metal_Block(World &world,float x_pos, float y_pos, float size);

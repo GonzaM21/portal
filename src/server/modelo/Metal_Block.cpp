@@ -14,6 +14,7 @@ Metal_Block::Metal_Block(World &world,float x_pos, float y_pos,float size){
     name = "Metal_Block";
     contact = false;
     live = true;
+    position = block->GetPosition();
 }
 
 Metal_Block::Metal_Block(World &world,float x_pos, float y_pos, float size ,int angle){
@@ -23,6 +24,7 @@ Metal_Block::Metal_Block(World &world,float x_pos, float y_pos, float size ,int 
     data.addMaskBits(ROCK_PORTAL_BITS);
     data.addMaskBits(BALL_BITS);
     block = world.addTriangle(x_pos,y_pos,size,angle,true,data);
+    position = b2Vec2(x_pos + DELTA_POSITION, y_pos + DELTA_POSITION);
     this->angle = angle;
     sizes = b2Vec2(size,size);
     block->SetUserData(this);
@@ -32,7 +34,7 @@ Metal_Block::Metal_Block(World &world,float x_pos, float y_pos, float size ,int 
 }
 
 b2Vec2 Metal_Block::getPosition() {
-    return block->GetPosition();
+    return position;
 }
 
 int Metal_Block::getAngle() {

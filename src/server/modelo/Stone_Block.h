@@ -8,6 +8,7 @@ class Stone_Block : public Entity{
     std::string name;
     b2Vec2 sizes;
     int angle;
+    b2Vec2 position;
 public:
     //Contructor de un bloque de piedra cuadrado.
     Stone_Block(World &world,float x_pos, float y_pos,float size);
